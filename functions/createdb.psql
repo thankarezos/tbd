@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION createdb()
  RETURNS void
- LANGUAGE plsql
+ LANGUAGE plpgsql
 AS $function$
     BEGIN
     drop table IF EXISTS Syntelestes;
