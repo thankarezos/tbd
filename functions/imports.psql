@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION it185193.imports(name text,surname text,idiotita text,number text)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    INSERT INTO Syntelestes (name,surname,idiotita,number)
+    VALUES (name,surname,idiotita,number);
+    END;
+$function$
