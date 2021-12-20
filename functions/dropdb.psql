@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION it185193.dropdb()
+CREATE OR REPLACE FUNCTION dropdb()
  RETURNS void
  LANGUAGE plpgsql
 AS $function$

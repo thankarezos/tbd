@@ -1,3 +1,3 @@
-Select it185193.imports('teest');
+Select imports('teest');
 SELECT *
-	FROM it185193.Syntelestes;
+	FROM Syntelestes;

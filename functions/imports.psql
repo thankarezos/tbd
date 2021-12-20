@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION it185193.imports(name text,surname text,idiotita text,number text)
+CREATE OR REPLACE FUNCTION imports(name text,surname text,idiotita text,number text)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
