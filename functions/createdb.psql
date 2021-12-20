@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION it185193.createdb()
+CREATE OR REPLACE FUNCTION createdb()
  RETURNS void
  LANGUAGE sql
 AS $function$
