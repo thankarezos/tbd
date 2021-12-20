@@ -1,13 +1,15 @@
 CREATE OR REPLACE FUNCTION createdb()
  RETURNS void
- LANGUAGE sql
+ LANGUAGE plsql
 AS $function$
-drop table IF EXISTS Syntelestes;
-create table IF NOT EXISTS Syntelestes
-(sid SERIAL,
-name varchar(20),
-surname varchar(20),
-idiotita varchar(20),
-number varchar(15),
-primary key(sid));
+    BEGIN
+    drop table IF EXISTS Syntelestes;
+    create table IF NOT EXISTS Syntelestes
+    (sid SERIAL,
+    name varchar(20),
+    surname varchar(20),
+    idiotita varchar(20),
+    number varchar(15),
+    primary key(sid));
+    END;
 $function$
