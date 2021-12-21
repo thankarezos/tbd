@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION "expenses"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    (
+        expenses_id SERIAL,
+        merit_exp double(100),
+        type_exp enum(`empty`,`salary` ,`tax/permissions`, `bill`, ``)  default empty,
+        primary key(expenses_id)
+    );
+    END;
+$function$

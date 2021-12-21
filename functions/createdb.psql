@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION createdb()
  RETURNS void
- LANGUAGE plsql
+ LANGUAGE plpgsql
 AS $function$
     BEGIN
     drop table IF EXISTS Syntelestes;
@@ -8,8 +8,8 @@ AS $function$
     (sid SERIAL,
     name varchar(20),
     surname varchar(20),
-    idiotita varchar(20),
-    number varchar(15),
+    role varchar(20),
+    phoneNumber varchar(15),
     primary key(sid));
     END;
 $function$
