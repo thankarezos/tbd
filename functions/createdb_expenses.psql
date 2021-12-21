@@ -3,10 +3,12 @@ CREATE OR REPLACE FUNCTION "expenses"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
+    drop table IF EXISTS expenses;
+    create table IF NOT EXISTS expenses
     (
         expenses_id SERIAL,
         merit_exp double(100),
-        type_exp enum(`empty`,`salary` ,`tax/permissions`, `bill`, ``)  default empty,
+        type_exp enum(`empty`,`salary` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
         primary key(expenses_id)
     );
     END;

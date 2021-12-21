@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION "createekpompes"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    drop table IF EXISTS ekpompes;
+    create table IF NOT EXISTS ekpompes
+    (
+        sid int,
+        name varchar(20),
+        rating varchar(20),
+        primary key(sid)
+    );
+    END;
+$function$

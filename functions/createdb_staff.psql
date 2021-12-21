@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION "staff"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    drop table IF EXISTS staff;
+    create table IF NOT EXISTS staff
+    (
+        staff_id SERIAL,
+        sector enum(`empty`,`syntelestes` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
+        specialty enum(`empty`,`salary` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
+        age int(2),
+        phone number int(14),
+        primary key(staff_id)
+    );
+    END;
+$function$

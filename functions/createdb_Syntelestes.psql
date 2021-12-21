@@ -5,11 +5,13 @@ AS $function$
     BEGIN
     drop table IF EXISTS Syntelestes;
     create table IF NOT EXISTS Syntelestes
-    (sid SERIAL,
-    name varchar(20),
-    surname varchar(20),
-    role varchar(20),
-    phoneNumber varchar(15),
-    primary key(sid));
+    (
+        sid SERIAL,
+        name varchar(20),
+        surname varchar(20),
+        role varchar(20),
+        phoneNumber varchar(15),
+        primary key(sid)
+    );
     END;
 $function$
