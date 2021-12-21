@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION "create_esoda"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    drop table IF EXISTS Income;
+    create table IF NOT EXISTS Income
+    (
+        income_id SERIAL,
+        merit_inc double(100),
+        type_inc enum(`empty`,`time_lease` ,`subscription_services`)  default empty,
+        primary key(income_id)
+    );
+    END;
+$function$
