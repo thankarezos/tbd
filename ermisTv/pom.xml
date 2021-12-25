@@ -20,6 +20,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.maven-play-plugin.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.0-801.jdbc4-patched-play-1.2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
