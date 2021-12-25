@@ -33,17 +33,40 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args){
-        Connection c = null;
-      try {
-         Class.forName("org.postgresql.Driver");
-         c = DriverManager.getConnection(credentials.url, credentials.user, credentials.pass);
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
-      }
-      System.out.println("Opened database successfully");
+    public static void main(String[] args) throws SQLException{
+        Connection con = null;
+        try {
+           Class.forName("org.postgresql.Driver");
+           con = DriverManager.getConnection(credentials.url, credentials.user, credentials.pass);
+        } catch (Exception e) {
+           e.printStackTrace();
+           System.err.println(e.getClass().getName()+": "+e.getMessage());
+           System.exit(0);
+        }
+        System.out.println("Opened database successfully");
+        
+        Statement stmt = con.createStatement();
+        String selectekpompes = "Select * from ekpompes";
+        
+        ResultSet rs = stmt.executeQuery(selectekpompes);
+        while (rs.next()) {
+            String s = rs.getString("name");
+            System.out.println(s);
+        }
+        String importi = "INSERT INTO ekpompes (name,rating)\n" +
+                            "VALUES ('teswt','18+');";
+        stmt.executeUpdate(importi);
+        
+        System.out.println();
+        System.out.println();
+        
+        rs = stmt.executeQuery(selectekpompes);
+        while (rs.next()) {
+            String s = rs.getString("name");
+            String s2 = rs.getString("sid");
+            System.out.println(s2 + " " +s);
+        }
+        
         launch();
     }
 
