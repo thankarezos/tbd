@@ -24,6 +24,8 @@ public class App extends Application {
         ΘΕΛΩ ΤΟ LOGIN ΝΑ ΕΙΝΑΙ  640 Χ 480
         ΚΑΙ ΤΟ SECONDARY 1200 X 600 Ή ΜΙΑ ΑΛΛΗ ΔΙΑΣΤΑΣΗ
         ΜΕΓΑΛΥΤΕΡΗ ΤΟΥ 640 Χ 480
+        EKANA MIA MALAKIA KAI PERASA TOUS KWDIKOUS MOU KATI EKANA ME KATI GIT KAI PREPEI
+        NA TA ESBISA . PAW NMA XALARWSW LIGO KAI 8A MPW KSANA
          */
         scene = new Scene(loadFXML("fxml/login_view"), 1200, 600);
         stage.initStyle(StageStyle.UNDECORATED);
