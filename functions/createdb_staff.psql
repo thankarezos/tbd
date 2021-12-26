@@ -7,10 +7,10 @@ AS $function$
     create table IF NOT EXISTS staff
     (
         staff_id SERIAL,
-        sector enum(`empty`,`syntelestes` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
-        specialty enum(`empty`,`salary` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
-        age int(2),
-        phone number int(14),
+        sector enum(`empty`,`etc`) default empty,
+        specialty enum(`empty`,`etc`) default empty,
+        age varchar(2) ,
+        phone_number varchar(14) ,
         primary key(staff_id)
     );
     END;
