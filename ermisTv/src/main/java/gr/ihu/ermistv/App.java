@@ -75,7 +75,11 @@ public class App extends Application {
 //            String s2 = rs.getString("sid");
 //            System.out.println(s2 + " " +s);
 //        }
-        DBConnection.connect(credentials.url, credentials.user, credentials.pass);  
+        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
+        String user = properties.getProperty("user");
+        String pass = properties.getProperty("pass");
+        String url = properties.getProperty("url");
+        DBConnection.connect(url, user, pass);  
         launch();
     }
 
