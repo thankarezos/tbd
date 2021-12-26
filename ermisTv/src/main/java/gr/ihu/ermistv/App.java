@@ -19,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("fxml/primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
@@ -36,8 +36,8 @@ public class App extends Application {
     public static void main(String[] args){
         Connection c = null;
       try {
-         Class.forName("org.postgresql.Driver");
-         c = DriverManager.getConnection(credentials.url, credentials.user, credentials.pass);
+         //Class.forName("org.postgresql.Driver");
+          // c = DriverManager.getConnection(credentials.url, credentials.user, credentials.pass);
       } catch (Exception e) {
          e.printStackTrace();
          System.err.println(e.getClass().getName()+": "+e.getMessage());
@@ -46,5 +46,6 @@ public class App extends Application {
       System.out.println("Opened database successfully");
         launch();
     }
+
 
 }
