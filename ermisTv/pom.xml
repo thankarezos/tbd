@@ -35,6 +35,11 @@
             <artifactId>postgresql</artifactId>
             <version>9.0-801.jdbc4-patched-play-1.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

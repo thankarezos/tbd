@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -19,7 +20,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("fxml/primary"), 640, 480);
+        /* THANASI HELP
+        ΘΕΛΩ ΤΟ LOGIN ΝΑ ΕΙΝΑΙ  640 Χ 480
+        ΚΑΙ ΤΟ SECONDARY 1200 X 600 Ή ΜΙΑ ΑΛΛΗ ΔΙΑΣΤΑΣΗ
+        ΜΕΓΑΛΥΤΕΡΗ ΤΟΥ 640 Χ 480
+         */
+        scene = new Scene(loadFXML("fxml/login_view"), 1200, 600);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
