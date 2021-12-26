@@ -3,17 +3,17 @@ CREATE OR REPLACE FUNCTION "program_pr"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    if not EXISTS (select 1 from type where typname = "day_pr") then 
+    if not EXISTS (SELECT 1 FROM pg_type WHERE typname = 'day_pr') then 
     create type day_pr as enum ('monday','tuesday','wednesday','thrusday','friday','saturday','sunday');END IF;
-	if not EXISTS (select 1 from type where typname = "type_pr") then 
+	if not EXISTS (SELECT 1 FROM pg_type st WHERE typname = 'type_pr') then 
     create type type_pr as enum ('movie','series','broadcast','documentary','NEWS');END IF;
     drop table if EXISTS program_pro;
     create table if not EXISTS program_pr
     (
-	program_id SERIAL not null ,
-		day_pr day_pr DEFAULT 'empty',
+	    program_id SERIAL not null ,
+		day_pr day_pr,
 		name_pr varchar(100)not null,
-		type_pr type_pr DEFAULT 'empty',
+		type_pr type_pr,
 		timew time(4)not null
 	);
     END;

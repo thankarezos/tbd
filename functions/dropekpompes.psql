@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION dropekpompes()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    drop table IF EXISTS ekpompes cascade;
+    END;
+$function$

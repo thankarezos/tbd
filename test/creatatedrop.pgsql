@@ -1,6 +1,8 @@
 SELECT createdb();
 SELECT dropdb();
+SELECT dropekpompes();
 SELECT createekpompes();
+SELECT program_pr();
 SELECT * from getByName('thanasis','karezos');
 SELECT * from Syntelestes where name = 'thanasis' AND surname = 'karezos';
 
