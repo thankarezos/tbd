@@ -4,6 +4,9 @@
 .child {
     -fx-background-color: #868383;
 }
+.login {
+    -fx-background-color: #6b6868;
+}
 FontAwesomeIconView {
     -fx-fill:white;
 }
