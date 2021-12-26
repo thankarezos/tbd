@@ -6,10 +6,9 @@ AS $function$
     drop table IF EXISTS account;
     create table IF NOT EXISTS account
     (
-        account_id SERIAL,
         username varchar(100),
         pass varchar(100),
-        primary key(income_id)
+        primary key(username)
     );
     END;
 $function$

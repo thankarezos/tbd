@@ -34,28 +34,29 @@ public class login_Controller {
     }
 
     @FXML
-    private void validateLogin() throws SQLException {
-        Connection c = DriverManager.getConnection(credentials.url, credentials.user, credentials.pass);
-
-        String verifyLogin = "select count(1) from account where username = '" +
-                fdUser.getText() + "' and pass = '" + fdPass.getText() + "';";
+    private void validateLogin() throws SQLException, IOException {
+        
+        String user  =  String.valueOf(fdUser.getText());
+        String pass =  fdPass.getText();
+        String verifyLogin = "select * from checkaccount('" + user + "','" + pass +"');";
+        System.out.println("select * from checkaccount('" + String.valueOf(fdUser.getText()) + "','" + fdPass.getText() +"')");
 
         try {
 
-            Statement statement = c.createStatement();
+            Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
-
-            while (queryResult.next()) {
-                if (queryResult.getInt(1) == 1) {
-                    //game
-                    messageLabel.setStyle("-fx-text-fill: green");
-                    messageLabel.setText("Congratulations!");
-                    App.setRoot("fxml/secondary");
-                } else {
-                    messageLabel.setText("Invalid login. Please try again !");
-                }
-            }
-
+//            if (queryResult.next() == false) { System.out.println("ResultSet in empty in Java"); }
+//            System.out.println(queryResult.next());
+//            System.out.println(queryResult.getString("username"));
+            queryResult.next();
+            if(queryResult.getString("username") != null){
+                messageLabel.setStyle("-fx-text-fill: green");
+                messageLabel.setText("Congratulations!");
+                App.setRoot("fxml/secondary");
+            } else {
+                messageLabel.setText("Invalid login. Please try again !");
+            } 
+            
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

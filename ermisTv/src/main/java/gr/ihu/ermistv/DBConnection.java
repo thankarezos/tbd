@@ -4,10 +4,18 @@
  */
 package gr.ihu.ermistv;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author User
  */
 public class DBConnection {
+    public static Connection c;
+    public static void connect(String url,String user,String pass) throws SQLException{
+        c = DriverManager.getConnection(url,user,pass);
+    }
     
 }
