@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.SecondaryController">
+   <children>
+      <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1200.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimizedWindow" prefHeight="25.0" prefWidth="25.0" styleClass="min-btn" stylesheets="@../css/style.css">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MINUS" onMouseClicked="#minimizedWindow" size="1.5em" />
+               </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeWindow" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" onMouseClicked="#closeWindow" size="1.5em" />
+               </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="460.0" layoutY="274.0" spacing="20.0">
+         <children>
+            <Label text="Secondary View" />
+            <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Switch to Primary View" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="110.0" style="-fx-background-color: blue;">
+         <children>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Program">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <StackPane layoutX="110.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" style="-fx-background-color: red;">
+         <children>
+            <AnchorPane id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" styleClass="child" stylesheets="@../css/style.css">
+               <children>
+                  <TableView fx:id="table_pr" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="1092.0">
+                    <columns>
+                      <TableColumn fx:id="day_pr" prefWidth="75.0" text="day pr" />
+                      <TableColumn fx:id="name_pr" prefWidth="75.0" text="name_pr" />
+                        <TableColumn fx:id="type_pr" prefWidth="75.0" text="type_pr" />
+                        <TableColumn fx:id="time_pr" prefWidth="75.0" text="time" />
+                    </columns>
+                  </TableView>
+                  <HBox layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1092.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="add day">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="choise_day" prefWidth="150.0" />
+                        <Label text="add name">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField />
+                        <Label text="add type">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="choise_type" prefWidth="150.0" />
+                        <Label text="add time">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField />
+                        <Button mnemonicParsing="false" text="Button" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="label_test" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="485.0" prefHeight="35.0" prefWidth="137.0" text="Test">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

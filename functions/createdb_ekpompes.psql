@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION "createekpompes"()
+CREATE OR REPLACE FUNCTION "ekpompes"()
  RETURNS void
  LANGUAGE plpgsql
 AS $function$

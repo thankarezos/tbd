@@ -11,6 +11,16 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx-fontawesome</artifactId>
+            <version>4.7.0-9.1.2</version>
+        </dependency>
+    <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>13</version>
@@ -24,6 +34,11 @@
             <groupId>com.google.code.maven-play-plugin.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.0-801.jdbc4-patched-play-1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.1</version>
         </dependency>
     </dependencies>
     <build>

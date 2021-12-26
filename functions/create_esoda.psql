@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION "create_esoda"()
+CREATE OR REPLACE FUNCTION "esoda"()
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
