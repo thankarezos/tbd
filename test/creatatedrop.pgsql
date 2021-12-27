@@ -3,6 +3,7 @@ SELECT dropdb();
 SELECT dropekpompes();
 SELECT createekpompes();
 SELECT program_pr();
+SELECT account();
 SELECT * from getByName('thanasis','karezos');
 SELECT * from Syntelestes where name = 'thanasis' AND surname = 'karezos';
 
@@ -16,3 +17,10 @@ UPDATE ekpompes SET name = 'kalhnyxta' where sid = 3 order by sid;
 Select * from ekpompes;
 Select * from ekpompes order by sid;
 Select * from getorder();
+INSERT INTO account (username,pass)
+    VALUES ('Thanasis', '1234');
+INSERT INTO account (username,pass)
+    VALUES ('thanasis', '1234');
+Select checkaccount('Thanasis', '1234');
+Select checkaccount('thanasis', '1234');
+Select * from checkaccount('Thanadsis', '1234');
