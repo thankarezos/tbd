@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION "account"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    drop table IF EXISTS account;
+    drop table IF EXISTS account cascade;
     create table IF NOT EXISTS account
     (
         username varchar(100),
