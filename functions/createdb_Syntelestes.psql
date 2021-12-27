@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION createdb()
+CREATE OR REPLACE FUNCTION "syntelestes"()
  RETURNS void
  LANGUAGE plpgsql
 AS $function$

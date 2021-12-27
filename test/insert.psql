@@ -1,0 +1,11 @@
+INSERT INTO ekpompes (sid,name,rating)
+    VALUES (1,'kalhmera','18+');
+INSERT INTO ekpompes (sid,name,rating)
+    VALUES (2,'kalhnyxta','18+');
+INSERT INTO ekpompes (sid,name,rating)
+    VALUES (3,'kalhspera','18+');  
+
+INSERT INTO account (username,pass)
+    VALUES ('Peris', '1234');
+INSERT INTO account (username,pass)
+    VALUES ('thanasis', '1234');  
