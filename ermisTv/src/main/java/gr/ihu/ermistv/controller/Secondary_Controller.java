@@ -1,9 +1,10 @@
-package gr.ihu.ermistv;
+package gr.ihu.ermistv.controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gr.ihu.ermistv.App;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class SecondaryController implements Initializable {
+public class Secondary_Controller implements Initializable {
     @FXML
     private AnchorPane secondary;
     @FXML

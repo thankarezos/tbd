@@ -1,8 +1,11 @@
-package gr.ihu.ermistv;
+package gr.ihu.ermistv.controller;
 
 import java.io.IOException;
 import java.sql.*;
 
+import gr.ihu.ermistv.App;
+//import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.DBConnection;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -35,7 +38,7 @@ public class login_Controller {
 
     @FXML
     private void validateLogin() throws SQLException, IOException {
-        
+
         String user  =  String.valueOf(fdUser.getText());
         String pass =  fdPass.getText();
         String verifyLogin = "select * from checkaccount('" + user + "','" + pass +"');";
@@ -45,9 +48,6 @@ public class login_Controller {
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
-//            if (queryResult.next() == false) { System.out.println("ResultSet in empty in Java"); }
-//            System.out.println(queryResult.next());
-//            System.out.println(queryResult.getString("username"));
             queryResult.next();
             if(queryResult.getString("username") != null){
                 messageLabel.setStyle("-fx-text-fill: green");
@@ -55,8 +55,8 @@ public class login_Controller {
                 App.setRoot("fxml/secondary");
             } else {
                 messageLabel.setText("Invalid login. Please try again !");
-            } 
-            
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

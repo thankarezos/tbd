@@ -14,26 +14,20 @@ import java.sql.*;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class
+App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        /* THANASI HELP
-        ΘΕΛΩ ΤΟ LOGIN ΝΑ ΕΙΝΑΙ  640 Χ 480
-        ΚΑΙ ΤΟ SECONDARY 1200 X 600 Ή ΜΙΑ ΑΛΛΗ ΔΙΑΣΤΑΣΗ
-        ΜΕΓΑΛΥΤΕΡΗ ΤΟΥ 640 Χ 480
-        EKANA MIA MALAKIA KAI PERASA TOUS KWDIKOUS MOU KATI EKANA ME KATI GIT KAI PREPEI
-        NA TA ESBISA . PAW NMA XALARWSW LIGO KAI 8A MPW KSANA
-         */
         scene = new Scene(loadFXML("fxml/login_view"), 640, 480);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -53,10 +47,10 @@ public class App extends Application {
 //           System.exit(0);
 //        }
 //        System.out.println("Opened database successfully");
-//        
+//
 //        Statement stmt = con.createStatement();
 //        String selectekpompes = "Select * from ekpompes";
-//        
+//
 //        ResultSet rs = stmt.executeQuery(selectekpompes);
 //        while (rs.next()) {
 //            String s = rs.getString("name");
@@ -65,10 +59,10 @@ public class App extends Application {
 //        String importi = "INSERT INTO ekpompes (name,rating)\n" +
 //                            "VALUES ('teswt','18+');";
 //        stmt.executeUpdate(importi);
-//        
+//
 //        System.out.println();
 //        System.out.println();
-//        
+//
 //        rs = stmt.executeQuery(selectekpompes);
 //        while (rs.next()) {
 //            String s = rs.getString("name");
@@ -79,7 +73,7 @@ public class App extends Application {
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
-        DBConnection.connect(url, user, pass);  
+        DBConnection.connect(url, user, pass);
         launch();
     }
 

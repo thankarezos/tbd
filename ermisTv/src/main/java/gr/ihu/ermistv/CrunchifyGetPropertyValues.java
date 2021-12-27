@@ -20,9 +20,9 @@ public class CrunchifyGetPropertyValues {
     CrunchifyGetPropertyValues(String file){
         this.file = file;
     }
-    
+
     String getProperty(String property){
-        
+
         Properties prop = new Properties();
         try (FileInputStream fis = new FileInputStream(file)) {
             prop.load(fis);

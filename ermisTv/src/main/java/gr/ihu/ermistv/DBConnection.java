@@ -17,5 +17,5 @@ public class DBConnection {
     public static void connect(String url,String user,String pass) throws SQLException{
         c = DriverManager.getConnection(url,user,pass);
     }
-    
+
 }
