@@ -1,12 +1,64 @@
 .parent {
-    -fx-background-color: #5e5e5e;
+    -fx-background-color : #016474;
+    -fx-border-color: #222222;
+
 }
-.child {
-    -fx-background-color: #868383;
+.popuphbox{
+    /* -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2; */
+    -fx-background-color: rgba(1,100,116,0.5);
+}
+.bevel_grey {
+    -fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.bevel_grey:hover {
+    -fx-background-color: 
+        linear-gradient(#00707E, #00707E),
+        linear-gradient(#01363d 0%, #015763 20%, #00b6ce 100%),
+        linear-gradient(#00707E 0%, #00707E 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.child{
+    -fx-background-color:linear-gradient( #027e85,#02d6f1);
+}
+.button{
+    -fx-background-color : #F5F6F8;
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 1) , 5, 0.0 , 0 , 1 );
+}
+.button:hover{
+    -fx-background-color:  #033b44 100%, white;
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
 }
 .login {
-    -fx-background-color: #6b6868;
+    /* -fx-height: 200px; */
+    -fx-background-color: linear-gradient( #014550 , #7FCDD7);
 }
+.login_head{
+    -fx-background-color :rgba(255, 255, 255, 0.1);
+    -fx-border-color: white;
+    -fx-border-radius : 12px;
+    -fx-background-radius : 12px;
+}
+
 FontAwesomeIconView {
     -fx-fill:white;
 }

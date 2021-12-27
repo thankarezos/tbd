@@ -174,7 +174,13 @@ public class Secondary_Controller implements Initializable {
         paneSyntelestes.toFront();
     }
 
-
+//    private void getDeleteBroadcast(){
+//        String delBroName = "";
+//        String delBroDay = "";
+//        String delBroTime = "";
+//
+//
+//    }
 
 
 }
