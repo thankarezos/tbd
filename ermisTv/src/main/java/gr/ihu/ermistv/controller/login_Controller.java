@@ -65,7 +65,7 @@ public class login_Controller {
                 try {
                     root = fxmlLoader.load();
 
-                    Scene scene = new ScenesSet(root,stage,1024, 580,"#Hbox");
+                    Scene scene = new ScenesSet(root,stage,800, 500,"#Hbox");
 
                     stage.setScene(scene);
                     Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
@@ -84,8 +84,5 @@ public class login_Controller {
             e.printStackTrace();
             e.getCause();
         }
-    }
-    @FXML
-    private void switchToSecondary() throws IOException {
     }
 }

@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.login_Controller">
@@ -49,15 +48,6 @@
             <Insets right="5.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" layoutY="362.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="175.0" spacing="20.0">
-         <children>
-            <Label text="Primary View" />
-            <Button fx:id="primaryButton1" onAction="#switchToSecondary" text="Switch to Secondary View" />
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
       <AnchorPane layoutX="116.0" layoutY="85.0" prefHeight="309.0" prefWidth="407.0" styleClass="login">
          <children>
             <TextField fx:id="fdUser" layoutX="158.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
