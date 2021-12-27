@@ -42,7 +42,6 @@ public class Secondary_Controller implements Initializable {
     }
     @FXML
     private void switchToPrimary() throws IOException {
-        App.setRoot("fxml/login_view");
     }
     private String[] dayC ={"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
     private String[] typeC ={"movie","series","broadcast","documentary","NEWS"};

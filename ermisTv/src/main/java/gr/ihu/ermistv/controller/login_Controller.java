@@ -6,8 +6,12 @@ import java.sql.*;
 import gr.ihu.ermistv.App;
 //import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.ScenesSet;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,7 +56,19 @@ public class login_Controller {
             if(queryResult.getString("username") != null){
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
-                App.setRoot("fxml/secondary");
+                Stage stage = (Stage) primary.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
+
+                Parent root;
+                try {
+                    root = fxmlLoader.load();
+
+                    Scene scene = new ScenesSet(root,stage,1100, 700);
+
+                    stage.setScene(scene);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             } else {
                 messageLabel.setText("Invalid login. Please try again !");
             }
@@ -64,6 +80,5 @@ public class login_Controller {
     }
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("fxml/secondary");
     }
 }
