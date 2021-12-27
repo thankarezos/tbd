@@ -10,6 +10,7 @@ import gr.ihu.ermistv.ScenesSet;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 
 public class login_Controller {
     @FXML
@@ -63,9 +65,14 @@ public class login_Controller {
                 try {
                     root = fxmlLoader.load();
 
-                    Scene scene = new ScenesSet(root,stage,1100, 700);
+                    Scene scene = new ScenesSet(root,stage,1024, 580,"#Hbox");
 
                     stage.setScene(scene);
+                    Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+                    double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+                    double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+                    stage.setX(x);
+                    stage.setY(y);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
