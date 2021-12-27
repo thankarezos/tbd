@@ -44,7 +44,7 @@ public class Secondary_Controller implements Initializable {
     private void switchToPrimary() throws IOException {
         App.setRoot("fxml/login_view");
     }
-    private String[] dayC ={"monday","tuesday","wednesday","thrusday","friday","saturday","sunday"};
+    private String[] dayC ={"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
     private String[] typeC ={"movie","series","broadcast","documentary","NEWS"};
 
     @Override

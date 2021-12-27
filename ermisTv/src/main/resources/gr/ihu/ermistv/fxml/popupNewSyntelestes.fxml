@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="320.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.popupNewSyntelestes_Controller">
    <children>
-      <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="320.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+      <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="320.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
          <children>
             <Label fx:id="label_test" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="183.0" text="test" textFill="WHITE">
                <font>
