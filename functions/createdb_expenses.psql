@@ -7,8 +7,8 @@ AS $function$
     create table IF NOT EXISTS expenses
     (
         expenses_id SERIAL,
-        merit_exp double(100),
-        type_exp enum(`empty`,`salary` ,`tax/permissions`, `bill`, `rental`,`etc`)  default empty,
+        merit_exp varchar(100),
+        type_exp enum('salary' ,'tax/permissions','bill', 'rental','etc') ,
         primary key(expenses_id)
     );
     END;

@@ -3,12 +3,14 @@ CREATE OR REPLACE FUNCTION "esoda"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
+    if not EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_inc') then 
+    create type type_inc as enum('empty','time_lease','subscription_services') ;END IF;
     drop table IF EXISTS Income;
     create table IF NOT EXISTS Income
     (
         income_id SERIAL,
         merit_inc double(100),
-        type_inc enum(`empty`,`time_lease` ,`subscription_services`)  default empty,
+        type_inc type_inc, 
         primary key(income_id)
     );
     END;
