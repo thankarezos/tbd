@@ -10,6 +10,5 @@ SELECT dropdb();
 SELECT dropekpompes();
 SELECT createekpompes();
 
-SELECT select_f();
 
 
