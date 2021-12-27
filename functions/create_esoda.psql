@@ -9,7 +9,7 @@ AS $function$
     create table IF NOT EXISTS Income
     (
         income_id SERIAL,
-        merit_inc double(100),
+        merit_inc numeric(100),
         type_inc type_inc, 
         primary key(income_id)
     );
