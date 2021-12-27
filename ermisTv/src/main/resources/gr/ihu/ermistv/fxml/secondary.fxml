@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
+<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1024.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
    <children>
-      <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1200.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+      <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1024.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimizedWindow" prefHeight="25.0" prefWidth="25.0" styleClass="min-btn" stylesheets="@../css/style.css">
                <graphic>
@@ -53,7 +53,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="105.0" spacing="10.0" style="-fx-background-color: blue;">
+      <VBox alignment="CENTER" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="110.0" spacing="10.0" style="-fx-background-color: blue;">
          <children>
             <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" text="Program">
                <font>
@@ -72,49 +72,37 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="110.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" style="-fx-background-color: red;">
+      <StackPane layoutX="110.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="915.0" style="-fx-background-color: red;">
          <children>
-            <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" styleClass="child" stylesheets="@../css/style.css">
+            <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="915.0" styleClass="child" stylesheets="@../css/style.css">
                <children>
-                  <HBox layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1092.0" spacing="10.0">
+                  <HBox id="program" alignment="CENTER" layoutX="341.0" layoutY="376.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="521.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="59.0" text="add day">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" text="add syntelestes">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="choise_day" prefWidth="150.0" />
-                        <Label text="add name">
+                        <Button mnemonicParsing="false" text="add" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" text="delete syntelestes">
                            <font>
                               <Font name="Arial Bold" size="13.0" />
                            </font>
                         </Label>
-                        <TextField />
-                        <Label text="add type">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="choise_type" prefWidth="150.0" />
-                        <Label text="add time">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <TextField />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="delete" />
                      </children>
                   </HBox>
-                  <Label fx:id="label_test" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="485.0" prefHeight="35.0" prefWidth="137.0" text="Test">
+                  <Label fx:id="label_test1" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="485.0" prefHeight="35.0" prefWidth="137.0" text="Test">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
+                  <AnchorPane layoutX="28.0" layoutY="22.0" prefHeight="261.0" prefWidth="835.0" style="-fx-background-color: white;" />
                </children>
             </AnchorPane>
-            <AnchorPane id="paneEkpompi" fx:id="paneEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" styleClass="child" stylesheets="@../css/style.css">
+            <AnchorPane id="paneEkpompi" fx:id="paneEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="915.0" styleClass="child" stylesheets="@../css/style.css">
                <children>
-                  <HBox id="program" alignment="CENTER_LEFT" layoutY="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1092.0" spacing="10.0">
+                  <HBox id="program" alignment="CENTER_LEFT" layoutY="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="915.0" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" text="add ekpompi">
                            <font>
@@ -153,34 +141,54 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="28.0" layoutY="22.0" prefHeight="261.0" prefWidth="1003.0" style="-fx-background-color: white;" />
+                  <AnchorPane layoutX="28.0" layoutY="22.0" prefHeight="261.0" prefWidth="854.0" style="-fx-background-color: white;" />
                   <Button fx:id="tha_se_pigenei_sthn_allh_diafaneia" layoutX="667.0" layoutY="449.0" mnemonicParsing="false" text="dimiourgia syntelesh" />
                </children>
             </AnchorPane>
-            <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1092.0" styleClass="child" stylesheets="@../css/style.css">
+            <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="915.0" styleClass="child" stylesheets="@../css/style.css">
                <children>
-                  <HBox id="program" alignment="CENTER" layoutX="503.0" layoutY="382.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="521.0" spacing="10.0">
+                  <VBox layoutX="143.0" layoutY="373.0" prefHeight="71.0" prefWidth="547.0" spacing="10.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" text="add syntelestes">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" text="add" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" text="delete syntelestes">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" text="delete" />
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0" spacing="10.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="70.0" text="add day">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="choise_day" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="add name">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="550.0" spacing="10.0">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="70.0" text="add type">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="choise_type1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="70.0" text="add time">
+                                 <font>
+                                    <Font name="Arial Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <Label fx:id="label_test1" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="485.0" prefHeight="35.0" prefWidth="137.0" text="Test">
+                  </VBox>
+                  <Label fx:id="label_test" alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="485.0" prefHeight="35.0" prefWidth="137.0" text="Test">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="28.0" layoutY="22.0" prefHeight="261.0" prefWidth="1003.0" style="-fx-background-color: white;" />
                </children>
             </AnchorPane>
          </children>
