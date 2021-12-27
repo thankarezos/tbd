@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 
 import gr.ihu.ermistv.App;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +24,10 @@ public class Secondary_Controller implements Initializable {
     private ChoiceBox choise_day,choise_type;
     @FXML
     private Label label_test;
+    @FXML
+    private Button btnEkpompi,btnProgram,btnSyntelestes;
+    @FXML
+    private AnchorPane paneEkpompi,paneProgram,paneSyntelestes;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -58,5 +64,16 @@ public class Secondary_Controller implements Initializable {
     public void getDay(Event event){
         String day = (String) choise_day.getValue();
         label_test.setText(day);
+    }
+
+    @FXML
+    private void handleClicks(ActionEvent event) throws IOException {
+        if (event.getSource() == btnProgram) {
+            paneProgram.toFront();
+        } else if (event.getSource() == btnEkpompi) {
+            paneEkpompi.toFront();
+        } else if (event.getSource() == btnSyntelestes) {
+            paneSyntelestes.toFront();
+        }
     }
 }

@@ -21,10 +21,15 @@ App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+<<<<<<< HEAD
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new ScenesSet(root,stage,640, 480,"#Hbox");
 
+=======
+        scene = new Scene(loadFXML("fxml/login_view"), 1200, 600);
+        stage.initStyle(StageStyle.UNDECORATED);
+>>>>>>> ab8203f03f6268396b2a7d085591fca97c931b7b
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
