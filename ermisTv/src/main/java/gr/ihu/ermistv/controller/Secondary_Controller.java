@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import gr.ihu.ermistv.App;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -48,22 +46,22 @@ public class Secondary_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choise_day.getItems().addAll(dayC);
-        choise_day.setOnAction(this::getDay);
-
-        choise_type.getItems().addAll(typeC);
-        choise_type.setOnAction(this::geType);
+//        choise_day.getItems().addAll(dayC);
+//        choise_day.setOnAction(this::getDay);
+//
+//        choise_type.getItems().addAll(typeC);
+//        choise_type.setOnAction(this::geType);
     }
 
-    private void geType(Event event) {
-        String type = (String) choise_type.getValue();
-        label_test.setText(type);
-    }
-
-    public void getDay(Event event){
-        String day = (String) choise_day.getValue();
-        label_test.setText(day);
-    }
+//    private void geType(Event event) {
+//        String type = (String) choise_type.getValue();
+//        label_test.setText(type);
+//    }
+//
+//    public void getDay(Event event){
+//        String day = (String) choise_day.getValue();
+//        label_test.setText(day);
+//    }
 
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
