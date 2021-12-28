@@ -87,3 +87,6 @@ FontAwesomeIconView:hover {
 .min-btn:hover {
     -fx-background-color: #171717;
 }
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}

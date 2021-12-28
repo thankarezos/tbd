@@ -1,0 +1,3 @@
+CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
+    Select * from ekpompes  order by sid;
+$$  LANGUAGE sql
