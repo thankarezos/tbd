@@ -42,3 +42,12 @@ CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
     Select * from ekpompes  order by sid;
 $$  LANGUAGE sql;
 
+CREATE OR REPLACE FUNCTION addbroadcast(name text, rating rating,times integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES (name,rating,times);
+    END;
+$function$

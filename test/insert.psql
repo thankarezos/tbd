@@ -7,5 +7,20 @@ INSERT INTO ekpompes (sid,name,rating)
 
 INSERT INTO account (username,pass)
     VALUES ('Peris', '1234');
+
+select
+ case when
+  (value.startDate between t2.startDate and t2.endDate) or
+  (value.endDate between t2.startDate and t2.endDate) or
+  (value.startDate < t2.startDate and value.endDate > t2.endDate) or
+  (value.startDate > t2.startDate and value.endDate < t2.endDate)
+ then
+  'yes'
+ else
+  'no'
+ end as OverLapping
+from TaskPeriods as t2
+
+
 INSERT INTO account (username,pass)
     VALUES ('thanasis', '1234');  

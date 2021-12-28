@@ -1,0 +1,17 @@
+CREATE OR REPLACE FUNCTION "taskset"(/* arguments */)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    create table TaskPeriods (
+        id int,
+        task varchar(10),
+        startDate timestamp,
+        endDate timestamp
+    );
+    INSERT INTO TaskPeriods (id,task,startDate,endDate)
+    VALUES (1,'Task A', '20180110 10:00:00', '20180120 18:00:00');
+    INSERT INTO TaskPeriods (id,task,startDate,endDate)
+    VALUES (2,'Task A', '20180115 05:00:00', '20180130 23:00:00');
+    END;
+$function$

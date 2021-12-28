@@ -95,6 +95,26 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void switchToPrimary() throws IOException {
     }
+    @FXML
+    private void addbroadcast() {
+        
+        try {
+            String name = addNameBro.getText();
+            String rating = choiceRatingBro.getValue();
+            String time = addTimeBro.getText();
+            String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
+            Statement statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(addbroadcast);
+            
+            loadResults();
+            
+            System.out.println("Success");
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
 
     private String[] ratingC = {"K","8","12","16","18"};
     private String[] factorC = {"Presenter","Actor","Reporter"};
@@ -122,42 +142,8 @@ public class Secondary_Controller implements Initializable {
         //choice rating
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
-        String getEkmompes = "select * from getekpompes();";
         
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getEkmompes);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            System.out.println(columnsNumber);
-            while(rs.next()){
-                System.out.println(rs.getInt("sid") + " " + rs.getString("name") + " " + rs.getString("rating") + " " + rs.getInt("time"));
-                HBox hbox = new HBox();
-                for(int i = 1;i <= columnsNumber;i++){
-                    
-                    hbox.setSpacing(3);
-                    HBox hboxinside = new HBox();
-                    hboxinside.setStyle("-fx-background-color: white");
-                    hboxinside.setPrefWidth(200);
-                    hboxinside.setAlignment(Pos.CENTER);
-                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
-                    Text text = new Text();
-                    text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(160);
-                    text.setTextAlignment(TextAlignment.CENTER);
-                    hboxinside.getChildren().add(text);
-                    hbox.getChildren().add(hboxinside);
-                
-                }
-                
-                ekpompivbox.getChildren().add(hbox);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
+        loadResults();
         
         
     }
@@ -230,14 +216,44 @@ public class Secondary_Controller implements Initializable {
     private void mergePaneSyntelestes(MouseEvent event){
         paneSyntelestes.toFront();
     }
-
-//    private void getDeleteBroadcast(){
-//        String delBroName = "";
-//        String delBroDay = "";
-//        String delBroTime = "";
-//
-//
-//    }
+    private void loadResults(){
+        ekpompivbox.getChildren().clear();
+        String getEkmompes = "select * from getekpompes();";
+        
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getEkmompes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            System.out.println(columnsNumber);
+            while(rs.next()){
+                System.out.println(rs.getInt("sid") + " " + rs.getString("name") + " " + rs.getString("rating") + " " + rs.getInt("time"));
+                HBox hbox = new HBox();
+                for(int i = 1;i <= columnsNumber;i++){
+                    
+                    hbox.setSpacing(3);
+                    HBox hboxinside = new HBox();
+                    hboxinside.setStyle("-fx-background-color: white");
+                    hboxinside.setPrefWidth(200);
+                    hboxinside.setAlignment(Pos.CENTER);
+                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
+                    Text text = new Text();
+                    text.setText(String.valueOf(rs.getString(i)));
+                    text.setWrappingWidth(160);
+                    text.setTextAlignment(TextAlignment.CENTER);
+                    hboxinside.getChildren().add(text);
+                    hbox.getChildren().add(hboxinside);
+                
+                }
+                
+                ekpompivbox.getChildren().add(hbox);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
 
 
 }
