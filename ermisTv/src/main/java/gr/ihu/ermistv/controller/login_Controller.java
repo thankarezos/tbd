@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -43,46 +45,68 @@ public class login_Controller {
     }
 
     @FXML
+    public void Login(KeyEvent event) throws SQLException, IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            System.out.println("Enter");
+            validateLogin();
+        }
+
+    }
+
+    @FXML
     private void validateLogin() throws SQLException, IOException {
 
-        String user  =  String.valueOf(fdUser.getText());
-        String pass =  fdPass.getText();
-        String verifyLogin = "select * from checkaccount('" + user + "','" + pass +"');";
-        System.out.println("select * from checkaccount('" + String.valueOf(fdUser.getText()) + "','" + fdPass.getText() +"')");
+            String user = String.valueOf(fdUser.getText());
+            String pass = fdPass.getText();
+            String verifyLogin = "select * from checkaccount('" + user + "','" + pass + "');";
+            System.out.println("select * from checkaccount('" + String.valueOf(fdUser.getText()) + "','" + fdPass.getText() + "')");
 
-        try {
+            try {
 
-            Statement statement = DBConnection.c.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            queryResult.next();
-            if(queryResult.getString("username") != null){
-                messageLabel.setStyle("-fx-text-fill: green");
-                messageLabel.setText("Congratulations!");
-                Stage stage = (Stage) primary.getScene().getWindow();
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
-
-                Parent root;
-                try {
+                Statement statement = DBConnection.c.createStatement();
+                ResultSet queryResult = statement.executeQuery(verifyLogin);
+                queryResult.next();
+                if(queryResult.getString("username") == null){
+                    Stage stage = (Stage) primary.getScene().getWindow();
+                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
+                    Parent root;
                     root = fxmlLoader.load();
-
-                    Scene scene = new ScenesSet(root,stage,1024, 550,"#Hbox");
-
+                    Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
                     stage.setScene(scene);
                     Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
                     double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
                     double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
                     stage.setX(x);
                     stage.setY(y);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
                 }
-            } else {
-                messageLabel.setText("Invalid login. Please try again !");
-            }
+                else if (queryResult.getString("username") != null) {
+                    messageLabel.setStyle("-fx-text-fill: green");
+                    messageLabel.setText("Congratulations!");
+                    Stage stage = (Stage) primary.getScene().getWindow();
+                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+                    Parent root;
+                    try {
+                        root = fxmlLoader.load();
+
+                        Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
+
+                        stage.setScene(scene);
+                        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+                        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+                        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+                        stage.setX(x);
+                        stage.setY(y);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } else {
+                    messageLabel.setText("Invalid login. Please try again !");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
         }
     }
-}

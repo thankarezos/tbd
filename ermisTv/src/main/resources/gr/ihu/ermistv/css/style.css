@@ -1,7 +1,9 @@
 .parent {
     -fx-background-color : #016474;
     -fx-border-color: #222222;
-
+}
+.parent_secontary{
+    -fx-background-color : #01363d;
 }
 .popuphbox{
     /* -fx-background-radius: 8,7,6;
@@ -32,6 +34,10 @@
 
 .child{
     -fx-background-color:linear-gradient( #027e85,#02d6f1);
+    -fx-border-right: 20px;
+}
+.child1{
+    -fx-background-color:#027e85;
 }
 .button{
     -fx-background-color : #F5F6F8;

@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -61,6 +62,8 @@ public class Secondary_Controller implements Initializable {
     private ChoiceBox<String> choiceDelDay,choiceFacRole;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
+
+
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
