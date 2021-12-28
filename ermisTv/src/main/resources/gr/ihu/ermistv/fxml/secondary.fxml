@@ -184,7 +184,7 @@
                            </padding>
                            <children>
                               <Button fx:id="btnCheckBro" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Check" />
-                              <Button fx:id="btnConfBro" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Confirm" />
+                              <Button fx:id="btnConfBro" mnemonicParsing="false" onAction="#addbroadcast" prefHeight="35.0" prefWidth="160.0" text="Confirm" />
                            </children>
                         </HBox>
                      </children>
@@ -769,7 +769,7 @@
                                     <Font name="Arial Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnAddBroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addbroadcast" onMouseClicked="#addBroadcast" prefHeight="35.0" prefWidth="100.0" text="Add" />
+                              <Button fx:id="btnAddBroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addBroadcast" prefHeight="35.0" prefWidth="100.0" text="Add" />
                            </children>
                         </HBox>
                         <HBox id="program" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="5.0">
