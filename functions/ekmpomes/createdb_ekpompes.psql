@@ -36,7 +36,9 @@ AS $function$
     VALUES ('kalo mesimeri','18', '30');
 
     END;
-$function$
+$function$;
+SELECT ekpompes();
 CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
     Select * from ekpompes  order by sid;
-$$  LANGUAGE sql
+$$  LANGUAGE sql;
+
