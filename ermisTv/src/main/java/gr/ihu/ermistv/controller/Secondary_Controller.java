@@ -235,7 +235,7 @@ public class Secondary_Controller implements Initializable {
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.setStyle("-fx-background-color: white");
-                    hboxinside.setPrefWidth(200);
+                    hboxinside.setPrefWidth(198);
                     hboxinside.setAlignment(Pos.CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
