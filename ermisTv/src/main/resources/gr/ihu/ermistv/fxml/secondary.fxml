@@ -18,9 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1024.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
+<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1024.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
    <children>
-      <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1024.0" spacing="5.0" style="-fx-background-color: #027F87;" stylesheets="@../css/style.css">
+      <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1024.0" spacing="5.0" styleClass="parent_secontary" stylesheets="@../css/style.css">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimizedWindow" prefHeight="25.0" prefWidth="25.0" styleClass="min-btn" stylesheets="@../css/style.css">
                <graphic>
@@ -49,7 +49,7 @@
             <Insets right="5.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="150.0" spacing="10.0" styleClass="child" stylesheets="@../css/style.css">
+      <VBox alignment="CENTER" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="150.0" spacing="10.0" styleClass="child1" stylesheets="@../css/style.css">
          <children>
             <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="button1" text="Program">
                <font>
@@ -68,7 +68,7 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="148.0" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" style="-fx-background-color: black;">
+      <StackPane layoutX="148.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="876.0" style="-fx-background-color: black;">
          <children>
             <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
                <children>
