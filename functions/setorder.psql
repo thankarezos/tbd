@@ -1,3 +1,0 @@
-CREATE OR REPLACE FUNCTION getorder() RETURNS SETOF ekpompes  AS $$
-    Select * from ekpompes  order by sid;
-$$  LANGUAGE sql

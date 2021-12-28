@@ -19,6 +19,19 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import gr.ihu.ermistv.DBConnection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class Secondary_Controller implements Initializable {
     @FXML
@@ -61,6 +74,9 @@ public class Secondary_Controller implements Initializable {
     private ChoiceBox<String> choiceDelDay,choiceFacRole;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
+    
+    @FXML
+    private VBox ekpompivbox;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -103,6 +119,44 @@ public class Secondary_Controller implements Initializable {
         //choice rating
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
+        String getEkmompes = "select * from getekpompes();";
+        
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getEkmompes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            System.out.println(columnsNumber);
+            while(rs.next()){
+                System.out.println(rs.getInt("sid") + " " + rs.getString("name") + " " + rs.getString("rating") + " " + rs.getInt("time"));
+                HBox hbox = new HBox();
+                for(int i = 1;i <= columnsNumber;i++){
+                    
+                    hbox.setSpacing(3);
+                    HBox hboxinside = new HBox();
+                    hboxinside.setStyle("-fx-background-color: white");
+                    hboxinside.setPrefWidth(200);
+                    hboxinside.setAlignment(Pos.CENTER);
+                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
+                    Text text = new Text();
+                    text.setText(String.valueOf(rs.getString(i)));
+                    text.setWrappingWidth(160);
+                    text.setTextAlignment(TextAlignment.CENTER);
+                    hboxinside.getChildren().add(text);
+                    hbox.getChildren().add(hboxinside);
+                
+                }
+                
+                ekpompivbox.getChildren().add(hbox);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+        
+        
     }
     //getMethod
     private void getDay3(Event event){

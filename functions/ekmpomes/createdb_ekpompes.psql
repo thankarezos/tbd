@@ -1,0 +1,42 @@
+CREATE OR REPLACE FUNCTION "ekpompes"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    if not EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rating') then 
+    create type rating as enum('K' ,'8','12', '16','18')  ;END IF;
+    drop table IF EXISTS ekpompes cascade;
+    create table IF NOT EXISTS ekpompes
+    (
+        sid SERIAL,
+        name varchar(100),
+        rating rating,
+        time int,
+        primary key(sid)
+    );
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhmera','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhnyxta','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('kalo mesimeri','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('dwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhmera','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhnyxta','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('kalo mesimeri','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhmera','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('Kalhnyxta','18', '30');
+    INSERT INTO ekpompes (name,rating,time)
+    VALUES ('kalo mesimeri','18', '30');
+
+    END;
+$function$
+CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
+    Select * from ekpompes  order by sid;
+$$  LANGUAGE sql
