@@ -187,14 +187,12 @@ public class Secondary_Controller implements Initializable {
             
             high = (int)Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            System.out.println(Math.round(newValue.doubleValue()));
 
 
         });
         sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
             low = (int)Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            System.out.println(Math.round(newValue.doubleValue()));
 
 
         });
