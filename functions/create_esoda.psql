@@ -10,7 +10,7 @@ AS $function$
     (
         income_id SERIAL,
         merit_inc numeric(100),
-        type_inc type_inc, 
+        type_inc type_inc default 'empty', 
         primary key(income_id)
     );
     END;

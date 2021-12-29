@@ -10,7 +10,7 @@ AS $function$
     (
         expenses_id SERIAL,
         merit_exp numeric(100),
-        type_exp type_exp ,
+        type_exp type_exp default 'empty',
         primary key(expenses_id)
     );
     END;
