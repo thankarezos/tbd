@@ -10,6 +10,27 @@
     -fx-background-insets: 0,1,2; */
     -fx-background-color: rgba(1,100,116,0.5);
 }
+.labelserch{
+    fx-text-fill: black;
+    -fx-hgap: 20px;
+    -fx-padding: 40px;
+    -fx-background-color: #F5F6F8;
+    -fx-background-radius: 15px;
+}
+.hboxBorder{
+    -fx-hgap: 20px;
+    -fx-padding: 40px;
+    -fx-background-color: #F5F6F8;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+.hboxDynamic{
+    -fx-background-color: #f6f7f9;
+    -fx-background-radius: 5px;
+}
+
 .bevel_grey {
     -fx-background-color: 
         linear-gradient(#f2f2f2, #d6d6d6),

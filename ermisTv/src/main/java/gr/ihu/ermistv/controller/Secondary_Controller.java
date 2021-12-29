@@ -7,18 +7,14 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.TextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.DBConnection;
 import java.sql.ResultSet;
@@ -33,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.WindowEvent;
 
 public class Secondary_Controller implements Initializable {
     @FXML
@@ -66,20 +63,19 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private TextField delFacName,delFacSurname,delNameBro,delTimeBro;
     @FXML
-    private TextField editName,editTime;
+    private TextField error,editName,editTime;
     @FXML
-    private Label searchIcon,labelGetName;
+    private Label broErrLabel,searchIcon,labelGetName,errorlabel;
     @FXML
     private Button btnEkpompi,btnProgram,btnSyntelestes;
     @FXML
     private ChoiceBox<String> choiceDelDay,choiceFacRole;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
-    
     @FXML
     private VBox ekpompivbox;
-
-
+    @FXML
+    private MenuItem miAddFactor,miDelete,miReload;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -92,23 +88,44 @@ public class Secondary_Controller implements Initializable {
         System.exit(0);
         Platform.exit();
     }
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return true;
+        }
+        try {
+            Integer d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return true;
+        }
+        return false;
+    }
     @FXML
-    private void switchToPrimary() throws IOException {
+    private void reloadPage(MouseEvent event){
+        System.out.println("OK!");
+        loadResults();
     }
     @FXML
     private void addbroadcast() {
-        
+        int intValue;
         try {
             String name = addNameBro.getText();
             String rating = choiceRatingBro.getValue();
             String time = addTimeBro.getText();
-            String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
-            Statement statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(addbroadcast);
-            
-            loadResults();
-            
-            System.out.println("Success");
+            if(name == "" ){
+                broErrLabel.setText("ADD NAME!");
+            }else if(rating == null || rating == "empty"){
+                broErrLabel.setText("ADD RATING!");
+            }else if(isNumeric(time) ){
+                broErrLabel.setText("ADD TIME OR PUT A NUMBER");
+            }else {
+                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
+                Statement statement = DBConnection.c.createStatement();
+                ResultSet rs = statement.executeQuery(addbroadcast);
+
+                System.out.println("Success");
+                loadResults();
+                paneEkpompi.toFront();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,7 +133,7 @@ public class Secondary_Controller implements Initializable {
     }
     
 
-    private String[] ratingC = {"K","8","12","16","18"};
+    private String[] ratingC = {"Empty","K","8","12","16","18"};
     private String[] factorC = {"Presenter","Actor","Reporter"};
     private String[] typeC = {"movie","series","broadcast","documentary","NEWS"};
     private String[] dayC = {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
@@ -234,7 +251,7 @@ public class Secondary_Controller implements Initializable {
                     
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
-                    hboxinside.setStyle("-fx-background-color: white");
+                    hboxinside.setStyle("-fx-background-color: #F5F6F8; -fx-background-radius: 5px; " );
                     hboxinside.setPrefWidth(198);
                     hboxinside.setAlignment(Pos.CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
@@ -256,4 +273,16 @@ public class Secondary_Controller implements Initializable {
     }
 
 
+    public void handleFactor(ActionEvent actionEvent) {
+        errorlabel.setText("Factor Ok!");
+    }
+
+    public void handleReload(ActionEvent actionEvent) {
+        loadResults();
+        errorlabel.setText("Reload Ok!");
+    }
+
+    public void handleDelete(ActionEvent actionEvent) {
+        errorlabel.setText("Delete Ok!");
+    }
 }
