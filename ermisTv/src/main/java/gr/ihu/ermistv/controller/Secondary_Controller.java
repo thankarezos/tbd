@@ -71,7 +71,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private ChoiceBox<String> choiceDelDay,choiceFacRole;
     @FXML
-    private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro,choiseSearch;
+    private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
     @FXML
     private VBox ekpompivbox;
     @FXML
@@ -160,8 +160,8 @@ public class Secondary_Controller implements Initializable {
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
         //choise search
-        choiseSearch.getItems().addAll(searchC);
-        choiseSearch.setOnAction(this::getSearch);
+        //choiseSearch.getItems().addAll(searchC);
+        //choiseSearch.setOnAction(this::getSearch);
         
         loadResults();
         
@@ -186,7 +186,7 @@ public class Secondary_Controller implements Initializable {
     private void getRating(Event event){
         String rating = (String) choiceRatingBro.getValue();
     }
-    private void getSearch(Event event){ String search = (String) choiseSearch.getValue();}
+    //private void getSearch(Event event){ String search = (String) choiseSearch.getValue();}
 
 
     @FXML
@@ -292,7 +292,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void broadcastSearch(String str){
         ekpompivbox.getChildren().clear();
-        String choise = choiseSearch.getValue();
+        //String choise = choiseSearch.getValue();
 
 
 
