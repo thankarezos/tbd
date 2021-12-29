@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.*;
 
 import gr.ihu.ermistv.App;
-//import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.fxml.FXML;
