@@ -280,7 +280,7 @@ public class Secondary_Controller implements Initializable {
     }
 
     public void handleReload(ActionEvent actionEvent) {
-        loadResults();
+        loadResults("null","null","null","null");
         errorlabel.setText("Reload Ok!");
     }
 
