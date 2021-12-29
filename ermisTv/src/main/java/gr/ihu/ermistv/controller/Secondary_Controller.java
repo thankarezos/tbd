@@ -69,7 +69,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private Button btnEkpompi,btnProgram,btnSyntelestes;
     @FXML
-    private ChoiceBox<String> choiceDelDay,choiceFacRole;
+    private ChoiceBox<String> choiceDelDay,choiceFacRole,searchDay;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
     @FXML
@@ -132,11 +132,11 @@ public class Secondary_Controller implements Initializable {
         
     }
     
-    private String[] searchC = {"ID","Name","Rating","Time"};
+    private String[] searchC = {"Empty","K","8","12","16","18"};
     private String[] ratingC = {"Empty","K","8","12","16","18"};
-    private String[] factorC = {"Presenter","Actor","Reporter"};
-    private String[] typeC = {"movie","series","broadcast","documentary","NEWS"};
-    private String[] dayC = {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
+    private String[] factorC = {"Empty","Presenter","Actor","Reporter"};
+    private String[] typeC = {"Empty","movie","series","broadcast","documentary","NEWS"};
+    private String[] dayC = {"Empty","monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -160,8 +160,8 @@ public class Secondary_Controller implements Initializable {
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
         //choise search
-        //choiseSearch.getItems().addAll(searchC);
-        //choiseSearch.setOnAction(this::getSearch);
+        searchDay.getItems().addAll(searchC);
+        searchDay.setOnAction(this::getSearch);
         
         loadResults("null","null","null","null");
         
@@ -186,7 +186,7 @@ public class Secondary_Controller implements Initializable {
     private void getRating(Event event){
         String rating = (String) choiceRatingBro.getValue();
     }
-    //private void getSearch(Event event){ String search = (String) choiseSearch.getValue();}
+    private void getSearch(Event event){ String search = (String) searchDay.getValue();}
 
 
     @FXML
@@ -292,7 +292,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void broadcastSearch(String str){
         ekpompivbox.getChildren().clear();
-        //String choise = choiseSearch.getValue();
+        String choise = searchDay.getValue();
 
 
 
