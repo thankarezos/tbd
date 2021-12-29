@@ -35,6 +35,6 @@ select
  end as OverLapping
 from TaskPeriods as t2
 --getResult
-select * from getResult('kalo mesimeri');
+select * from getResult(null,null,null,30);
 
 function1
