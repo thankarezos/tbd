@@ -84,6 +84,8 @@ public class Secondary_Controller implements Initializable {
     
     @FXML
     private RangeSlider sliderr;
+    @FXML
+    private Text sliderText;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -113,6 +115,11 @@ public class Secondary_Controller implements Initializable {
         loadResults("null","null","null","null");
     }
     @FXML
+    private void rangeSlide(MouseEvent event){
+        System.out.println("moved");
+    }
+    
+    @FXML
     private void addbroadcast() {
         int intValue;
         try {
@@ -139,7 +146,8 @@ public class Secondary_Controller implements Initializable {
         }
         
     }
-    
+    int low;
+    int high;
     private String[] searchC = {"Empty","K","8","12","16","18"};
     private String[] ratingC = {"Empty","K","8","12","16","18"};
     private String[] factorC = {"Empty","Presenter","Actor","Reporter"};
@@ -168,10 +176,28 @@ public class Secondary_Controller implements Initializable {
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
         //choise search
-//        searchRating.getItems().addAll(searchC);
-//        searchRating.setOnAction(this::getSearch);
-        sliderr.setLowValue(5);
-        sliderr.setHighValue(300);
+        low = 10;
+        high = 300;
+        sliderr.setLowValue(low);
+        sliderr.setHighValue(high);
+        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+        
+        
+        sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
+            
+            high = (int)Math.round(newValue.doubleValue());
+            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+            System.out.println(Math.round(newValue.doubleValue()));
+
+
+        });
+        sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
+            low = (int)Math.round(newValue.doubleValue());
+            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+            System.out.println(Math.round(newValue.doubleValue()));
+
+
+        });
         loadResults("null","null","null","null");
         
         
