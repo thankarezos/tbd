@@ -11,9 +11,9 @@ AS $function$
     create table if not EXISTS program_pr
     (
 	    program_id SERIAL not null ,
-		day_pr day_pr,
+		day_pr day_pr default 'empty',
 		name_pr varchar(100)not null,
-		type_pr type_pr,
+		type_pr type_pr default 'empty',
 		timew time(4)not null
 	);
     END;
