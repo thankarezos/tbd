@@ -34,5 +34,7 @@ select
   'no'
  end as OverLapping
 from TaskPeriods as t2
+--getResult
+select * from getResult('kalo mesimeri');
 
-
+function1

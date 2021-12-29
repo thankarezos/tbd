@@ -35,7 +35,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private FontAwesomeIconView x,x1,x2,x3,x4,x5;
     @FXML
-    private TextField searchName;
+    private TextField searchName,broadcastSearch;
     @FXML
     private ScrollBar ScrollBar;
     @FXML
@@ -71,7 +71,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private ChoiceBox<String> choiceDelDay,choiceFacRole;
     @FXML
-    private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
+    private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro,choiseSearch;
     @FXML
     private VBox ekpompivbox;
     @FXML
@@ -132,7 +132,7 @@ public class Secondary_Controller implements Initializable {
         
     }
     
-
+    private String[] searchC = {"ID","Name","Rating","Time"};
     private String[] ratingC = {"Empty","K","8","12","16","18"};
     private String[] factorC = {"Presenter","Actor","Reporter"};
     private String[] typeC = {"movie","series","broadcast","documentary","NEWS"};
@@ -159,31 +159,34 @@ public class Secondary_Controller implements Initializable {
         //choice rating
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
+        //choise search
+        choiseSearch.getItems().addAll(searchC);
+        choiseSearch.setOnAction(this::getSearch);
         
         loadResults();
         
         
     }
     //getMethod
-    private void getDay3(Event event){
-        String day = (String) choiceDayPro.getValue();
-    }
     private void getDay1(Event event) {
-        String type = (String) choiceDelDay.getValue();
+        String day = (String) choiceDelDay.getValue();
     }
     private void getDay2(Event event){
         String day = (String) choiceEditDay.getValue();
     }
+    private void getDay3(Event event){
+        String day = (String) choiceDayPro.getValue();
+    }
     private void getRole(Event event){
-        String day = (String) choiceFacRole.getValue();
+        String role = (String) choiceFacRole.getValue();
     }
     private void getType(Event event){
-        String day = (String) choiceTypePro.getValue();
+        String type = (String) choiceTypePro.getValue();
     }
     private void getRating(Event event){
-        String day = (String) choiceRatingBro.getValue();
+        String rating = (String) choiceRatingBro.getValue();
     }
-
+    private void getSearch(Event event){ String search = (String) choiseSearch.getValue();}
 
 
     @FXML
@@ -233,6 +236,7 @@ public class Secondary_Controller implements Initializable {
     private void mergePaneSyntelestes(MouseEvent event){
         paneSyntelestes.toFront();
     }
+
     private void loadResults(){
         ekpompivbox.getChildren().clear();
         String getEkmompes = "select * from getekpompes();";
@@ -261,9 +265,7 @@ public class Secondary_Controller implements Initializable {
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
-                
                 }
-                
                 ekpompivbox.getChildren().add(hbox);
             }
         } catch (SQLException ex) {
@@ -285,4 +287,16 @@ public class Secondary_Controller implements Initializable {
     public void handleDelete(ActionEvent actionEvent) {
         errorlabel.setText("Delete Ok!");
     }
+
+
+    @FXML
+    private void broadcastSearch(String str){
+        ekpompivbox.getChildren().clear();
+        String choise = choiseSearch.getValue();
+
+
+
+        String sercBroadcast = "select * from getekpompes();";
+    }
+
 }
