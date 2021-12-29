@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
+import org.controlsfx.control.RangeSlider;
 
 public class Secondary_Controller implements Initializable {
     @FXML
@@ -80,6 +81,9 @@ public class Secondary_Controller implements Initializable {
     private VBox ekpompivbox;
     @FXML
     private MenuItem miAddFactor,miDelete,miReload;
+    
+    @FXML
+    private RangeSlider sliderr;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -166,7 +170,8 @@ public class Secondary_Controller implements Initializable {
         //choise search
 //        searchRating.getItems().addAll(searchC);
 //        searchRating.setOnAction(this::getSearch);
-        
+        sliderr.setLowValue(5);
+        sliderr.setHighValue(300);
         loadResults("null","null","null","null");
         
         
