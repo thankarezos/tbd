@@ -102,7 +102,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void reloadPage(MouseEvent event){
         System.out.println("OK!");
-        loadResults();
+        loadResults("null","null","null","null");
     }
     @FXML
     private void addbroadcast() {
@@ -123,7 +123,7 @@ public class Secondary_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
-                loadResults();
+                loadResults("null","null","null","null");
                 paneEkpompi.toFront();
             }
         } catch (SQLException ex) {
@@ -163,7 +163,7 @@ public class Secondary_Controller implements Initializable {
         choiseSearch.getItems().addAll(searchC);
         choiseSearch.setOnAction(this::getSearch);
         
-        loadResults();
+        loadResults("null","null","null","null");
         
         
     }
@@ -237,9 +237,9 @@ public class Secondary_Controller implements Initializable {
         paneSyntelestes.toFront();
     }
 
-    private void loadResults(){
+    private void loadResults(String id,String name,String rating,String time){
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getekpompes();";
+        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + time + ");";
         
         Statement statement;
         try {
