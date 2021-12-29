@@ -65,11 +65,15 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private TextField error,editName,editTime;
     @FXML
+    private TextField searchId,searchgetName;
+    @FXML
+    private Slider searchSlider;
+    @FXML
     private Label broErrLabel,searchIcon,labelGetName,errorlabel;
     @FXML
     private Button btnEkpompi,btnProgram,btnSyntelestes;
     @FXML
-    private ChoiceBox<String> choiceDelDay,choiceFacRole,searchDay;
+    private ChoiceBox<String> choiceDelDay,choiceFacRole,searchRating;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
     @FXML
@@ -160,8 +164,8 @@ public class Secondary_Controller implements Initializable {
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
         //choise search
-        searchDay.getItems().addAll(searchC);
-        searchDay.setOnAction(this::getSearch);
+//        searchRating.getItems().addAll(searchC);
+//        searchRating.setOnAction(this::getSearch);
         
         loadResults("null","null","null","null");
         
@@ -186,7 +190,7 @@ public class Secondary_Controller implements Initializable {
     private void getRating(Event event){
         String rating = (String) choiceRatingBro.getValue();
     }
-    private void getSearch(Event event){ String search = (String) searchDay.getValue();}
+    private void getSearch(Event event){ String search = (String) searchRating.getValue();}
 
 
     @FXML
@@ -292,7 +296,10 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void broadcastSearch(String str){
         ekpompivbox.getChildren().clear();
-        String choise = searchDay.getValue();
+        String getRating = searchRating.getValue();
+        String getName = searchgetName.getText();
+        String getId = searchId.getText();
+        //String getTime = ;
 
 
 
