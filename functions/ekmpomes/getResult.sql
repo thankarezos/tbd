@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION getResult(int,text,rating,int) 
+CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int) 
 RETURNS setof ekpompes AS
  $$
     Select * from ekpompes 
@@ -7,9 +7,9 @@ RETURNS setof ekpompes AS
         WHEN $1 is null then sid else $1 
     end
     )
-    AND name = ( 
+    AND name LIKE ( 
     CASE
-        WHEN $2 is null then name else $2 
+        WHEN $2 is null then name else %$2% 
     end
     )
     AND rating = ( 
@@ -17,10 +17,6 @@ RETURNS setof ekpompes AS
         WHEN $3 is null then rating else $3
     end
     )
-    AND time = ( 
-    CASE
-        WHEN $4 is null then time else $4
-    end
-    )
+    AND time BETWEEN $4 AND $5
 $$  LANGUAGE sql
 

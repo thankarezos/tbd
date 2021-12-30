@@ -98,8 +98,16 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private MenuItem miAddFactor,miDelete,miReload;
     
+
+    @FXML
+    private TextField filterID;
+    @FXML
+    private TextField filterName;
+    @FXML
+    private ChoiceBox filterRating;
     @FXML
     private RangeSlider sliderr;
+
     @FXML
     private Text sliderText;
 
@@ -127,8 +135,7 @@ public class Secondary_Controller implements Initializable {
     }
     @FXML
     private void reloadPage(MouseEvent event){
-        System.out.println("OK!");
-        loadResults("null","null","null","null");
+        filter();
     }
     @FXML
     private void rangeSlide(MouseEvent event){
@@ -154,7 +161,7 @@ public class Secondary_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
-                loadResults("null","null","null","null");
+                loadResults("null","null","null",String.valueOf(low),String.valueOf(high));
                 paneEkpompi.toFront();
             }
         } catch (SQLException ex) {
@@ -162,13 +169,29 @@ public class Secondary_Controller implements Initializable {
         }
         
     }
-    int low;
-    int high;
-    private String[] searchC = {"Empty","K","8","12","16","18"};
-    private String[] ratingC = {"Empty","K","8","12","16","18"};
-    private String[] factorC = {"Empty","Presenter","Actor","Reporter"};
+    int low = 10;
+    int high = 300;
+    private String[] ratingC = {"","K","8","12","16","18"};
+    private String[] factorC = {"","Presenter","Actor","Reporter"};
     private String[] typeC = {"Empty","movie","series","broadcast","documentary","NEWS"};
     private String[] dayC = {"Empty","monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
+
+    private void filter(){
+        String id = "'" + filterID.getText() + "'";
+            if(filterID.getText().isEmpty()){
+                id = "null";
+            }
+            String name = "'" + filterName.getText() + "'";
+
+            if(filterName.getText().isEmpty()){
+                name = "null";
+            }
+            String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
+            if(String.valueOf(filterRating.getValue()).isEmpty()){
+                rating = "null";
+            }
+            loadResults(id,name,rating,String.valueOf(low),String.valueOf(high));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -189,29 +212,38 @@ public class Secondary_Controller implements Initializable {
         choiceRatingBro.getItems().addAll(ratingC);
         choiceRatingBro.setOnAction(this::getRating);
         //choise search
-        low = 10;
-        high = 300;
+        filterRating.getItems().addAll(ratingC);
+
         sliderr.setLowValue(low);
         sliderr.setHighValue(high);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
         
-        
+        filterID.textProperty().addListener((observable, oldValue, newValue) -> {
+          filter();
+        });
+        filterName.textProperty().addListener((observable, oldValue, newValue) -> {
+          filter();
+        });
+        filterRating.valueProperty().addListener((observable, oldValue, newValue) -> {
+          filter();
+        });
+
         sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
             
             high = (int)Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-
+            filter();
 
         });
         sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
             low = (int)Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-
+            filter();
 
         });
-        loadResults("null","null","null","null");
 
-
+       loadResults("null","null","null",String.valueOf(low),String.valueOf(high));
+        
         
     }
     //getMethod
@@ -290,9 +322,9 @@ public class Secondary_Controller implements Initializable {
         paneSyntelestes.toFront();
     }
 
-    private void loadResults(String id,String name,String rating,String time){
+    private void loadResults(String id,String name,String rating,String timeLow, String timeHigh){
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + time + ");";
+        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + "," + timeHigh + ");";
         
         Statement statement;
         try {
@@ -300,9 +332,7 @@ public class Secondary_Controller implements Initializable {
             ResultSet rs = statement.executeQuery(getEkmompes);
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
-            System.out.println(columnsNumber);
             while(rs.next()){
-                System.out.println(rs.getInt("sid") + " " + rs.getString("name") + " " + rs.getString("rating") + " " + rs.getInt("time"));
                 HBox hbox = new HBox();
                 for(int i = 1;i <= columnsNumber;i++){
                     
@@ -397,7 +427,7 @@ public class Secondary_Controller implements Initializable {
     }
 
     public void handleReload(ActionEvent actionEvent) {
-        loadResults("null","null","null","null");
+        loadResults("null","null","null",String.valueOf(low),String.valueOf(high));
         errorlabel.setText("Reload Ok!");
     }
 
