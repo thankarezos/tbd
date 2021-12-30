@@ -7,11 +7,12 @@ RETURNS setof ekpompes AS
         WHEN $1 is null then sid else $1 
     end
     )
-    AND name LIKE ( 
+    AND name LIKE
+    CONCAT('%',
     CASE
-        WHEN $2 is null then name else %$2% 
-    end
-    )
+        WHEN $2 is null then name else $2
+    end,
+    '%')
     AND rating = ( 
     CASE
         WHEN $3 is null then rating else $3
