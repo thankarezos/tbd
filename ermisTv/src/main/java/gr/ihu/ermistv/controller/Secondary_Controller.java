@@ -363,8 +363,6 @@ public class Secondary_Controller implements Initializable {
 
                                         HBox pane = (HBox) hbox.getChildren().get(i);
                                         pane.getStyleClass().add("hboxStyle");
-//                                        Text text = (Text)pane.getChildren().get(0);
-//                                        text.getStyleClass().add("textListHover");
                                     }
 
                                 }
@@ -394,18 +392,22 @@ public class Secondary_Controller implements Initializable {
 
                     @Override
                     public void handle(MouseEvent event) {
-                        
-                        ContextMenu menu = new ContextMenu();
-                        MenuItem item = new MenuItem();
-                        item.setText("Delete");
-                        menu.getItems().add(item);
-                        menu.show(hbox, event.getScreenX(), event.getScreenY());
-                        item.setOnAction(event2 -> {
-                            HBox hboxC = (HBox)hbox.getChildren().get(0);
-                            Text text2 = (Text)hboxC.getChildren().get(0);
-                            System.out.println(text2.getText());
+                        MouseButton button = event.getButton();
+                        if(button == MouseButton.SECONDARY){
+                            ContextMenu menu = new ContextMenu();
+                            MenuItem item = new MenuItem();
+                            item.setText("Delete");
+                            menu.getItems().add(item);
+                            menu.show(hbox, event.getScreenX(), event.getScreenY());
+                            item.setOnAction(event2 -> {
+                                HBox hboxC = (HBox)hbox.getChildren().get(0);
+                                Text text2 = (Text)hboxC.getChildren().get(0);
+                                System.out.println(text2.getText());
 
-                        });
+                            });
+                        }
+                        
+                        
                     }
                     
                 });
