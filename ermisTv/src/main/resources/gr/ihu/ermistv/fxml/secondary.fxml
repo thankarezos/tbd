@@ -68,7 +68,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Button>
-            <Button id="btnSyntelestes" fx:id="logout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
+            <Button id="btnSyntelestes" fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>

@@ -43,43 +43,31 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private FontAwesomeIconView x, x1, x3, x4;
     @FXML
-    private TextField searchName, broadcastSearch;
+    private TextField searchName;
     @FXML
     private ScrollBar ScrollBar;
     @FXML
-    private CheckBox checkBox;
-    @FXML
-    private AnchorPane addProgram, deleteFactor, addFactor, editFactorBroadcast, addBroadcast;
+    private AnchorPane addProgram, addFactor, editFactorBroadcast, addBroadcast;
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram;
     @FXML
-    private TextField addTimeBro, addNameBro;
+    private TextField addNameBro;
     @FXML
     private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
     @FXML
     private TextField addNamePro, addTimePro;
     @FXML
-    private Button btnAddFacPane, btnAddBroPane, btnEditBroPane, logout;
+    private Button btnAddFacPane, btnAddBroPane, btnEditBroPane;
     @FXML
-    private Button btnCheckBro, btnCheckDelBro, btnConfBro;
+    private Button btnConfFac, btnConfBro, btnConfPro, btnConfEdit;
     @FXML
-    private Button btnConfFac, btnCheckFac;
-    @FXML
-    private Button btnCheckPro, btnConfPro;
-    @FXML
-    private Button btnConfEdit, btnEditCheck;
-    @FXML
-    private TextField error, editName, editTime;
-    @FXML
-    private TextField searchId, searchgetName;
+    private TextField editTime;
     @FXML
     private Slider timeSlider;
     @FXML
-    private Label broErrLabel, searchIcon, labelGetName, errorlabel, facErrLabel;
+    private Label broErrLabel, searchIcon, labelGetName, facErrLabel;
     @FXML
     private Button btnEkpompi, btnProgram, btnSyntelestes;
-    @FXML
-    private ChoiceBox<String> searchRating;
     @FXML
     private ChoiceBox<String> choiceDayPro, choiceEditDay, choiceTypePro, choiceRatingBro;
     @FXML
@@ -105,18 +93,38 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private VBox vboxSyntelestes;
 
+    // Minimize Window
     @FXML
     private void minimizedWindow(MouseEvent event) {
         Stage stage = (Stage) secondary.getScene().getWindow();
         stage.setIconified(true);
     }
 
+    // Close Window
     @FXML
     private void closeWindow(MouseEvent event) {
         System.exit(0);
         Platform.exit();
     }
 
+    // Logout
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+
+        Stage stage = (Stage) secondary.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root;
+        root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+        stage.setScene(scene);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
+
+    // Is Numeric Method
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return true;
@@ -129,43 +137,7 @@ public class Secondary_Controller implements Initializable {
         return false;
     }
 
-    @FXML
-    private void reloadPage(MouseEvent event) {
-        filter();
-    }
-
-    @FXML
-    private void addbroadcast() {
-        int intValue;
-        try {
-            String name = addNameBro.getText();
-            String rating = choiceRatingBro.getValue();
-            int time = valueRange;
-            if (name == "") {
-                broErrLabel.setText("ADD NAME!");
-            } else if (rating == null || rating == "empty") {
-                broErrLabel.setText("ADD RATING!");
-            } else if (time == 0) {
-                broErrLabel.setText("ADD TIME ");
-            } else {
-                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addbroadcast);
-
-                System.out.println("Success");
-                filter();
-                addNameBro.clear();
-                choiceRatingBro.setValue(null);
-                timeSlider.setValue(0);
-                broErrLabel.setText("");
-                paneEkpompi.toFront();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+    // Fixed Statement
     int low = 10;
     int high = 300;
     int valueRange;
@@ -173,23 +145,45 @@ public class Secondary_Controller implements Initializable {
     private String[] typeC = { "Empty", "movie", "series", "broadcast", "documentary", "NEWS" };
     private String[] dayC = { "Empty", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
 
-    private void filter() {
-        String id = "'" + filterID.getText() + "'";
-        if (filterID.getText().isEmpty()) {
-            id = "null";
-        }
-        String name = "'" + filterName.getText() + "'";
-
-        if (filterName.getText().isEmpty()) {
-            name = "null";
-        }
-        String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
-        if (String.valueOf(filterRating.getValue()).isEmpty()) {
-            rating = "null";
-        }
-        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high));
+    // getMethod
+    private void getDay2(Event event) {
+        String day = (String) choiceEditDay.getValue();
     }
 
+    private void getDay3(Event event) {
+        String day = (String) choiceDayPro.getValue();
+    }
+
+    private void getType(Event event) {
+        String type = (String) choiceTypePro.getValue();
+    }
+
+    private void getRating(Event event) {
+        String rating = (String) choiceRatingBro.getValue();
+    }
+
+    // add Methos
+    @FXML
+    private void addProgram(MouseEvent event) {
+        addProgram.toFront();
+    }
+
+    @FXML
+    private void addBroadcast(MouseEvent event) {
+        addBroadcast.toFront();
+    }
+
+    @FXML
+    private void editFactorBroadcast(MouseEvent event) {
+        editFactorBroadcast.toFront();
+    }
+
+    @FXML
+    private void addFactor(MouseEvent event) {
+        addFactor.toFront();
+    }
+
+    // Override
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -263,27 +257,7 @@ public class Secondary_Controller implements Initializable {
         loadResults1("null", "null", "null", "null", "null");
     }
 
-    // getMethod
-    private void getDay2(Event event) {
-        String day = (String) choiceEditDay.getValue();
-    }
-
-    private void getDay3(Event event) {
-        String day = (String) choiceDayPro.getValue();
-    }
-
-    private void getType(Event event) {
-        String type = (String) choiceTypePro.getValue();
-    }
-
-    private void getRating(Event event) {
-        String rating = (String) choiceRatingBro.getValue();
-    }
-
-    private void getSearch(Event event) {
-        String search = (String) searchRating.getValue();
-    }
-
+    // Handle Clicks
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnProgram) {
@@ -300,22 +274,7 @@ public class Secondary_Controller implements Initializable {
         }
     }
 
-    @FXML
-    private void Logout(ActionEvent event) throws IOException {
-
-        Stage stage = (Stage) secondary.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-        Parent root;
-        root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-        stage.setScene(scene);
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-        stage.setX(x);
-        stage.setY(y);
-    }
-
+    // Popup switch
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x) {
@@ -330,36 +289,64 @@ public class Secondary_Controller implements Initializable {
 
     }
 
-    @FXML
-    private void addProgram(MouseEvent event) {
-        addProgram.toFront();
+    // Filter Ekpompi
+    private void filter() {
+        String id = "'" + filterID.getText() + "'";
+        if (filterID.getText().isEmpty()) {
+            id = "null";
+        }
+        String name = "'" + filterName.getText() + "'";
+
+        if (filterName.getText().isEmpty()) {
+            name = "null";
+        }
+        String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
+        if (String.valueOf(filterRating.getValue()).isEmpty()) {
+            rating = "null";
+        }
+        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high));
     }
 
+    // Reload Table Ekpompi ??
     @FXML
-    private void addBroadcast(MouseEvent event) {
-        addBroadcast.toFront();
+    private void reloadPage(MouseEvent event) {
+        filter();
     }
 
+    // Add Ekpompi
     @FXML
-    private void editFactorBroadcast(MouseEvent event) {
-        editFactorBroadcast.toFront();
+    private void addbroadcast() {
+        int intValue;
+        try {
+            String name = addNameBro.getText();
+            String rating = choiceRatingBro.getValue();
+            int time = valueRange;
+            if (name == "") {
+                broErrLabel.setText("ADD NAME!");
+            } else if (rating == null || rating == "empty") {
+                broErrLabel.setText("ADD RATING!");
+            } else if (time == 0) {
+                broErrLabel.setText("ADD TIME ");
+            } else {
+                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
+                Statement statement = DBConnection.c.createStatement();
+                ResultSet rs = statement.executeQuery(addbroadcast);
+
+                System.out.println("Success");
+                filter();
+                addNameBro.clear();
+                choiceRatingBro.setValue(null);
+                timeSlider.setValue(0);
+                broErrLabel.setText("");
+                paneEkpompi.toFront();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    @FXML
-    private void addFactor(MouseEvent event) {
-        addFactor.toFront();
-    }
-
-    @FXML
-    private void deleteFactor(MouseEvent event) {
-        deleteFactor.toFront();
-    }
-
-    @FXML
-    private void mergePaneSyntelestes(MouseEvent event) {
-        paneSyntelestes.toFront();
-    }
-
+    // Load Results Ekpompi
     private void loadResults(String id, String name, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
         String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
@@ -464,6 +451,7 @@ public class Secondary_Controller implements Initializable {
 
     }
 
+    // Load Results Syntelestes
     private void loadResults1(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
@@ -568,19 +556,7 @@ public class Secondary_Controller implements Initializable {
 
     }
 
-    public void handleFactor(ActionEvent actionEvent) {
-        errorlabel.setText("Factor Ok!");
-    }
-
-    public void handleReload(ActionEvent actionEvent) {
-        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
-        errorlabel.setText("Reload Ok!");
-    }
-
-    public void handleDelete(ActionEvent actionEvent) {
-        errorlabel.setText("Delete Ok!");
-    }
-
+    // Filter Syntelestes
     private void filter1() {
         String id = "'" + syntelestisID.getText() + "'";
         if (syntelestisID.getText().isEmpty()) {
@@ -610,6 +586,7 @@ public class Secondary_Controller implements Initializable {
         loadResults1(id, name, surname, role, phoneN);
     }
 
+    // add Factor Syntelestes
     @FXML
     private void addfactor() {
         try {
