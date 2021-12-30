@@ -4,24 +4,25 @@
  */
 package gr.ihu.ermistv;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
+
 /**
  *
  * @author User
  */
 public class CrunchifyGetPropertyValues {
     String file;
-    CrunchifyGetPropertyValues(String file){
+
+    CrunchifyGetPropertyValues(String file) {
         this.file = file;
     }
 
-    String getProperty(String property){
+    String getProperty(String property) {
 
         Properties prop = new Properties();
         try (FileInputStream fis = new FileInputStream(file)) {

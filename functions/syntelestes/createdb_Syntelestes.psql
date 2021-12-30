@@ -1,0 +1,93 @@
+CREATE OR REPLACE FUNCTION "syntelestes"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    drop table IF EXISTS syntelestes cascade;
+    create table IF NOT EXISTS syntelestes
+    (
+        sid SERIAL,
+        name varchar(20),
+        surname varchar(20),
+        role varchar(20),
+        phoneNumber varchar(15),
+        primary key(sid)
+    );
+
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('Boba','The Builder','Builder','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('Boba','Ross','Painter','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('Boba','Marley','Prime Minister','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('Boba','Boilen','Creator','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('Bobby Ray',' Simmons Jr.','Artist','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('perisa','Gousios','oxAMan','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber) 
+        VALUES ('Athanasiosa','Karezos','oxFile','09099109346');
+    INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES ('kai a','Ta ','Lipa','09099109346');
+    
+    END;
+$function$;
+
+SELECT syntelestes();
+CREATE OR REPLACE FUNCTION getSyntelestes() 
+RETURNS SETOF syntelestes  AS $$
+    SELECT * FROM syntelestes  order by sid;
+$$  LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION addSyntelestes(name text, surname text,role text,phoneNumber text)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+        INSERT INTO syntelestes (name,surname,role,phoneNumber)
+        VALUES (name,surname,role,phoneNumber);
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION deleteSyntelestes(id integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DELETE FROM syntelestes where sid = id;
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION getResultSyntelestes(int,text,text,text,text) 
+RETURNS setof syntelestes AS
+ $$
+    Select * from syntelestes 
+    where sid = ( 
+    CASE
+        WHEN $1 is null then sid else $1 
+    end
+    )
+    AND name LIKE
+    CONCAT('%',
+    CASE
+        WHEN $2 is null then name else $2
+    end,
+    '%')
+    AND surname LIKE
+    CONCAT('%',
+    CASE
+        WHEN $3 is null then surname else $3
+    end,
+    '%')
+    AND role =(
+    CASE
+        WHEN $4 is null then role else $4
+    end
+    )
+    AND phoneNumber =(
+    CASE
+        WHEN $5 is null then phoneNumber else $5
+    end
+    )
+$$  LANGUAGE sql

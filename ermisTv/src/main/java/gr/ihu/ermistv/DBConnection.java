@@ -15,9 +15,9 @@ import java.lang.ClassLoader;
  */
 public class DBConnection {
     public static Connection c;
-    public static void connect(String url,String user,String pass) throws SQLException, ClassNotFoundException{
-        Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection(url,user,pass);
+
+    public static void connect(String url, String user, String pass) throws SQLException {
+        c = DriverManager.getConnection(url, user, pass);
     }
 
 }

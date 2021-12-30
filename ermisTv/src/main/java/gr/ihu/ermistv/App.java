@@ -14,8 +14,7 @@ import java.sql.*;
 /**
  * JavaFX App
  */
-public class
-App extends Application {
+public class App extends Application {
 
     private static Scene scene;
 
@@ -23,7 +22,7 @@ App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root,stage,640, 480,"#Hbox");
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -31,7 +30,7 @@ App extends Application {
         stage.setResizable(false);
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException{
+    public static void main(String[] args) throws SQLException {
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
@@ -39,6 +38,5 @@ App extends Application {
         DBConnection.connect(url, user, pass);
         launch();
     }
-
 
 }
