@@ -334,6 +334,7 @@ public class Secondary_Controller implements Initializable {
             int columnsNumber = rsmd.getColumnCount();
             while(rs.next()){
                 HBox hbox = new HBox();
+
                 for(int i = 1;i <= columnsNumber;i++){
                     
                     hbox.setSpacing(3);
@@ -348,16 +349,7 @@ public class Secondary_Controller implements Initializable {
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
-
-//                    hbox.setOnMouseClicked((new EventHandler<MouseEvent>() {
-//                        public void handle(MouseEvent event) {
-//                            popupinside2.toBack();
-//                            popup.toFront();
-//                            currentExetastiki =  exetastiki;
-//
-//                        }
-//                    }))
-
+                    
                     hbox.addEventHandler(MouseEvent.MOUSE_ENTERED,
                             new EventHandler<MouseEvent>() {
                                 @Override
@@ -392,27 +384,31 @@ public class Secondary_Controller implements Initializable {
                                         pane.getStyleClass().clear();
                                         pane.getStyleClass().add("hboxStylehover");
                                         Text text = (Text)pane.getChildren().get(0);
-//                                        text.getStyleClass().clear();
-//                                        text.getStyleClass().add("textList");
                                     }
 
                                 }
-                            });
-                    hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                        @Override
-                        public void handle(MouseEvent event) {
-                            MouseButton button = event.getButton();
-                            if(button==MouseButton.PRIMARY){
-                                lol.setText("PRIMARY button clicked");
-                            }else if(button==MouseButton.SECONDARY){
-                                lol.setText("SECONDARY button clicked");
-                            }else if(button==MouseButton.MIDDLE){
-                                lol.setText("MIDDLE button clicked");
-                            }
-                        }
                     });
+                    
                 }
+                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        
+                        ContextMenu menu = new ContextMenu();
+                        MenuItem item = new MenuItem();
+                        item.setText("Delete");
+                        menu.getItems().add(item);
+                        menu.show(hbox, event.getScreenX(), event.getScreenY());
+                        item.setOnAction(event2 -> {
+                            HBox hboxC = (HBox)hbox.getChildren().get(0);
+                            Text text2 = (Text)hboxC.getChildren().get(0);
+                            System.out.println(text2.getText());
+
+                        });
+                    }
+                    
+                });
                 ekpompivbox.getChildren().add(hbox);
             }
         } catch (SQLException ex) {
