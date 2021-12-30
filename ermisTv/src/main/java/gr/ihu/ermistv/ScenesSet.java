@@ -13,11 +13,11 @@ public class ScenesSet extends Scene {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public ScenesSet(Parent root,Stage stage, float x, float y) throws IOException {
+    public ScenesSet(Parent root, Stage stage, float x, float y) throws IOException {
         super(root, x, y, false, SceneAntialiasing.BALANCED);
     }
 
-    public ScenesSet(Parent root,Stage stage, float x, float y, String top) {
+    public ScenesSet(Parent root, Stage stage, float x, float y, String top) {
         super(root, x, y, false, SceneAntialiasing.BALANCED);
         HBox Hbox = (HBox) super.lookup(top);
         Hbox.setOnMousePressed((new EventHandler<MouseEvent>() {

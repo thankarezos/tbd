@@ -6,7 +6,9 @@ module gr.ihu.ermistv {
     requires org.controlsfx.controls;
 
     opens gr.ihu.ermistv to javafx.fxml;
+
     exports gr.ihu.ermistv;
     exports gr.ihu.ermistv.controller;
+
     opens gr.ihu.ermistv.controller to javafx.fxml;
 }
