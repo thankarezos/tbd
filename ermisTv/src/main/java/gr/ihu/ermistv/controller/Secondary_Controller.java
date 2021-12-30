@@ -4,16 +4,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gr.ihu.ermistv.App;
+import gr.ihu.ermistv.ScenesSet;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.DBConnection;
@@ -29,12 +36,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import org.controlsfx.control.RangeSlider;
 
 public class Secondary_Controller implements Initializable {
     @FXML
-    private FontAwesomeIconView x,x1,x2,x3,x4,x5;
+    private FontAwesomeIconView x,x1,x2,x3,x4;
     @FXML
     private TextField searchName,broadcastSearch;
     @FXML
@@ -42,7 +50,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private CheckBox checkBox;
     @FXML
-    private AnchorPane addProgram,deleteFactor,addFactor,deleteBroadcast,editFactorBroadcast,addBroadcast;
+    private AnchorPane addProgram,deleteFactor,addFactor,editFactorBroadcast,addBroadcast;
     @FXML
     private AnchorPane secondary,paneEkpompi,paneProgram,paneSyntelestes;
     @FXML
@@ -52,17 +60,15 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private TextField addNamePro,addTimePro;
     @FXML
-    private Button btnAddFacPane,btnAddBroPane,btnEditBroPane,btnMergeFacPane,btnDelFacPane,btnDelBroPane;
+    private Button btnAddFacPane,btnAddBroPane,btnEditBroPane,logout;
     @FXML
-    private Button btnCheckBro,btnCheckDelBro,btnConfBro,btnDelBro;
+    private Button btnCheckBro,btnCheckDelBro,btnConfBro;
     @FXML
-    private Button btnConfFac,btnDelFac,btnCheckFac;
+    private Button btnConfFac,btnCheckFac;
     @FXML
     private Button btnCheckPro,btnConfPro;
     @FXML
     private Button btnConfEdit,btnEditCheck;
-    @FXML
-    private TextField delFacName,delFacSurname,delNameBro,delTimeBro;
     @FXML
     private TextField error,editName,editTime;
     @FXML
@@ -74,7 +80,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private Button btnEkpompi,btnProgram,btnSyntelestes;
     @FXML
-    private ChoiceBox<String> choiceDelDay,choiceFacRole,searchRating;
+    private ChoiceBox<String> choiceFacRole,searchRating;
     @FXML
     private ChoiceBox<String> choiceDayPro,choiceEditDay,choiceTypePro,choiceRatingBro;
     @FXML
@@ -158,9 +164,6 @@ public class Secondary_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //choice day
-        choiceDelDay.getItems().addAll(dayC);
-        choiceDelDay.setOnAction(this::getDay1);
-
         choiceDayPro.getItems().addAll(dayC);
         choiceDayPro.setOnAction(this::getDay2);
 
@@ -201,9 +204,6 @@ public class Secondary_Controller implements Initializable {
         
     }
     //getMethod
-    private void getDay1(Event event) {
-        String day = (String) choiceDelDay.getValue();
-    }
     private void getDay2(Event event){
         String day = (String) choiceEditDay.getValue();
     }
@@ -228,15 +228,28 @@ public class Secondary_Controller implements Initializable {
         else if (event.getSource() == btnEkpompi) {paneEkpompi.toFront();}
         else if (event.getSource() == btnSyntelestes) {paneSyntelestes.toFront();}
     }
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+
+        Stage stage = (Stage) secondary.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root;
+        root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+        stage.setScene(scene);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
 
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x ) {paneEkpompi.toFront();}
         else if (event.getSource() == x1 ) {paneEkpompi.toFront();}
-        else if (event.getSource() == x2 ) {paneEkpompi.toFront();}
         else if (event.getSource() == x3) {paneProgram.toFront();}
         else if (event.getSource() == x4 ) {paneSyntelestes.toFront();}
-        else if (event.getSource() == x5 ) {paneSyntelestes.toFront();}
 
 
     }
@@ -252,10 +265,6 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void editFactorBroadcast(MouseEvent event){
         editFactorBroadcast.toFront();
-    }
-    @FXML
-    private void deleteBroadcast(MouseEvent event){
-        deleteBroadcast.toFront();
     }
     @FXML
     private void addFactor(MouseEvent event){

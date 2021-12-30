@@ -69,6 +69,11 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Button>
+            <Button id="btnSyntelestes" fx:id="logout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <StackPane layoutX="148.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="876.0" style="-fx-background-color: black;">
@@ -277,236 +282,6 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="deleteFactor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="435.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
-               <children>
-                  <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="435.0" spacing="5.0" style="-fx-border-color: black;" styleClass="parent" stylesheets="@../css/style.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="363.0" text="Delete Factor" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
-                           <graphic>
-                              <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x5" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
-                  </HBox>
-                  <VBox layoutX="11.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="414.0" spacing="10.0">
-                     <children>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="403.0" spacing="10.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <children>
-                              <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="160.0" text="Name" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></Label>
-                              <TextField fx:id="delFacName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="403.0" spacing="10.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <children>
-                              <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="160.0" text="Surname" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></Label>
-                              <TextField fx:id="delFacSurname" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="403.0" spacing="25.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <children>
-                              <Button fx:id="btnDelFac" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Delete" />
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
-               <children>
-                  <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="822.0" spacing="3.0">
-                     <children>
-                        <VBox prefHeight="27.0" prefWidth="822.0">
-                           <children>
-                              <HBox spacing="3.0">
-                                 <children>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="822.0" style="-fx-background-color: transparent;">
-                           <content>
-                              <VBox prefWidth="800.0" spacing="3.0">
-                                 <children>
-                                    <VBox fx:id="ekpompivbox1" alignment="CENTER" spacing="3.0" />
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </VBox>
-                  <Button fx:id="btnAddProgram" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addProgram" prefHeight="35.0" prefWidth="110.0" text="Add Broadcast">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
-               <children>
-                  <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="822.0" spacing="3.0">
-                     <children>
-                        <VBox prefHeight="27.0" prefWidth="822.0">
-                           <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="822.0" spacing="3.0">
-                                 <children>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets left="1.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="822.0" style="-fx-background-color: transparent;">
-                           <content>
-                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="800.0" spacing="3.0">
-                                 <children>
-                                    <VBox fx:id="ekpompivbox11" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="800.0" spacing="3.0" />
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </VBox>
-                  <HBox id="program" alignment="CENTER" layoutX="28.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="822.0" spacing="25.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Add Factor">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnAddFacPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addFactor" prefHeight="35.0" prefWidth="100.0" text="Add">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Button>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Delete Factor">
-                           <font>
-                              <Font name="Arial Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnDelFacPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#deleteFactor" prefHeight="35.0" prefWidth="100.0" text="Delete">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Button>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="addBroadcast" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="435.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
                <children>
                   <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="435.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
@@ -597,93 +372,6 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="deleteBroadcast" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="435.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
-               <children>
-                  <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="435.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="362.0" text="Delete Broadcast" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
-                           <graphic>
-                              <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x2" />
-                           </graphic>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets right="5.0" />
-                     </padding>
-                  </HBox>
-                  <VBox layoutX="11.0" layoutY="43.0" prefHeight="335.0" prefWidth="414.0" spacing="10.0">
-                     <children>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="403.0" spacing="10.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <children>
-                              <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="175.0" text="Ekpompi" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></Label>
-                              <TextField fx:id="delNameBro" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="403.0" spacing="10.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <children>
-                              <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="175.0" text="Day" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></Label>
-                              <ChoiceBox fx:id="choiceDelDay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" value="Empty" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="403.0" spacing="10.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <children>
-                              <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="175.0" text="Time" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Black" size="14.0" />
-                                 </font></Label>
-                              <TextField fx:id="delTimeBro" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="403.0" spacing="25.0" styleClass="popuphbox" stylesheets="@../css/style.css">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                           <children>
-                              <Button fx:id="btnDelBro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" text="Delete" />
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </VBox>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="editFactorBroadcast" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="755.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
@@ -938,16 +626,7 @@
                                           <Button fx:id="btnAddBroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addBroadcast" prefHeight="35.0" prefWidth="100.0" text="Add" />
                                        </children>
                                     </HBox>
-                                    <HBox id="program" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="5.0">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Delete Broadcast">
-                                             <font>
-                                                <Font name="Arial Bold" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnDelBroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#deleteBroadcast" prefHeight="35.0" prefWidth="100.0" text="Delete" />
-                                       </children>
-                                    </HBox>
+                                    <HBox id="program" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="5.0" />
                                  </children>
                               </VBox>
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="270.0" spacing="2.0">
@@ -962,22 +641,161 @@
                                           <Button fx:id="btnEditBroPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#editFactorBroadcast" prefHeight="35.0" prefWidth="100.0" text="Factor" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="5.0">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Create Factor">
-                                             <font>
-                                                <Font name="Arial Bold" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnMergeFacPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#mergePaneSyntelestes" prefHeight="35.0" prefWidth="100.0" text="Create" />
-                                       </children>
-                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
+               <children>
+                  <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="822.0" spacing="3.0">
+                     <children>
+                        <VBox prefHeight="27.0" prefWidth="822.0">
+                           <children>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="822.0" spacing="3.0">
+                                 <children>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="1.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="822.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="800.0" spacing="3.0">
+                                 <children>
+                                    <VBox fx:id="ekpompivbox11" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="800.0" spacing="3.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <HBox id="program" alignment="CENTER" layoutX="28.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="822.0" spacing="25.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Add Factor">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnAddFacPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addFactor" prefHeight="35.0" prefWidth="100.0" text="Add">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
+               <children>
+                  <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="822.0" spacing="3.0">
+                     <children>
+                        <VBox prefHeight="27.0" prefWidth="822.0">
+                           <children>
+                              <HBox spacing="3.0">
+                                 <children>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="198.0" spacing="10.0" styleClass="hboxBorder">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="1.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="822.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox prefWidth="800.0" spacing="3.0">
+                                 <children>
+                                    <VBox fx:id="ekpompivbox1" alignment="CENTER" spacing="3.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnAddProgram" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addProgram" prefHeight="35.0" prefWidth="110.0" text="Add Broadcast">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
