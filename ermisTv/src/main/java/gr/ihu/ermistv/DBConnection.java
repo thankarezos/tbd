@@ -7,6 +7,7 @@ package gr.ihu.ermistv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.lang.ClassLoader;
 
 /**
  *
@@ -14,7 +15,8 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     public static Connection c;
-    public static void connect(String url,String user,String pass) throws SQLException{
+    public static void connect(String url,String user,String pass) throws SQLException, ClassNotFoundException{
+        Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url,user,pass);
     }
 

@@ -31,7 +31,7 @@ App extends Application {
         stage.setResizable(false);
     }
 
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, ClassNotFoundException{
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
