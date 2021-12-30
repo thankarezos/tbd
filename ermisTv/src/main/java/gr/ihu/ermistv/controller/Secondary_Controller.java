@@ -403,7 +403,14 @@ public class Secondary_Controller implements Initializable {
                                 HBox hboxC = (HBox)hbox.getChildren().get(0);
                                 Text text2 = (Text)hboxC.getChildren().get(0);
                                 System.out.println(text2.getText());
-
+                                String deleteek = "select * from deleteEkpompi("+ text2.getText() +");";
+                                try {
+                                    statement.executeQuery(deleteek);
+                                    filter();
+                                    
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             });
                         }
                         
