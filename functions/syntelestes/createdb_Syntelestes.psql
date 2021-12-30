@@ -32,10 +32,7 @@ AS $function$
         VALUES ('kai ','Ta ','Lipa','09099109346');
     
     END;
-$function$
-
-SELECT * FROM syntelestes
-ORDER BY sid ASC 
+$function$;
 
 SELECT syntelestes();
 CREATE OR REPLACE FUNCTION getSyntelestes() 
