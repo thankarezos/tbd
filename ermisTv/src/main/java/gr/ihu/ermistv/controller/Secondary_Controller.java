@@ -181,7 +181,7 @@ public class Secondary_Controller implements Initializable {
 
     private void filter(){
         String id = "'" + filterID.getText() + "'";
-            if(filterID.getText().isEmpty()){
+            if(filterID.getText().isEmpty() || isNumeric(filterID.getText())){
                 id = "null";
             }
             String name = "'" + filterName.getText() + "'";

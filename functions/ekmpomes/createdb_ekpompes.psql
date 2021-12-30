@@ -63,11 +63,12 @@ CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int)
 RETURNS setof ekpompes AS
  $$
     Select * from ekpompes 
-    where sid = ( 
+    where CAST(sid AS TEXT) Like 
+    CONCAT(
     CASE
         WHEN $1 is null then sid else $1 
-    end
-    )
+    end,
+    '%')
     AND name LIKE
     CONCAT('%',
     CASE
