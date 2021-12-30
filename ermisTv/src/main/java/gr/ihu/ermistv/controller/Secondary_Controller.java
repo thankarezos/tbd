@@ -161,7 +161,10 @@ public class Secondary_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
-                loadResults("null","null","null",String.valueOf(low),String.valueOf(high));
+                filter();
+                addNameBro.clear();
+                choiceRatingBro.setValue(null);
+                addTimeBro.clear();
                 paneEkpompi.toFront();
             }
         } catch (SQLException ex) {

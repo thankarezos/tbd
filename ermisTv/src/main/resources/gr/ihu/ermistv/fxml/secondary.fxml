@@ -112,7 +112,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="choiceDayPro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="Empty" />
+                                    <ChoiceBox fx:id="choiceDayPro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -144,7 +144,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="choiceTypePro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="Empty" />
+                                    <ChoiceBox fx:id="choiceTypePro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -250,7 +250,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="choiceFacRole" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="Empty" />
+                                    <ChoiceBox fx:id="choiceFacRole" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="180.0" value="" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
@@ -342,7 +342,7 @@
                                                 <Font name="Arial Black" size="14.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox fx:id="choiceEditDay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="170.0" value="Empty" />
+                                          <ChoiceBox fx:id="choiceEditDay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="170.0" value="" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -479,7 +479,7 @@
                                           <Font name="Arial Black" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="choiceRatingBro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" value="Empty" />
+                                    <ChoiceBox fx:id="choiceRatingBro" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" value="" />
                                  </children>
                                  <VBox.margin>
                                     <Insets />
