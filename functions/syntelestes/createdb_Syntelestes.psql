@@ -63,11 +63,12 @@ CREATE OR REPLACE FUNCTION getResultSyntelestes(int,text,text,text,text)
 RETURNS setof syntelestes AS
  $$
     Select * from syntelestes 
-    where sid = ( 
+    where CAST(sid as TEXT)
+    CONCAT(
     CASE
         WHEN $1 is null then sid else $1 
-    end
-    )
+    end,
+    '%')
     AND name LIKE
     CONCAT('%',
     CASE
@@ -85,9 +86,10 @@ RETURNS setof syntelestes AS
         WHEN $4 is null then role else $4
     end
     )
-    AND phoneNumber =(
+    AND cast(phoneNumber as text)
+    CONCAT(
     CASE
         WHEN $5 is null then phoneNumber else $5
-    end
-    )
+    end,
+    '%')
 $$  LANGUAGE sql
