@@ -308,6 +308,7 @@ public class Secondary_Controller implements Initializable {
         else if (event.getSource() == btnEkpompi) {
             loadResults("null","null","null",String.valueOf(low),String.valueOf(high));
             paneEkpompi.toFront();}
+
         else if (event.getSource() == btnSyntelestes) {
             loadResults1("null","null","null","null","null");
             paneSyntelestes.toFront();}
@@ -470,12 +471,12 @@ public class Secondary_Controller implements Initializable {
 
     private void loadResults1(String id,String name,String surname,String role, String phoneNumber){
         vboxSyntelestes.getChildren().clear();
-        String getEkmompes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
+        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
 
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getEkmompes);
+            ResultSet rs = statement.executeQuery(getSyntelestes);
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while(rs.next()){
@@ -486,12 +487,12 @@ public class Secondary_Controller implements Initializable {
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.setStyle("-fx-background-color: #F5F6F8; -fx-background-radius: 5px; " );
-                    hboxinside.setPrefWidth(156);
+                    hboxinside.setPrefWidth(198);
                     hboxinside.setAlignment(Pos.CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(140);
+                    text.setWrappingWidth(160);
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
@@ -549,7 +550,7 @@ public class Secondary_Controller implements Initializable {
                                 HBox hboxC = (HBox)hbox.getChildren().get(0);
                                 Text text2 = (Text)hboxC.getChildren().get(0);
                                 System.out.println(text2.getText());
-                                String deleteek = "select * from deleteEkpompi("+ text2.getText() +");";
+                                String deleteek = "select * from deleteSyntelestes("+ text2.getText() +");";
                                 try {
                                     statement.executeQuery(deleteek);
                                     filter();
