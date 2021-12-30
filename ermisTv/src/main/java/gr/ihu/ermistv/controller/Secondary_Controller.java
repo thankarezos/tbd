@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.scene.input.*;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.application.Platform;
@@ -20,6 +25,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -40,7 +46,11 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import org.controlsfx.control.RangeSlider;
 
+
+
 public class Secondary_Controller implements Initializable {
+    @FXML
+    private TextArea lol;
     @FXML
     private FontAwesomeIconView x,x1,x2,x3,x4;
     @FXML
@@ -200,7 +210,8 @@ public class Secondary_Controller implements Initializable {
 
         });
         loadResults("null","null","null","null");
-        
+
+
         
     }
     //getMethod
@@ -307,13 +318,77 @@ public class Secondary_Controller implements Initializable {
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
+
+//                    hbox.setOnMouseClicked((new EventHandler<MouseEvent>() {
+//                        public void handle(MouseEvent event) {
+//                            popupinside2.toBack();
+//                            popup.toFront();
+//                            currentExetastiki =  exetastiki;
+//
+//                        }
+//                    }))
+
+                    hbox.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                            new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+
+                                    HBox hbox = (HBox)event.getSource();
+                                    hbox.getChildren().get(0);
+                                    hbox.getChildren();
+
+                                    for (int i=0;i<hbox.getChildren().size();i++) {
+
+                                        HBox pane = (HBox) hbox.getChildren().get(i);
+                                        pane.getStyleClass().add("hboxStyle");
+//                                        Text text = (Text)pane.getChildren().get(0);
+//                                        text.getStyleClass().add("textListHover");
+                                    }
+
+                                }
+                            });
+
+                    hbox.addEventHandler(MouseEvent.MOUSE_EXITED,
+                            new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+
+                                    HBox hbox = (HBox)event.getSource();
+                                    hbox.getChildren().get(0);
+                                    hbox.getChildren();
+
+                                    for (int i=0;i<hbox.getChildren().size();i++) {
+                                        HBox pane = (HBox) hbox.getChildren().get(i);
+                                        pane.getStyleClass().clear();
+                                        pane.getStyleClass().add("hboxStylehover");
+                                        Text text = (Text)pane.getChildren().get(0);
+//                                        text.getStyleClass().clear();
+//                                        text.getStyleClass().add("textList");
+                                    }
+
+                                }
+                            });
+                    hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                        @Override
+                        public void handle(MouseEvent event) {
+                            MouseButton button = event.getButton();
+                            if(button==MouseButton.PRIMARY){
+                                lol.setText("PRIMARY button clicked");
+                            }else if(button==MouseButton.SECONDARY){
+                                lol.setText("SECONDARY button clicked");
+                            }else if(button==MouseButton.MIDDLE){
+                                lol.setText("MIDDLE button clicked");
+                            }
+                        }
+                    });
                 }
                 ekpompivbox.getChildren().add(hbox);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 
 
