@@ -526,10 +526,6 @@
                         </Label>
                      </children>
                   </AnchorPane>
-               </children>
-            </StackPane>
-            <StackPane>
-               <children>
                   <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
                      <children>
                         <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="822.0" spacing="3.0">
@@ -740,11 +736,11 @@
                                  </content>
                                  <contextMenu>
                                     <ContextMenu>
-                                      <items>
+                                       <items>
                                           <MenuItem fx:id="miAddFactor" mnemonicParsing="false" onAction="#handleFactor" text="Add Factor" />
-                                        <MenuItem fx:id="miReload" mnemonicParsing="false" onAction="#handleReload" text="Reload" />
+                                          <MenuItem fx:id="miReload" mnemonicParsing="false" onAction="#handleReload" text="Reload" />
                                           <MenuItem fx:id="miDelete" mnemonicParsing="false" onAction="#handleDelete" text="Delete" />
-                                      </items>
+                                       </items>
                                     </ContextMenu>
                                  </contextMenu>
                               </ScrollPane>
