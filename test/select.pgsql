@@ -36,5 +36,4 @@ select
 from TaskPeriods as t2
 --getResult
 select * from getResult(null,null,null,50,200);
-
-function1
+select deleteEkpompi(1);
