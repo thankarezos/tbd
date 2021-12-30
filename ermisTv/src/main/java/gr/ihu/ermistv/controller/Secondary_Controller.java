@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
 import javafx.scene.input.*;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.ScenesSet;
@@ -20,14 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
-import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.DBConnection;
 import java.sql.ResultSet;
@@ -37,22 +31,18 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import org.controlsfx.control.RangeSlider;
 
+import static javafx.geometry.Pos.CENTER;
 
 
 public class Secondary_Controller implements Initializable {
     @FXML
-    private TextArea lol;
-    @FXML
-    private FontAwesomeIconView x,x1,x2,x3,x4;
+    private FontAwesomeIconView x,x1,x3,x4;
     @FXML
     private TextField searchName,broadcastSearch;
     @FXML
@@ -281,8 +271,26 @@ public class Secondary_Controller implements Initializable {
         timeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             valueRange = (int)Math.round((newValue.doubleValue()));
             txtRange.setText(" 0  -  " + String.valueOf(valueRange));
+            filter();
         });
 
+        syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter1();
+        });
+        syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter1();
+        });
+        syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter1();
+        });
+        syntelestisRole.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter1();
+        });
+        syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter1();
+        });
+
+        loadResults1("null","null","null","null","null");
     }
     //getMethod
     private void getDay2(Event event){
@@ -381,9 +389,9 @@ public class Secondary_Controller implements Initializable {
                     
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
-                    hboxinside.setStyle("-fx-background-color: #F5F6F8; -fx-background-radius: 5px; " );
+                    hboxinside.getStyleClass().add("hboxStyle" );
                     hboxinside.setPrefWidth(198);
-                    hboxinside.setAlignment(Pos.CENTER);
+                    hboxinside.setAlignment(CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
@@ -404,7 +412,7 @@ public class Secondary_Controller implements Initializable {
                                     for (int i=0;i<hbox.getChildren().size();i++) {
 
                                         HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().add("hboxStyle");
+                                        pane.getStyleClass().add("hboxStylehover");
                                     }
 
                                 }
@@ -422,7 +430,7 @@ public class Secondary_Controller implements Initializable {
                                     for (int i=0;i<hbox.getChildren().size();i++) {
                                         HBox pane = (HBox) hbox.getChildren().get(i);
                                         pane.getStyleClass().clear();
-                                        pane.getStyleClass().add("hboxStylehover");
+                                        pane.getStyleClass().add("hboxStyle");
                                         Text text = (Text)pane.getChildren().get(0);
                                     }
 
@@ -486,13 +494,13 @@ public class Secondary_Controller implements Initializable {
 
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
-                    hboxinside.setStyle("-fx-background-color: #F5F6F8; -fx-background-radius: 5px; " );
-                    hboxinside.setPrefWidth(198);
-                    hboxinside.setAlignment(Pos.CENTER);
+                    hboxinside.getStyleClass().add("hboxStyle" );
+                    hboxinside.setPrefWidth(160);
+                    hboxinside.setAlignment(CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(160);
+                    text.setWrappingWidth(80);
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
@@ -509,7 +517,7 @@ public class Secondary_Controller implements Initializable {
                                     for (int i=0;i<hbox.getChildren().size();i++) {
 
                                         HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().add("hboxStyle");
+                                        pane.getStyleClass().add("hboxStylehover");
                                     }
 
                                 }
@@ -527,7 +535,7 @@ public class Secondary_Controller implements Initializable {
                                     for (int i=0;i<hbox.getChildren().size();i++) {
                                         HBox pane = (HBox) hbox.getChildren().get(i);
                                         pane.getStyleClass().clear();
-                                        pane.getStyleClass().add("hboxStylehover");
+                                        pane.getStyleClass().add("hboxStyle");
                                         Text text = (Text)pane.getChildren().get(0);
                                     }
 
@@ -553,7 +561,7 @@ public class Secondary_Controller implements Initializable {
                                 String deleteek = "select * from deleteSyntelestes("+ text2.getText() +");";
                                 try {
                                     statement.executeQuery(deleteek);
-                                    filter();
+                                    filter1();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -603,17 +611,17 @@ public class Secondary_Controller implements Initializable {
             }else if(phoneN == "" ){
                 facErrLabel.setText("ADD PHONE NUMBER ");
             }else {
-                String Syntelestes = "select Syntelestes('" + name + "','" + surname + "','" + role + "','" + phoneN + "');";
+                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','" + phoneN + "');";
                 Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(Syntelestes);
+                ResultSet rs = statement.executeQuery(addSyntelestes);
 
                 System.out.println("Success");
-                filter();
+                filter1();
                 addFacName.clear();
                 addFacSurname.clear();
                 addFacRole.clear();
                 addFacPhoneN.clear();
-                broErrLabel.setText("");
+                facErrLabel.setText("");
                 paneSyntelestes.toFront();
             }
         } catch (SQLException ex) {
