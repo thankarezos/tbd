@@ -208,26 +208,26 @@ public class Secondary_Controller implements Initializable {
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
 
         filterID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter();
+            filterEkpompi();
         });
         filterName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter();
+            filterEkpompi();
         });
         filterRating.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filter();
+            filterEkpompi();
         });
 
         sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
 
             high = (int) Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filter();
+            filterEkpompi();
 
         });
         sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
             low = (int) Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filter();
+            filterEkpompi();
 
         });
 
@@ -235,26 +235,26 @@ public class Secondary_Controller implements Initializable {
         timeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             valueRange = (int) Math.round((newValue.doubleValue()));
             txtRange.setText(" 0  -  " + String.valueOf(valueRange));
-            filter();
+            filterEkpompi();
         });
 
         syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter1();
+            filterSyntelestes();
         });
         syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter1();
+            filterSyntelestes();
         });
         syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter1();
+            filterSyntelestes();
         });
         syntelestisRole.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter1();
+            filterSyntelestes();
         });
         syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter1();
+            filterSyntelestes();
         });
 
-        loadResults1("null", "null", "null", "null", "null");
+        loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
 
     // Handle Clicks
@@ -269,7 +269,7 @@ public class Secondary_Controller implements Initializable {
         }
 
         else if (event.getSource() == btnSyntelestes) {
-            loadResults1("null", "null", "null", "null", "null");
+            loadResultsSyntelestes("null", "null", "null", "null", "null");
             paneSyntelestes.toFront();
         }
     }
@@ -290,7 +290,7 @@ public class Secondary_Controller implements Initializable {
     }
 
     // Filter Ekpompi
-    private void filter() {
+    private void filterEkpompi() {
         String id = "'" + filterID.getText() + "'";
         if (filterID.getText().isEmpty()) {
             id = "null";
@@ -310,7 +310,7 @@ public class Secondary_Controller implements Initializable {
     // Reload Table Ekpompi ??
     @FXML
     private void reloadPage(MouseEvent event) {
-        filter();
+        filterEkpompi();
     }
 
     // Add Ekpompi
@@ -333,7 +333,7 @@ public class Secondary_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
-                filter();
+                filterEkpompi();
                 addNameBro.clear();
                 choiceRatingBro.setValue(null);
                 timeSlider.setValue(0);
@@ -432,7 +432,7 @@ public class Secondary_Controller implements Initializable {
                                 String deleteek = "select * from deleteEkpompi(" + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);
-                                    filter();
+                                    filterEkpompi();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -452,7 +452,7 @@ public class Secondary_Controller implements Initializable {
     }
 
     // Load Results Syntelestes
-    private void loadResults1(String id, String name, String surname, String role, String phoneNumber) {
+    private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
                 + "," + phoneNumber + ");";
@@ -537,7 +537,7 @@ public class Secondary_Controller implements Initializable {
                                 String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);
-                                    filter1();
+                                    filterSyntelestes();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -557,7 +557,7 @@ public class Secondary_Controller implements Initializable {
     }
 
     // Filter Syntelestes
-    private void filter1() {
+    private void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
         if (syntelestisID.getText().isEmpty()) {
             id = "null";
@@ -583,7 +583,7 @@ public class Secondary_Controller implements Initializable {
             phoneN = "null";
         }
 
-        loadResults1(id, name, surname, role, phoneN);
+        loadResultsSyntelestes(id, name, surname, role, phoneN);
     }
 
     // add Factor Syntelestes
@@ -610,7 +610,7 @@ public class Secondary_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addSyntelestes);
 
                 System.out.println("Success");
-                filter1();
+                filterSyntelestes();
                 addFacName.clear();
                 addFacSurname.clear();
                 addFacRole.clear();
@@ -623,4 +623,8 @@ public class Secondary_Controller implements Initializable {
         }
 
     }
+
+
+    //Load Resualt Program
+    //private void loadResaultsProgram;
 }
