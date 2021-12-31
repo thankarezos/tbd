@@ -28,8 +28,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -141,9 +144,10 @@ public class Secondary_Controller implements Initializable {
     int low = 10;
     int high = 300;
     int valueRange;
-    private String[] ratingC = { "", "K", "8", "12", "16", "18" };
+    private ArrayList <String> ratingC = new ArrayList <String>();
     private String[] typeC = { "Empty", "movie", "series", "broadcast", "documentary", "NEWS" };
     private String[] dayC = { "Empty", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
+    private String[] Role;
 
     // getMethod
     private void getDay2(Event event) {
@@ -197,10 +201,7 @@ public class Secondary_Controller implements Initializable {
         choiceTypePro.getItems().addAll(typeC);
         choiceTypePro.setOnAction(this::getType);
         // choice rating
-        choiceRatingBro.getItems().addAll(ratingC);
-        choiceRatingBro.setOnAction(this::getRating);
-        // choise search
-        filterRating.getItems().addAll(ratingC);
+        createTypes();
 
         // Range Slider
         sliderr.setLowValue(low);
@@ -292,7 +293,7 @@ public class Secondary_Controller implements Initializable {
     // Filter Ekpompi
     private void filterEkpompi() {
         String id = "'" + filterID.getText() + "'";
-        if (filterID.getText().isEmpty()) {
+        if (isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
             id = "null";
         }
         String name = "'" + filterName.getText() + "'";
@@ -300,8 +301,10 @@ public class Secondary_Controller implements Initializable {
         if (filterName.getText().isEmpty()) {
             name = "null";
         }
+        
         String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
-        if (String.valueOf(filterRating.getValue()).isEmpty()) {
+
+        if (String.valueOf(filterRating.getValue()).isEmpty() || filterRating.getValue() == null) {
             rating = "null";
         }
         loadResults(id, name, rating, String.valueOf(low), String.valueOf(high));
@@ -311,6 +314,14 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void reloadPage(MouseEvent event) {
         filterEkpompi();
+        createTypes();
+        filterID.clear();
+        filterName.clear();
+        high = 300;
+        low = 10;
+        sliderr.setHighValue(high);
+        sliderr.setLowValue(low);
+        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
     }
 
     // Add Ekpompi
@@ -345,15 +356,49 @@ public class Secondary_Controller implements Initializable {
         }
 
     }
+    private void createTypes(){
+        
+        
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            ratingC.clear();
+            ratingC.add("");
+            while (rs2.next()) {
+                ratingC.add(rs2.getString("unnest"));
+            }
+            choiceRatingBro.getItems().clear();
+            choiceRatingBro.getItems().addAll(ratingC);
+            choiceRatingBro.setOnAction(this::getRating);
+            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
+            filterRating.setItems(rate);
+//            Text text = new Text();
+//            text.setText("18");
+//            filterRating.getItems().add(text);
+            filterRating.setOnAction(this::getRating);
+//            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
 
     // Load Results Ekpompi
     private void loadResults(String id, String name, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
         String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
                 + timeHigh + ");";
+        
 
         Statement statement;
         try {
+            
+            
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(getEkmompes);
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -362,7 +407,6 @@ public class Secondary_Controller implements Initializable {
                 HBox hbox = new HBox();
 
                 for (int i = 1; i <= columnsNumber; i++) {
-
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.getStyleClass().add("hboxStyle");
@@ -428,7 +472,6 @@ public class Secondary_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 HBox hboxC = (HBox) hbox.getChildren().get(0);
                                 Text text2 = (Text) hboxC.getChildren().get(0);
-                                System.out.println(text2.getText());
                                 String deleteek = "select * from deleteEkpompi(" + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);
@@ -448,7 +491,8 @@ public class Secondary_Controller implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+           
     }
 
     // Load Results Syntelestes
@@ -533,7 +577,6 @@ public class Secondary_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 HBox hboxC = (HBox) hbox.getChildren().get(0);
                                 Text text2 = (Text) hboxC.getChildren().get(0);
-                                System.out.println(text2.getText());
                                 String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);

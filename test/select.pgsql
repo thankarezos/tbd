@@ -37,3 +37,9 @@ from TaskPeriods as t2
 --getResult
 select * from getResult(null,null,null,50,200);
 select deleteEkpompi(1);
+select Distinct role from getSyntelestes();
+select rating from pg_type where typname;
+SELECT * FROM pg_type;
+select pg_type(rating);
+SELECT unnest(enum_range(NULL::rating)) 
+SELECT enum_range(NULL::rating) 
