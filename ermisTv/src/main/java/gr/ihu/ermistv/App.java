@@ -10,6 +10,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 import java.sql.*;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 
 /**
  * JavaFX App
@@ -26,9 +28,15 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
         stage.show();
         stage.setResizable(false);
         this.stage = stage;
+
     }
 
     public static void main(String[] args) throws SQLException {

@@ -75,11 +75,8 @@ public class login_Controller {
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
 //                Scene scene = new ScenesSet(root, stage, 1024, 550);
                 stage.setScene(scene);
-                Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-                double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-                double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-                stage.setX(x);
-                stage.setY(y);
+                
+                stage.setX(stage.getX() - 200);
             } else if (queryResult.getString("username") != null) {
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
