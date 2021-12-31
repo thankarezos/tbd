@@ -72,6 +72,7 @@ public class login_Controller {
                 Parent root;
                 root = fxmlLoader.load();
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
+                //Scene scene = new ScenesSet(root, stage, 1024, 550);
                 stage.setScene(scene);
                 Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
                 double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
@@ -82,7 +83,7 @@ public class login_Controller {
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
                 Stage stage = (Stage) primary.getScene().getWindow();
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/syntelestes.fxml"));
 
                 Parent root;
                 try {

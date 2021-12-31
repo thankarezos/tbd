@@ -43,8 +43,13 @@ import org.controlsfx.control.RangeSlider;
 import static javafx.geometry.Pos.CENTER;
 
 public class Secondary_Controller implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
     @FXML
-    private FontAwesomeIconView x, x1, x3, x4;
+    private FontAwesomeIconView x, x1, x3;
     @FXML
     private TextField searchName;
     @FXML
@@ -55,8 +60,7 @@ public class Secondary_Controller implements Initializable {
     private AnchorPane secondary, paneEkpompi, paneProgram;
     @FXML
     private TextField addNameBro;
-    @FXML
-    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
+
     @FXML
     private TextField addNamePro, addTimePro;
     @FXML
@@ -68,7 +72,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private Slider timeSlider;
     @FXML
-    private Label broErrLabel, searchIcon, labelGetName, facErrLabel;
+    private Label broErrLabel, searchIcon, labelGetName;
     @FXML
     private Button btnEkpompi, btnProgram, btnSyntelestes;
     @FXML
@@ -143,13 +147,10 @@ public class Secondary_Controller implements Initializable {
     }
 
     // Fixed Statement
-    int low = 10;
-    int high = 300;
-    int valueRange;
-    private ArrayList <String> ratingC = new ArrayList <String>();
+
     private String[] typeC = { "Empty", "movie", "series", "broadcast", "documentary", "NEWS" };
     private String[] dayC = { "Empty", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
-    private ArrayList <String>  Role = new ArrayList <String>();;
+
 
     // getMethod
     private void getDay2(Event event) {
@@ -174,10 +175,7 @@ public class Secondary_Controller implements Initializable {
         addProgram.toFront();
     }
 
-    @FXML
-    private void addBroadcast(MouseEvent event) {
-        addBroadcast.toFront();
-    }
+
 
     @FXML
     private void editFactorBroadcast(MouseEvent event) {
@@ -189,93 +187,23 @@ public class Secondary_Controller implements Initializable {
         addFactor.toFront();
     }
 
-    // Override
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // choice day
-        choiceDayPro.getItems().addAll(dayC);
-        choiceDayPro.setOnAction(this::getDay2);
 
-        choiceEditDay.getItems().addAll(dayC);
-        choiceEditDay.setOnAction(this::getDay3);
-        // choice type
-        choiceTypePro.getItems().addAll(typeC);
-        choiceTypePro.setOnAction(this::getType);
-        // choice rating
-        createRating();
-        createRole();
-
-        // Range Slider
-        sliderr.setLowValue(low);
-        sliderr.setHighValue(high);
-        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-
-        filterID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterEkpompi();
-        });
-        filterName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterEkpompi();
-        });
-        filterRating.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filterEkpompi();
-        });
-
-        sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
-
-            high = (int) Math.round(newValue.doubleValue());
-            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filterEkpompi();
-
-        });
-        sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
-            low = (int) Math.round(newValue.doubleValue());
-            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filterEkpompi();
-
-        });
-
-        timeSlider.setValue(0);
-        timeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            valueRange = (int) Math.round((newValue.doubleValue()));
-            txtRange.setText(" 0  -  " + String.valueOf(valueRange));
-            filterEkpompi();
-        });
-
-        syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-
-        loadResultsSyntelestes("null", "null", "null", "null", "null");
-    }
-
-    // Handle Clicks
+    // Handle Clicks Popup
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnProgram) {
 
             paneProgram.toFront();
         } else if (event.getSource() == btnEkpompi) {
-            loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
+            //loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
             paneEkpompi.toFront();
         }
 
-        else if (event.getSource() == btnSyntelestes) {
-            loadResultsSyntelestes("null", "null", "null", "null", "null");
-            paneSyntelestes.toFront();
-        }
+//        else if (event.getSource() == btnSyntelestes) {
+//            Syntelestes_Contoller.loadResultsSyntelestes("null", "null", "null", "null", "null");
+//            paneSyntelestes.toFront();
+//        }
     }
 
     // Popup switch
@@ -287,424 +215,12 @@ public class Secondary_Controller implements Initializable {
             paneEkpompi.toFront();
         } else if (event.getSource() == x3) {
             paneProgram.toFront();
-        } else if (event.getSource() == x4) {
-            paneSyntelestes.toFront();
+//        } else if (event.getSource() == x4) {
+//            paneSyntelestes.toFront();
+//        }
+
         }
+
 
     }
-
-    // Filter Ekpompi
-    private void filterEkpompi() {
-        String id = "'" + filterID.getText() + "'";
-        if (isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
-            id = "null";
-        }
-        String name = "'" + filterName.getText() + "'";
-
-        if (filterName.getText().isEmpty()) {
-            name = "null";
-        }
-        
-        String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
-
-        if (String.valueOf(filterRating.getValue()).isEmpty() || filterRating.getValue() == null) {
-            rating = "null";
-        }
-        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high));
-    }
-
-    // Reload Table Ekpompi ??
-    @FXML
-    private void reloadPage(MouseEvent event) {
-        filterEkpompi();
-        createRating();
-        filterID.clear();
-        filterName.clear();
-        high = 300;
-        low = 10;
-        sliderr.setHighValue(high);
-        sliderr.setLowValue(low);
-        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-    }
-    @FXML
-    private void reloadFactor(MouseEvent event) {
-        filterSyntelestes();
-        createRole();
-        syntelestisID.clear();
-        syntelestisName.clear();
-        syntelestisSurname.clear();
-        syntelestisPhoneN.clear();
-    }
-
-    // Add Ekpompi
-    @FXML
-    private void addbroadcast() {
-        int intValue;
-        try {
-            String name = addNameBro.getText();
-            String rating = choiceRatingBro.getValue();
-            int time = valueRange;
-            if (name == "") {
-                broErrLabel.setText("ADD NAME!");
-            } else if (rating == null || rating == "empty") {
-                broErrLabel.setText("ADD RATING!");
-            } else if (time == 0) {
-                broErrLabel.setText("ADD TIME ");
-            } else {
-                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addbroadcast);
-
-                System.out.println("Success");
-                filterEkpompi();
-                addNameBro.clear();
-                choiceRatingBro.setValue(null);
-                timeSlider.setValue(0);
-                broErrLabel.setText("");
-                paneEkpompi.toFront();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    private void createRating(){
-        
-        
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            ratingC.clear();
-            ratingC.add("");
-            while (rs2.next()) {
-                ratingC.add(rs2.getString("unnest"));
-            }
-            choiceRatingBro.getItems().clear();
-            choiceRatingBro.getItems().addAll(ratingC);
-            choiceRatingBro.setOnAction(this::getRating);
-            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
-            filterRating.setItems(rate);
-            filterRating.setOnAction(this::getRating);
-//            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    private void createRole(){
-        
-        
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "select Distinct role from getSyntelestes();";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            Role.clear();
-            Role.add("");
-            while (rs2.next()) {
-                Role.add(rs2.getString("role"));
-            }
-//            choiceRatingBro.getItems().clear();
-//            choiceRatingBro.getItems().addAll(ratingC);
-//            choiceRatingBro.setOnAction(this::getRating);
-            ObservableList<String> rate = FXCollections.observableArrayList(Role);
-            syntelestisRole.setItems(rate);
-            syntelestisRole.setOnAction(this::getRating);
-//            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
-    
-    
-
-    // Load Results Ekpompi
-    private void loadResults(String id, String name, String rating, String timeLow, String timeHigh) {
-        ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
-                + timeHigh + ");";
-        
-
-        Statement statement;
-        try {
-            
-            
-            statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getEkmompes);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rs.next()) {
-                HBox hbox = new HBox();
-
-                for (int i = 1; i <= columnsNumber; i++) {
-                    hbox.setSpacing(3);
-                    HBox hboxinside = new HBox();
-                    hboxinside.getStyleClass().add("hboxStyle");
-                    hboxinside.setPrefWidth(198);
-                    hboxinside.setAlignment(CENTER);
-                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
-                    Text text = new Text();
-                    text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(160);
-                    text.setTextAlignment(TextAlignment.CENTER);
-                    hboxinside.getChildren().add(text);
-                    hbox.getChildren().add(hboxinside);
-
-                    hbox.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().add("hboxStylehover");
-                                    }
-
-                                }
-                            });
-
-                    hbox.addEventHandler(MouseEvent.MOUSE_EXITED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().clear();
-                                        pane.getStyleClass().add("hboxStyle");
-                                        Text text = (Text) pane.getChildren().get(0);
-                                    }
-
-                                }
-                            });
-
-                }
-                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        MouseButton button = event.getButton();
-                        if (button == MouseButton.SECONDARY) {
-                            ContextMenu menu = new ContextMenu();
-                            MenuItem item = new MenuItem();
-                            item.setText("Delete");
-                            menu.getItems().add(item);
-                            menu.show(hbox, event.getScreenX(), event.getScreenY());
-                            item.setOnAction(event2 -> {
-                                HBox hboxC = (HBox) hbox.getChildren().get(0);
-                                Text text2 = (Text) hboxC.getChildren().get(0);
-                                String deleteek = "select * from deleteEkpompi(" + text2.getText() + ");";
-                                try {
-                                    statement.executeQuery(deleteek);
-                                    filterEkpompi();
-
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            });
-                        }
-
-                    }
-
-                });
-                ekpompivbox.getChildren().add(hbox);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-           
-    }
-
-    // Load Results Syntelestes
-    private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
-        vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
-                + "," + phoneNumber + ");";
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getSyntelestes);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-            while (rs.next()) {
-                HBox hbox = new HBox();
-
-                for (int i = 1; i <= columnsNumber; i++) {
-
-                    hbox.setSpacing(3);
-                    HBox hboxinside = new HBox();
-                    hboxinside.getStyleClass().add("hboxStyle");
-                    hboxinside.setPrefWidth(160);
-                    hboxinside.setAlignment(CENTER);
-                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
-                    Text text = new Text();
-                    text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(80);
-                    text.setTextAlignment(TextAlignment.CENTER);
-                    hboxinside.getChildren().add(text);
-                    hbox.getChildren().add(hboxinside);
-
-                    hbox.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().add("hboxStylehover");
-                                    }
-
-                                }
-                            });
-
-                    hbox.addEventHandler(MouseEvent.MOUSE_EXITED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().clear();
-                                        pane.getStyleClass().add("hboxStyle");
-                                        Text text = (Text) pane.getChildren().get(0);
-                                    }
-
-                                }
-                            });
-
-                }
-                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        MouseButton button = event.getButton();
-                        if (button == MouseButton.SECONDARY) {
-                            ContextMenu menu = new ContextMenu();
-                            MenuItem item = new MenuItem();
-                            item.setText("Delete");
-                            menu.getItems().add(item);
-                            menu.show(hbox, event.getScreenX(), event.getScreenY());
-                            item.setOnAction(event2 -> {
-                                HBox hboxC = (HBox) hbox.getChildren().get(0);
-                                Text text2 = (Text) hboxC.getChildren().get(0);
-                                String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
-                                try {
-                                    statement.executeQuery(deleteek);
-                                    filterSyntelestes();
-
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            });
-                        }
-
-                    }
-
-                });
-                vboxSyntelestes.getChildren().add(hbox);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    // Filter Syntelestes
-    private void filterSyntelestes() {
-        String id = "'" + syntelestisID.getText() + "'";
-        if (isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
-            id = "null";
-        }
-
-        String name = "'" + syntelestisName.getText() + "'";
-        if (syntelestisName.getText().isEmpty()) {
-            name = "null";
-        }
-
-        String surname = "'" + syntelestisSurname.getText() + "'";
-        if (syntelestisSurname.getText().isEmpty()) {
-            surname = "null";
-        }
-
-        String role = "'" + String.valueOf(syntelestisRole.getValue()) + "'";
-
-        if (String.valueOf(syntelestisRole.getValue()).isEmpty() || syntelestisRole.getValue() == null) {
-            role = "null";
-        }
-
-        String phoneN = "'" + syntelestisPhoneN.getText() + "'";
-        if (syntelestisPhoneN.getText().isEmpty()) {
-            phoneN = "null";
-        }
-
-        loadResultsSyntelestes(id, name, surname, role, phoneN);
-    }
-
-    // add Factor Syntelestes
-    @FXML
-    private void addfactor() {
-        try {
-            String name = addFacName.getText();
-            String surname = addFacSurname.getText();
-            String role = addFacRole.getText();
-            String phoneN = addFacPhoneN.getText();
-
-            if (name == "") {
-                facErrLabel.setText("ADD NAME!");
-            } else if (surname == "") {
-                facErrLabel.setText("ADD SURNAME!");
-            } else if (role == "") {
-                facErrLabel.setText("ADD ROLE ");
-            } else if (phoneN == "") {
-                facErrLabel.setText("ADD PHONE NUMBER ");
-            } else {
-                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
-                        + phoneN + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-
-                System.out.println("Success");
-                filterSyntelestes();
-                addFacName.clear();
-                addFacSurname.clear();
-                addFacRole.clear();
-                addFacPhoneN.clear();
-                facErrLabel.setText("");
-                paneSyntelestes.toFront();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-
-    //Load Resualt Program
-    //private void loadResaultsProgram;
 }
