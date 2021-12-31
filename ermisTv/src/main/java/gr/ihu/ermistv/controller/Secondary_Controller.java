@@ -90,7 +90,9 @@ public class Secondary_Controller implements Initializable {
     private Text sliderText;
 
     @FXML
-    private TextField syntelestisID, syntelestisName, syntelestisSurname, syntelestisRole, syntelestisPhoneN;
+    private TextField syntelestisID, syntelestisName, syntelestisSurname, syntelestisPhoneN;
+    @FXML
+    private ChoiceBox  syntelestisRole;
     @FXML
     private AnchorPane paneSyntelestes;
     @FXML
@@ -147,7 +149,7 @@ public class Secondary_Controller implements Initializable {
     private ArrayList <String> ratingC = new ArrayList <String>();
     private String[] typeC = { "Empty", "movie", "series", "broadcast", "documentary", "NEWS" };
     private String[] dayC = { "Empty", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
-    private String[] Role;
+    private ArrayList <String>  Role = new ArrayList <String>();;
 
     // getMethod
     private void getDay2(Event event) {
@@ -201,7 +203,8 @@ public class Secondary_Controller implements Initializable {
         choiceTypePro.getItems().addAll(typeC);
         choiceTypePro.setOnAction(this::getType);
         // choice rating
-        createTypes();
+        createRating();
+        createRole();
 
         // Range Slider
         sliderr.setLowValue(low);
@@ -248,7 +251,7 @@ public class Secondary_Controller implements Initializable {
         syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
             filterSyntelestes();
         });
-        syntelestisRole.textProperty().addListener((observable, oldValue, newValue) -> {
+        syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
             filterSyntelestes();
         });
         syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -314,7 +317,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void reloadPage(MouseEvent event) {
         filterEkpompi();
-        createTypes();
+        createRating();
         filterID.clear();
         filterName.clear();
         high = 300;
@@ -322,6 +325,15 @@ public class Secondary_Controller implements Initializable {
         sliderr.setHighValue(high);
         sliderr.setLowValue(low);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+    }
+    @FXML
+    private void reloadFactor(MouseEvent event) {
+        filterSyntelestes();
+        createRole();
+        syntelestisID.clear();
+        syntelestisName.clear();
+        syntelestisSurname.clear();
+        syntelestisPhoneN.clear();
     }
 
     // Add Ekpompi
@@ -356,7 +368,7 @@ public class Secondary_Controller implements Initializable {
         }
 
     }
-    private void createTypes(){
+    private void createRating(){
         
         
         Statement statement;
@@ -374,9 +386,6 @@ public class Secondary_Controller implements Initializable {
             choiceRatingBro.setOnAction(this::getRating);
             ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
             filterRating.setItems(rate);
-//            Text text = new Text();
-//            text.setText("18");
-//            filterRating.getItems().add(text);
             filterRating.setOnAction(this::getRating);
 //            
             
@@ -385,6 +394,33 @@ public class Secondary_Controller implements Initializable {
         }
         
     }
+    private void createRole(){
+        
+        
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "select Distinct role from getSyntelestes();";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            Role.clear();
+            Role.add("");
+            while (rs2.next()) {
+                Role.add(rs2.getString("role"));
+            }
+//            choiceRatingBro.getItems().clear();
+//            choiceRatingBro.getItems().addAll(ratingC);
+//            choiceRatingBro.setOnAction(this::getRating);
+            ObservableList<String> rate = FXCollections.observableArrayList(Role);
+            syntelestisRole.setItems(rate);
+            syntelestisRole.setOnAction(this::getRating);
+//            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     
     
 
@@ -602,7 +638,7 @@ public class Secondary_Controller implements Initializable {
     // Filter Syntelestes
     private void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
-        if (syntelestisID.getText().isEmpty()) {
+        if (isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
             id = "null";
         }
 
@@ -616,8 +652,9 @@ public class Secondary_Controller implements Initializable {
             surname = "null";
         }
 
-        String role = "'" + syntelestisRole.getText() + "'";
-        if (syntelestisRole.getText().isEmpty()) {
+        String role = "'" + String.valueOf(syntelestisRole.getValue()) + "'";
+
+        if (String.valueOf(syntelestisRole.getValue()).isEmpty() || syntelestisRole.getValue() == null) {
             role = "null";
         }
 

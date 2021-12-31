@@ -36,6 +36,7 @@ select
 from TaskPeriods as t2
 --getResult
 select * from getResult(null,null,null,50,200);
+select * from getResultSyntelestes(null,null,null,'Painter',null);
 select deleteEkpompi(1);
 select Distinct role from getSyntelestes();
 select rating from pg_type where typname;
