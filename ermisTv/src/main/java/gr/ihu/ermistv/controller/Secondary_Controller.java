@@ -29,60 +29,28 @@ import org.controlsfx.control.RangeSlider;
 
 public class Secondary_Controller implements Initializable {
 
-    
     @FXML
-    private FontAwesomeIconView x, x1, x3;
-    @FXML
-    private TextField searchName;
-    @FXML
-    private ScrollBar ScrollBar;
+    private FontAwesomeIconView x3;
     @FXML
     private AnchorPane addProgram, addFactor, editFactorBroadcast, addBroadcast;
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram;
     @FXML
-    private TextField addNameBro;
-
+    private TextField addNamePro;
     @FXML
-    private TextField addNamePro, addTimePro;
+    private TextField addTimePro;
     @FXML
-    private Button btnAddFacPane, btnAddBroPane, btnEditBroPane;
+    private Button btnConfPro;
     @FXML
-    private Button btnConfFac, btnConfBro, btnConfPro, btnConfEdit;
+    private Button btnEkpompi, btnProgram;
     @FXML
-    private TextField editTime;
+    private Button btnSyntelestes;
     @FXML
-    private Slider timeSlider;
+    private ChoiceBox<String> choiceDayPro;
     @FXML
-    private Label broErrLabel, searchIcon, labelGetName;
-    @FXML
-    private Button btnEkpompi, btnProgram, btnSyntelestes;
-    @FXML
-    private ChoiceBox<String> choiceDayPro, choiceEditDay, choiceTypePro, choiceRatingBro;
-    @FXML
-    private VBox ekpompivbox;
-    @FXML
-    private Text txtRange;
-
-    @FXML
-    private TextField filterID;
-    @FXML
-    private TextField filterName;
-    @FXML
-    private ChoiceBox filterRating;
-    @FXML
-    private RangeSlider sliderr;
-    @FXML
-    private Text sliderText;
-
-    @FXML
-    private TextField syntelestisID, syntelestisName, syntelestisSurname, syntelestisPhoneN;
-    @FXML
-    private ChoiceBox  syntelestisRole;
+    private ChoiceBox<String> choiceTypePro;
     @FXML
     private AnchorPane paneSyntelestes;
-    @FXML
-    private VBox vboxSyntelestes;
 
     // Minimize Window
     @FXML
