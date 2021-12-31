@@ -22,9 +22,6 @@ import javafx.stage.Screen;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import org.controlsfx.control.RangeSlider;
 
 
 public class Secondary_Controller implements Initializable {
