@@ -154,6 +154,14 @@ public class Secondary_Controller implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
+            try {
+                root = FXMLLoader.load(App.class.getResource("fxml/syntelestes.fxml"));
+                
+                Scene scene = new ScenesSet(root, App.stage, 876, 517);
+                paneSyntelestes.getChildren().add(root);
+            } catch (IOException ex) {
+                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
     }
 }

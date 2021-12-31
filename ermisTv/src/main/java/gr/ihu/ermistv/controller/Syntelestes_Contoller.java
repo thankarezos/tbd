@@ -38,6 +38,9 @@ public class Syntelestes_Contoller implements Initializable {
 
     @FXML
     private AnchorPane paneSyntelestes;
+    
+    @FXML
+    private AnchorPane addFactor;
 
     @FXML
     private TextField syntelestisID;
@@ -56,10 +59,6 @@ public class Syntelestes_Contoller implements Initializable {
 
     @FXML
     private VBox vboxSyntelestes;
-    @FXML
-    private void addFactor(MouseEvent event) {
-        //addFactor.toFront();
-    }
 
     @FXML
     private Label facErrLabel;
@@ -251,6 +250,12 @@ public class Syntelestes_Contoller implements Initializable {
         }
 
     }
+    
+    @FXML
+    private void addFactor(MouseEvent event) {
+        addFactor.toFront();
+        createRole();
+    }   
 
     private void createRole(){
 
@@ -265,13 +270,8 @@ public class Syntelestes_Contoller implements Initializable {
             while (rs2.next()) {
                 Role.add(rs2.getString("role"));
             }
-//            choiceRatingBro.getItems().clear();
-//            choiceRatingBro.getItems().addAll(ratingC);
-//            choiceRatingBro.setOnAction(this::getRating);
             ObservableList<String> rate = FXCollections.observableArrayList(Role);
             syntelestisRole.setItems(rate);
-            //syntelestisRole.setOnAction(this::getRating);
-//
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
