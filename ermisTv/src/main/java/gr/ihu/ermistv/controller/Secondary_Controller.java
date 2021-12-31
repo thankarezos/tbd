@@ -6,13 +6,10 @@ import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.input.*;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,31 +20,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import gr.ihu.ermistv.DBConnection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import org.controlsfx.control.RangeSlider;
 
-import static javafx.geometry.Pos.CENTER;
 
 public class Secondary_Controller implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    
     @FXML
     private FontAwesomeIconView x, x1, x3;
     @FXML
@@ -132,7 +114,7 @@ public class Secondary_Controller implements Initializable {
         stage.setX(x);
         stage.setY(y);
     }
-
+    
     // Is Numeric Method
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
@@ -146,48 +128,6 @@ public class Secondary_Controller implements Initializable {
         return false;
     }
 
-    // Fixed Statement
-
-    private String[] typeC = { "Empty", "movie", "series", "broadcast", "documentary", "NEWS" };
-    private String[] dayC = { "Empty", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
-
-
-    // getMethod
-    private void getDay2(Event event) {
-        String day = (String) choiceEditDay.getValue();
-    }
-
-    private void getDay3(Event event) {
-        String day = (String) choiceDayPro.getValue();
-    }
-
-    private void getType(Event event) {
-        String type = (String) choiceTypePro.getValue();
-    }
-
-    private void getRating(Event event) {
-        String rating = (String) choiceRatingBro.getValue();
-    }
-
-    // add Methos
-    @FXML
-    private void addProgram(MouseEvent event) {
-        addProgram.toFront();
-    }
-
-
-
-    @FXML
-    private void editFactorBroadcast(MouseEvent event) {
-        editFactorBroadcast.toFront();
-    }
-
-    @FXML
-    private void addFactor(MouseEvent event) {
-        addFactor.toFront();
-    }
-
-
 
     // Handle Clicks Popup
     @FXML
@@ -196,31 +136,24 @@ public class Secondary_Controller implements Initializable {
 
             paneProgram.toFront();
         } else if (event.getSource() == btnEkpompi) {
-            //loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
             paneEkpompi.toFront();
         }
 
-//        else if (event.getSource() == btnSyntelestes) {
-//            Syntelestes_Contoller.loadResultsSyntelestes("null", "null", "null", "null", "null");
-//            paneSyntelestes.toFront();
-//        }
+        else if (event.getSource() == btnSyntelestes) {
+            paneSyntelestes.toFront();
+        }
     }
-
-    // Popup switch
-    @FXML
-    private void popupsHandleClicks(MouseEvent event) throws IOException {
-        if (event.getSource() == x) {
-            paneEkpompi.toFront();
-        } else if (event.getSource() == x1) {
-            paneEkpompi.toFront();
-        } else if (event.getSource() == x3) {
-            paneProgram.toFront();
-//        } else if (event.getSource() == x4) {
-//            paneSyntelestes.toFront();
-//        }
-
-        }
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+            Parent root;
+            try {
+                root = FXMLLoader.load(App.class.getResource("fxml/ekpompi.fxml"));
+                
+                Scene scene = new ScenesSet(root, App.stage, 876, 517);
+                paneEkpompi.getChildren().add(root);
+            } catch (IOException ex) {
+                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
     }
 }

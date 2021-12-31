@@ -4,7 +4,6 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +19,6 @@ import javafx.scene.text.TextAlignment;
 import org.controlsfx.control.RangeSlider;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -70,7 +68,7 @@ public class Ekpompi_Controller  implements Initializable {
     private ChoiceBox<?> choiceEditDay;
 
     @FXML
-    private ChoiceBox<?> choiceRatingBro;
+    private ChoiceBox choiceRatingBro;
 
     @FXML
     private AnchorPane editAnchorPane;
@@ -257,11 +255,9 @@ public class Ekpompi_Controller  implements Initializable {
             while (rs2.next()) {
                 ratingC.add(rs2.getString("unnest"));
             }
-            choiceRatingBro.getItems().clear();
-//            choiceRatingBro.getItems().addAll(ratingC);
             ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
             filterRating.setItems(rate);
-
+            choiceRatingBro.setItems(rate);
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,6 +299,8 @@ public class Ekpompi_Controller  implements Initializable {
     @FXML
     private void addBroadcast(MouseEvent event) {
         addBroadcast.toFront();
+        createRating();
+        
     }
 
     // Reload Table Ekpompi ??
@@ -392,7 +390,8 @@ public class Ekpompi_Controller  implements Initializable {
             txtRange.setText(" 0  -  " + String.valueOf(valueRange));
             filterEkpompi();
         });
-
+        
+        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
     }
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {

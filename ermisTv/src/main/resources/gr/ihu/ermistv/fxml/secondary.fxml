@@ -81,9 +81,9 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
                            <graphic>
-                              <FontAwesomeIconView glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x3" />
+                              <FontAwesomeIconView glyphName="CLOSE" size="1.5em" fx:id="x3" />
                            </graphic>
                            <HBox.margin>
                               <Insets />
@@ -243,7 +243,7 @@
                         </ScrollPane>
                      </children>
                   </VBox>
-                  <Button fx:id="btnAddProgram" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addProgram" prefHeight="35.0" prefWidth="110.0" text="Add Broadcast">
+                  <Button fx:id="btnAddProgram" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Add Broadcast">
                      <font>
                         <Font size="14.0" />
                      </font>

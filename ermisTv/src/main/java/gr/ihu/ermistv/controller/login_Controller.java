@@ -51,7 +51,7 @@ public class login_Controller {
         }
 
     }
-
+    
     @FXML
     private void validateLogin() throws SQLException, IOException {
 
@@ -69,10 +69,11 @@ public class login_Controller {
             if (queryResult.getString("username") == null) {
                 Stage stage = (Stage) primary.getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
+//                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
                 Parent root;
                 root = fxmlLoader.load();
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
-                //Scene scene = new ScenesSet(root, stage, 1024, 550);
+//                Scene scene = new ScenesSet(root, stage, 1024, 550);
                 stage.setScene(scene);
                 Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
                 double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
@@ -109,4 +110,5 @@ public class login_Controller {
             e.getCause();
         }
     }
+    
 }
