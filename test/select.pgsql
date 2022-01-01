@@ -44,3 +44,34 @@ SELECT * FROM pg_type;
 select pg_type(rating);
 SELECT unnest(enum_range(NULL::rating)) 
 SELECT enum_range(NULL::rating) 
+
+drop table IF EXISTS syntelestesekp cascade;
+    create table IF NOT EXISTS syntelestesekp
+    (   
+        sidek  integer,
+        nameek varchar(20),
+        sidsy integer,
+        name varchar(20),
+        surname varchar(20),
+        role varchar(20),
+        phoneNumber varchar(15),
+        primary key(sidek,sidsy)
+    );
+INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
+        VALUES (1,2,'Boba','The Builder','Builder','09099109346');
+INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
+        VALUES (1,3,'Boba','The Builder','Builder','09099109346');
+
+INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+FROM ekpompes,syntelestes
+where syntelestes.sid=1 and ekpompes.sid=1 ;
+
+Select * from table1 crossjoin table2;
+
+INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
+SELECT column1, column2, column3, ...
+FROM table1
+WHERE condition;
+
+select * from syntelestesekp;
