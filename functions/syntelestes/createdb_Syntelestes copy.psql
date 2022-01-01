@@ -1,12 +1,13 @@
-CREATE OR REPLACE FUNCTION "syntelestes"()
+CREATE OR REPLACE FUNCTION "syntelestesek"()
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
     drop table IF EXISTS syntelestesekp cascade;
-    create table IF NOT EXISTS syntelestes
-    (
+    create table IF NOT EXISTS syntelestesekp
+    (   
         sidek  integer,
+        nameek varchar(20),
         sidsy integer,
         name varchar(20),
         surname varchar(20),
@@ -15,66 +16,76 @@ AS $function$
         primary key(sidek,sidsy)
     );
 
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','The Builder','Builder','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Ross','Painter','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Marley','Prime Minister','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Boilen','Creator','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bobby Ray',' Simmons Jr.','Artist','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('perisa','Gousios','oxAMan','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber) 
-        VALUES ('Athanasiosa','Karezos','oxFile','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('kai a','Ta ','Lipa','09099109346');
+    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+    FROM ekpompes,syntelestes
+    where ekpompes.sid=1 and syntelestes.sid=1;
+
+    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+    FROM ekpompes,syntelestes
+    where ekpompes.sid=2 and syntelestes.sid=2 ;
+
+    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+    FROM ekpompes,syntelestes
+    where ekpompes.sid=2 and syntelestes.sid=1 ;
+
+
+    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+    FROM ekpompes,syntelestes
+    where ekpompes.sid=1 and syntelestes.sid=3 ;
     
     END;
 $function$;
 
-SELECT syntelestes();
-CREATE OR REPLACE FUNCTION getSyntelestes() 
-RETURNS SETOF syntelestes  AS $$
-    SELECT * FROM syntelestes  order by sid;
+
+
+
+CREATE OR REPLACE FUNCTION getSyntelestesek() 
+RETURNS SETOF syntelestesekp  AS $$
+    SELECT * FROM syntelestesekp  order by sidek,sidsy;
 $$  LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION addSyntelestes(name text, surname text,role text,phoneNumber text)
+CREATE OR REPLACE FUNCTION addSyntelestesek(sidek integer,sidsy integer)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-        INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES (name,surname,role,phoneNumber);
+        INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+        SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+        FROM ekpompes,syntelestes
+        where ekpompes.sid=sidek and syntelestes.sid=sidsy ;
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION deleteSyntelestes(id integer)
+CREATE OR REPLACE FUNCTION deleteSyntelestesek(id integer)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    DELETE FROM syntelestes where sid = id;
+    DELETE FROM syntelestesekp where sidsy = id;
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION getResultSyntelestes(int,text,text,text,text) 
-RETURNS setof syntelestes AS
+CREATE OR REPLACE FUNCTION getResultSyntelestesek(int,int,text,text,text,text) 
+RETURNS setof syntelestesekp AS
  $$
-    Select * from syntelestes 
-    where CAST(sid as TEXT) like
+    Select * from syntelestesekp 
+    where sidek = $1
+    AND
+    CAST(sidsy as TEXT) like
     CONCAT(
     CASE
-        WHEN $1 is null then sid else $1 
+        WHEN $2 is null then sidsy else $2 
     end,
     '%')
     AND LOWER(name) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $2 is null then name else $2
+            WHEN $3 is null then name else $3
         end,
         '%')
     )
@@ -82,19 +93,19 @@ RETURNS setof syntelestes AS
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $3 is null then surname else $3
+            WHEN $4 is null then surname else $4
         end,
         '%')
     )
     AND role =(
     CASE
-        WHEN $4 is null then role else $4
+        WHEN $5 is null then role else $5
     end
     )
     AND cast(phoneNumber as text) like
     CONCAT(
     CASE
-        WHEN $5 is null then phoneNumber else $5
+        WHEN $6 is null then phoneNumber else $6
     end,
     '%')
 $$  LANGUAGE sql

@@ -65,7 +65,25 @@ INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
 INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
 SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
 FROM ekpompes,syntelestes
-where syntelestes.sid=1 and ekpompes.sid=1 ;
+where ekpompes.sid=1 and syntelestes.sid=1;
+
+INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+FROM ekpompes,syntelestes
+where ekpompes.sid=2 and syntelestes.sid=2 ;
+
+INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+FROM ekpompes,syntelestes
+where ekpompes.sid=2 and syntelestes.sid=1 ;
+
+
+INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+FROM ekpompes,syntelestes
+where ekpompes.sid=1 and syntelestes.sid=3 ;
+
+
 
 Select * from table1 crossjoin table2;
 
@@ -74,4 +92,7 @@ SELECT column1, column2, column3, ...
 FROM table1
 WHERE condition;
 
-select * from syntelestesekp;
+select * from syntelestesekp order by sidek,sidsy;
+
+select addSyntelestesek(3,3);
+select deleteEkpompi(5);

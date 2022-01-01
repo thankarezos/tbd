@@ -57,6 +57,7 @@ CREATE OR REPLACE FUNCTION deleteEkpompi(id integer)
 AS $function$
     BEGIN
     DELETE FROM ekpompes where sid = id;
+    DELETE FROM syntelestesekp where sidek = id ;
     END;
 $function$;
 CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int) 
