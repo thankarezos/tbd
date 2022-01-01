@@ -29,17 +29,19 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 
 import static javafx.geometry.Pos.CENTER;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
-    private FontAwesomeIconView backIcon,x;
+    private FontAwesomeIconView backIcon, x;
     @FXML
     private Button btnAddFacPane;
 
@@ -48,7 +50,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     @FXML
     private AnchorPane addFactor;
-    
+
     @FXML
     private AnchorPane popupFactor;
 
@@ -83,13 +85,13 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         syntelestisID.clear();
         syntelestisName.clear();
         syntelestisSurname.clear();
-        syntelestisPhoneN.clear();
-    }
-    SyntelestesEkpompon_Controller(int id){
+        syntelestisPhoneN.clear();}
+
+    SyntelestesEkpompon_Controller(int id) {
         this.id = id;
     }
-    
-    
+
+
     private AnchorPane mainAp;
     private int id;
     private ArrayList<String> Role = new ArrayList<String>();
@@ -162,7 +164,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                             });
 
                 }
-                
+
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -297,29 +299,29 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            System.out.println(id);
-            createRole();
+        System.out.println(id);
+        createRole();
 
-            syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
-                filterSyntelestes();
-            });
-            syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
-                filterSyntelestes();
-            });
-            syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
-                filterSyntelestes();
-            });
-            syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
-                filterSyntelestes();
-            });
-            syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
-                filterSyntelestes();
-            });
+        syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterSyntelestes();
+        });
+        syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterSyntelestes();
+        });
+        syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterSyntelestes();
+        });
+        syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filterSyntelestes();
+        });
+        syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterSyntelestes();
+        });
 
-            loadResultsSyntelestes("null", "null", "null", "null", "null");
-            
+        loadResultsSyntelestes("null", "null", "null", "null", "null");
+
     }
-    
+
     @FXML
     private void back(MouseEvent event) throws IOException {
         System.out.println("test");
@@ -336,11 +338,12 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
-    public void setAp(AnchorPane ap){
+
+    public void setAp(AnchorPane ap) {
         mainAp = ap;
     }
 
@@ -352,24 +355,24 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     }
 
     @FXML
-    public void onClkick(MouseEvent event) throws IOException{
+    public void onClkick(MouseEvent event) throws IOException {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
             AddFactor_Controller controller = new AddFactor_Controller(id);
             loader.setController(controller);
             popupFactor.getChildren().add(loader.load());
-            
+
         } catch (IOException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         addFactor.toFront();
 
     }
-    
-    public void set(){
-        
-        
+
+    public void set() {
+
+
     }
 }

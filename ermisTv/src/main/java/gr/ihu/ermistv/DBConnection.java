@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.lang.ClassLoader;
 
 /**
- *
  * @author User
  */
 public class DBConnection {

@@ -1,6 +1,7 @@
 package gr.ihu.ermistv;
 
 import java.io.IOException;
+
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.layout.HBox;

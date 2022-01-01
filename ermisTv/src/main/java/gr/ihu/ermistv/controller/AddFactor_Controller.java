@@ -30,9 +30,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.fxml.FXMLLoader;
 
 import static javafx.geometry.Pos.CENTER;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -68,7 +70,8 @@ public class AddFactor_Controller implements Initializable {
         syntelestisSurname.clear();
         syntelestisPhoneN.clear();
     }
-    AddFactor_Controller(int id){
+
+    AddFactor_Controller(int id) {
         this.id = id;
     }
 
@@ -81,9 +84,7 @@ public class AddFactor_Controller implements Initializable {
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
-                + "," + phoneNumber + ");";
-
+        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT select sidek from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") where sidsy = " + id + ";";
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
@@ -218,7 +219,7 @@ public class AddFactor_Controller implements Initializable {
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select Distinct role from getSyntelestesek(" + id + ");";
+            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" +this.id+ ");";
             System.out.println(id);
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
@@ -260,14 +261,15 @@ public class AddFactor_Controller implements Initializable {
     }
 
 
-
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
-    public void setAp(AnchorPane ap){
+
+    public void setAp(AnchorPane ap) {
         mainAp = ap;
     }
-    public void setP(Pane p){
+
+    public void setP(Pane p) {
         mainP = p;
     }
 

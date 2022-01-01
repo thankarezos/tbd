@@ -31,9 +31,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.fxml.FXMLLoader;
 
 import static javafx.geometry.Pos.CENTER;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -130,6 +132,7 @@ public class Ekpompi_Controller implements Initializable {
     void editFactorBroadcast(MouseEvent event) {
 
     }
+
     private AnchorPane mainAp;
     int low = 10;
     int high = 300;
@@ -228,22 +231,22 @@ public class Ekpompi_Controller implements Initializable {
                                 }
                             });
                         }
-                        if (button == MouseButton.PRIMARY){
+                        if (button == MouseButton.PRIMARY) {
                             Parent root;
                             try {
                                 HBox hboxC = (HBox) hbox.getChildren().get(0);
                                 Text text2 = (Text) hboxC.getChildren().get(0);
                                 int id = Integer.parseInt(text2.getText());
-                                
+
                                 FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
                                 SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id);
                                 loader.setController(controller);
                                 root = loader.load();
                                 Scene scene = new ScenesSet(root, App.stage, 876, 517);
-                                
+
                                 controller.setAp(mainAp);
                                 mainAp.getChildren().add(root);
-                                
+
                             } catch (IOException ex) {
                                 Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -421,7 +424,8 @@ public class Ekpompi_Controller implements Initializable {
             paneEkpompi.toFront();
         }
     }
-    public void setAp(AnchorPane ap){
+
+    public void setAp(AnchorPane ap) {
         mainAp = ap;
     }
 }
