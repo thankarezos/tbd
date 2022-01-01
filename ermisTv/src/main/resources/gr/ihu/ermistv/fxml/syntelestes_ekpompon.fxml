@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.SyntelestesEkpompon_Controller">
    <children>
       <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="822.0" spacing="3.0">
          <children>
@@ -118,9 +118,9 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="backIcon" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="60.0" prefWidth="52.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="60.0" prefWidth="52.0">
          <graphic>
-            <FontAwesomeIconView glyphName="CHEVRON_CIRCLE_LEFT" size="5em" />
+            <FontAwesomeIconView fx:id="backIcon" glyphName="CHEVRON_CIRCLE_LEFT" size="5em" />
          </graphic>
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="394.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" />

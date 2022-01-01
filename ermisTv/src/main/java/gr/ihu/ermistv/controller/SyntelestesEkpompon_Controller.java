@@ -305,7 +305,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == backIcon) {
-            //paneSyntelestes.toFront();
+            paneSyntelestes.toFront();
         }
     }
 
