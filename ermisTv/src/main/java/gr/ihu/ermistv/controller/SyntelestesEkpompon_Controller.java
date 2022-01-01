@@ -85,8 +85,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         syntelestisID.clear();
         syntelestisName.clear();
         syntelestisSurname.clear();
-        syntelestisPhoneN.clear();
-    }
+        syntelestisPhoneN.clear();}
 
     SyntelestesEkpompon_Controller(int id) {
         this.id = id;
