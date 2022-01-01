@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
- *
  * @author User
  */
 public class CrunchifyGetPropertyValues {

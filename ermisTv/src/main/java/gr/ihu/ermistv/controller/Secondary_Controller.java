@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,9 +95,7 @@ public class Secondary_Controller implements Initializable {
             paneProgram.toFront();
         } else if (event.getSource() == btnEkpompi) {
             paneEkpompi.toFront();
-        }
-
-        else if (event.getSource() == btnSyntelestes) {
+        } else if (event.getSource() == btnSyntelestes) {
             paneSyntelestes.toFront();
         }
     }

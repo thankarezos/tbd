@@ -11,21 +11,41 @@ import com.jcraft.jsch.*;
 import java.io.IOException;
 
 import java.sql.*;
+
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import com.jcraft.jsch.*;
+
 /**
  * JavaFX App
  */
-class localUserInfo implements UserInfo{
+class localUserInfo implements UserInfo {
     String passwd;
-    public String getPassword(){ return passwd; }
-    public boolean promptYesNo(String str){return true;}
-    public String getPassphrase(){ return null; }
-    public boolean promptPassphrase(String message){return true; }
-    public boolean promptPassword(String message){return true;}
-    public void showMessage(String message){}
-  }
+
+    public String getPassword() {
+        return passwd;
+    }
+
+    public boolean promptYesNo(String str) {
+        return true;
+    }
+
+    public String getPassphrase() {
+        return null;
+    }
+
+    public boolean promptPassphrase(String message) {
+        return true;
+    }
+
+    public boolean promptPassword(String message) {
+        return true;
+    }
+
+    public void showMessage(String message) {
+    }
+}
+
 public class App extends Application {
 
     private static Scene scene;

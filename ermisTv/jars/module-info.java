@@ -54,6 +54,6 @@ module org.postgresql.jdbc {
     exports org.postgresql.xml;
 
     provides java.sql.Driver with
-        org.postgresql.Driver;
+            org.postgresql.Driver;
 
 }
