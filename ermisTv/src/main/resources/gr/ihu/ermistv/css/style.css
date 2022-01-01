@@ -133,3 +133,7 @@ Button:hover {
 .scroll-pane>.viewport {
     -fx-background-color: transparent;
 }
+
+.synMark {
+    -fx-background-color: rgba(81, 124, 211, 0.5);
+}

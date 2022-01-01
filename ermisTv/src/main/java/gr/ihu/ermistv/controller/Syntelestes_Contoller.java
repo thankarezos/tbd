@@ -276,6 +276,7 @@ public class Syntelestes_Contoller implements Initializable {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+
     }
 
     @Override

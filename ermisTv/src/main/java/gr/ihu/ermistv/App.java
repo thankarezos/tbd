@@ -51,18 +51,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) throws SQLException, JSchException {
-//        JSch jsch = new JSch();
-//        Session session=jsch.getSession("it185193", "users.Iee.ihu.gr", 22);
-//        session.setPassword("***REMOVED***");
-//        localUserInfo lui=new localUserInfo();
-//        session.setUserInfo(lui);
-//        jsch.setKnownHosts("C:\\Users\\User\\.ssh\\known_hosts");
-//        jsch.addIdentity("C:\\Users\\User\\.ssh\\id_rsa");
-//        
-//        session.connect(10000);
-//        session.setPortForwardingL(5432, "dblabs.iee.ihu.gr", 5432);
-//        System.out.println("Connected");
-       
+
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");

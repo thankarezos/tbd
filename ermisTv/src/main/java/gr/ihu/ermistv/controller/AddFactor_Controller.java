@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -37,14 +38,6 @@ import javafx.scene.Scene;
 
 public class AddFactor_Controller implements Initializable {
     @FXML
-    private FontAwesomeIconView backIcon;
-    @FXML
-    private Button btnAddFacPane;
-
-    @FXML
-    private AnchorPane paneSyntelestes;
-
-    @FXML
     private AnchorPane addFactor;
 
     @FXML
@@ -66,13 +59,8 @@ public class AddFactor_Controller implements Initializable {
     private VBox vboxSyntelestes;
 
     @FXML
-    private Label facErrLabel;
-
-    @FXML
-    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
-
-    @FXML
     private void reloadFactor(MouseEvent event) {
+        System.out.println("empty");
         filterSyntelestes();
         createRole();
         syntelestisID.clear();
@@ -86,6 +74,7 @@ public class AddFactor_Controller implements Initializable {
 
 
     private AnchorPane mainAp;
+    private Pane mainP;
     private int id;
     private ArrayList<String> Role = new ArrayList<String>();
 
@@ -94,7 +83,7 @@ public class AddFactor_Controller implements Initializable {
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
                 + "," + phoneNumber + ");";
-        int setid = this.id;
+
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
@@ -171,7 +160,7 @@ public class AddFactor_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 HBox hboxC = (HBox) hbox.getChildren().get(0);
                                 Text text2 = (Text) hboxC.getChildren().get(0);
-                                String deleteek = "select * from deleteSyntelestesek(" + setid + "," + text2.getText() + ");";
+                                String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);
                                     filterSyntelestes();
@@ -224,56 +213,13 @@ public class AddFactor_Controller implements Initializable {
         loadResultsSyntelestes(id, name, surname, role, phoneN);
     }
 
-    // add Factor Syntelestes
-    @FXML
-    private void addfactor() {
-        try {
-            String name = addFacName.getText();
-            String surname = addFacSurname.getText();
-            String role = addFacRole.getText();
-            String phoneN = addFacPhoneN.getText();
-
-            if (name == "") {
-                facErrLabel.setText("ADD NAME!");
-            } else if (surname == "") {
-                facErrLabel.setText("ADD SURNAME!");
-            } else if (role == "") {
-                facErrLabel.setText("ADD ROLE ");
-            } else if (phoneN == "") {
-                facErrLabel.setText("ADD PHONE NUMBER ");
-            } else {
-                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
-                        + phoneN + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-
-                System.out.println("Success");
-                filterSyntelestes();
-                addFacName.clear();
-                addFacSurname.clear();
-                addFacRole.clear();
-                addFacPhoneN.clear();
-                facErrLabel.setText("");
-                paneSyntelestes.toFront();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    @FXML
-    private void addFactor(MouseEvent event) {
-        addFactor.toFront();
-        createRole();
-    }
-
     private void createRole() {
 
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select Distinct role from getSyntelestesek(" + this.id + ");";
+            String setRating = "select Distinct role from getSyntelestesek(" + id + ");";
+            System.out.println(id);
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
@@ -320,6 +266,9 @@ public class AddFactor_Controller implements Initializable {
     }
     public void setAp(AnchorPane ap){
         mainAp = ap;
+    }
+    public void setP(Pane p){
+        mainP = p;
     }
 
 
