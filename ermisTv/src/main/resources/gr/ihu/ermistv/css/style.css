@@ -1,23 +1,27 @@
 .parent {
-    -fx-background-color : #016474;
+    -fx-background-color: #016474;
     -fx-border-color: #222222;
 }
-.parent_secontary{
-    -fx-background-color : #01363d;
+
+.parent_secontary {
+    -fx-background-color: #01363d;
 }
-.popuphbox{
+
+.popuphbox {
     /* -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2; */
-    -fx-background-color: rgba(1,100,116,0.5);
+    -fx-background-color: rgba(1, 100, 116, 0.5);
 }
-.labelserch{
+
+.labelserch {
     fx-text-fill: black;
     -fx-hgap: 20px;
     -fx-padding: 40px;
     -fx-background-color: #F5F6F8;
     -fx-background-radius: 15px;
 }
-.hboxBorder{
+
+.hboxBorder {
     -fx-hgap: 20px;
     -fx-padding: 40px;
     -fx-background-color: #F5F6F8;
@@ -26,83 +30,87 @@
     -fx-border-color: black;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
 }
-.hboxStyle{
+
+.hboxStyle {
     -fx-background-color: #F5F6F8;
     -fx-background-radius: 15px;
-    -fx-border-radius: 10px;   
-    -fx-border-color: black;    
-
-
-}
-.hboxStylehover{
-    -fx-background-color: rgba(103, 140, 212,0.5);
-
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
 }
 
-.hboxDynamic{
+.hboxStylehover {
+    -fx-background-color: rgba(103, 140, 212, 0.5);
+}
+
+.hboxDynamic {
     -fx-background-color: #f6f7f9;
     -fx-background-radius: 5px;
 }
 
 .bevel_grey {
-    -fx-background-color: 
-        linear-gradient(#f2f2f2, #d6d6d6),
-        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-        linear-gradient(#dddddd 0%, #f6f6f6 50%);
-    -fx-background-radius: 8,7,6;
-    -fx-background-insets: 0,1,2;
+    -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%), linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 
 .bevel_grey:hover {
-    -fx-background-color: 
-        linear-gradient(#00707E, #00707E),
-        linear-gradient(#01363d 0%, #015763 20%, #00b6ce 100%),
-        linear-gradient(#00707E 0%, #00707E 50%);
-    -fx-background-radius: 8,7,6;
-    -fx-background-insets: 0,1,2;
+    -fx-background-color: linear-gradient(#00707E, #00707E), linear-gradient(#01363d 0%, #015763 20%, #00b6ce 100%), linear-gradient(#00707E 0%, #00707E 50%);
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
     -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( three-pass-box, rgba(255, 255, 255, 0.6), 5, 0.0, 0, 1);
 }
 
-.child{
-    -fx-background-color:linear-gradient( #027e85,#02d6f1);
+.child {
+    -fx-background-color: linear-gradient( #027e85, #02d6f1);
     -fx-border-right: 20px;
 }
-.child1{
-    -fx-background-color:#027e85;
+
+.child1 {
+    -fx-background-color: #027e85;
 }
-.button{
-    -fx-background-color : #F5F6F8;
-    -fx-background-radius: 8,7,6;
-    -fx-background-insets: 0,1,2;
-    -fx-effect: dropshadow( three-pass-box , rgba(0, 0, 0, 1) , 5, 0.0 , 0 , 1 );
+
+.button {
+    -fx-background-color: #F5F6F8;
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 1), 5, 0.0, 0, 1);
 }
-.button:hover{
-    -fx-background-color:  #033b44 100%, white;
-    -fx-background-radius: 8,7,6;
-    -fx-background-insets: 0,1,2;
-    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+
+.button:hover {
+    -fx-background-color: #033b44 100%, white;
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+    /* 4 8 4 8 */
     -fx-text-fill: -fx-text-base-color;
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
 }
+
 .login {
     /* -fx-height: 200px; */
-    -fx-background-color: linear-gradient( #014550 , #7FCDD7);
+    -fx-background-color: linear-gradient( #014550, #7FCDD7);
 }
-.login_head{
-    -fx-background-color :rgba(255, 255, 255, 0.1);
+
+.login_head {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: white;
-    -fx-border-radius : 12px;
-    -fx-background-radius : 12px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
 }
 
 FontAwesomeIconView {
-    -fx-fill:white;
+    -fx-fill: white;
 }
+
 FontAwesomeIconView:hover {
+    -fx-cursor: hand;
+}
+
+Button:hover {
     -fx-cursor: hand;
 }
 
@@ -119,8 +127,9 @@ FontAwesomeIconView:hover {
 }
 
 .min-btn:hover {
-    -fx-background-color: #171717;
+    -fx-background-color: rgba(23, 23, 23, 0.2);
 }
-.scroll-pane > .viewport {
-   -fx-background-color: transparent;
+
+.scroll-pane>.viewport {
+    -fx-background-color: transparent;
 }
