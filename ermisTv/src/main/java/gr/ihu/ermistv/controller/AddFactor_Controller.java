@@ -80,9 +80,9 @@ public class AddFactor_Controller implements Initializable {
         syntelestisSurname.clear();
         syntelestisPhoneN.clear();
     }
-//    AddFactor_Controller(int id){
-//        this.id = id;
-//    }
+    AddFactor_Controller(int id){
+        this.id = id;
+    }
 
 
     private AnchorPane mainAp;
@@ -92,7 +92,7 @@ public class AddFactor_Controller implements Initializable {
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role
+        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
                 + "," + phoneNumber + ");";
         int setid = this.id;
         Statement statement;
@@ -104,12 +104,12 @@ public class AddFactor_Controller implements Initializable {
             while (rs.next()) {
                 HBox hbox = new HBox();
 
-                for (int i = 3; i <= columnsNumber; i++) {
+                for (int i = 1; i <= columnsNumber; i++) {
 
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.getStyleClass().add("hboxStyle");
-                    hboxinside.setPrefWidth(160);
+                    hboxinside.setPrefWidth(131);
                     hboxinside.setAlignment(CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();

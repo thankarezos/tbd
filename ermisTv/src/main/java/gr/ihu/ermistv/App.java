@@ -60,7 +60,7 @@ public class App extends Application {
 //        jsch.addIdentity("C:\\Users\\User\\.ssh\\id_rsa");
 //        
 //        session.connect(10000);
-//        session.setPortForwardingL(1124, "users.iee.ihu.gr", 5432);
+//        session.setPortForwardingL(5432, "dblabs.iee.ihu.gr", 5432);
 //        System.out.println("Connected");
        
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");

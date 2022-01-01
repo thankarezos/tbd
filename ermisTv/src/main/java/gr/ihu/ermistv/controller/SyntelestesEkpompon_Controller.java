@@ -356,6 +356,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
+            AddFactor_Controller controller = new AddFactor_Controller(id);
+            loader.setController(controller);
             popupFactor.getChildren().add(loader.load());
             
         } catch (IOException ex) {
