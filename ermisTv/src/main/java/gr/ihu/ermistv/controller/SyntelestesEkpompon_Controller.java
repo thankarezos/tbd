@@ -15,6 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -41,6 +42,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     private FontAwesomeIconView backIcon,x;
     @FXML
     private Button btnAddFacPane;
+    @FXML
+    private Pane addfactor;
 
     @FXML
     private AnchorPane paneSyntelestes;
@@ -355,7 +358,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             Scene scene = new ScenesSet(root, App.stage, 700, 410);
            // Ekpompi_Controller controller = loader.getController();
 //            controller.setAp(paneEkpompi);
-            addFactor.getChildren().add(root);
+            addfactor.getChildren().add(root);
             addFactor.toFront();
         } catch (IOException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
