@@ -317,16 +317,6 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             });
 
             loadResultsSyntelestes("null", "null", "null", "null", "null");
-//            Parent root;
-//            try {
-//                FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
-//                root = loader.load();
-//
-//                Scene scene = new ScenesSet(root, App.stage, 876, 517);
-//                popupFactor.getChildren().add(root);
-//            } catch (IOException ex) {
-//                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//            }
             
     }
     
@@ -366,9 +356,6 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
-//            root = loader.load();
-//
-//            Scene scene = new ScenesSet(root, App.stage, 876, 517);
             popupFactor.getChildren().add(loader.load());
             
         } catch (IOException ex) {
