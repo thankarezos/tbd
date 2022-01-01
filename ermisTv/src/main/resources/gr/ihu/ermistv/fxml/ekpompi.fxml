@@ -218,7 +218,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="29.0" layoutY="453.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="836.0" spacing="40.0">
+            <HBox alignment="CENTER" layoutX="124.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="40.0">
                <children>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" spacing="2.0">
                      <children>
@@ -230,24 +230,6 @@
                                  </font>
                               </Label>
                               <Button fx:id="btnAddBroPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addBroadcast" prefHeight="35.0" prefWidth="100.0" text="Add">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="270.0" spacing="2.0">
-                     <children>
-                        <HBox id="program" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" text="Broadcast Factor">
-                                 <font>
-                                    <Font name="Arial Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="btnEditBroPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#editFactorBroadcast" prefHeight="35.0" prefWidth="100.0" text="Factor">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
