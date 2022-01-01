@@ -1,7 +1,9 @@
 package gr.ihu.ermistv.controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.ScenesSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -27,8 +29,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 
 import static javafx.geometry.Pos.CENTER;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
@@ -75,7 +81,13 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         syntelestisSurname.clear();
         syntelestisPhoneN.clear();
     }
-
+    SyntelestesEkpompon_Controller(int id){
+        this.id = id;
+    }
+    
+    
+    private AnchorPane mainAp;
+    private int id;
     private ArrayList<String> Role = new ArrayList<String>();
 
     // Load Results Syntelestes
@@ -280,33 +292,49 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+            System.out.println(id);
+            createRole();
 
-        createRole();
+            syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterSyntelestes();
+            });
+            syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterSyntelestes();
+            });
+            syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterSyntelestes();
+            });
+            syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
+                filterSyntelestes();
+            });
+            syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
+                filterSyntelestes();
+            });
 
-        syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisSurname.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisRole.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-        syntelestisPhoneN.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterSyntelestes();
-        });
-
-        loadResultsSyntelestes("null", "null", "null", "null", "null");
+            loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
-
+    
     @FXML
-    private void popupsHandleClicks(MouseEvent event) throws IOException {
-        if (event.getSource() == backIcon) {
-            paneSyntelestes.toFront();
+    private void back(MouseEvent event) throws IOException {
+        System.out.println("test");
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
+            root = loader.load();
+
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            Ekpompi_Controller controller = loader.getController();
+            controller.setAp(mainAp);
+            mainAp.getChildren().add(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setAp(AnchorPane ap){
+        mainAp = ap;
+    }
 }
