@@ -6,26 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.jcraft.jsch.*;
 
 import java.io.IOException;
 
 import java.sql.*;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
-import com.jcraft.jsch.*;
+//import com.jcraft.jsch.*;
+//import java.util.Properties;
 /**
  * JavaFX App
  */
-class localUserInfo implements UserInfo{
-    String passwd;
-    public String getPassword(){ return passwd; }
-    public boolean promptYesNo(String str){return true;}
-    public String getPassphrase(){ return null; }
-    public boolean promptPassphrase(String message){return true; }
-    public boolean promptPassword(String message){return true;}
-    public void showMessage(String message){}
-  }
+
 public class App extends Application {
 
     private static Scene scene;
@@ -50,12 +42,14 @@ public class App extends Application {
 
     }
 
-    public static void main(String[] args) throws SQLException, JSchException {
-
+    public static void main(String[] args) throws SQLException{
+        
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
+//        
+        
         DBConnection.connect(url, user, pass);
         launch();
     }

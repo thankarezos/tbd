@@ -17,6 +17,7 @@ public class DBConnection {
     public static Connection c;
 
     public static void connect(String url, String user, String pass) throws SQLException {
+        DriverManager.setLoginTimeout(1000);
         c = DriverManager.getConnection(url, user, pass);
     }
 
