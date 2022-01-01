@@ -106,7 +106,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="836.0" style="-fx-background-color: transparent;">
+                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="822.0" style="-fx-background-color: transparent;">
                      <content>
                         <VBox fx:id="vboxSyntelestes" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="820.0" spacing="3.0" />
                      </content>
