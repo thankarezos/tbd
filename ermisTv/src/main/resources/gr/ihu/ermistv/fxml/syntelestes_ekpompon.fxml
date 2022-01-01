@@ -18,6 +18,34 @@
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <AnchorPane fx:id="addFactor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
+         <children>
+            <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Factor" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
+                     <graphic>
+                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </HBox>
+            <Pane fx:id="addfactor" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
+         </children>
+      </AnchorPane>
       <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" styleClass="child" stylesheets="@../css/style.css">
          <children>
             <VBox layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="822.0" spacing="3.0">
@@ -93,7 +121,7 @@
                         <Font name="Arial Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnAddFacPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#addFactor" prefHeight="35.0" prefWidth="100.0" text="Add">
+                  <Button fx:id="btnAddFacPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClkick" prefHeight="35.0" prefWidth="100.0" text="Add">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -129,34 +157,6 @@
                </graphic>
             </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="394.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="addFactor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
-         <children>
-            <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Factor" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
-                     <graphic>
-                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
-                     </graphic>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </HBox>
-            <Pane fx:id="addfactor" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
          </children>
       </AnchorPane>
    </children>

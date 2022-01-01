@@ -344,4 +344,22 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             paneSyntelestes.toFront();
         }
     }
+
+    @FXML
+    public void onClkick(MouseEvent event) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
+            root = loader.load();
+
+            Scene scene = new ScenesSet(root, App.stage, 700, 410);
+           // Ekpompi_Controller controller = loader.getController();
+//            controller.setAp(paneEkpompi);
+            addFactor.getChildren().add(root);
+            addFactor.toFront();
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
