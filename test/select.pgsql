@@ -19,7 +19,7 @@ select taskperiods();
     1,'Task A', '20180110 10:00:00', '20180120 18:00:00'; 
     insert into TaskPeriods
     select
-    2,'Task A', '20180115 05:00:00', '20180130 23:00:00';
+    2,'Task A', '20180115 05:00:00 ', '20180130 23:00:00';
 select taskset();
 
 select

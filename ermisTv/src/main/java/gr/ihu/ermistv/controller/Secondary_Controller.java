@@ -13,16 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 public class Secondary_Controller implements Initializable {
 
@@ -75,7 +72,7 @@ public class Secondary_Controller implements Initializable {
         stage.setScene(scene);
         stage.setX(stage.getX() + 200);
     }
-    
+
     // Is Numeric Method
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
@@ -88,7 +85,6 @@ public class Secondary_Controller implements Initializable {
         }
         return false;
     }
-
 
     // Handle Clicks Popup
     @FXML
@@ -104,25 +100,26 @@ public class Secondary_Controller implements Initializable {
             paneSyntelestes.toFront();
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            Parent root;
-            try {
-                root = FXMLLoader.load(App.class.getResource("fxml/ekpompi.fxml"));
-                
-                Scene scene = new ScenesSet(root, App.stage, 876, 517);
-                paneEkpompi.getChildren().add(root);
-            } catch (IOException ex) {
-                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                root = FXMLLoader.load(App.class.getResource("fxml/syntelestes.fxml"));
-                
-                Scene scene = new ScenesSet(root, App.stage, 876, 517);
-                paneSyntelestes.getChildren().add(root);
-            } catch (IOException ex) {
-                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        Parent root;
+        try {
+            root = FXMLLoader.load(App.class.getResource("fxml/ekpompi.fxml"));
+
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            paneEkpompi.getChildren().add(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            root = FXMLLoader.load(App.class.getResource("fxml/syntelestes.fxml"));
+
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            paneSyntelestes.getChildren().add(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }

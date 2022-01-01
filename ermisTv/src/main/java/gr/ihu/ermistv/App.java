@@ -20,6 +20,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));

@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 
 import static javafx.geometry.Pos.CENTER;
 
-public class Ekpompi_Controller  implements Initializable {
+public class Ekpompi_Controller implements Initializable {
 
     @FXML
     private ScrollBar ScrollBar;
@@ -124,7 +124,6 @@ public class Ekpompi_Controller  implements Initializable {
     @FXML
     private FontAwesomeIconView x1;
 
-
     @FXML
     void editFactorBroadcast(MouseEvent event) {
 
@@ -133,7 +132,7 @@ public class Ekpompi_Controller  implements Initializable {
     int low = 10;
     int high = 300;
     int valueRange;
-    private ArrayList<String> ratingC = new ArrayList <String>();
+    private ArrayList<String> ratingC = new ArrayList<String>();
 
     // Load Results Ekpompi
     private void loadResults(String id, String name, String rating, String timeLow, String timeHigh) {
@@ -141,10 +140,8 @@ public class Ekpompi_Controller  implements Initializable {
         String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
                 + timeHigh + ");";
 
-
         Statement statement;
         try {
-
 
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(getEkmompes);
@@ -239,11 +236,9 @@ public class Ekpompi_Controller  implements Initializable {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
     }
 
-    private void createRating(){
-
+    private void createRating() {
 
         Statement statement;
         try {
@@ -264,6 +259,7 @@ public class Ekpompi_Controller  implements Initializable {
         }
 
     }
+
     // Add Ekpompi
     @FXML
     private void addbroadcast() {
@@ -296,11 +292,12 @@ public class Ekpompi_Controller  implements Initializable {
         }
 
     }
+
     @FXML
     private void addBroadcast(MouseEvent event) {
         addBroadcast.toFront();
         createRating();
-        
+
     }
 
     // Reload Table Ekpompi ??
@@ -316,6 +313,7 @@ public class Ekpompi_Controller  implements Initializable {
         sliderr.setLowValue(low);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
     }
+
     // Is Numeric Method
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
@@ -328,6 +326,7 @@ public class Ekpompi_Controller  implements Initializable {
         }
         return false;
     }
+
     // Filter Ekpompi
     private void filterEkpompi() {
         String id = "'" + filterID.getText() + "'";
@@ -390,9 +389,10 @@ public class Ekpompi_Controller  implements Initializable {
             txtRange.setText(" 0  -  " + String.valueOf(valueRange));
             filterEkpompi();
         });
-        
+
         loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
     }
+
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x) {

@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>gr.ihu</groupId>
     <artifactId>ermisTv</artifactId>
@@ -15,7 +15,7 @@
             <artifactId>fontawesomefx-fontawesome</artifactId>
             <version>4.7.0-9.1.2</version>
         </dependency>
-    <dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>13</version>
@@ -73,11 +73,11 @@
                         </goals>
                         <configuration>
                             <archive>
-                            <manifest>
-                                <mainClass>
+                                <manifest>
+                                    <mainClass>
                                     gr.ihu.ermistv.App
-                                </mainClass>
-                            </manifest>
+                                    </mainClass>
+                                </manifest>
                             </archive>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -90,27 +90,27 @@
                 <groupId>org.panteleyev</groupId>
                 <artifactId>jpackage-maven-plugin</artifactId>
                 <version>1.4.0</version>
-                
+
                 <configuration>
-                  <name>ermistv</name>
-                  <windirchooser>true</windirchooser>
-                  <appVersion>1.0.0</appVersion>
-                  <vendor>gr.ihu</vendor>
-                  <destination>target/dist</destination>
-                  <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
-                  <input>app</input>
-<!--                  <modulePaths>
+                    <name>ermistv</name>
+                    <windirchooser>true</windirchooser>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>gr.ihu</vendor>
+                    <destination>target/dist</destination>
+                    <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
+                    <input>app</input>
+                    <!--                  <modulePaths>
                     <modulePath>test.txt</modulePath>
                   </modulePaths>-->
 
-                  <runtimeImage>target/ermisTv</runtimeImage>
-                  <javaOptions>
-                    <option>-Dfile.encoding=UTF-8</option>
-                  </javaOptions>
-                  
+                    <runtimeImage>target/ermisTv</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+
                 </configuration>
-                
-                 <executions>
+
+                <executions>
                     <execution>
                         <id>mac</id>
                         <configuration>
@@ -127,8 +127,8 @@
                         </configuration>
                     </execution>
                 </executions>
-                
-              </plugin>
+
+            </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -142,10 +142,10 @@
                     <jlinkImageName>ermistv</jlinkImageName>
                     <jlinkZipName>ermistv</jlinkZipName>
                     <mainClass>gr.ihu.ermistv.App</mainClass>
-                    
+
                 </configuration>
             </plugin>
-            
+
         </plugins>
     </build>
 </project>

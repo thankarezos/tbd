@@ -10,10 +10,10 @@ AS $function$
     drop table if EXISTS program_pro;
     create table if not EXISTS program_pr
     (
-	    program_id SERIAL not null ,
-		day_pr day_pr default 'empty',
+	    program_id SERIAL ,
+		day_pr day_pr ,
 		name_pr varchar(100)not null,
-		type_pr type_pr default 'empty',
+		type_pr type_pr ,
 		timew time(4)not null
 	);
     END;

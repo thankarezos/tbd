@@ -38,7 +38,7 @@ public class Syntelestes_Contoller implements Initializable {
 
     @FXML
     private AnchorPane paneSyntelestes;
-    
+
     @FXML
     private AnchorPane addFactor;
 
@@ -76,7 +76,7 @@ public class Syntelestes_Contoller implements Initializable {
         syntelestisPhoneN.clear();
     }
 
-    private ArrayList<String> Role = new ArrayList <String>();
+    private ArrayList<String> Role = new ArrayList<String>();
 
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
@@ -250,15 +250,14 @@ public class Syntelestes_Contoller implements Initializable {
         }
 
     }
-    
+
     @FXML
     private void addFactor(MouseEvent event) {
         addFactor.toFront();
         createRole();
-    }   
+    }
 
-    private void createRole(){
-
+    private void createRole() {
 
         Statement statement;
         try {
@@ -278,6 +277,7 @@ public class Syntelestes_Contoller implements Initializable {
         }
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -301,6 +301,7 @@ public class Syntelestes_Contoller implements Initializable {
 
         loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
+
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x4) {
