@@ -95,4 +95,4 @@ WHERE condition;
 select * from syntelestesekp order by sidek,sidsy;
 
 select addSyntelestesek(3,3);
-select deleteEkpompi(5);
+select deleteEkpompi(6);

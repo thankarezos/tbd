@@ -43,9 +43,9 @@ $function$;
 select syntelestesek();
 
 
-CREATE OR REPLACE FUNCTION getSyntelestesek() 
+CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
 RETURNS SETOF syntelestesekp  AS $$
-    SELECT * FROM syntelestesekp  order by sidek,sidsy;
+    SELECT * FROM syntelestesekp where sidek = $1 order by sidsy;
 $$  LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION addSyntelestesek(sidek integer,sidsy integer)
@@ -60,12 +60,12 @@ AS $function$
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION deleteSyntelestesek(id integer)
+CREATE OR REPLACE FUNCTION deleteSyntelestesek(idek integer,id integer)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    DELETE FROM syntelestesekp where sidsy = id;
+    DELETE FROM syntelestesekp where sidsy = id and sidek = idek;
     END;
 $function$;
 

@@ -93,9 +93,9 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
+        String getSyntelestes = "select * from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role
                 + "," + phoneNumber + ");";
-
+        int setid = this.id;
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
@@ -105,7 +105,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             while (rs.next()) {
                 HBox hbox = new HBox();
 
-                for (int i = 1; i <= columnsNumber; i++) {
+                for (int i = 3; i <= columnsNumber; i++) {
 
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
@@ -172,7 +172,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 HBox hboxC = (HBox) hbox.getChildren().get(0);
                                 Text text2 = (Text) hboxC.getChildren().get(0);
-                                String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
+                                String deleteek = "select * from deleteSyntelestesek(" + setid + "," + text2.getText() + ");";
                                 try {
                                     statement.executeQuery(deleteek);
                                     filterSyntelestes();
@@ -274,7 +274,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select Distinct role from getSyntelestes();";
+            String setRating = "select Distinct role from getSyntelestesek(" + this.id + ");";
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
