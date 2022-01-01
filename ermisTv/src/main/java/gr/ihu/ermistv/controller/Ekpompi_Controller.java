@@ -127,9 +127,6 @@ public class Ekpompi_Controller implements Initializable {
     private FontAwesomeIconView x;
 
     @FXML
-    private FontAwesomeIconView x1;
-
-    @FXML
     void editFactorBroadcast(MouseEvent event) {
 
     }
@@ -421,8 +418,6 @@ public class Ekpompi_Controller implements Initializable {
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x) {
-            paneEkpompi.toFront();
-        } else if (event.getSource() == x1) {
             paneEkpompi.toFront();
         }
     }

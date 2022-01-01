@@ -38,7 +38,7 @@ import javafx.scene.Scene;
 
 public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
-    private FontAwesomeIconView backIcon;
+    private FontAwesomeIconView backIcon,x;
     @FXML
     private Button btnAddFacPane;
 
@@ -336,5 +336,12 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     }
     public void setAp(AnchorPane ap){
         mainAp = ap;
+    }
+
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) throws IOException {
+        if (event.getSource() == x) {
+            paneSyntelestes.toFront();
+        }
     }
 }

@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -141,7 +142,7 @@
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
                      <graphic>
-                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x1" />
+                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
                      </graphic>
                      <HBox.margin>
                         <Insets />
@@ -155,105 +156,7 @@
                   <Insets right="5.0" />
                </padding>
             </HBox>
-            <Label fx:id="broErrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="672.0" textFill="RED">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <VBox layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" spacing="3.0">
-               <children>
-                  <VBox prefHeight="27.0" prefWidth="700.0">
-                     <children>
-                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="695.0" spacing="3.0">
-                           <children>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets left="1.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="700.0" style="-fx-background-color: transparent;">
-                     <content>
-                        <VBox fx:id="vboxSyntelestes1" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" />
-                     </content>
-                  </ScrollPane>
-               </children>
-               <padding>
-                  <Insets left="3.0" />
-               </padding>
-            </VBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="680.0" spacing="10.0">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="CHECK" size="2em" />
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadFactor" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="REFRESH" size="2em" styleClass="min-btn" />
-                     </graphic>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="SEARCH" size="2em" />
-                     </graphic>
-                  </Label>
-                  <TextField fx:id="syntelestisID1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="ID" />
-                  <TextField fx:id="syntelestisName1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Name" />
-                  <TextField fx:id="syntelestisSurname1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Surname" />
-                  <ChoiceBox fx:id="syntelestisRole1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
-                  <TextField fx:id="syntelestisPhoneN1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Phone Number" />
-               </children>
-            </HBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="404.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" />
+            <Pane fx:id="addfactor" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
          </children>
       </AnchorPane>
    </children>

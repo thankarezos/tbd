@@ -35,7 +35,7 @@ import static javafx.geometry.Pos.CENTER;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-public class AddSyntelestes_Controller implements Initializable {
+public class AddFactor_Controller implements Initializable {
     @FXML
     private FontAwesomeIconView backIcon;
     @FXML
@@ -80,7 +80,7 @@ public class AddSyntelestes_Controller implements Initializable {
         syntelestisSurname.clear();
         syntelestisPhoneN.clear();
     }
-    AddSyntelestes_Controller(int id){
+    AddFactor_Controller(int id){
         this.id = id;
     }
 
