@@ -7,18 +7,18 @@ package gr.ihu.ermistv;
 import javafx.scene.layout.HBox;
 
 /**
- *
  * @author User
  */
-public class HboxEnch extends HBox{
-    
+public class HboxEnch extends HBox {
+
     private boolean state = false;
-    
-    public void setState(boolean state){
+
+    public void setState(boolean state) {
         this.state = state;
     }
-    public boolean getState(){
+
+    public boolean getState() {
         return state;
     }
-    
+
 }

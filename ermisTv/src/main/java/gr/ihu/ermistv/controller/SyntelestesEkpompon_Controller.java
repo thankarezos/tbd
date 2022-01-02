@@ -85,7 +85,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         syntelestisID.clear();
         syntelestisName.clear();
         syntelestisSurname.clear();
-        syntelestisPhoneN.clear();}
+        syntelestisPhoneN.clear();
+    }
 
     SyntelestesEkpompon_Controller(int id) {
         this.id = id;
@@ -234,7 +235,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     }
 
     // add Factor Syntelestes
-    
+
 
     @FXML
     private void addFactor(MouseEvent event) {
@@ -325,7 +326,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
-            AddFactor_Controller controller = new AddFactor_Controller(id,this);
+            AddFactor_Controller controller = new AddFactor_Controller(id, this);
             loader.setController(controller);
             controller.setPop(addFactor);
             popupFactor.getChildren().add(loader.load());

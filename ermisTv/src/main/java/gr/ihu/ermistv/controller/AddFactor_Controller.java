@@ -74,7 +74,7 @@ public class AddFactor_Controller implements Initializable {
         syntelestisPhoneN.clear();
     }
 
-    AddFactor_Controller(int id,SyntelestesEkpompon_Controller seC) {
+    AddFactor_Controller(int id, SyntelestesEkpompon_Controller seC) {
         this.id = id;
         this.seC = seC;
     }
@@ -85,14 +85,14 @@ public class AddFactor_Controller implements Initializable {
     private int id;
     private SyntelestesEkpompon_Controller seC;
     private ArrayList<String> Role = new ArrayList<String>();
-    private HashMap<Integer,Integer> add = new HashMap<Integer,Integer>(); 
+    private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
     // Load Results Syntelestes
     @FXML
     private void addfactor() {
         Iterator it = add.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
             Statement statement;
             try {
@@ -100,37 +100,36 @@ public class AddFactor_Controller implements Initializable {
                 ResultSet rscheck = statement.executeQuery(checkif);
                 rscheck.next();
                 int returncode = rscheck.getInt(1);
-                if(returncode == 0){
-                    
+                if (returncode == 0) {
+
                     String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                     ResultSet rs = statement.executeQuery(addSyntelestes);
-                }
-                else if(returncode == 3){
+                } else if (returncode == 3) {
                     System.out.println("Factor does not exist");
                 }
-                
-                
+
+
             } catch (SQLException ex) {
                 Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             it.remove();
             add.remove(pair.getKey());
-            
+
 //            System.out.println(pair.getKey() + " = " + pair.getValue());
-             // avoids a ConcurrentModificationException
+            // avoids a ConcurrentModificationException
         }
         Pop.toBack();
         seC.filterSyntelestes();
         seC.createRole();
-        
+
 
     }
-    
-    
+
+
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSykminus("+ this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
+        String getSyntelestes = "select * from getResultSykminus(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
@@ -139,24 +138,23 @@ public class AddFactor_Controller implements Initializable {
             int columnsNumber = rsmd.getColumnCount();
             while (rs.next()) {
                 HboxEnch hbox = new HboxEnch();
-                
+
                 for (int i = 1; i <= columnsNumber; i++) {
 
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
-                    
+
                     hboxinside.setPrefWidth(131);
                     hboxinside.setAlignment(CENTER);
                     hboxinside.getStyleClass().add("hboxStyle");
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
-                    if(add.containsKey(Integer.parseInt(rs.getString(1)))){
-                        
+                    if (add.containsKey(Integer.parseInt(rs.getString(1)))) {
+
                         hboxinside.getStyleClass().add("hboxStylehover");
                         hbox.setState(true);
-                    }
-                    else{
+                    } else {
                         hboxinside.getStyleClass().clear();
                         hboxinside.getStyleClass().add("hboxStyle");
                         hbox.setState(false);
@@ -177,34 +175,32 @@ public class AddFactor_Controller implements Initializable {
                             HBox hboxC = (HBox) hbox.getChildren().get(0);
                             Text text2 = (Text) hboxC.getChildren().get(0);
                             int id = Integer.parseInt(text2.getText());
-                            
+
                             HboxEnch hbox = (HboxEnch) event.getSource();
                             hbox.getChildren().get(0);
                             hbox.getChildren();
-                            if(hbox.getState()){
+                            if (hbox.getState()) {
                                 add.remove(id);
                                 for (int i = 0; i < hbox.getChildren().size(); i++) {
                                     HBox pane = (HBox) hbox.getChildren().get(i);
                                     pane.getStyleClass().clear();
                                     pane.getStyleClass().add("hboxStyle");
                                     Text text = (Text) pane.getChildren().get(0);
-                                 }
-                                hbox.setState(false); 
-    
-                            }
-                            else{
+                                }
+                                hbox.setState(false);
+
+                            } else {
                                 add.put(id, id);
                                 for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                    
-                                    
+
+
                                     HBox pane = (HBox) hbox.getChildren().get(i);
                                     pane.getStyleClass().add("hboxStylehover");
                                 }
-                                hbox.setState(true); 
+                                hbox.setState(true);
                             }
 
-                            
-                            
+
 //                            HBox hbox = (HBox) event.getSource();
 //                            hbox.getChildren().get(0);
 //                            hbox.getChildren();
@@ -259,7 +255,7 @@ public class AddFactor_Controller implements Initializable {
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" +this.id+ ");";
+            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
