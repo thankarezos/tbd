@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -131,97 +130,276 @@
                      <children>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="799.0">
                            <children>
-                              <VBox fx:id="emptypane" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="736.0" spacing="3.0">
+                              <VBox fx:id="emptypane" minHeight="-Infinity" minWidth="-Infinity" prefWidth="736.0" spacing="5.0">
                                  <children>
-                                    <Pane prefHeight="0.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
-                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="15.0" style="-fx-background-color: white;" />
                                  </children>
                               </VBox>
-                              <VBox fx:id="time" layoutX="735.0" prefHeight="483.0" prefWidth="69.0">
+                              <VBox fx:id="time" alignment="TOP_CENTER" layoutX="735.0" prefWidth="69.0" spacing="5.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="14.0" prefWidth="50.0" text="00:00">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="00:30">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="01:00">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="01:30">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" text="00:30">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="7.5" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" style="-fx-background-color: red;" styleClass="time">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="00:30">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                               <VBox fx:id="program" prefHeight="270.0" prefWidth="466.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: red;">
+                                    <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: red;">
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" minHeight="-Infinity">
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font></Text>
                                              </children>
                                           </HBox>
                                        </children>
-                                    </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="200.0">
-                                       <children>
-                                          <Pane prefHeight="100.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: red;">
-                                       <children>
-                                          <HBox alignment="CENTER" prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: red;">
-                                             <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
