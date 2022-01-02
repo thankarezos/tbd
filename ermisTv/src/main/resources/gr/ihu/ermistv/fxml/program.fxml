@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import gr.ihu.ermistv.ZoomableScrollPane?>
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
    <children>
@@ -15,7 +16,7 @@
          <children>
             <VBox alignment="CENTER" layoutX="27.0" prefHeight="515.0" prefWidth="822.0">
                <children>
-                  <ScrollPane fx:id="extension" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="822.0" style="-fx-background-color: transparent;">
+                  <ZoomableScrollPane fx:id="extension" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="822.0" style="-fx-background-color: transparent;">
                      <content>
                         <VBox prefWidth="788.0">
                            <children>
@@ -29,7 +30,7 @@
                            </children>
                         </VBox>
                      </content>
-                  </ScrollPane>
+                  </ZoomableScrollPane>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="685.0" spacing="6.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">

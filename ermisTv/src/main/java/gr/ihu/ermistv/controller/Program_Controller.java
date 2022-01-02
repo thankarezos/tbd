@@ -49,8 +49,8 @@ public class Program_Controller implements Initializable{
     private Button btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday, btnSaturday, btnSunday;
     @FXML
     private VBox emptypane, time, program;
-    //@FXML
-    //private ScrollPane scrollPane;
+    @FXML
+    private ScrollPane extension;
 
     private String[] days = {"Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
@@ -62,11 +62,11 @@ public class Program_Controller implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ZoomableScrollPane dayZ =new ZoomableScrollPane();
-        //ZoomableScrollPane zoomablePane = (ZoomableScrollPane) scrollPane;
-
-        dayZ.getId();
-//        System.out.println(scrollPane.getId());
+//        ZoomableScrollPane zoomablePane = (ZoomableScrollPane) extension;
+//        
+//        
+//        zoomablePane.getId();
+//        System.out.println(zoomablePane.getId());
 
 
         program.setLayoutX(daysize + spacesH);
@@ -274,82 +274,5 @@ public class Program_Controller implements Initializable{
 
         
         
-    }
-
-
-@DefaultProperty(value = "extension")
-
-    public class ZoomableScrollPane extends ScrollPane {
-
-        @FXML private ScrollPane extension;
-
-
-
-        private double scaleValue = 0.7;
-        private double zoomIntensity = 0.02;
-        private Node target;
-        private Node zoomNode;
-
-        public ZoomableScrollPane() {//Node target
-            super();
-//            this.target = target;
-//            this.zoomNode = new Group(target);
-//            setContent(outerNode(zoomNode));
-//
-//            setPannable(true);
-//            setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//            setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//            setFitToHeight(true); //center
-//            setFitToWidth(true); //center
-//
-//            updateScale();
-        }
-
-        private Node outerNode(Node node) {
-            Node outerNode = centeredNode(node);
-            outerNode.setOnScroll(e -> {
-                e.consume();
-                onScroll(e.getTextDeltaY(), new Point2D(e.getX(), e.getY()));
-            });
-            return outerNode;
-        }
-
-        private Node centeredNode(Node node) {
-            VBox vBox = new VBox(node);
-            vBox.setAlignment(Pos.CENTER);
-            return vBox;
-        }
-
-        private void updateScale() {
-            target.setScaleX(scaleValue);
-            target.setScaleY(scaleValue);
-        }
-
-        private void onScroll(double wheelDelta, Point2D mousePoint) {
-            double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
-
-            Bounds innerBounds = zoomNode.getLayoutBounds();
-            Bounds viewportBounds = getViewportBounds();
-
-            // calculate pixel offsets from [0, 1] range
-            double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
-            double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
-
-            scaleValue = scaleValue * zoomFactor;
-            updateScale();
-            this.layout(); // refresh ScrollPane scroll positions & target bounds
-
-            // convert target coordinates to zoomTarget coordinates
-            Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
-
-            // calculate adjustment of scroll position (pixels)
-            Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
-
-            // convert back to [0, 1] range
-            // (too large/small values are automatically corrected by ScrollPane)
-            Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
-            this.setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
-            this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
-        }
     }
 }
