@@ -66,7 +66,7 @@ public class Program_Controller implements Initializable{
         //ZoomableScrollPane zoomablePane = (ZoomableScrollPane) scrollPane;
 
         dayZ.getId();
-//        System.out.println(scrollPane.getId());
+         System.out.println(dayZ.getId());
 
 
         program.setLayoutX(daysize + spacesH);
