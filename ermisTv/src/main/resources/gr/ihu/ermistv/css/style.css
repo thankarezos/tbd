@@ -130,7 +130,7 @@ Button:hover {
     -fx-background-color: rgba(23, 23, 23, 0.2);
 }
 
-.scroll-pane > .viewport {
+.scroll-pane>.viewport {
     -fx-background-color: transparent;
 }
 

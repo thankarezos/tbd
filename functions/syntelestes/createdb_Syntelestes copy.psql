@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION "syntelestesek"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    drop table IF EXISTS syntelestesekp cascade;
-    create table IF NOT EXISTS syntelestesekp
+    DROP TABLE IF EXISTNULLntelestesekp CASCADE;
+    CREATE TABLE IF NOT EXISTNULLntelestesekp
     (   
         sidek  integer,
         nameek varchar(20),
@@ -19,33 +19,33 @@ AS $function$
     INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
     SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
     FROM ekpompes,syntelestes
-    where ekpompes.sid=1 and syntelestes.sid=1;
+    WHERE ekpompes.sid=1 AND syntelestes.sid=1;
 
     INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
     SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
     FROM ekpompes,syntelestes
-    where ekpompes.sid=2 and syntelestes.sid=2 ;
+    WHERE ekpompes.sid=2 AND syntelestes.sid=2 ;
 
     INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
     SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
     FROM ekpompes,syntelestes
-    where ekpompes.sid=2 and syntelestes.sid=1 ;
+    WHERE ekpompes.sid=2 AND syntelestes.sid=1 ;
 
 
     INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
     SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
     FROM ekpompes,syntelestes
-    where ekpompes.sid=1 and syntelestes.sid=3 ;
+    WHERE ekpompes.sid=1 AND syntelestes.sid=3 ;
     
     END;
 $function$;
 
-select syntelestesek();
+SELECT syntelestesek();
 
 
 CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
 RETURNS SETOF syntelestesekp  AS $$
-    SELECT * FROM syntelestesekp where sidek = $1 order by sidsy;
+    SELECT * FROM syntelestesekp WHERE sidek = $1 ORDER BY sidsy;
 $$  LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION addSyntelestesek(sidek integer,sidsy integer)
@@ -56,7 +56,7 @@ AS $function$
         INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
         SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
         FROM ekpompes,syntelestes
-        where ekpompes.sid=sidek and syntelestes.sid=sidsy ;
+        WHERE ekpompes.sid=sidek AND syntelestes.sid=sidsy ;
     END;
 $function$;
 
@@ -65,7 +65,7 @@ CREATE OR REPLACE FUNCTION deleteSyntelestesek(idek integer,id integer)
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    DELETE FROM syntelestesekp where sidsy = id and sidek = idek;
+    DELETE FROM syntelestesekp WHERE sidsy = id AND sidek = idek;
     END;
 $function$;
 
@@ -74,41 +74,41 @@ $function$;
 CREATE OR REPLACE FUNCTION getResultSyntelestesek(int,int,text,text,text,text) 
 RETURNS setof syntelestesekp AS
  $$
-    Select * from syntelestesekp 
-    where sidek = $1
+    SELECT * FROM syntelestesekp 
+    WHERE sidek = $1
     AND
-    CAST(sidsy as TEXT) like
+    CAST(sidsy as TEXT) LIKE
     CONCAT(
     CASE
-        WHEN $2 is null then sidsy else $2 
-    end,
+        WHEN $2 IS NULL THEN sidsy ELSE $2 
+    END,
     '%')
     AND LOWER(name) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $3 is null then name else $3
-        end,
+            WHEN $3 IS NULL THEN name ELSE $3
+        END,
         '%')
     )
     AND LOWER(surname) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $4 is null then surname else $4
-        end,
+            WHEN $4 IS NULL THEN surname ELSE $4
+        END,
         '%')
     )
     AND role =(
     CASE
-        WHEN $5 is null then role else $5
-    end
+        WHEN $5 IS NULL THEN role ELSE $5
+    END
     )
-    AND cast(phoneNumber as text) like
+    AND cast(phoneNumber AS text) LIKE
     CONCAT(
     CASE
-        WHEN $6 is null then phoneNumber else $6
-    end,
+        WHEN $6 IS NULL THEN phoneNumber ELSE $6
+    END,
     '%')
 $$  LANGUAGE sql;
 
@@ -118,49 +118,49 @@ RETURNS setof syntelestes AS
  $$
     
 
-    Select * from (
+    SELECT * FROM (
 
-        select sid, name, surname, role, phoneNumber
-        from getSyntelestes()
+        SELECT sid, name, surname, role, phoneNumber
+        FROM getSyntelestes()
         EXCEPT
-        select sidsy, name, surname, role, phoneNumber
-        from getSyntelestesek($1)
+        SELECT sidsy, name, surname, role, phoneNumber
+        FROM getSyntelestesek($1)
 
     ) a
-    where
-    CAST(sid as TEXT) like
+    WHERE
+    CAST(sid as TEXT) LIKE
     CONCAT(
     CASE
-        WHEN $2 is null then sid else $2 
-    end,
+        WHEN $2 IS NULL THEN sid ELSE $2 
+    END,
     '%')
     AND LOWER(name) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $3 is null then name else $3
-        end,
+            WHEN $3 IS NULL THEN name ELSE $3
+        END,
         '%')
     )
     AND LOWER(surname) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $4 is null then surname else $4
-        end,
+            WHEN $4 IS NULL THEN surname ELSE $4
+        END,
         '%')
     )
     AND role =(
     CASE
-        WHEN $5 is null then role else $5
-    end
+        WHEN $5 IS NULL THEN role ELSE $5
+    END
     )
-    AND cast(phoneNumber as text) like
+    AND cast(phoneNumber as text) LIKE
     CONCAT(
     CASE
-        WHEN $6 is null then phoneNumber else $6
-    end,
-    '%') order by sid;
+        WHEN $6 IS NULL THEN phoneNumber ELSE $6
+    END,
+    '%') ORDER BY sid;
 $$  LANGUAGE sql;
 
 
@@ -169,24 +169,24 @@ CREATE OR REPLACE FUNCTION checkif(idek integer,idsy integer)
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-        IF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
-        then
+        IF NOT EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        THEN
             return 0;
             -- Den yparxei kai yparxei gia prosthiki
-        ELSIF EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
-        then
+        ELSIF EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        THEN
             return 1;
             -- Yparxei hdh kai yparxei gia prosthiki
-        ELSIF EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND NOT EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
-        then
+        ELSIF EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        THEN
             return 2;
             -- yparxei kai den yparxei gia prosthiki
 
-        ELSIF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND NOT EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
-        then
+        ELSIF NOT EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        THEN
             return 3;
             -- den yparxei kai den yparxei gia prosthiki
-        else
+        ELSE
             return 4;
         END IF;
     END;
@@ -194,6 +194,6 @@ $function$;
 
 CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
 RETURNS SETOF syntelestesekp  AS $$
-    SELECT * FROM syntelestesekp where sidek = $1 order by sidsy;
+    SELECT * FROM syntelestesekp WHERE sidek = $1 ORDER BY sidsy;
 $$  LANGUAGE sql;
 
