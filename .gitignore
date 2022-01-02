@@ -3,3 +3,14 @@
 /ermisTv/target/
 /ermisTv/.idea/
 /ermisTv/app/config.properties
+demo/.idea/.gitignore
+demo/demo.iml
+demo/pom.xml
+demo/.idea/compiler.xml
+demo/.idea/encodings.xml
+demo/.idea/jarRepositories.xml
+demo/.idea/misc.xml
+demo/.idea/modules.xml
+demo/.idea/uiDesigner.xml
+demo/.idea/vcs.xml
+demo/src/main/java/module-info.java

@@ -1,12 +1,12 @@
-SELECT * from getByName('thanasis','karezos');
-SELECT * from Syntelestes where name = 'thanasis' AND surname = 'karezos';
+SELECT * FROM getByName('thanasis','karezos');
+SELECT * FROM Syntelestes WHERE name = 'thanasis' AND surname = 'karezos';
 
-UPDATE ekpompes SET name = 'kalhnyxta' where sid = 3 order by sid;
-Select * from ekpompes;
-Select * from ekpompes order by sid;
-Select * from getorder();
+UPDATE ekpompes SET name = 'kalhnyxta' WHERE sid = 3 ORDER BY sid;
+SELECT * FROM ekpompes;
+SELECT * FROM ekpompes ORDER BY sid;
+SELECT * FROM getorder();
 
-Select checkaccount('Thanasis', '1234');
-Select checkaccount('thanasis', '1234');
-Select * from checkaccount('Thanadsis', '1234');
-Select * from checkaccount('Peris', '1234');
+SELECT checkaccount('Thanasis', '1234');
+SELECT checkaccount('thanasis', '1234');
+SELECT * FROM checkaccount('Thanadsis', '1234');
+SELECT * FROM checkaccount('Peris', '1234');

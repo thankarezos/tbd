@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION "syntelestes"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    drop table IF EXISTS syntelestes cascade;
-    create table IF NOT EXISTS syntelestes
+    DROP TABLE IF EXISTS syntelestes CASCADE;
+    CREATE TABLE IF NOT EXISTS syntelestes
     (
         sid SERIAL,
         name varchar(20),
@@ -15,19 +15,19 @@ AS $function$
     );
 
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','The Builder','Builder','09099109346');
+        VALUES ('Bob','The Builder','Builder','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Ross','Painter','09099109346');
+        VALUES ('Bob','Ross','Painter','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Marley','Prime Minister','09099109346');
+        VALUES ('Bob','Marley','Prime MinISter','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Boba','Boilen','Creator','09099109346');
+        VALUES ('Bob','Boilen','Creator','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bobby Ray',' Simmons Jr.','Artist','09099109346');
+        VALUES ('Bobby Ray',' Simmons Jr.','ArtISt','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('perisa','Gousios','oxAMan','09099109346');
+        VALUES ('perIS','Gousios','oxAMan','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber) 
-        VALUES ('Athanasiosa','Karezos','oxFile','09099109346');
+        VALUES ('Athanasios','Karezos','oxFile','09099109346');
     INSERT INTO syntelestes (name,surname,role,phoneNumber)
         VALUES ('kai a','Ta ','Lipa','09099109346');
     
@@ -37,7 +37,7 @@ $function$;
 SELECT syntelestes();
 CREATE OR REPLACE FUNCTION getSyntelestes() 
 RETURNS SETOF syntelestes  AS $$
-    SELECT * FROM syntelestes  order by sid;
+    SELECT * FROM syntelestes  ORDER BY sid;
 $$  LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION addSyntelestes(name text, surname text,role text,phoneNumber text)
@@ -61,40 +61,40 @@ AS $function$
 $function$;
 
 CREATE OR REPLACE FUNCTION getResultSyntelestes(int,text,text,text,text) 
-RETURNS setof syntelestes AS
+RETURNS SETOF syntelestes AS
  $$
     Select * from syntelestes 
-    where CAST(sid as TEXT) like
+    where CAST(sid AS TEXT) like
     CONCAT(
     CASE
-        WHEN $1 is null then sid else $1 
-    end,
+        WHEN $1 IS NULL THEN sid ELSE $1 
+    END,
     '%')
     AND LOWER(name) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $2 is null then name else $2
-        end,
+            WHEN $2 IS NULL THEN name ELSE $2
+        END,
         '%')
     )
     AND LOWER(surname) LIKE
     LOWER(
         CONCAT('%',
         CASE
-            WHEN $3 is null then surname else $3
-        end,
+            WHEN $3 IS NULL THEN surname ELSE $3
+        END,
         '%')
     )
     AND role =(
     CASE
-        WHEN $4 is null then role else $4
-    end
+        WHEN $4 IS NULL THEN role ELSE $4
+    END
     )
-    AND cast(phoneNumber as text) like
+    AND cast(phoneNumber AS text) like
     CONCAT(
     CASE
-        WHEN $5 is null then phoneNumber else $5
-    end,
+        WHEN $5 IS NULL THEN phoneNumber ELSE $5
+    END,
     '%')
 $$  LANGUAGE sql

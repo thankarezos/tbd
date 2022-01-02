@@ -6,47 +6,47 @@ SELECT program_pr();
 SELECT staff();
 SELECT syntelestes();
 
-SELECT dropdb();
-SELECT dropekpompes();
+SELECT DROPdb();
+SELECT DROPekpompes();
 SELECT createekpompes();
 SELECT ekpompes();
-select * from getekpompes();
-select addbroadcast('gia sas','18','50');
-select taskperiods();
+SELECT * FROM getekpompes();
+SELECT addbroadcast('gia sas','18','50');
+SELECT taskperiods();
 
-    insert into TaskPeriods
-    select
+    INSERT INTO TaskPeriods
+    SELECT
     1,'Task A', '20180110 10:00:00', '20180120 18:00:00'; 
-    insert into TaskPeriods
-    select
+    INSERT into TaskPeriods
+    SELECT
     2,'Task A', '20180115 05:00:00 ', '20180130 23:00:00';
-select taskset();
+SELECT taskset();
 
-select
- case when
-  ('20180110 10:00:00' between t2.startDate and t2.endDate) or
-  ('20180120 18:00:00' between t2.startDate and t2.endDate) or
-  ('20180110 10:00:00' < t2.startDate and '20180120 18:00:00' > t2.endDate) or
-  ('20180110 10:00:00' > t2.startDate and '20180120 18:00:00' < t2.endDate)
- then
+SELECT
+ CASE WHEN
+  ('20180110 10:00:00' BETWEEN t2.startDate AND t2.endDate) OR
+  ('20180120 18:00:00' BETWEEN t2.startDate AND t2.endDate) OR
+  ('20180110 10:00:00' < t2.startDate AND '20180120 18:00:00' > t2.endDate) OR
+  ('20180110 10:00:00' > t2.startDate AND '20180120 18:00:00' < t2.endDate)
+ THEN
   'yes'
- else
+ ELSE
   'no'
- end as OverLapping
-from TaskPeriods as t2
+ END AS OverLapping
+FROM TaskPeriods AS t2
 --getResult
-select * from getResult(null,null,null,50,200);
-select * from getResultSyntelestes(null,null,null,'Painter',null);
-select deleteEkpompi(1);
-select Distinct role from getSyntelestes();
-select rating from pg_type where typname;
+SELECT * FROM getResult(NULL,NULL,NULL,50,200);
+SELECT * FROM getResultSyntelestes(NULL,NULL,NULL,'Painter',NULL);
+SELECT deleteEkpompi(1);
+SELECT DISTINCT role FROM getSyntelestes();
+SELECT rating FROM pg_type WHERE typname;
 SELECT * FROM pg_type;
-select pg_type(rating);
+SELECT pg_type(rating);
 SELECT unnest(enum_range(NULL::rating)) 
 SELECT enum_range(NULL::rating) 
 
-drop table IF EXISTS syntelestesekp cascade;
-    create table IF NOT EXISTS syntelestesekp
+DROP TABLE IF EXISTS syntelestesekp CASCADE;
+    create TABLE IF NOT EXISTS syntelestesekp
     (   
         sidek  integer,
         nameek varchar(20),
@@ -65,50 +65,50 @@ INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
 INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
 SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
 FROM ekpompes,syntelestes
-where ekpompes.sid=1 and syntelestes.sid=1;
+WHERE ekpompes.sid=1 AND syntelestes.sid=1;
 
 INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
 SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
 FROM ekpompes,syntelestes
-where ekpompes.sid=2 and syntelestes.sid=2 ;
+WHERE ekpompes.sid=2 AND syntelestes.sid=2 ;
 
 INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
 SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
 FROM ekpompes,syntelestes
-where ekpompes.sid=2 and syntelestes.sid=1 ;
+WHERE ekpompes.sid=2 AND syntelestes.sid=1 ;
 
 
 INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
 SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
 FROM ekpompes,syntelestes
-where ekpompes.sid=1 and syntelestes.sid=3 ;
+WHERE ekpompes.sid=1 AND syntelestes.sid=3 ;
 
-select * from getResultSykminus(1,null,null,null,null,null);
+SELECT * FROM getResultSykminus(1,NULL,NULL,NULL,NULL,NULL);
 
-Select * from table1 crossjoin table2;
+SELECT * FROM TABLE1 crossjoin TABLE2;
 
 INSERT INTO syntelestesekp (sidek,sidsy,name,surname,role,phoneNumber)
 SELECT column1, column2, column3, ...
-FROM table1
+FROM TABLE1
 WHERE condition;
 
-select * from syntelestesekp order by sidek,sidsy;
-select * getResultSykminus(1,null,null,null,null,null); 
+SELECT * FROM syntelestesekp ORDER BY sidek,sidsy;
+SELECT * getResultSykminus(1,NULL,NULL,NULL,NULL,NULL); 
 
 
-select addSyntelestesek(3,3);
-select deleteEkpompi(6);
-select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT select sidek from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") where sidsy = " + id + ";
+SELECT addSyntelestesek(3,3);
+SELECT deleteEkpompi(6);
+SELECT * FROM getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT SELECT sidek FROM getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") WHERE sidsy = " + id + ";
 SELECT *
 FROM  getSyntelestesek(1) 
 [WHERE condition]
 
-select addSyntelestesek(1,1)
+SELECT addSyntelestesek(1,1)
 
-IF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(1) where sid = 1 )
+IF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(1) WHERE sid = 1 )
 BEGIN
     SELECT * FROM  getSyntelestesek(1) 
 END
 
-select checkif(1,4);
+SELECT checkif(1,4);
 
