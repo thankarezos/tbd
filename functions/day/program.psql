@@ -9,14 +9,24 @@ AS $function$
     CREATE TABLE IF NOT EXISTS programs
     (
         identry SERIAL,
-        sidE int,
+        sid int,
         name varchar(100),
+        rating varchar,
         strtime int,
         endtime int,
         time int,
         day pr_day,
         primary key(identry)
     );
+        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+
+-- select * from ekpompes
+-- select * from programs
+
     END;
 $function$;
 
