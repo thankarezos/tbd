@@ -161,4 +161,39 @@ RETURNS setof syntelestes AS
         WHEN $6 is null then phoneNumber else $6
     end,
     '%') order by sid;
-$$  LANGUAGE sql
+$$  LANGUAGE sql;
+
+
+CREATE OR REPLACE FUNCTION checkif(idek integer,idsy integer)
+ RETURNS integer
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+        IF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
+        then
+            return 0;
+            -- Den yparxei kai yparxei gia prosthiki
+        ELSIF EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
+        then
+            return 1;
+            -- Yparxei hdh kai yparxei gia prosthiki
+        ELSIF EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND NOT EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
+        then
+            return 2;
+            -- yparxei kai den yparxei gia prosthiki
+
+        ELSIF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(idek) where sidsy = idsy) AND NOT EXISTS ( SELECT 1 FROM getSyntelestes() where sid = idsy)
+        then
+            return 3;
+            -- den yparxei kai den yparxei gia prosthiki
+        else
+            return 4;
+        END IF;
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
+RETURNS SETOF syntelestesekp  AS $$
+    SELECT * FROM syntelestesekp where sidek = $1 order by sidsy;
+$$  LANGUAGE sql;
+

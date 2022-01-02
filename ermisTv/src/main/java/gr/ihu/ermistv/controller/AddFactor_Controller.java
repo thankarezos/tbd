@@ -29,6 +29,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,7 +66,6 @@ public class AddFactor_Controller implements Initializable {
 
     @FXML
     private void reloadFactor(MouseEvent event) {
-        System.out.println("empty");
         filterSyntelestes();
         createRole();
         syntelestisID.clear();
@@ -89,20 +90,39 @@ public class AddFactor_Controller implements Initializable {
     // Load Results Syntelestes
     @FXML
     private void addfactor() {
-        try {
-                String addSyntelestes = "select addSyntelestesek(" + this.id + ",1);";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-
-                System.out.println("Success");
+        Iterator it = add.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
+            Statement statement;
+            try {
+                statement = DBConnection.c.createStatement();
+                ResultSet rscheck = statement.executeQuery(checkif);
+                rscheck.next();
+                if(rscheck.getInt(1) == 0){
+                    
+                    String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
+                    ResultSet rs = statement.executeQuery(addSyntelestes);
+                }
+                if(rscheck.getInt(1) == 3){
+                    System.out.println("Factor does not exist");
+                }
                 
-                Pop.toBack();
-                seC.filterSyntelestes();
-                seC.createRole();
                 
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            it.remove();
+            add.remove(pair.getKey());
+            
+//            System.out.println(pair.getKey() + " = " + pair.getValue());
+             // avoids a ConcurrentModificationException
         }
+        Pop.toBack();
+        seC.filterSyntelestes();
+        seC.createRole();
+        
 
     }
     
@@ -156,7 +176,6 @@ public class AddFactor_Controller implements Initializable {
                             HBox hboxC = (HBox) hbox.getChildren().get(0);
                             Text text2 = (Text) hboxC.getChildren().get(0);
                             int id = Integer.parseInt(text2.getText());
-                            System.out.println("test");
                             
                             HboxEnch hbox = (HboxEnch) event.getSource();
                             hbox.getChildren().get(0);
@@ -173,7 +192,7 @@ public class AddFactor_Controller implements Initializable {
     
                             }
                             else{
-                                add.put(id, 15);
+                                add.put(id, id);
                                 for (int i = 0; i < hbox.getChildren().size(); i++) {
                                     
                                     
@@ -182,7 +201,6 @@ public class AddFactor_Controller implements Initializable {
                                 }
                                 hbox.setState(true); 
                             }
-                            System.out.println(add);
 
                             
                             
@@ -241,7 +259,6 @@ public class AddFactor_Controller implements Initializable {
         try {
             statement = DBConnection.c.createStatement();
             String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" +this.id+ ");";
-            System.out.println(id);
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
@@ -259,7 +276,6 @@ public class AddFactor_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(id);
         createRole();
 
         syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {

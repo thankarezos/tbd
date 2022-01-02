@@ -56,6 +56,7 @@ CREATE OR REPLACE FUNCTION deleteSyntelestes(id integer)
 AS $function$
     BEGIN
     DELETE FROM syntelestes where sid = id;
+    DELETE FROM syntelestesekp where sidsy = id;
     END;
 $function$;
 

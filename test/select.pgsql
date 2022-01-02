@@ -100,7 +100,15 @@ select addSyntelestesek(3,3);
 select deleteEkpompi(6);
 select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT select sidek from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") where sidsy = " + id + ";
 SELECT *
-FROM getSyntelestesek(1) 
+FROM  getSyntelestesek(1) 
 [WHERE condition]
 
+select addSyntelestesek(1,1)
+
+IF NOT EXISTS ( SELECT 1 FROM getSyntelestesek(1) where sid = 1 )
+BEGIN
+    SELECT * FROM  getSyntelestesek(1) 
+END
+
+select checkif(1,4);
 
