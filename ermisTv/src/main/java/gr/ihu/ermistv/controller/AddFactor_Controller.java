@@ -3,6 +3,7 @@ package gr.ihu.ermistv.controller;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.HboxEnch;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,6 +82,7 @@ public class AddFactor_Controller implements Initializable {
     private Pane mainP;
     private int id;
     private ArrayList<String> Role = new ArrayList<String>();
+    private HashMap<Integer,Integer> add = new HashMap<Integer,Integer>(); 
 
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
@@ -92,59 +95,34 @@ public class AddFactor_Controller implements Initializable {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (rs.next()) {
-                HBox hbox = new HBox();
-
+                HboxEnch hbox = new HboxEnch();
+                
                 for (int i = 1; i <= columnsNumber; i++) {
 
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
-                    hboxinside.getStyleClass().add("hboxStyle");
+                    
                     hboxinside.setPrefWidth(131);
                     hboxinside.setAlignment(CENTER);
+                    hboxinside.getStyleClass().add("hboxStyle");
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
+                    if(add.containsKey(Integer.parseInt(rs.getString(1)))){
+                        
+                        hboxinside.getStyleClass().add("hboxStylehover");
+                        hbox.setState(true);
+                    }
+                    else{
+                        hboxinside.getStyleClass().clear();
+                        hboxinside.getStyleClass().add("hboxStyle");
+                        hbox.setState(false);
+                    }
                     text.setWrappingWidth(80);
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
 
-                    hbox.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().add("hboxStylehover");
-                                    }
-
-                                }
-                            });
-
-                    hbox.addEventHandler(MouseEvent.MOUSE_EXITED,
-                            new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent event) {
-
-                                    HBox hbox = (HBox) event.getSource();
-                                    hbox.getChildren().get(0);
-                                    hbox.getChildren();
-
-                                    for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                        HBox pane = (HBox) hbox.getChildren().get(i);
-                                        pane.getStyleClass().clear();
-                                        pane.getStyleClass().add("hboxStyle");
-                                        Text text = (Text) pane.getChildren().get(0);
-                                    }
-
-                                }
-                            });
 
                 }
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -152,24 +130,45 @@ public class AddFactor_Controller implements Initializable {
                     @Override
                     public void handle(MouseEvent event) {
                         MouseButton button = event.getButton();
-                        if (button == MouseButton.SECONDARY) {
-                            ContextMenu menu = new ContextMenu();
-                            MenuItem item = new MenuItem();
-                            item.setText("Delete");
-                            menu.getItems().add(item);
-                            menu.show(hbox, event.getScreenX(), event.getScreenY());
-                            item.setOnAction(event2 -> {
-                                HBox hboxC = (HBox) hbox.getChildren().get(0);
-                                Text text2 = (Text) hboxC.getChildren().get(0);
-                                String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
-                                try {
-                                    statement.executeQuery(deleteek);
-                                    filterSyntelestes();
-
-                                } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        if (button == MouseButton.PRIMARY) {
+                            HBox hboxC = (HBox) hbox.getChildren().get(0);
+                            Text text2 = (Text) hboxC.getChildren().get(0);
+                            int id = Integer.parseInt(text2.getText());
+                            System.out.println("test");
+                            
+                            HboxEnch hbox = (HboxEnch) event.getSource();
+                            hbox.getChildren().get(0);
+                            hbox.getChildren();
+                            if(hbox.getState()){
+                                add.remove(id);
+                                for (int i = 0; i < hbox.getChildren().size(); i++) {
+                                    HBox pane = (HBox) hbox.getChildren().get(i);
+                                    pane.getStyleClass().clear();
+                                    pane.getStyleClass().add("hboxStyle");
+                                    Text text = (Text) pane.getChildren().get(0);
+                                 }
+                                hbox.setState(false); 
+    
+                            }
+                            else{
+                                add.put(id, 15);
+                                for (int i = 0; i < hbox.getChildren().size(); i++) {
+                                    
+                                    
+                                    HBox pane = (HBox) hbox.getChildren().get(i);
+                                    pane.getStyleClass().add("hboxStylehover");
                                 }
-                            });
+                                hbox.setState(true); 
+                            }
+                            System.out.println(add);
+
+                            
+                            
+//                            HBox hbox = (HBox) event.getSource();
+//                            hbox.getChildren().get(0);
+//                            hbox.getChildren();
+//
+//                            
                         }
 
                     }
