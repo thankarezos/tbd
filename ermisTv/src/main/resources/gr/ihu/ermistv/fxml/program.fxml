@@ -1,14 +1,237 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gr.ihu.ermistv.controller.Program_Controller"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox layoutX="100.0">
+               <children>
+                  <VBox prefWidth="400.0" spacing="1.0" style="-fx-background-color: black;">
+                     <children>
+                        <Pane prefHeight="0.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                        <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label alignment="CENTER" text="00:00">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" text="00:30">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" top="6.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox layoutX="100.0" prefWidth="300.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: red;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="100.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: red;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: red;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="850.0" styleClass="child" stylesheets="@../css/style.css">
+         <children>
+            <ScrollPane layoutX="28.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="822.0" style="-fx-background-color: transparent;">
+               <content>
+                  <VBox prefHeight="800.0" prefWidth="788.0">
+                     <children>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="799.0">
+                           <children>
+                              <VBox fx:id="emptypane" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="736.0" spacing="3.0">
+                                 <children>
+                                    <Pane prefHeight="0.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                    <Pane prefHeight="14.0" style="-fx-background-color: white;" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="time" layoutX="735.0" prefHeight="483.0" prefWidth="69.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="14.0" prefWidth="50.0" text="00:00">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="00:30">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="01:00">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="14.0" prefWidth="50.0" text="01:30">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" text="00:30">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="program" prefHeight="270.0" prefWidth="466.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: red;">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="30.0" prefWidth="200.0">
+                                       <children>
+                                          <Pane prefHeight="100.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: red;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="120.0" prefWidth="200.0" style="-fx-background-color: red;">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
