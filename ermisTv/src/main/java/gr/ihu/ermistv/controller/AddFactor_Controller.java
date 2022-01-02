@@ -99,12 +99,13 @@ public class AddFactor_Controller implements Initializable {
                 statement = DBConnection.c.createStatement();
                 ResultSet rscheck = statement.executeQuery(checkif);
                 rscheck.next();
-                if(rscheck.getInt(1) == 0){
+                int returncode = rscheck.getInt(1);
+                if(returncode == 0){
                     
                     String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                     ResultSet rs = statement.executeQuery(addSyntelestes);
                 }
-                if(rscheck.getInt(1) == 3){
+                else if(returncode == 3){
                     System.out.println("Factor does not exist");
                 }
                 
