@@ -17,10 +17,9 @@ AS $function$
 		timew time(4)NOT NULL
 	);
     END;
-$function$
-
-	-- INSERT INTO program_pr (day_pr,name_pr,type_pr,timew) VALUES ('monday','black','series','24:');
-
+$function$;
+select program_pr();
+INSERT INTO program_pr (day_pr,name_pr,type_pr,timew) VALUES ('monday','black','series','24:');
     -- SELECT * FROM program_pr
 
     -- DROP TABLE program

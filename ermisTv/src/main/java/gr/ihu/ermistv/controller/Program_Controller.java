@@ -1,13 +1,26 @@
 package gr.ihu.ermistv.controller;
 
+import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.HboxEnch;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import static javafx.geometry.Pos.CENTER;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -16,6 +29,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class Program_Controller implements Initializable{
     
@@ -173,27 +187,67 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
-        int halfhours; 
+        double halfhours ; 
         
-        HBox hbox = new HBox();
-        hbox.setPrefHeight(466);
-        hbox.setStyle("-fx-background-color:red");
-        halfhours = 120/30;
-        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-        program.getChildren().add(hbox);
-        
-        hbox = new HBox();
-        hbox.setPrefHeight(466);
-        halfhours = 60/30;
-        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-        program.getChildren().add(hbox);
-        
-        hbox = new HBox();
-        hbox.setPrefHeight(466);
-        hbox.setStyle("-fx-background-color:red");
-        halfhours = 300/30;
-        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-        program.getChildren().add(hbox);
+//        HBox hbox = new HBox();
+//        hbox.setPrefHeight(466);
+//        hbox.setStyle("-fx-background-color:red");
+//        halfhours = 120/30;
+//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+//        program.getChildren().add(hbox);
+//        
+//        hbox = new HBox();
+//        hbox.setPrefHeight(466);
+//        halfhours = 60/30;
+//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+//        program.getChildren().add(hbox);
+//        
+//        hbox = new HBox();
+//        hbox.setPrefHeight(466);
+//        hbox.setStyle("-fx-background-color:red");
+//        halfhours = 300/30;
+//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+//        program.getChildren().add(hbox);
+//        
+        String getSyntelestes = "select * from getPrograms()";
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getSyntelestes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            
+            double pTime = 0;
+            while (rs.next()) {
+//                HBox hboxS = new HBox();
+//                
+//                
+//                program.getChildren().add(hboxS);
+//                
+//                if(rs.getInt("strtime") - pTime  > 0){
+//                    
+//                }
+                
+
+                HBox hbox = new HBox();
+                halfhours = (rs.getDouble("strtime") - pTime)/30;
+//                System.out.println(halfhours);
+                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                program.getChildren().add(hbox);
+
+                hbox = new HBox();
+                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
+//                hbox.setStyle();
+                halfhours = rs.getDouble("time")/30;
+                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                program.getChildren().add(hbox);
+                pTime = rs.getDouble("strtime") + rs.getDouble("time");
+                System.out.println("endtime " + pTime);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
         
     }

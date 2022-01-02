@@ -18,11 +18,12 @@ AS $function$
         day pr_day,
         primary key(identry)
     );
-        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
-        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
-        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
-        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
-        INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday')
+    INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','30','60','15','Monday');
+    INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','90','150','60','Monday');
+    INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','210','240','30','Monday');
+    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
+    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
+    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
 
 -- select * from ekpompes
 -- select * from programs
@@ -53,4 +54,6 @@ AS $function$
     DELETE FROM programs where identry = id;
     END;
 $function$;
+
+
 
