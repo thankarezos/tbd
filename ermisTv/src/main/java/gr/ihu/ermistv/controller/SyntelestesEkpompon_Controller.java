@@ -183,6 +183,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                 try {
                                     statement.executeQuery(deleteek);
                                     filterSyntelestes();
+                                    createRole();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -202,7 +203,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     }
 
     // Filter Syntelestes
-    private void filterSyntelestes() {
+    public void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
         if (Secondary_Controller.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
             id = "null";
@@ -233,42 +234,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     }
 
     // add Factor Syntelestes
-    @FXML
-    private void addfactor() {
-        try {
-            String name = addFacName.getText();
-            String surname = addFacSurname.getText();
-            String role = addFacRole.getText();
-            String phoneN = addFacPhoneN.getText();
-
-            if (name == "") {
-                facErrLabel.setText("ADD NAME!");
-            } else if (surname == "") {
-                facErrLabel.setText("ADD SURNAME!");
-            } else if (role == "") {
-                facErrLabel.setText("ADD ROLE ");
-            } else if (phoneN == "") {
-                facErrLabel.setText("ADD PHONE NUMBER ");
-            } else {
-                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
-                        + phoneN + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-
-                System.out.println("Success");
-                filterSyntelestes();
-                addFacName.clear();
-                addFacSurname.clear();
-                addFacRole.clear();
-                addFacPhoneN.clear();
-                facErrLabel.setText("");
-                paneSyntelestes.toFront();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+    
 
     @FXML
     private void addFactor(MouseEvent event) {
@@ -276,7 +242,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         createRole();
     }
 
-    private void createRole() {
+    public void createRole() {
 
         Statement statement;
         try {
@@ -359,8 +325,9 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
-            AddFactor_Controller controller = new AddFactor_Controller(id);
+            AddFactor_Controller controller = new AddFactor_Controller(id,this);
             loader.setController(controller);
+            controller.setPop(addFactor);
             popupFactor.getChildren().add(loader.load());
 
         } catch (IOException ex) {

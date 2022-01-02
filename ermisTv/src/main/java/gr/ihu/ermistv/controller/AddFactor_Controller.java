@@ -73,18 +73,40 @@ public class AddFactor_Controller implements Initializable {
         syntelestisPhoneN.clear();
     }
 
-    AddFactor_Controller(int id) {
+    AddFactor_Controller(int id,SyntelestesEkpompon_Controller seC) {
         this.id = id;
+        this.seC = seC;
     }
 
 
-    private AnchorPane mainAp;
+    private AnchorPane Pop;
     private Pane mainP;
     private int id;
+    private SyntelestesEkpompon_Controller seC;
     private ArrayList<String> Role = new ArrayList<String>();
     private HashMap<Integer,Integer> add = new HashMap<Integer,Integer>(); 
 
     // Load Results Syntelestes
+    @FXML
+    private void addfactor() {
+        try {
+                String addSyntelestes = "select addSyntelestesek(" + this.id + ",1);";
+                Statement statement = DBConnection.c.createStatement();
+                ResultSet rs = statement.executeQuery(addSyntelestes);
+
+                System.out.println("Success");
+                
+                Pop.toBack();
+                seC.filterSyntelestes();
+                seC.createRole();
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSykminus("+ this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
@@ -264,8 +286,8 @@ public class AddFactor_Controller implements Initializable {
         this.id = id;
     }
 
-    public void setAp(AnchorPane ap) {
-        mainAp = ap;
+    public void setPop(AnchorPane pop) {
+        Pop = pop;
     }
 
     public void setP(Pane p) {
