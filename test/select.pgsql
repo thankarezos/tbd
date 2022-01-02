@@ -83,7 +83,7 @@ SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, 
 FROM ekpompes,syntelestes
 where ekpompes.sid=1 and syntelestes.sid=3 ;
 
-
+select * from getResultSykminus(1,null,null,null,null,null);
 
 Select * from table1 crossjoin table2;
 
@@ -93,6 +93,14 @@ FROM table1
 WHERE condition;
 
 select * from syntelestesekp order by sidek,sidsy;
+select * getResultSykminus(1,null,null,null,null,null); 
+
 
 select addSyntelestesek(3,3);
 select deleteEkpompi(6);
+select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT select sidek from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") where sidsy = " + id + ";
+SELECT *
+FROM getSyntelestesek(1) 
+[WHERE condition]
+
+

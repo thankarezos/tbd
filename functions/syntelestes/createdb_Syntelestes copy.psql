@@ -69,6 +69,8 @@ AS $function$
     END;
 $function$;
 
+
+
 CREATE OR REPLACE FUNCTION getResultSyntelestesek(int,int,text,text,text,text) 
 RETURNS setof syntelestesekp AS
  $$
@@ -108,4 +110,55 @@ RETURNS setof syntelestesekp AS
         WHEN $6 is null then phoneNumber else $6
     end,
     '%')
+$$  LANGUAGE sql;
+
+
+CREATE OR REPLACE FUNCTION getResultSykminus(int,int,text,text,text,text) 
+RETURNS setof syntelestes AS
+ $$
+    
+
+    Select * from (
+
+        select sid, name, surname, role, phoneNumber
+        from getSyntelestes()
+        EXCEPT
+        select sidsy, name, surname, role, phoneNumber
+        from getSyntelestesek($1)
+
+    ) a
+    where
+    CAST(sid as TEXT) like
+    CONCAT(
+    CASE
+        WHEN $2 is null then sid else $2 
+    end,
+    '%')
+    AND LOWER(name) LIKE
+    LOWER(
+        CONCAT('%',
+        CASE
+            WHEN $3 is null then name else $3
+        end,
+        '%')
+    )
+    AND LOWER(surname) LIKE
+    LOWER(
+        CONCAT('%',
+        CASE
+            WHEN $4 is null then surname else $4
+        end,
+        '%')
+    )
+    AND role =(
+    CASE
+        WHEN $5 is null then role else $5
+    end
+    )
+    AND cast(phoneNumber as text) like
+    CONCAT(
+    CASE
+        WHEN $6 is null then phoneNumber else $6
+    end,
+    '%') order by sid;
 $$  LANGUAGE sql

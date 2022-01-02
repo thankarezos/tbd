@@ -84,7 +84,7 @@ public class AddFactor_Controller implements Initializable {
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") EXCEPT select sidek from getResultSyntelestesek(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ") where sidsy = " + id + ";";
+        String getSyntelestes = "select * from getResultSykminus("+ this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
