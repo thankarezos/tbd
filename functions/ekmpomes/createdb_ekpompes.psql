@@ -51,6 +51,7 @@ AS $function$
     VALUES (name,rating,times);
     END;
 $function$;
+
 CREATE OR REPLACE FUNCTION deleteEkpompi(id integer)
  RETURNS void
  LANGUAGE plpgsql
@@ -60,6 +61,7 @@ AS $function$
     DELETE FROM syntelestesekp WHERE sidek = id ;
     END;
 $function$;
+
 CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int) 
 RETURNS setof ekpompes AS
  $$
