@@ -1,9 +1,0 @@
-CREATE OR REPLACE FUNCTION imports(name text,surname text,role text,phoneNumber text)
- RETURNS void
- LANGUAGE plpgsql
-AS $function$
-    BEGIN
-    INSERT INTO Syntelestes (name,surname,role,phoneNumber)
-    VALUES (name,surname,role,phoneNumber);
-    END;
-$function$

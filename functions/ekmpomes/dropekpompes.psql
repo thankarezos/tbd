@@ -3,6 +3,6 @@ CREATE OR REPLACE FUNCTION dropekpompes()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    drop table IF EXISTS ekpompes cascade;
+    DROP TABLE IF EXISTS ekpompes CASCADE;
     END;
 $function$

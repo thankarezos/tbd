@@ -1,0 +1,40 @@
+CREATE OR REPLACE FUNCTION "account"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DROP TABLE IF EXISTS account CASCADE;
+    CREATE TABLE account
+    (
+        username varchar(100),
+        pass varchar(100),
+        primary key(username)
+    );
+
+    INSERT INTO account(username,pass) VALUES ('Thanasis', '1234'); 
+    INSERT INTO account(username,pass) VALUES ('Peris', '1234');
+    INSERT INTO account(username,pass) VALUES ('thanasis', '1234'); 
+    INSERT INTO account(username,pass) VALUES ('peris', '1234'); 
+    END;
+$function$
+
+SELECT account();
+
+CREATE OR REPLACE FUNCTION checkaccount(varchar(100),varchar(100)) 
+    RETURNS integer AS $$
+        SELECT 1 FROM account WHERE username = $1 AND pass = $2;
+$$  LANGUAGE sql
+
+--select checkaccount('peris','1234')
+
+-- CREATE OR REPLACE FUNCTION checkaccounts(varchar(100),varchar(100)) 
+--     RETURNS integer AS $$
+--         SELECT 1 FROM account WHERE username = $1 AND pass = $2;
+-- $$  LANGUAGE sql
+--select checkaccounts('peris','1234')
+
+--DROP function checkaccount
+
+--Select * from account
+
+--DROP TABLE account CASCADE

@@ -3,6 +3,6 @@ CREATE OR REPLACE FUNCTION dropdb()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    drop table IF EXISTS Syntelestes;
+    DROP TABLE IF EXISTS Syntelestes;
     END;
 $function$

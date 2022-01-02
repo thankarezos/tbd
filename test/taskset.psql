@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION "taskset"(/* arguments */)
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    create table TaskPeriods (
+    CREATE TABLE TaskPeriods (
         id int,
         task varchar(10),
         startDate timestamp,

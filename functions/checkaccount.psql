@@ -1,3 +1,0 @@
-CREATE OR REPLACE FUNCTION checkaccount(varchar(100),varchar(100)) RETURNS account AS $$
-    Select * from account where username = $1 AND pass = $2;
-$$  LANGUAGE sql

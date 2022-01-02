@@ -1,0 +1,46 @@
+CREATE OR REPLACE FUNCTION "programs"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pr_day') THEN 
+    CREATE type pr_day as enum('Monday' ,'Tuesday','Wednesday', 'Thursday','Friday','Saturday','Sunday')  ;END IF;
+    DROP TABLE IF EXISTS programs cascade;
+    CREATE TABLE IF NOT EXISTS programs
+    (
+        identry SERIAL,
+        sidE int,
+        name varchar(100),
+        strtime int,
+        endtime int,
+        time int,
+        day pr_day,
+        primary key(identry)
+    );
+    END;
+$function$;
+
+SELECT programs();
+CREATE OR REPLACE FUNCTION getPrograms() RETURNS SETOF programs  AS $$
+    SELECT * FROM programs ORDER BY identry;
+$$  LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION addPrograms(sidE int, name text, strtime int, endtime int, times int, day text)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    INSERT INTO programs (sidE,name,strtime,endtime,time,day)
+    VALUES (sidE,name,strtime,endtime,times,day);
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION deletePrograms(id int)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DELETE FROM programs where identry = id;
+    END;
+$function$;
+

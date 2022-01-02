@@ -3,24 +3,24 @@ CREATE OR REPLACE FUNCTION "program_pr"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    if not EXISTS (SELECT 1 FROM pg_type WHERE typname = 'day_pr') then 
-    create type day_pr as enum ('monday','tuesday','wednesday','thrusday','friday','saturday','sunday');END IF;
-	if not EXISTS (SELECT 1 FROM pg_type st WHERE typname = 'type_pr') then 
-    create type type_pr as enum ('movie','series','broadcast','documentary','NEWS');END IF;
-    drop table if EXISTS program_pro;
-    create table if not EXISTS program_pr
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'day_pr') THEN 
+    CREATE type day_pr AS ENUM ('monday','tuesday','wednesday','thrusday','friday','saturday','sunday');END IF;
+	IF NOT EXISTS (SELECT 1 FROM pg_type st WHERE typname = 'type_pr') THEN 
+    CREATE type type_pr AS ENUM ('movie','series','broadcast','documentary','NEWS');END IF;
+    DROP TABLE IF EXISTS program_pro;
+    CREATE TABLE IF NOT EXISTS program_pr
     (
 	    program_id SERIAL ,
 		day_pr day_pr ,
-		name_pr varchar(100)not null,
+		name_pr varchar(100)NOT NULL,
 		type_pr type_pr ,
-		timew time(4)not null
+		timew time(4)NOT NULL
 	);
     END;
 $function$
 
-	-- insert into program_pr (day_pr,name_pr,type_pr,timew) values ('monday','black','series','24:');
+	-- INSERT INTO program_pr (day_pr,name_pr,type_pr,timew) VALUES ('monday','black','series','24:');
 
-    -- select * from program_pr
+    -- SELECT * FROM program_pr
 
-    -- drop table program
+    -- DROP TABLE program
