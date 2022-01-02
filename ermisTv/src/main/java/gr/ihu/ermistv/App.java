@@ -15,6 +15,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 //import com.jcraft.jsch.*;
 //import java.util.Properties;
+
 /**
  * JavaFX App
  */
@@ -43,14 +44,14 @@ public class App extends Application {
 
     }
 
-    public static void main(String[] args) throws SQLException{
-        
+    public static void main(String[] args) throws SQLException {
+
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
 //        
-        
+
         DBConnection.connect(url, user, pass);
         launch();
     }

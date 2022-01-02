@@ -159,7 +159,7 @@ public class Ekpompi_Controller implements Initializable {
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.getStyleClass().add("hboxStyle");
-                    hboxinside.setPrefWidth(198);
+                    hboxinside.setPrefWidth(201);
                     hboxinside.setAlignment(CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
