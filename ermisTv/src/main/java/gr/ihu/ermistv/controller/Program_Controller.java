@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ResourceBundle;
+
+import javafx.beans.DefaultProperty;
+import javafx.collections.ObservableList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
@@ -17,6 +20,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import static javafx.geometry.Pos.CENTER;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
@@ -27,26 +33,42 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+
 import javafx.scene.text.Text;
+import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.TextAlignment;
 
 public class Program_Controller implements Initializable{
-    
+
+    @FXML
+    private Button btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday, btnSaturday, btnSunday;
     @FXML
     private VBox emptypane, time, program;
-    
-    private String[] days = {"Monday","Tuesday","Thurstday","Wednesday","Friday","Saturday","Sunday"};
-    private String[] colors = {"white","grey","Thurstday","Wednesday","Friday","Saturday","Sunday"};
+    //@FXML
+    //private ScrollPane scrollPane;
+
+    private String[] days = {"Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
+    private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private int daysize = 130;
     private int emptyS = 15;
     private double spaces = 5;
     private double spacesH = 10;
-     
-    
+//    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        ZoomableScrollPane dayZ =new ZoomableScrollPane();
+        //ZoomableScrollPane zoomablePane = (ZoomableScrollPane) scrollPane;
+
+        dayZ.getId();
+//        System.out.println(scrollPane.getId());
+
+
         program.setLayoutX(daysize + spacesH);
         emptypane.setSpacing(spaces);
         time.setSpacing(spaces);
@@ -72,7 +94,9 @@ public class Program_Controller implements Initializable{
             dayBox.setStyle("-fx-background-color:red");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
-            
+//            scrollDay.put(days[i - 1], dayBox);
+
+
             for(int j = 1; j <=47;j++){
 
                     HBox hbox = new HBox();
@@ -187,7 +211,7 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
-        double halfhours ; 
+        double halfhours ;
         
 //        HBox hbox = new HBox();
 //        hbox.setPrefHeight(466);
@@ -195,20 +219,20 @@ public class Program_Controller implements Initializable{
 //        halfhours = 120/30;
 //        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
 //        program.getChildren().add(hbox);
-//        
+//
 //        hbox = new HBox();
 //        hbox.setPrefHeight(466);
 //        halfhours = 60/30;
 //        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
 //        program.getChildren().add(hbox);
-//        
+//
 //        hbox = new HBox();
 //        hbox.setPrefHeight(466);
 //        hbox.setStyle("-fx-background-color:red");
 //        halfhours = 300/30;
 //        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
 //        program.getChildren().add(hbox);
-//        
+//
         String getSyntelestes = "select * from getPrograms()";
         Statement statement;
         try {
@@ -216,18 +240,18 @@ public class Program_Controller implements Initializable{
             ResultSet rs = statement.executeQuery(getSyntelestes);
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
-            
+
             double pTime = 0;
             while (rs.next()) {
 //                HBox hboxS = new HBox();
-//                
-//                
+//
+//
 //                program.getChildren().add(hboxS);
-//                
+//
 //                if(rs.getInt("strtime") - pTime  > 0){
-//                    
+//
 //                }
-                
+
 
                 HBox hbox = new HBox();
                 halfhours = (rs.getDouble("strtime") - pTime)/30;
@@ -253,4 +277,79 @@ public class Program_Controller implements Initializable{
     }
 
 
+@DefaultProperty(value = "extension")
+
+    public class ZoomableScrollPane extends ScrollPane {
+
+        @FXML private ScrollPane extension;
+
+
+
+        private double scaleValue = 0.7;
+        private double zoomIntensity = 0.02;
+        private Node target;
+        private Node zoomNode;
+
+        public ZoomableScrollPane() {//Node target
+            super();
+//            this.target = target;
+//            this.zoomNode = new Group(target);
+//            setContent(outerNode(zoomNode));
+//
+//            setPannable(true);
+//            setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//            setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//            setFitToHeight(true); //center
+//            setFitToWidth(true); //center
+//
+//            updateScale();
+        }
+
+        private Node outerNode(Node node) {
+            Node outerNode = centeredNode(node);
+            outerNode.setOnScroll(e -> {
+                e.consume();
+                onScroll(e.getTextDeltaY(), new Point2D(e.getX(), e.getY()));
+            });
+            return outerNode;
+        }
+
+        private Node centeredNode(Node node) {
+            VBox vBox = new VBox(node);
+            vBox.setAlignment(Pos.CENTER);
+            return vBox;
+        }
+
+        private void updateScale() {
+            target.setScaleX(scaleValue);
+            target.setScaleY(scaleValue);
+        }
+
+        private void onScroll(double wheelDelta, Point2D mousePoint) {
+            double zoomFactor = Math.exp(wheelDelta * zoomIntensity);
+
+            Bounds innerBounds = zoomNode.getLayoutBounds();
+            Bounds viewportBounds = getViewportBounds();
+
+            // calculate pixel offsets from [0, 1] range
+            double valX = this.getHvalue() * (innerBounds.getWidth() - viewportBounds.getWidth());
+            double valY = this.getVvalue() * (innerBounds.getHeight() - viewportBounds.getHeight());
+
+            scaleValue = scaleValue * zoomFactor;
+            updateScale();
+            this.layout(); // refresh ScrollPane scroll positions & target bounds
+
+            // convert target coordinates to zoomTarget coordinates
+            Point2D posInZoomTarget = target.parentToLocal(zoomNode.parentToLocal(mousePoint));
+
+            // calculate adjustment of scroll position (pixels)
+            Point2D adjustment = target.getLocalToParentTransform().deltaTransform(posInZoomTarget.multiply(zoomFactor - 1));
+
+            // convert back to [0, 1] range
+            // (too large/small values are automatically corrected by ScrollPane)
+            Bounds updatedInnerBounds = zoomNode.getBoundsInLocal();
+            this.setHvalue((valX + adjustment.getX()) / (updatedInnerBounds.getWidth() - viewportBounds.getWidth()));
+            this.setVvalue((valY + adjustment.getY()) / (updatedInnerBounds.getHeight() - viewportBounds.getHeight()));
+        }
+    }
 }
