@@ -28,6 +28,8 @@ public class Program_Controller implements Initializable{
     private int emptyS = 15;
     private double spaces = 5;
     private double spacesH = 10;
+     
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
@@ -171,6 +173,12 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
+//        
+        HBox hbox = new HBox();
+        hbox.setPrefHeight(466);
+        hbox.setStyle("-fx-background-color:red");
+        hbox.setPrefHeight(emptyS*120/30);
+        program.getChildren().add(hbox);
         
         
     }
