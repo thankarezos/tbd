@@ -173,11 +173,26 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
-//        
+        int halfhours; 
+        
         HBox hbox = new HBox();
         hbox.setPrefHeight(466);
         hbox.setStyle("-fx-background-color:red");
-        hbox.setPrefHeight(emptyS*120/30);
+        halfhours = 120/30;
+        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+        program.getChildren().add(hbox);
+        
+        hbox = new HBox();
+        hbox.setPrefHeight(466);
+        halfhours = 60/30;
+        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+        program.getChildren().add(hbox);
+        
+        hbox = new HBox();
+        hbox.setPrefHeight(466);
+        hbox.setStyle("-fx-background-color:red");
+        halfhours = 300/30;
+        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
         program.getChildren().add(hbox);
         
         
