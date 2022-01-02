@@ -104,6 +104,14 @@ public class Secondary_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Parent root;
         try {
+            root = FXMLLoader.load(App.class.getResource("fxml/program.fxml"));
+
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            paneProgram.getChildren().add(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
             root = loader.load();
 
