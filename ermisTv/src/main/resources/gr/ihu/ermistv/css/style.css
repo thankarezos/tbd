@@ -137,3 +137,8 @@ Button:hover {
 .synMark {
     -fx-background-color: rgba(81, 124, 211, 0.5);
 }
+.textname{
+    -fx-font-size:18px;
+    -fx-font-weight:BOLD;
+    -fx-fill: white;
+}
