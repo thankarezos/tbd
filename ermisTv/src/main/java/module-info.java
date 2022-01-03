@@ -5,8 +5,9 @@ module gr.ihu.ermistv {
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
     requires org.postgresql.jdbc;
-    
-    
+    requires java.desktop;
+
+
     opens gr.ihu.ermistv to javafx.fxml;
 
     exports gr.ihu.ermistv;

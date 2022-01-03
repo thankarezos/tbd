@@ -125,7 +125,7 @@ public class Program_Controller implements Initializable{
             dayBox.setAlignment(Pos.CENTER);
             dayBox.getChildren().add(dayText);
             dayBox.getStyleClass().add("vboxDay");
-//            dayText.getStyleClass().add("daytext");
+            dayText.getStyleClass().add("daytext");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
             scrollDay.put(days[i - 1], dayBox);
