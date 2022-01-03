@@ -22,10 +22,10 @@ AS $function$
     VALUES ('Kalhmera','Broadcast','18', '30');
     INSERT INTO ekpompes (name,type_ek,rating,time)
     VALUES ('Kalhnyxta','Movie','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
+    INSERT INTO ekpompes (name,type_ek,rating,time)
     VALUES ('kalo mesimeri','Series','18', '30');
     INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('dwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','Series','18', '30');
+    VALUES ('dwaaasfgdf','Series','18', '30');
     INSERT INTO ekpompes (name,type_ek,rating,time)
     VALUES ('Kalhmera','Documentary','18', '30');
     INSERT INTO ekpompes (name,type_ek,rating,time)

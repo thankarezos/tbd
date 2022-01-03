@@ -143,8 +143,7 @@ public class Ekpompi_Controller implements Initializable {
     // Load Results Ekpompi
     private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResult(" + id + "," + name + "," + type_ek + "," + rating + ","
-                +  timeLow + "," + timeHigh + ");";
+        String getEkmompes = "select * from getResult(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
 
         Statement statement;
         try {
@@ -392,7 +391,7 @@ public class Ekpompi_Controller implements Initializable {
         if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
             type_ek = "null";
         }
-        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high),type_ek);
+        loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
     }
 
     // Override
@@ -443,7 +442,7 @@ public class Ekpompi_Controller implements Initializable {
             filterEkpompi();
         });
 
-        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high),"null");
+        loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
     }
 
     @FXML
