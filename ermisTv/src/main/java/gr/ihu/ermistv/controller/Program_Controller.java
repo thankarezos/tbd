@@ -68,11 +68,6 @@ public class Program_Controller implements Initializable{
         return bounds;
     }
 
-    @FXML
-    private void test() {
-        Bounds bounds = extension.getViewportBounds();
-        System.out.println(extension.getVvalue());
-    }
 
     @FXML
     private void day(MouseEvent event) {
@@ -82,18 +77,11 @@ public class Program_Controller implements Initializable{
         Bounds bounds = extension.getViewportBounds();
         extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-
-//        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     }
     HBox test = new HBox();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//
-//
-//        zoomablePane.getId();
-//        System.out.println(zoomablePane.getId());
-
 
         program.setLayoutX(daysize + spacesH);
         emptypane.setSpacing(spaces);
@@ -157,7 +145,7 @@ public class Program_Controller implements Initializable{
                     Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
-                    int hours = t / 60; //since both are ints, you get an int
+                    int hours = t / 60;
                     int minutes = t % 60;
                     text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
                     t += 30;
@@ -170,6 +158,8 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
             }
+            
+            
             HBox hbox = new HBox();
             hbox.setSpacing(spacesH);
             hbox.setMinHeight(Region.USE_PREF_SIZE);
@@ -229,7 +219,7 @@ public class Program_Controller implements Initializable{
                     Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
-                    int hours = t / 60; //since both are ints, you get an int
+                    int hours = t / 60;
                     int minutes = t % 60;
                     text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
                     t += 30;
@@ -257,26 +247,15 @@ public class Program_Controller implements Initializable{
 
             double pTime = 0;
             while (rs.next()) {
-//                HBox hboxS = new HBox();
-//
-//
-//                program.getChildren().add(hboxS);
-//
-//                if(rs.getInt("strtime") - pTime  > 0){
-//
-//                }
 
 
                 HBox hbox = new HBox();
                 halfhours = (rs.getDouble("strtime") - pTime)/30;
-//                System.out.println(halfhours);
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
                 hbox.getStyleClass().add("vboxProgram");
-//                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
-//                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
