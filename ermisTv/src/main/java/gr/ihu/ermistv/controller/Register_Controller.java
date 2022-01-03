@@ -186,9 +186,10 @@ public class Register_Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root;
         root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-
-        stage.setScene(scene);
+        Scene scene = new ScenesSet(root, stage, 640, 480,"#Hbox");
         stage.setX(stage.getX() - 100);
+        stage.setScene(scene);
+
+
     }
 }

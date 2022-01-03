@@ -22,18 +22,50 @@ SELECT taskperiods();
     2,'Task A', '20180115 05:00:00 ', '20180130 23:00:00';
 SELECT taskset();
 
-SELECT
- CASE WHEN
-  ('20180110 10:00:00' BETWEEN t2.startDate AND t2.endDate) OR
-  ('20180120 18:00:00' BETWEEN t2.startDate AND t2.endDate) OR
-  ('20180110 10:00:00' < t2.startDate AND '20180120 18:00:00' > t2.endDate) OR
-  ('20180110 10:00:00' > t2.startDate AND '20180120 18:00:00' < t2.endDate)
- THEN
-  'yes'
- ELSE
-  'no'
- END AS OverLapping
-FROM TaskPeriods AS t2
+CREATE TABLE IF NOT EXISTS taskset
+    (
+        sid SERIAL,
+        name varchar(100),
+        rating rating,
+        time int,
+        primary key(sid)
+    );
+
+select * from programs;
+
+
+
+
+Select 1 from (
+    SELECT
+    CASE WHEN
+    ('00:15:01' BETWEEN t2.strtime AND t2.endtime) OR
+    ('00:20:00' BETWEEN t2.strtime AND t2.endtime) OR
+    ('00:15:01' < t2.strtime AND '00:20:00' > t2.endtime) OR
+    ('00:15:01' > t2.strtime AND '00:20:00' < t2.endtime)
+    THEN
+    'yes'
+    ELSE
+    'no'
+    END AS OverLapping
+    FROM programs AS t2
+) AS overL
+where overlapping= 'no'
+
+select isOverlaping('00:25','00:30');
+select isOverlaping('00:45','00:50');
+select isOverlaping('00:25','00:28');
+select isOverlaping('00:46','00:50');
+
+select isOverlaping('00:28','00:46');
+select isOverlaping('00:28','00:40');
+select isOverlaping('00:35','00:50');
+select isOverlaping('00:30','00:40');
+select isOverlaping('00:31','00:39');
+
+
+
+
 --getResult
 SELECT * FROM getResult(NULL,NULL,NULL,50,200);
 SELECT * FROM getResultSyntelestes(NULL,NULL,NULL,'Painter',NULL);
