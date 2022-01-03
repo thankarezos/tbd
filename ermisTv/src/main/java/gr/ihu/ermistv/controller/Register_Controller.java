@@ -188,17 +188,9 @@ public class Register_Controller {
         Parent root;
         root = fxmlLoader.load();
         Scene scene = new ScenesSet(root, stage, 640, 480,"#Hbox");
-
+        stage.setX(stage.getX() - 100);
         stage.setScene(scene);
 
-        stage.setX(stage.getX() - 200);
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-        stage.setX(x);
-        stage.setY(y);
-        stage.show();
-        stage.setResizable(false);
 
     }
 }

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -33,6 +34,8 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import java.sql.Time;
+import java.time.LocalTime;
 
 public class Program_Controller implements Initializable{
 
@@ -245,22 +248,32 @@ public class Program_Controller implements Initializable{
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
 
-            double pTime = 0;
+            Time pTime = Time.valueOf("00:00:00");
             while (rs.next()) {
-
-
+//                System.out.println( - rs.getTime("endtime"));
+                Time start = rs.getTime("strtime");
+//                System.out.println(start);
+                LocalTime from = start.toLocalTime();
+                LocalTime to = pTime.toLocalTime();
+                Duration d = Duration.between(to, from);
+//                System.out.println(d.toMinutes());
+                
+                System.out.println(d.toMinutes());
+                
                 HBox hbox = new HBox();
-                halfhours = (rs.getDouble("strtime") - pTime)/30;
+                halfhours = (d.toMinutes())/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
-
+////
                 hbox = new HBox();
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
-                pTime = rs.getDouble("strtime") + rs.getDouble("time");
-                System.out.println("endtime " + pTime);
+                
+                pTime = rs.getTime("endtime");
+//                System.out.println(pTime);
+                System.out.println("--------------");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

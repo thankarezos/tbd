@@ -12,8 +12,8 @@ AS $function$
         sid int,
         name varchar(100),
         rating varchar,
-        strtime int,
-        endtime int,
+        strtime time,
+        endtime time,
         time int,
         day pr_day,
         primary key(identry)
@@ -34,7 +34,7 @@ RETURNS trigger
 LANGUAGE plpgsql
 AS $$
 begin
-    update programs set endtime = new.endtime + new.time where identry=new.identry;
+    update programs set endtime = new.strtime + (new.time * interval '1 minute') where identry=new.identry;
     return new;
 end;
 $$;
@@ -44,24 +44,23 @@ after insert on programs
 For each row execute procedure updateTime();
 
 
-
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','30','15','Monday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','00:00','15','Monday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','00:30','15','Monday');
     
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','90','60','Monday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','210','30','Monday');
 
-SELECT programs();
+select * from programs;
+
 CREATE OR REPLACE FUNCTION getPrograms() RETURNS SETOF programs  AS $$
     SELECT * FROM programs ORDER BY identry;
 $$  LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION addPrograms(sidE int, name text, strtime int, endtime int, times int, day text)
+CREATE OR REPLACE FUNCTION addPrograms(sidE int, name text, strtime time, times int, day text)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    INSERT INTO programs (sidE,name,strtime,endtime,time,day)
-    VALUES (sidE,name,strtime,endtime,times,day);
+    INSERT INTO programs (sidE,name,strtime,time,day)
+    VALUES (sidE,name,strtime,times,day);
     END;
 $function$;
 
@@ -74,5 +73,34 @@ AS $function$
     END;
 $function$;
 
+CREATE OR REPLACE FUNCTION isOverlaping(time,time) 
+    RETURNS integer AS $$
+        Select 1 from (
+            SELECT
+            CASE WHEN
+            ($1 >= t2.strtime  AND $1 < t2.endtime ) OR
+            ($2 > t2.strtime  AND $2 <= t2.endtime) OR
+            ($1 <= t2.strtime  AND $2 >= t2.endtime) OR
+            ($1 >= t2.strtime AND $2 <= t2.endtime)
+            THEN
+            'yes'
+            ELSE
+            'no'
+            END AS OverLapping
+            FROM programs AS t2
+        ) AS overL
+        where overlapping= 'yes'
+$$  LANGUAGE sql
 
+select isOverlaping('00:25','00:30');
+select isOverlaping('00:45','00:50');
+select isOverlaping('00:25','00:28');
+select isOverlaping('00:46','00:50');
 
+select isOverlaping('00:28','00:46');
+select isOverlaping('00:28','00:40');
+select isOverlaping('00:35','00:50');
+select isOverlaping('00:30','00:40');
+select isOverlaping('00:31','00:39');
+
+SELECT * FROM programs ORDER BY identry;
