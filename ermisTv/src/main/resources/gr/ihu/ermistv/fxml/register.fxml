@@ -74,7 +74,7 @@
                                     <Font name="Georgia Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="lName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
+                              <TextField fx:id="lName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="310.0">
@@ -131,7 +131,7 @@
                               <Font name="Georgia Bold" size="16.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegisterButtonOnAction" onMouseClicked="#closeWindow" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
                            <font>
                               <Font name="Georgia Bold" size="16.0" />
                            </font>

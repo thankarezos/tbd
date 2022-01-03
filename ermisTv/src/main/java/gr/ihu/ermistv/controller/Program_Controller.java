@@ -261,26 +261,15 @@ public class Program_Controller implements Initializable{
 
             double pTime = 0;
             while (rs.next()) {
-//                HBox hboxS = new HBox();
-//
-//
-//                program.getChildren().add(hboxS);
-//
-//                if(rs.getInt("strtime") - pTime  > 0){
-//
-//                }
 
 
                 HBox hbox = new HBox();
                 halfhours = (rs.getDouble("strtime") - pTime)/30;
-//                System.out.println(halfhours);
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
                 hbox.getStyleClass().add("vboxProgram");
-//                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
-//                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);

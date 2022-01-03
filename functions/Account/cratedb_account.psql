@@ -16,7 +16,7 @@ AS $function$
     INSERT INTO account(username,pass) VALUES ('thanasis', '1234'); 
     INSERT INTO account(username,pass) VALUES ('peris', '1234'); 
     END;
-$function$
+$function$;
 
 SELECT account();
 

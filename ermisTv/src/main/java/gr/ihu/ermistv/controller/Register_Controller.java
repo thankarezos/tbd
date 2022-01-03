@@ -1,20 +1,27 @@
 package gr.ihu.ermistv.controller;
 
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.ScenesSet;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Register_Controller {
@@ -44,7 +51,7 @@ public class Register_Controller {
     private AnchorPane register;
 
     @FXML
-    private TextField userName;
+    private TextField uName;
 
     @FXML
     void Register(MouseEvent event) {
@@ -53,7 +60,15 @@ public class Register_Controller {
 
     @FXML
     void back(MouseEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(App.class.getResource("fxml/login_view.fxml"));
 
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            register.getChildren().add(root);
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private String regexPattern = "^(.+)@(\\S+)$";
 
@@ -71,11 +86,6 @@ public class Register_Controller {
         Platform.exit();
     }
 
-    @FXML
-    private void onClickClose(ActionEvent event) {
-        System.exit(0);
-        Platform.exit();
-    }
 
     @FXML
     private void clearbox(MouseEvent event) {
@@ -89,7 +99,7 @@ public class Register_Controller {
         boolean anyEmpty = fName.getText().equals("") ||
                 lName.getText().equals("") ||
                 email.getText().equals("") ||
-                userName.getText().equals("") ||
+                uName.getText().equals("") ||
                 fPass.getText().equals("") ||
                 cPass.getText().equals("");
 
@@ -105,8 +115,8 @@ public class Register_Controller {
                 email.setStyle("-fx-border-color: red;");
 
             }
-            if (userName.getText().equals("")) {
-                userName.setStyle("-fx-border-color: red;");
+            if (uName.getText().equals("")) {
+                uName.setStyle("-fx-border-color: red;");
 
             }
             if (fPass.getText().equals("")) {
@@ -145,7 +155,7 @@ public class Register_Controller {
         String firstName = fName.getText();
         String lastName = lName.getText();
         String Email = email.getText();
-        String Username = userName.getText();
+        String Username = uName.getText();
         String Password = fPass.getText();
 
         Statement statement;
@@ -155,7 +165,6 @@ public class Register_Controller {
             ResultSet rs = statement.executeQuery(setAccount);
             messageLabel.setStyle("-fx-text-fill: green;");
             messageLabel.setText("User has been registered successfully!");
-            //System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
