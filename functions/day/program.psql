@@ -20,60 +20,35 @@ AS $function$
     );
     
     
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','30','15','Monday');
     
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','90','60','Monday');
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','210','30','Monday');
-    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
-    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
-    -- INSERT INTO programs(sid,name,rating,strtime,endtime,time,day) values ('1','kalhmera','18','0','30','30','Monday');
-    
--- select * from ekpompes
--- select * from programs
-
     END;
 $function$;
-DROP TRIGGER updateT 
-GO
 
--- create a new trigger
-CREATE TRIGGER updateT
-ON programs
-AFTER INSERT
-AS 
-BEGIN   
-    SET NOCOUNT ON;
-
-    -- update your table, using a set-based approach
-    -- from the "Inserted" pseudo table which CAN and WILL
-    -- contain multiple rows!
-    UPDATE programs SET i.endtime = i.time + i.strtime
-    FROM Inserted i
-    WHERE programs.identry = i.identry
-END
-GO
+select programs();
 
 
-select * from programs;
+Drop trigger IF EXISTS updateTimeT on programs;
 
-CREATE OR REPLACE FUNCTION programs() RETURNS void AS $$
-    DROP TABLE IF EXISTS programs cascade;
-    CREATE TABLE IF NOT EXISTS programs
-    (
-        identry SERIAL,
-        sid int,
-        name varchar(100),
-        rating varchar,
-        strtime int,
-        endtime int DEFAULT strtime+time ,
-        time int,
-        day enum('Monday' ,'Tuesday','Wednesday', 'Thursday','Friday','Saturday','Sunday'),
-        primary key(identry)
-    );
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','30','15','Monday');
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','90','60','Monday');
-    INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','210','30','Monday');
-$$  LANGUAGE sql;
+CREATE OR REPLACE FUNCTION updateTime()
+RETURNS trigger 
+LANGUAGE plpgsql
+AS $$
+begin
+    update programs set endtime = new.endtime + new.time where identry=new.identry;
+    return new;
+end;
+$$;
+
+CREATE TRIGGER updateTimet
+after insert on programs
+For each row execute procedure updateTime();
+
+
+
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','30','15','Monday');
+    
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','90','60','Monday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','210','30','Monday');
 
 SELECT programs();
 CREATE OR REPLACE FUNCTION getPrograms() RETURNS SETOF programs  AS $$

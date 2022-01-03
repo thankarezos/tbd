@@ -3,8 +3,8 @@ CREATE OR REPLACE FUNCTION "syntelestesek"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    DROP TABLE IF EXISTNULLntelestesekp CASCADE;
-    CREATE TABLE IF NOT EXISTNULLntelestesekp
+    DROP TABLE IF EXISTS syntelestesekp CASCADE;
+    CREATE TABLE IF NOT EXISTS syntelestesekp
     (   
         sidek  integer,
         nameek varchar(20),
@@ -169,20 +169,20 @@ CREATE OR REPLACE FUNCTION checkif(idek integer,idsy integer)
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-        IF NOT EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        IF NOT EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 0;
             -- Den yparxei kai yparxei gia prosthiki
-        ELSIF EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        ELSIF EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 1;
             -- Yparxei hdh kai yparxei gia prosthiki
-        ELSIF EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        ELSIF EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 2;
             -- yparxei kai den yparxei gia prosthiki
 
-        ELSIF NOT EXISTNULLSELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTNULLSELECT 1 FROM getSyntelestes() WHERE sid = idsy)
+        ELSIF NOT EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 3;
             -- den yparxei kai den yparxei gia prosthiki
