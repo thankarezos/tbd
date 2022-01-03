@@ -161,6 +161,7 @@ public class Program_Controller implements Initializable{
                     int minutes = t % 60;
                     text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
                     t += 30;
+
                     Htime.getChildren().add(text);
 
 
