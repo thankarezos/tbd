@@ -24,10 +24,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
-import gr.ihu.scrollfx.ZoomableScrollPane;
+import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+import javafx.scene.Node;
 
 public class Program_Controller implements Initializable{
 
@@ -46,24 +45,26 @@ public class Program_Controller implements Initializable{
     private double spacesH = 10;
 //    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>;
 
+    public static Bounds getVisibleBounds(Node aNode)
+    {
+        // If node not visible, return empty bounds
+        if(!aNode.isVisible()) return new BoundingBox(0,0,-1,-1);
+
+        // If node has clip, return clip bounds in node coords
+        if(aNode.getClip()!=null) return aNode.getClip().getBoundsInParent();
+
+        // If node has parent, get parent visible bounds in node coords
+        Bounds bounds = aNode.getParent()!=null? getVisibleBounds(aNode.getParent()) : null;
+        if(bounds!=null && !bounds.isEmpty()) bounds = aNode.parentToLocal(bounds);
+        return bounds;
+    }
+    
     @FXML
-    private void monday(MouseEvent event) {
-        Bounds viewport = extension.getViewportBounds();
-        double contentHeight = extension.getContent().localToScene(extension.getContent().getBoundsInLocal()).getHeight();
-        double nodeMinY = test.localToScene(test.getBoundsInLocal()).getMinY();
-        double nodeMaxY = test.localToScene(test.getBoundsInLocal()).getMaxY();
-
-        double vValueDelta = 0;
-        double vValueCurrent = extension.getVvalue();
-
-        if (nodeMaxY < 0) {
-            // currently located above (remember, top left is (0,0))
-            vValueDelta = (nodeMinY - viewport.getHeight()) / contentHeight;
-        } else if (nodeMinY > viewport.getHeight()) {
-            // currently located below
-            vValueDelta = (nodeMinY + viewport.getHeight()) / contentHeight;
-        }
-        extension.setVvalue(vValueCurrent + vValueDelta);
+    private void monday() {
+        
+        Bounds bounds = extension.getViewportBounds();
+        extension.setVvalue(test.getParent().getParent().getLayoutY() * 
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
     }
     HBox test = new HBox();
     
@@ -101,8 +102,11 @@ public class Program_Controller implements Initializable{
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
 //            scrollDay.put(days[i - 1], dayBox);
+            dayBox.setId(days[i - 1]);
+            if(days[i - 1].equals("Sunday")){
+                test = dayBox;
+            }
             
-            test = dayBox;
             
 
             for(int j = 1; j <=47;j++){
