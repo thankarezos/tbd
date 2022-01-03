@@ -32,6 +32,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 public class Program_Controller implements Initializable{
 
@@ -74,17 +75,12 @@ public class Program_Controller implements Initializable{
     }
 
     @FXML
-    private void monday() {
-
+    private void day(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        String id = button.getId();
+        System.out.println(id);
         Bounds bounds = extension.getViewportBounds();
-        extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
-               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-
-        System.out.println(scrollDay.get("Monday").getParent().getParent().getLayoutY() *
-               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        System.out.println(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
-               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        System.out.println(scrollDay.get("Thursday").getParent().getParent().getLayoutY() *
+        extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
 
 //        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
@@ -317,9 +313,10 @@ public class Program_Controller implements Initializable{
               else if((double)newValue > 0.849){
                 days.setText("Sunday");
               }
+              
 
         });
-
+        daysV.getChildren().get(1).setStyle("-fx-background-color:blue");
 
     }
     public class DayS {
