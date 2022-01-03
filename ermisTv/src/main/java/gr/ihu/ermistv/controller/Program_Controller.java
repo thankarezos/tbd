@@ -119,7 +119,7 @@ public class Program_Controller implements Initializable{
             dayBox.setAlignment(Pos.CENTER);
             dayBox.getChildren().add(dayText);
             dayBox.getStyleClass().add("vboxDay");
-//            dayText.getStyleClass().add("daytext");
+            dayText.getStyleClass().add("daytext");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
             scrollDay.put(days[i - 1], dayBox);
@@ -274,7 +274,7 @@ public class Program_Controller implements Initializable{
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
-                hbox.getStyleClass().add("vbox50");
+                hbox.getStyleClass().add("vboxProgram");
 //                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
 //                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
