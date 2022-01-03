@@ -141,10 +141,9 @@ public class Ekpompi_Controller implements Initializable {
     private ArrayList<String> type_ekC = new ArrayList<String>();
 
     // Load Results Ekpompi
-    private void loadResults(String id, String name, String rating, String timeLow, String timeHigh,String type_ek) {
+    private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
-                + timeHigh  + "," + type_ek + ");";
+        String getEkmompes = "select * from getResult(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
 
         Statement statement;
         try {
@@ -325,7 +324,7 @@ public class Ekpompi_Controller implements Initializable {
             } else if (type == null) {
                 broErrLabel.setText("ADD TYPE! ");
             } else{
-                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "','" + type + "');";
+                String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time  + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
@@ -371,9 +370,6 @@ public class Ekpompi_Controller implements Initializable {
 
     // Filter Ekpompi
     private void filterEkpompi() {
-        
-        System.out.println("Filter");
-        
         String id = "'" + filterID.getText() + "'";
         if (isNumeric.isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
             id = "null";
@@ -395,7 +391,7 @@ public class Ekpompi_Controller implements Initializable {
         if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
             type_ek = "null";
         }
-        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high),type_ek);
+        loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
     }
 
     // Override
@@ -446,7 +442,7 @@ public class Ekpompi_Controller implements Initializable {
             filterEkpompi();
         });
 
-        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high),"null");
+        loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
     }
 
     @FXML
