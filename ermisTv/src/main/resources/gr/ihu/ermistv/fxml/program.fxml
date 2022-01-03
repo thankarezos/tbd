@@ -38,31 +38,31 @@
                               <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
                            </graphic>
                         </Label>
-                        <Button fx:id="Monday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#monday" prefHeight="30.0" prefWidth="106.0" text="Monday">
+                        <Button fx:id="Monday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Monday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Tuesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Tuesday">
+                        <Button fx:id="Tuesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Tuesday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Wednesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Wednesday">
+                        <Button fx:id="Wednesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Wednesday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Thursday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Thursday">
+                        <Button fx:id="Thursday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Thursday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Friday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Friday">
+                        <Button fx:id="Friday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Friday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Saturday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Saturday">
+                        <Button fx:id="Saturday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Saturday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
-                        <Button fx:id="Sunday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#test" prefHeight="30.0" prefWidth="106.0" text="Sunday">
+                        <Button fx:id="Sunday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Sunday">
                            <font>
                               <Font name="Arial Bold Italic" size="14.0" />
                            </font></Button>
