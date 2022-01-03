@@ -1,6 +1,7 @@
 package gr.ihu.ermistv.controller;
 
 import gr.ihu.ermistv.DBConnection;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -14,6 +15,7 @@ import java.util.ResourceBundle;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -34,7 +36,9 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 
-public class Program_Controller implements Initializable{
+
+
+public class Program_Controller implements Initializable {
 
     @FXML
     private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
@@ -46,25 +50,24 @@ public class Program_Controller implements Initializable{
     @FXML
     private HBox daysV;
 
-    private String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-    private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
+    private String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    private String[] colors = {"white", "grey", "Thursday", "Wednesday", "Friday", "Saturday", "Sunday"};
     private int daysize = 130;
     private int emptyS = 30;
     private double spaces = 5;
     private double spacesH = 10;
-    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>();
+    private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
 
-    public static Bounds getVisibleBounds(Node aNode)
-    {
+    public static Bounds getVisibleBounds(Node aNode) {
         // If node not visible, return empty bounds
-        if(!aNode.isVisible()) return new BoundingBox(0,0,-1,-1);
+        if (!aNode.isVisible()) return new BoundingBox(0, 0, -1, -1);
 
         // If node has clip, return clip bounds in node coords
-        if(aNode.getClip()!=null) return aNode.getClip().getBoundsInParent();
+        if (aNode.getClip() != null) return aNode.getClip().getBoundsInParent();
 
         // If node has parent, get parent visible bounds in node coords
-        Bounds bounds = aNode.getParent()!=null? getVisibleBounds(aNode.getParent()) : null;
-        if(bounds!=null && !bounds.isEmpty()) bounds = aNode.parentToLocal(bounds);
+        Bounds bounds = aNode.getParent() != null ? getVisibleBounds(aNode.getParent()) : null;
+        if (bounds != null && !bounds.isEmpty()) bounds = aNode.parentToLocal(bounds);
         return bounds;
     }
 
@@ -76,8 +79,9 @@ public class Program_Controller implements Initializable{
         System.out.println(id);
         Bounds bounds = extension.getViewportBounds();
         extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
-               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+                (1 / (emptypane.getHeight() - bounds.getHeight())) - 0.003);
     }
+
     HBox test = new HBox();
 
     @Override
@@ -86,22 +90,21 @@ public class Program_Controller implements Initializable{
         program.setLayoutX(daysize + spacesH);
         emptypane.setSpacing(spaces);
         time.setSpacing(spaces);
-        AnchorPane.setTopAnchor(time, emptyS -((double)emptyS/2 - spaces/2));
+        AnchorPane.setTopAnchor(time, emptyS - ((double) emptyS / 2 - spaces / 2));
         int t;
 
         String panecolor = "";
-        for(int i=1; i<=7;i++){
-            if(i%2 == 0){
-                panecolor =  "-fx-background-color:grey";
-            }
-            else{
-                panecolor =  "-fx-background-color:#f6f7f9";
+        for (int i = 1; i <= 7; i++) {
+            if (i % 2 == 0) {
+                panecolor = "-fx-background-color:grey";
+            } else {
+                panecolor = "-fx-background-color:#f6f7f9";
 
             }
             t = 30;
 
             HBox dayBox = new HBox();
-            Text dayText = new Text ();
+            Text dayText = new Text();
             dayText.setStyle("-fx-font-size:25px");
             dayText.setText(days[i - 1]);
             dayBox.setAlignment(Pos.CENTER);
@@ -114,52 +117,51 @@ public class Program_Controller implements Initializable{
             dayBox.setId(days[i - 1]);
 
 
+            for (int j = 1; j <= 47; j++) {
 
-            for(int j = 1; j <=47;j++){
+                HBox hbox = new HBox();
+                hbox.setSpacing(spacesH);
+                hbox.setMinHeight(Region.USE_PREF_SIZE);
 
-                    HBox hbox = new HBox();
-                    hbox.setSpacing(spacesH);
-                    hbox.setMinHeight(Region.USE_PREF_SIZE);
-
-                    HBox day = new HBox();
-                    day.setPadding(new Insets(2, 0, 0, 10  ));
-                    day.setPrefWidth(daysize);
-                    day.setPrefHeight(emptyS);
-                    day.setMinHeight(Region.USE_PREF_SIZE);
-                    day.setMinWidth(Region.USE_PREF_SIZE);
-                    if(dayBox != null){
-                        day.getChildren().add(dayBox);
-                        dayBox = null;
-                    }
-
-
-                    Pane pane = new Pane();
-                    pane.setPrefHeight(emptyS);
-                    pane.setMinHeight(Region.USE_PREF_SIZE);
-                    pane.setStyle(panecolor);
-                    HBox.setHgrow(pane, Priority.ALWAYS);
-
-                    HBox Htime = new HBox();
-                    Htime.setPrefHeight(emptyS);
-                    Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.getStyleClass().add("vboxTime");
-                    Htime.setAlignment(Pos.CENTER);
-                    Text text = new Text();
-                    int hours = t / 60;
-                    int minutes = t % 60;
-                    text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
-                    t += 30;
-                    Htime.getChildren().add(text);
+                HBox day = new HBox();
+                day.setPadding(new Insets(2, 0, 0, 10));
+                day.setPrefWidth(daysize);
+                day.setPrefHeight(emptyS);
+                day.setMinHeight(Region.USE_PREF_SIZE);
+                day.setMinWidth(Region.USE_PREF_SIZE);
+                if (dayBox != null) {
+                    day.getChildren().add(dayBox);
+                    dayBox = null;
+                }
 
 
-                    text.getStyleClass().add("textname");
+                Pane pane = new Pane();
+                pane.setPrefHeight(emptyS);
+                pane.setMinHeight(Region.USE_PREF_SIZE);
+                pane.setStyle(panecolor);
+                HBox.setHgrow(pane, Priority.ALWAYS);
 
-                    hbox.getChildren().addAll(day,pane);
-                    time.getChildren().add(Htime);
-                    emptypane.getChildren().add(hbox);
+                HBox Htime = new HBox();
+                Htime.setPrefHeight(emptyS);
+                Htime.setMinHeight(Region.USE_PREF_SIZE);
+                Htime.getStyleClass().add("vboxTime");
+                Htime.setAlignment(Pos.CENTER);
+                Text text = new Text();
+                int hours = t / 60;
+                int minutes = t % 60;
+                text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
+                t += 30;
+                Htime.getChildren().add(text);
+
+
+                text.getStyleClass().add("textname");
+
+                hbox.getChildren().addAll(day, pane);
+                time.getChildren().add(Htime);
+                emptypane.getChildren().add(hbox);
             }
-            
-            
+
+
             HBox hbox = new HBox();
             hbox.setSpacing(spacesH);
             hbox.setMinHeight(Region.USE_PREF_SIZE);
@@ -189,53 +191,52 @@ public class Program_Controller implements Initializable{
 
             text.getStyleClass().add("textname");
 
-            hbox.getChildren().addAll(day,pane);
+            hbox.getChildren().addAll(day, pane);
             time.getChildren().add(Htime);
             emptypane.getChildren().add(hbox);
         }
         t = 30;
-        for(int j = 1; j <=10;j++){
+        for (int j = 1; j <= 10; j++) {
 
-                    HBox hbox = new HBox();
-                    hbox.setSpacing(spacesH);
-                    hbox.setMinHeight(Region.USE_PREF_SIZE);
+            HBox hbox = new HBox();
+            hbox.setSpacing(spacesH);
+            hbox.setMinHeight(Region.USE_PREF_SIZE);
 
-                    HBox day = new HBox();
-                    day.setPrefWidth(daysize);
-                    day.setPrefHeight(emptyS);
-                    day.setMinHeight(Region.USE_PREF_SIZE);
-                    day.setMinWidth(Region.USE_PREF_SIZE);
-
-
-                    Pane pane = new Pane();
-                    pane.setPrefHeight(emptyS);
-                    pane.setMinHeight(Region.USE_PREF_SIZE);
-                    pane.setStyle(panecolor);
-                    HBox.setHgrow(pane, Priority.ALWAYS);
-
-                    HBox Htime = new HBox();
-                    Htime.setPrefHeight(emptyS);
-                    Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.getStyleClass().add("vboxTime");
-                    Htime.setAlignment(Pos.CENTER);
-                    Text text = new Text();
-                    int hours = t / 60;
-                    int minutes = t % 60;
-                    text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
-                    t += 30;
-                    Htime.getChildren().add(text);
+            HBox day = new HBox();
+            day.setPrefWidth(daysize);
+            day.setPrefHeight(emptyS);
+            day.setMinHeight(Region.USE_PREF_SIZE);
+            day.setMinWidth(Region.USE_PREF_SIZE);
 
 
-                    text.getStyleClass().add("textname");
+            Pane pane = new Pane();
+            pane.setPrefHeight(emptyS);
+            pane.setMinHeight(Region.USE_PREF_SIZE);
+            pane.setStyle(panecolor);
+            HBox.setHgrow(pane, Priority.ALWAYS);
 
-                    hbox.getChildren().addAll(day,pane);
-                    time.getChildren().add(Htime);
-                    emptypane.getChildren().add(hbox);
+            HBox Htime = new HBox();
+            Htime.setPrefHeight(emptyS);
+            Htime.setMinHeight(Region.USE_PREF_SIZE);
+            Htime.getStyleClass().add("vboxTime");
+            Htime.setAlignment(Pos.CENTER);
+            Text text = new Text();
+            int hours = t / 60;
+            int minutes = t % 60;
+            text.setText(String.format("%02d", hours) + ":" + String.format("%02d", minutes));
+            t += 30;
+            Htime.getChildren().add(text);
+
+
+            text.getStyleClass().add("textname");
+
+            hbox.getChildren().addAll(day, pane);
+            time.getChildren().add(Htime);
+            emptypane.getChildren().add(hbox);
         }
 
 
-
-        double halfhours ;
+        double halfhours;
 
         String getSyntelestes = "select * from getPrograms()";
         Statement statement;
@@ -250,14 +251,14 @@ public class Program_Controller implements Initializable{
 
 
                 HBox hbox = new HBox();
-                halfhours = (rs.getDouble("strtime") - pTime)/30;
-                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                halfhours = (rs.getDouble("strtime") - pTime) / 30;
+                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
                 hbox.getStyleClass().add("vboxProgram");
-                halfhours = rs.getDouble("time")/30;
-                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                halfhours = rs.getDouble("time") / 30;
+                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 program.getChildren().add(hbox);
                 pTime = rs.getDouble("strtime") + rs.getDouble("time");
                 System.out.println("endtime " + pTime);
@@ -271,45 +272,40 @@ public class Program_Controller implements Initializable{
         days.addPropertyChangeListener(listener);
         extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
 //            System.out.println(newValue);
-              if((double)newValue <= 0.109){
+            if ((double) newValue <= 0.109) {
                 days.setText("Monday");
-              }
-              else if((double)newValue > 0.109 && (double)newValue <= 0.259){
+            } else if ((double) newValue > 0.109 && (double) newValue <= 0.259) {
                 days.setText("Tuesday");
-              }
-              else if((double)newValue > 0.259 && (double)newValue <= 0.404){
+            } else if ((double) newValue > 0.259 && (double) newValue <= 0.404) {
                 days.setText("Wednesday");
-              }
-              else if((double)newValue > 0.404 && (double)newValue <= 0.554){
+            } else if ((double) newValue > 0.404 && (double) newValue <= 0.554) {
                 days.setText("Thursday");
-              }
-              else if((double)newValue > 0.554 && (double)newValue <= 0.698){
+            } else if ((double) newValue > 0.554 && (double) newValue <= 0.698) {
                 days.setText("Friday");
-              }
-              else if((double)newValue > 0.698 && (double)newValue <= 0.849){
+            } else if ((double) newValue > 0.698 && (double) newValue <= 0.849) {
                 days.setText("Saturday");
-              }
-              else if((double)newValue > 0.849){
+            } else if ((double) newValue > 0.849) {
                 days.setText("Sunday");
-              }
-              
+            }
+
 
         });
-        daysV.getChildren().get(1).setStyle("-fx-background-color:blue");
+        daysV.getChildren().get(1).getStyleClass().add("pressButton");
 
     }
+
     public class DayS {
         protected PropertyChangeSupport propertyChangeSupport;
         private String text;
 
-        public DayS () {
+        public DayS() {
             propertyChangeSupport = new PropertyChangeSupport(this);
         }
 
         public void setText(String text) {
             String oldText = this.text;
             this.text = text;
-            propertyChangeSupport.firePropertyChange("MyTextProperty",oldText, text);
+            propertyChangeSupport.firePropertyChange("MyTextProperty", oldText, text);
         }
 
         public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -322,13 +318,14 @@ public class Program_Controller implements Initializable{
         public void propertyChange(PropertyChangeEvent event) {
             if (event.getPropertyName().equals("MyTextProperty")) {
 
-                Button button = (Button)daysV.lookup("#" + event.getNewValue().toString());
-                for(int i = 1;i < daysV.getChildren().size();i++ ){
-                    daysV.getChildren().get(i).setStyle("-fx-background-color:white");
+                Button button = (Button) daysV.lookup("#" + event.getNewValue().toString());
+                for (int i = 1; i < daysV.getChildren().size(); i++) {
+//                    daysV.getStyleClass().clear();
+                    daysV.getChildren().get(i).getStyleClass().add("unpressbutton");
                 }
 
-
-                button.setStyle("-fx-background-color:blue");
+                button.getStyleClass().clear();
+                button.getStyleClass().add("pressButton");
 
                 System.out.println(event.getNewValue().toString());
             }
@@ -336,8 +333,7 @@ public class Program_Controller implements Initializable{
     }
 
 
-
-    private int value(){
+    private int value() {
         return 1;
     }
 

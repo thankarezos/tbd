@@ -167,10 +167,29 @@ Button:hover {
     -fx-background-radius: 10;
     -fx-background-insets: 0, 1, 1;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 3, 0.0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 3, 0.0, 0, 1);
     -fx-effect: dropshadow(three-pass-box, rgba(26, 26, 26, 0.8), 12, 0.6, 0, 0);
 }
 
 .daytext {
     -fx-fill: white;
+}
+
+.pressButton {
+    -fx-background-color: white 100%, #057c8f;
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1), 5, 0.0, 0, 1);
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-radius: 8, 7, 6;
+    -fx-border-insets: 0, 1, 2;
+}
+
+.unpressbutton {
+    -fx-background-color: #F5F6F8;
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1), 5, 0.0, 0, 1);
+    -fx-text-fill: black;
 }

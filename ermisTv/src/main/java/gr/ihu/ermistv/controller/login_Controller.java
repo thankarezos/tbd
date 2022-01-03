@@ -72,13 +72,13 @@ public class login_Controller {
             if (queryResult.getInt(1) == 1 || bypass) {
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
-                
+
                 Stage stage = (Stage) primary.getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/secondary.fxml"));
                 Parent root;
                 root = fxmlLoader.load();
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
-                
+
                 stage.setScene(scene);
 
                 stage.setX(stage.getX() - 200);
@@ -91,24 +91,18 @@ public class login_Controller {
             e.getCause();
         }
     }
+
     @FXML
     private void validateRegister(MouseEvent event) throws IOException {
         Stage stage = (Stage) primary.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/register.fxml"));
         Parent root;
         root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 459, 671,"#Hbox");
+        Scene scene = new ScenesSet(root, stage, 459, 671, "#Hbox");
 
         stage.setScene(scene);
 
-        stage.setX(stage.getX() - 200);
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-        stage.setX(x);
-        stage.setY(y);
-        stage.show();
-        stage.setResizable(false);
+        stage.setX(stage.getX() + 100);
 
     }
 

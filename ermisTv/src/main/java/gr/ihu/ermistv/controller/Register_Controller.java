@@ -5,7 +5,6 @@ import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -22,8 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Register_Controller {
@@ -60,6 +57,7 @@ public class Register_Controller {
     void back(MouseEvent event) throws IOException {
         loginBack();
     }
+
     private String regexPattern = "^(.+)@(\\S+)$";
 
     @FXML
@@ -151,7 +149,7 @@ public class Register_Controller {
         String Password = fPass.getText();
 
         Statement statement;
-        String setAccount= "select setAccount('"+ fName + "','" + lName + "','" + email + "','" + uName + "','" + fPass +"')";
+        String setAccount = "select setAccount('" + fName + "','" + lName + "','" + email + "','" + uName + "','" + fPass + "')";
         try {
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(setAccount);
@@ -182,23 +180,15 @@ public class Register_Controller {
         messageLabel.setStyle("-fx-text-fill: red;");
         messageLabel.setText(error);
     }
+
     private void loginBack() throws IOException {
         Stage stage = (Stage) register.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root;
         root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480,"#Hbox");
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
 
         stage.setScene(scene);
-
-        stage.setX(stage.getX() - 200);
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-        stage.setX(x);
-        stage.setY(y);
-        stage.show();
-        stage.setResizable(false);
-
+        stage.setX(stage.getX() - 100);
     }
 }

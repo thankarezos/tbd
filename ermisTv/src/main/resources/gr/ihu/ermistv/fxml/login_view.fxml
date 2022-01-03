@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="login" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.login_Controller">
+<AnchorPane fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" styleClass="child1" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.login_Controller">
     <children>
-        <HBox id="Hbox" fx:id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="640.0" spacing="5.0">
+        <HBox id="Hbox" fx:id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="640.0" spacing="5.0" styleClass="parent_secontary">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#minimizedWindow" prefHeight="25.0" prefWidth="25.0" styleClass="min-btn" stylesheets="@../css/style.css">
                     <graphic>
@@ -88,29 +88,29 @@
                         </HBox>
                     </children>
                 </VBox>
-            <VBox alignment="CENTER" layoutX="16.0" layoutY="198.0">
-               <children>
-                      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="380.0" spacing="50.0">
-                          <children>
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateLogin" onKeyPressed="#Login" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Login">
-                                  <font>
-                                      <Font name="Georgia Bold" size="16.0" />
-                                  </font>
-                              </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onKeyPressed="#Login" onMouseClicked="#validateRegister" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
-                           <font>
-                              <Font name="Georgia Bold" size="16.0" />
-                           </font>
-                        </Button>
-                          </children>
-                      </HBox>
+                <VBox alignment="CENTER" layoutX="16.0" layoutY="198.0">
+                    <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="380.0" spacing="50.0">
+                            <children>
+                                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#validateLogin" onKeyPressed="#Login" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Login">
+                                    <font>
+                                        <Font name="Georgia Bold" size="16.0" />
+                                    </font>
+                                </Button>
+                                <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onKeyPressed="#Login" onMouseClicked="#validateRegister" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
+                                    <font>
+                                        <Font name="Georgia Bold" size="16.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
                         <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Close">
                             <font>
                                 <Font name="Georgia Bold" size="16.0" />
                             </font>
                         </Button>
-               </children>
-            </VBox>
+                    </children>
+                </VBox>
             </children>
         </AnchorPane>
     </children>
