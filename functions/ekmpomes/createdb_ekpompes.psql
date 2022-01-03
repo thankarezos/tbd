@@ -51,7 +51,6 @@ AS $function$
     VALUES (name,rating,times);
     END;
 $function$;
-
 CREATE OR REPLACE FUNCTION deleteEkpompi(id integer)
  RETURNS void
  LANGUAGE plpgsql

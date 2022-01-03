@@ -1,0 +1,46 @@
+CREATE OR REPLACE FUNCTION "db_register"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DROP TABLE IF EXISTS register CASCADE;
+    CREATE TABLE register
+    (
+        firstname varchar(100),
+        lastname varchar(100),
+        email varchar(100),
+        username varchar(100),
+        pass varchar(100),
+        primary key(username)
+    );
+    END;
+$function$;
+
+SELECT register();
+CREATE OR REPLACE FUNCTION setAccount(firstname text, lastname text, email text, username text, pass text)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    INSERT INTO register (firstname, lastname , email , username , pass )
+    VALUES (firstname, lastname , email , username , passCREATE OR REPLACE FUNCTION "db_register"()
+     RETURNS void
+     LANGUAGE plpgsql
+    AS $
+        BEGIN
+        DROP TABLE IF EXISTS register CASCADE;
+        CREATE TABLE register
+        (
+            firstname varchar(100),
+            lastname varchar(100),
+            email varchar(100),
+            username varchar(100),
+            pass varchar(100),
+            primary key(username)
+        );
+        END;
+    $;);
+    END;
+$function$;
+select setAccount('peris', 'gous' , 'peris@gmail.com', 'gous', '1234')
+select * from register
