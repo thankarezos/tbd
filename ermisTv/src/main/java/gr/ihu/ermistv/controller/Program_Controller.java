@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -44,7 +47,7 @@ public class Program_Controller implements Initializable{
     private int emptyS = 15;
     private double spaces = 5;
     private double spacesH = 10;
-//    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>;
+    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>();
 
     public static Bounds getVisibleBounds(Node aNode)
     {
@@ -61,11 +64,26 @@ public class Program_Controller implements Initializable{
     }
     
     @FXML
+    private void test() {
+        Bounds bounds = extension.getViewportBounds();
+        System.out.println(extension.getVvalue());
+    }
+
+    @FXML
     private void monday() {
         
         Bounds bounds = extension.getViewportBounds();
-        extension.setVvalue(test.getParent().getParent().getLayoutY() * 
+        extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+
+        System.out.println(scrollDay.get("Monday").getParent().getParent().getLayoutY() *
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        System.out.println(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        System.out.println(scrollDay.get("Thursday").getParent().getParent().getLayoutY() *
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+
+//        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     }
     HBox test = new HBox();
     
@@ -104,11 +122,8 @@ public class Program_Controller implements Initializable{
 //            dayText.getStyleClass().add("daytext");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
-//            scrollDay.put(days[i - 1], dayBox);
+            scrollDay.put(days[i - 1], dayBox);
             dayBox.setId(days[i - 1]);
-            if(days[i - 1].equals("Sunday")){
-                test = dayBox;
-            }
             
             
 
@@ -231,27 +246,7 @@ public class Program_Controller implements Initializable{
 
         
         double halfhours ;
-        
-//        HBox hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        hbox.setStyle("-fx-background-color:red");
-//        halfhours = 120/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
-//        hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        halfhours = 60/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
-//        hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        hbox.setStyle("-fx-background-color:red");
-//        halfhours = 300/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
+
         String getSyntelestes = "select * from getPrograms()";
         Statement statement;
         try {
