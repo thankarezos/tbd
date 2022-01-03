@@ -141,10 +141,10 @@ public class Ekpompi_Controller implements Initializable {
     private ArrayList<String> type_ekC = new ArrayList<String>();
 
     // Load Results Ekpompi
-    private void loadResults(String id, String name, String rating, String timeLow, String timeHigh,String type_ek) {
+    private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
-                + timeHigh  + "," + type_ek + ");";
+        String getEkmompes = "select * from getResult(" + id + "," + name + "," + type_ek + "," + rating + ","
+                +  timeLow + "," + timeHigh + ");";
 
         Statement statement;
         try {
@@ -325,7 +325,7 @@ public class Ekpompi_Controller implements Initializable {
             } else if (type == null) {
                 broErrLabel.setText("ADD TYPE! ");
             } else{
-                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
+                String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time  + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
