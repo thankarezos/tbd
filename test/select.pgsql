@@ -52,7 +52,7 @@ Select 1 from (
 ) AS overL
 where overlapping= 'no'
 
-select isOverlaping('00:25','00:30');
+select isOverlaping('0001/01/3 23:00','0001/01/4 00:00');
 select isOverlaping('00:45','00:50');
 select isOverlaping('00:25','00:28');
 select isOverlaping('00:46','00:50');

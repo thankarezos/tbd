@@ -12,8 +12,8 @@ AS $function$
         sid int,
         name varchar(100),
         rating varchar,
-        strtime time,
-        endtime time,
+        strtime timestamp,
+        endtime timestamp,
         time int,
         day pr_day,
         primary key(identry)
@@ -43,10 +43,13 @@ CREATE TRIGGER updateTimet
 after insert on programs
 For each row execute procedure updateTime();
 
-
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','00:00','15','Monday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','00:30','15','Monday');
-    
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/1 00:30','45','Monday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/1 23:00','102','Monday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 2:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 3:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 23:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/3 00:00','80','Tuesday');
+INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/7 00:00','80','Sunday');     
 
 select * from programs;
 
@@ -73,7 +76,7 @@ AS $function$
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION isOverlaping(time,time) 
+CREATE OR REPLACE FUNCTION isOverlaping(timestamp ,timestamp) 
     RETURNS integer AS $$
         Select 1 from (
             SELECT
@@ -91,16 +94,3 @@ CREATE OR REPLACE FUNCTION isOverlaping(time,time)
         ) AS overL
         where overlapping= 'yes'
 $$  LANGUAGE sql
-
-select isOverlaping('00:25','00:30');
-select isOverlaping('00:45','00:50');
-select isOverlaping('00:25','00:28');
-select isOverlaping('00:46','00:50');
-
-select isOverlaping('00:28','00:46');
-select isOverlaping('00:28','00:40');
-select isOverlaping('00:35','00:50');
-select isOverlaping('00:30','00:40');
-select isOverlaping('00:31','00:39');
-
-SELECT * FROM programs ORDER BY identry;
