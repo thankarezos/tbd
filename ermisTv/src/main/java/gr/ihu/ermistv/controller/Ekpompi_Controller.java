@@ -325,7 +325,7 @@ public class Ekpompi_Controller implements Initializable {
             } else if (type == null) {
                 broErrLabel.setText("ADD TYPE! ");
             } else{
-                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
+                String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "','" + type + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
@@ -371,6 +371,9 @@ public class Ekpompi_Controller implements Initializable {
 
     // Filter Ekpompi
     private void filterEkpompi() {
+        
+        System.out.println("Filter");
+        
         String id = "'" + filterID.getText() + "'";
         if (isNumeric.isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
             id = "null";
