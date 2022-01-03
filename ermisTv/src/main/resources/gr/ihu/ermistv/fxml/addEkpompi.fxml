@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.RangeSlider?>
+
+<AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.addEkpompi_Controller">
+   <children>
+      <Label fx:id="broErrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="672.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" spacing="3.0">
+         <children>
+            <VBox prefHeight="27.0" prefWidth="700.0">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="695.0" spacing="3.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="1.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="131.0" styleClass="hboxBorder">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="700.0" style="-fx-background-color: transparent;">
+               <content>
+                  <VBox fx:id="vboxEkpompi" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" />
+               </content>
+            </ScrollPane>
+         </children>
+         <padding>
+            <Insets left="3.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="367.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="680.0" spacing="5.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addfactor" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CHECK" size="2em" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadFactor" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
+               <graphic>
+                  <FontAwesomeIconView glyphName="REFRESH" size="2em" styleClass="min-btn" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SEARCH" size="2em" />
+               </graphic>
+            </Label>
+            <TextField fx:id="ekpompiID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="ID" />
+            <TextField fx:id="ekpompiName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Name" />
+            <ChoiceBox fx:id="ekpompiType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
+            <ChoiceBox fx:id="ekpompiRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
+            <VBox alignment="CENTER" prefHeight="40.0" prefWidth="178.0">
+               <children>
+                  <RangeSlider fx:id="sliderr" highValue="300.0" highValueChanging="true" lowValue="10.0" majorTickUnit="1.0" max="300.0" min="10.0" minorTickCount="0" snapToTicks="true" />
+                  <Text fx:id="sliderText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0 - 0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" />
+   </children>
+</AnchorPane>

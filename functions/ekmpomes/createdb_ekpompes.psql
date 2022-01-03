@@ -68,7 +68,7 @@ AS $function$
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION getResult(int,text,type_ek,rating,int,int) 
+CREATE OR REPLACE FUNCTION getResults(int,text,type_ek,rating,int,int) 
 RETURNS setof ekpompes AS
  $$
     SELECT * FROM ekpompes 
