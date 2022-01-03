@@ -1,9 +1,6 @@
 package gr.ihu.ermistv.controller;
 
 import gr.ihu.ermistv.DBConnection;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -38,19 +35,16 @@ import javafx.scene.Node;
 public class Program_Controller implements Initializable{
 
     @FXML
-    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
+    private Button btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday, btnSaturday, btnSunday;
     @FXML
     private VBox emptypane, time, program;
     @FXML
     private ScrollPane extension;
-    
-    @FXML
-    private HBox daysV;
 
-    private String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    private String[] days = {"Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private int daysize = 130;
-    private int emptyS = 30;
+    private int emptyS = 15;
     private double spaces = 5;
     private double spacesH = 10;
     private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>();
@@ -68,7 +62,7 @@ public class Program_Controller implements Initializable{
         if(bounds!=null && !bounds.isEmpty()) bounds = aNode.parentToLocal(bounds);
         return bounds;
     }
-    
+
     @FXML
     private void test() {
         Bounds bounds = extension.getViewportBounds();
@@ -77,7 +71,7 @@ public class Program_Controller implements Initializable{
 
     @FXML
     private void monday() {
-        
+
         Bounds bounds = extension.getViewportBounds();
         extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
@@ -92,11 +86,11 @@ public class Program_Controller implements Initializable{
 //        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     }
     HBox test = new HBox();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        
-//        
+//
+//
 //        zoomablePane.getId();
 //        System.out.println(zoomablePane.getId());
 
@@ -106,18 +100,18 @@ public class Program_Controller implements Initializable{
         time.setSpacing(spaces);
         AnchorPane.setTopAnchor(time, emptyS -((double)emptyS/2 - spaces/2));
         int t;
-        
+
         String panecolor = "";
         for(int i=1; i<=7;i++){
             if(i%2 == 0){
-                panecolor =  "-fx-background-color:grey"; 
+                panecolor =  "-fx-background-color:grey";
             }
             else{
                 panecolor =  "-fx-background-color:#f6f7f9";
-               
+
             }
             t = 30;
-            
+
             HBox dayBox = new HBox();
             Text dayText = new Text ();
             dayText.setStyle("-fx-font-size:25px");
@@ -130,8 +124,8 @@ public class Program_Controller implements Initializable{
             dayBox.setPrefHeight(30);
             scrollDay.put(days[i - 1], dayBox);
             dayBox.setId(days[i - 1]);
-            
-            
+
+
 
             for(int j = 1; j <=47;j++){
 
@@ -248,9 +242,9 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
-        
 
-        
+
+
         double halfhours ;
 
         String getSyntelestes = "select * from getPrograms()";
@@ -292,79 +286,8 @@ public class Program_Controller implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String day;
-        DayS days = new DayS();
-        Listener listener = new Listener();
-        days.addPropertyChangeListener(listener);
-        extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-//            System.out.println(newValue);
-              if((double)newValue <= 0.109){
-                days.setText("Monday");
-              }
-              else if((double)newValue > 0.109 && (double)newValue <= 0.259){
-                days.setText("Tuesday");
-              }
-              else if((double)newValue > 0.259 && (double)newValue <= 0.404){
-                days.setText("Wednesday");
-              }
-              else if((double)newValue > 0.404 && (double)newValue <= 0.554){
-                days.setText("Thursday");
-              }
-              else if((double)newValue > 0.554 && (double)newValue <= 0.698){
-                days.setText("Friday");
-              }
-              else if((double)newValue > 0.698 && (double)newValue <= 0.849){
-                days.setText("Saturday");
-              }
-              else if((double)newValue > 0.849){
-                days.setText("Sunday");
-              }
 
-        });
-        
-        
+
+
     }
-    public class DayS {
-        protected PropertyChangeSupport propertyChangeSupport;
-        private String text;
-
-        public DayS () {
-            propertyChangeSupport = new PropertyChangeSupport(this);
-        }
-
-        public void setText(String text) {
-            String oldText = this.text;
-            this.text = text;
-            propertyChangeSupport.firePropertyChange("MyTextProperty",oldText, text);
-        }
-
-        public void addPropertyChangeListener(PropertyChangeListener listener) {
-            propertyChangeSupport.addPropertyChangeListener(listener);
-        }
-    }
-
-    public class Listener implements PropertyChangeListener {
-        @Override
-        public void propertyChange(PropertyChangeEvent event) {
-            if (event.getPropertyName().equals("MyTextProperty")) {
-                
-                Button button = (Button)daysV.lookup("#" + event.getNewValue().toString());
-                for(int i = 1;i < daysV.getChildren().size();i++ ){
-                    daysV.getChildren().get(i).setStyle("-fx-background-color:white");
-                }
-                
-                
-                button.setStyle("-fx-background-color:blue");
-                
-                System.out.println(event.getNewValue().toString());
-            }
-        }
-    }
-    
-    
-    
-    private int value(){
-        return 1;
-    }
-    
 }
