@@ -46,7 +46,7 @@
         </HBox>
         <VBox alignment="CENTER" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="150.0" spacing="10.0" styleClass="child1" stylesheets="@../css/style.css">
             <children>
-                <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="button1" text="Program">
+                <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" text="Program">
                     <font>
                         <Font name="Arial Bold" size="15.0" />
                     </font>

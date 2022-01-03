@@ -26,6 +26,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import gr.ihu.scrollfx.ZoomableScrollPane;
 import javafx.geometry.Bounds;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class Program_Controller implements Initializable{
 
@@ -44,6 +46,27 @@ public class Program_Controller implements Initializable{
     private double spacesH = 10;
 //    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>;
 
+    @FXML
+    private void monday(MouseEvent event) {
+        Bounds viewport = extension.getViewportBounds();
+        double contentHeight = extension.getContent().localToScene(extension.getContent().getBoundsInLocal()).getHeight();
+        double nodeMinY = test.localToScene(test.getBoundsInLocal()).getMinY();
+        double nodeMaxY = test.localToScene(test.getBoundsInLocal()).getMaxY();
+
+        double vValueDelta = 0;
+        double vValueCurrent = extension.getVvalue();
+
+        if (nodeMaxY < 0) {
+            // currently located above (remember, top left is (0,0))
+            vValueDelta = (nodeMinY - viewport.getHeight()) / contentHeight;
+        } else if (nodeMinY > viewport.getHeight()) {
+            // currently located below
+            vValueDelta = (nodeMinY + viewport.getHeight()) / contentHeight;
+        }
+        extension.setVvalue(vValueCurrent + vValueDelta);
+    }
+    HBox test = new HBox();
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        
@@ -57,7 +80,7 @@ public class Program_Controller implements Initializable{
         time.setSpacing(spaces);
         AnchorPane.setTopAnchor(time, emptyS -((double)emptyS/2 - spaces/2));
         int t;
-        HBox test = new HBox();
+        
         String panecolor = "";
         for(int i=1; i<=7;i++){
             if(i%2 == 0){
@@ -196,22 +219,7 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
-        Bounds viewport = extension.getViewportBounds();
-        double contentHeight = extension.getContent().localToScene(extension.getContent().getBoundsInLocal()).getHeight();
-        double nodeMinY = test.localToScene(test.getBoundsInLocal()).getMinY();
-        double nodeMaxY = test.localToScene(test.getBoundsInLocal()).getMaxY();
-
-        double vValueDelta = 0;
-        double vValueCurrent = extension.getVvalue();
-
-        if (nodeMaxY < 0) {
-            // currently located above (remember, top left is (0,0))
-            vValueDelta = (nodeMinY - viewport.getHeight()) / contentHeight;
-        } else if (nodeMinY > viewport.getHeight()) {
-            // currently located below
-            vValueDelta = (nodeMinY + viewport.getHeight()) / contentHeight;
-        }
-        extension.setVvalue(vValueCurrent + vValueDelta);
+        
 
         
         double halfhours ;
