@@ -53,10 +53,6 @@ public class Register_Controller {
     @FXML
     private TextField uName;
 
-    @FXML
-    void Register(MouseEvent event) {
-
-    }
 
     @FXML
     void back(MouseEvent event) {
