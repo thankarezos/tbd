@@ -40,7 +40,10 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 
 
 
@@ -263,20 +266,22 @@ public class Program_Controller implements Initializable {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
 
-            Time pTime = Time.valueOf("00:00:00");
+            Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
             while (rs.next()) {
 //                System.out.println( - rs.getTime("endtime"));
-                Time start = rs.getTime("strtime");
-//                System.out.println(start);
-                LocalTime from = start.toLocalTime();
-                LocalTime to = pTime.toLocalTime();
+                Timestamp start  = rs.getTimestamp("strtime");
+                
+                System.out.println("Prev: " + pTime);
+                System.out.println("Next:" + start);
+                LocalDateTime from = start.toLocalDateTime();
+                LocalDateTime to = pTime.toLocalDateTime();
                 Duration d = Duration.between(to, from);
 //                System.out.println(d.toMinutes());
                 
-                System.out.println(d.toMinutes());
+                System.out.println(d.toMinutes()/30);
                 
                 HBox hbox = new HBox();
-                halfhours = (d.toMinutes())/30;
+                halfhours = ((double)d.toMinutes())/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
 ////
@@ -286,7 +291,7 @@ public class Program_Controller implements Initializable {
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 program.getChildren().add(hbox);
                 
-                pTime = rs.getTime("endtime");
+                pTime = rs.getTimestamp("endtime");
 //                System.out.println(pTime);
                 System.out.println("--------------");
             }
