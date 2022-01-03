@@ -1,11 +1,17 @@
 package gr.ihu.ermistv.controller;
 
 import gr.ihu.ermistv.DBConnection;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -43,7 +49,7 @@ public class Program_Controller implements Initializable{
     private int emptyS = 15;
     private double spaces = 5;
     private double spacesH = 10;
-//    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>;
+    private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>();
 
     public static Bounds getVisibleBounds(Node aNode)
     {
@@ -60,13 +66,27 @@ public class Program_Controller implements Initializable{
     }
     
     @FXML
+    private void test() {
+        Bounds bounds = extension.getViewportBounds();
+        System.out.println(extension.getVvalue());
+    }
+    
+    @FXML
     private void monday() {
         
         Bounds bounds = extension.getViewportBounds();
-        extension.setVvalue(test.getParent().getParent().getLayoutY() * 
+        extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() * 
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        
+        System.out.println(scrollDay.get("Monday").getParent().getParent().getLayoutY() * 
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        System.out.println(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() * 
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        System.out.println(scrollDay.get("Thursday").getParent().getParent().getLayoutY() * 
+               (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
+        
+//        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     }
-    HBox test = new HBox();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,11 +121,8 @@ public class Program_Controller implements Initializable{
             dayBox.setStyle("-fx-background-color:red");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
-//            scrollDay.put(days[i - 1], dayBox);
+            scrollDay.put(days[i - 1], dayBox);
             dayBox.setId(days[i - 1]);
-            if(days[i - 1].equals("Sunday")){
-                test = dayBox;
-            }
             
             
 
@@ -227,27 +244,7 @@ public class Program_Controller implements Initializable{
 
         
         double halfhours ;
-        
-//        HBox hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        hbox.setStyle("-fx-background-color:red");
-//        halfhours = 120/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
-//        hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        halfhours = 60/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
-//        hbox = new HBox();
-//        hbox.setPrefHeight(466);
-//        hbox.setStyle("-fx-background-color:red");
-//        halfhours = 300/30;
-//        hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-//        program.getChildren().add(hbox);
-//
+
         String getSyntelestes = "select * from getPrograms()";
         Statement statement;
         try {
@@ -258,25 +255,14 @@ public class Program_Controller implements Initializable{
 
             double pTime = 0;
             while (rs.next()) {
-//                HBox hboxS = new HBox();
-//
-//
-//                program.getChildren().add(hboxS);
-//
-//                if(rs.getInt("strtime") - pTime  > 0){
-//
-//                }
-
 
                 HBox hbox = new HBox();
                 halfhours = (rs.getDouble("strtime") - pTime)/30;
-//                System.out.println(halfhours);
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
                 hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
-//                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
@@ -286,8 +272,70 @@ public class Program_Controller implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String day;
+        MyClassWithText interestingText = new MyClassWithText();
+        MyTextListener listener = new MyTextListener();
+        interestingText.addPropertyChangeListener(listener);
+        extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+//            System.out.println(newValue);
+              if((double)newValue <= 0.109){
+                interestingText.setText("Monday");
+              }
+              else if((double)newValue > 0.109 && (double)newValue <= 0.259){
+                interestingText.setText("Tuesday");
+              }
+              else if((double)newValue > 0.259 && (double)newValue <= 0.404){
+                interestingText.setText("Wednestay");
+              }
+              else if((double)newValue > 0.404 && (double)newValue <= 0.554){
+                interestingText.setText("Thurstday");
+              }
+              else if((double)newValue > 0.554 && (double)newValue <= 0.698){
+                interestingText.setText("Friday");
+              }
+              else if((double)newValue > 0.698 && (double)newValue <= 0.849){
+                interestingText.setText("Saturday");
+              }
+              else if((double)newValue > 0.849){
+                interestingText.setText("Sunday");
+              }
 
+        });
         
         
     }
+    public class MyClassWithText {
+        protected PropertyChangeSupport propertyChangeSupport;
+        private String text;
+
+        public MyClassWithText () {
+            propertyChangeSupport = new PropertyChangeSupport(this);
+        }
+
+        public void setText(String text) {
+            String oldText = this.text;
+            this.text = text;
+            propertyChangeSupport.firePropertyChange("MyTextProperty",oldText, text);
+        }
+
+        public void addPropertyChangeListener(PropertyChangeListener listener) {
+            propertyChangeSupport.addPropertyChangeListener(listener);
+        }
+    }
+
+    public class MyTextListener implements PropertyChangeListener {
+        @Override
+        public void propertyChange(PropertyChangeEvent event) {
+            if (event.getPropertyName().equals("MyTextProperty")) {
+                System.out.println(event.getNewValue().toString());
+            }
+        }
+    }
+    
+    
+    
+    private int value(){
+        return 1;
+    }
+    
 }
