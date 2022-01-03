@@ -16,7 +16,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="515.0" prefWidth="850.0">
                <children>
-                  <ScrollPane fx:id="extension" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="822.0" style="-fx-background-color: transparent;">
+                  <ScrollPane fx:id="extension" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="849.0" style="-fx-background-color: transparent;">
                      <content>
                         <VBox prefWidth="788.0">
                            <children>

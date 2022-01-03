@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -49,7 +50,7 @@ public class Program_Controller implements Initializable{
     private String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private int daysize = 130;
-    private int emptyS = 15;
+    private int emptyS = 30;
     private double spaces = 5;
     private double spacesH = 10;
     private HashMap<String,HBox> scrollDay = new HashMap<String, HBox>();
@@ -73,23 +74,24 @@ public class Program_Controller implements Initializable{
         Bounds bounds = extension.getViewportBounds();
         System.out.println(extension.getVvalue());
     }
-    
+
     @FXML
     private void monday() {
         
         Bounds bounds = extension.getViewportBounds();
-        extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() * 
+        extension.setVvalue(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        
-        System.out.println(scrollDay.get("Monday").getParent().getParent().getLayoutY() * 
+
+        System.out.println(scrollDay.get("Monday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        System.out.println(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() * 
+        System.out.println(scrollDay.get("Tuesday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        System.out.println(scrollDay.get("Thursday").getParent().getParent().getLayoutY() * 
+        System.out.println(scrollDay.get("Thursday").getParent().getParent().getLayoutY() *
                (1/(emptypane.getHeight()-bounds.getHeight())) - 0.003);
-        
+
 //        "Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
     }
+    HBox test = new HBox();
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -120,8 +122,10 @@ public class Program_Controller implements Initializable{
             Text dayText = new Text ();
             dayText.setStyle("-fx-font-size:25px");
             dayText.setText(days[i - 1]);
+            dayBox.setAlignment(Pos.CENTER);
             dayBox.getChildren().add(dayText);
-            dayBox.setStyle("-fx-background-color:red");
+            dayBox.getStyleClass().add("vboxDay");
+//            dayText.getStyleClass().add("daytext");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
             scrollDay.put(days[i - 1], dayBox);
@@ -136,6 +140,7 @@ public class Program_Controller implements Initializable{
                     hbox.setMinHeight(Region.USE_PREF_SIZE);
 
                     HBox day = new HBox();
+                    day.setPadding(new Insets(2, 0, 0, 10  ));
                     day.setPrefWidth(daysize);
                     day.setPrefHeight(emptyS);
                     day.setMinHeight(Region.USE_PREF_SIZE);
@@ -155,7 +160,7 @@ public class Program_Controller implements Initializable{
                     HBox Htime = new HBox();
                     Htime.setPrefHeight(emptyS);
                     Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.setStyle("-fx-background-color:red");
+                    Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
                     int hours = t / 60; //since both are ints, you get an int
@@ -191,7 +196,7 @@ public class Program_Controller implements Initializable{
             HBox Htime = new HBox();
             Htime.setPrefHeight(emptyS);
             Htime.setMinHeight(Region.USE_PREF_SIZE);
-            Htime.setStyle("-fx-background-color:red");
+            Htime.getStyleClass().add("vboxTime");
             Htime.setAlignment(Pos.CENTER);
             Text text = new Text();
             text.setText("00:00");
@@ -227,7 +232,7 @@ public class Program_Controller implements Initializable{
                     HBox Htime = new HBox();
                     Htime.setPrefHeight(emptyS);
                     Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.setStyle("-fx-background-color:red");
+                    Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
                     int hours = t / 60; //since both are ints, you get an int
@@ -258,14 +263,26 @@ public class Program_Controller implements Initializable{
 
             double pTime = 0;
             while (rs.next()) {
+//                HBox hboxS = new HBox();
+//
+//
+//                program.getChildren().add(hboxS);
+//
+//                if(rs.getInt("strtime") - pTime  > 0){
+//
+//                }
+
 
                 HBox hbox = new HBox();
                 halfhours = (rs.getDouble("strtime") - pTime)/30;
+//                System.out.println(halfhours);
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
-                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
+                hbox.getStyleClass().add("vbox50");
+//                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
+//                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
                 program.getChildren().add(hbox);
