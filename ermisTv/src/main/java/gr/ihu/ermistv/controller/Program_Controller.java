@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -97,8 +98,10 @@ public class Program_Controller implements Initializable{
             Text dayText = new Text ();
             dayText.setStyle("-fx-font-size:25px");
             dayText.setText(days[i - 1]);
+            dayBox.setAlignment(Pos.CENTER);
             dayBox.getChildren().add(dayText);
-            dayBox.setStyle("-fx-background-color:red");
+            dayBox.getStyleClass().add("vboxDay");
+//            dayText.getStyleClass().add("daytext");
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
 //            scrollDay.put(days[i - 1], dayBox);
@@ -116,6 +119,7 @@ public class Program_Controller implements Initializable{
                     hbox.setMinHeight(Region.USE_PREF_SIZE);
 
                     HBox day = new HBox();
+                    day.setPadding(new Insets(2, 0, 0, 10  ));
                     day.setPrefWidth(daysize);
                     day.setPrefHeight(emptyS);
                     day.setMinHeight(Region.USE_PREF_SIZE);
@@ -135,7 +139,7 @@ public class Program_Controller implements Initializable{
                     HBox Htime = new HBox();
                     Htime.setPrefHeight(emptyS);
                     Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.setStyle("-fx-background-color:red");
+                    Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
                     int hours = t / 60; //since both are ints, you get an int
@@ -171,7 +175,7 @@ public class Program_Controller implements Initializable{
             HBox Htime = new HBox();
             Htime.setPrefHeight(emptyS);
             Htime.setMinHeight(Region.USE_PREF_SIZE);
-            Htime.setStyle("-fx-background-color:red");
+            Htime.getStyleClass().add("vboxTime");
             Htime.setAlignment(Pos.CENTER);
             Text text = new Text();
             text.setText("00:00");
@@ -207,7 +211,7 @@ public class Program_Controller implements Initializable{
                     HBox Htime = new HBox();
                     Htime.setPrefHeight(emptyS);
                     Htime.setMinHeight(Region.USE_PREF_SIZE);
-                    Htime.setStyle("-fx-background-color:red");
+                    Htime.getStyleClass().add("vboxTime");
                     Htime.setAlignment(Pos.CENTER);
                     Text text = new Text();
                     int hours = t / 60; //since both are ints, you get an int
@@ -275,7 +279,8 @@ public class Program_Controller implements Initializable{
                 program.getChildren().add(hbox);
 
                 hbox = new HBox();
-                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
+                hbox.getStyleClass().add("vbox50");
+//                hbox.setStyle("-fx-background-color:red; -fx-border-color:black");
 //                hbox.setStyle();
                 halfhours = rs.getDouble("time")/30;
                 hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
