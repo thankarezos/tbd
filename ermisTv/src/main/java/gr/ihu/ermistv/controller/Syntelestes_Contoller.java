@@ -70,6 +70,7 @@ public class Syntelestes_Contoller implements Initializable {
     private void reloadFactor(MouseEvent event) {
         filterSyntelestes();
         createRole();
+        addfactor();
         syntelestisID.clear();
         syntelestisName.clear();
         syntelestisSurname.clear();
@@ -185,7 +186,7 @@ public class Syntelestes_Contoller implements Initializable {
     // Filter Syntelestes
     private void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
-        if (Secondary_Controller.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
+        if (isNumeric.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
             id = "null";
         }
 
@@ -248,7 +249,6 @@ public class Syntelestes_Contoller implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML

@@ -5,6 +5,8 @@ AS $function$
     BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rating') THEN 
     CREATE type rating AS ENUM('K' ,'8','12', '16','18')  ;END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
+    CREATE type type_ek AS ENUM ('Movie','Series','Broadcast','Documentary','NEWS');END IF;
     DROP TABLE IF EXISTS ekpompes CASCADE;
     CREATE TABLE IF NOT EXISTS ekpompes
     (
@@ -12,45 +14,50 @@ AS $function$
         name varchar(100),
         rating rating,
         time int,
+        type_ek type_ek,
         primary key(sid)
     );
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhmera','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhnyxta','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('kalo mesimeri','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('dwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhmera','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhnyxta','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('kalo mesimeri','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhmera','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('Kalhnyxta','18', '30');
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES ('kalo mesimeri','18', '30');
+
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhmera','18', '30','Broadcast');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhnyxta','18', '30','Movie');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('kalo mesimeri','18', '30','Series');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('dwaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','18', '30','Series');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhmera','18', '30','Documentary');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhnyxta','18', '30','Broadcast');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('kalo mesimeri','18', '30','NEWS');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhmera','18', '30','Series');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('Kalhnyxta','18', '30','NEWS');
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES ('kalo mesimeri','18', '30','Movie');
 
     END;
 $function$;
+
 SELECT ekpompes();
+
 CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
     SELECT * FROM ekpompes  ORDER BY sid;
 $$  LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION addbroadcASt(name text, rating rating,times integer)
+CREATE OR REPLACE FUNCTION addbroadcASt(name text, rating rating,times integer,type_ek type_ek)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
     BEGIN
-    INSERT INTO ekpompes (name,rating,time)
-    VALUES (name,rating,times);
+    INSERT INTO ekpompes (name,rating,time,type_ek)
+    VALUES (name,rating,times,type_ek);
     END;
 $function$;
+
 CREATE OR REPLACE FUNCTION deleteEkpompi(id integer)
  RETURNS void
  LANGUAGE plpgsql
@@ -61,7 +68,7 @@ AS $function$
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int) 
+CREATE OR REPLACE FUNCTION getResult(int,text,rating,int,int,type_ek) 
 RETURNS setof ekpompes AS
  $$
     SELECT * FROM ekpompes 
@@ -85,5 +92,10 @@ RETURNS setof ekpompes AS
     END
     )
     AND time BETWEEN $4 AND $5
+    AND type_ek = ( 
+    CASE
+        WHEN $6 IS NULL THEN type_ek ELSE $6
+    END
+    )
 $$  LANGUAGE sql
 

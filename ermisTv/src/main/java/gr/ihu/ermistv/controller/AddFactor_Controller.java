@@ -87,7 +87,6 @@ public class AddFactor_Controller implements Initializable {
     private ArrayList<String> Role = new ArrayList<String>();
     private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
-    // Load Results Syntelestes
     @FXML
     private void addfactor() {
         Iterator it = add.entrySet().iterator();
@@ -222,7 +221,7 @@ public class AddFactor_Controller implements Initializable {
     // Filter Syntelestes
     private void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
-        if (Secondary_Controller.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
+        if (isNumeric.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
             id = "null";
         }
 

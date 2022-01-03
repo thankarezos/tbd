@@ -206,7 +206,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     // Filter Syntelestes
     public void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
-        if (Secondary_Controller.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
+        if (isNumeric.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
             id = "null";
         }
 

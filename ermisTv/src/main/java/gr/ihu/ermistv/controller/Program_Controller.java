@@ -1,16 +1,20 @@
 package gr.ihu.ermistv.controller;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.DBConnection;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -20,7 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -30,7 +34,6 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.text.Text;
 import javafx.geometry.Pos;
-import javafx.scene.control.ScrollPane;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -41,14 +44,25 @@ import javafx.scene.input.MouseEvent;
 public class Program_Controller implements Initializable {
 
     @FXML
-    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
+    private FontAwesomeIconView x;
+    @FXML
+    private ChoiceBox<String> choiceDayPro ,choiceTypePro;
+    @FXML
+    private TextField addNamePro,addTimePro;
+    @FXML
+    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday,btnConfPro;
     @FXML
     private VBox emptypane, time, program;
     @FXML
     private ScrollPane extension;
-
     @FXML
     private HBox daysV;
+    @FXML
+    private AnchorPane paneProgram;
+    @FXML
+    private Label proErrLabel;
+
+
 
     private String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private String[] colors = {"white", "grey", "Thursday", "Wednesday", "Friday", "Saturday", "Sunday"};
@@ -331,10 +345,85 @@ public class Program_Controller implements Initializable {
             }
         }
     }
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) {
+        if (event.getSource() == x) {
+            paneProgram.toFront();
+        }
+    }
 
+//    @FXML
+//    private void addfactor() {
+//        Iterator it = add.entrySet().iterator();
+//        while (it.hasNext()) {
+//            Map.Entry pair = (Map.Entry) it.next();
+//            String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
+//            Statement statement;
+//            try {
+//                statement = DBConnection.c.createStatement();
+//                ResultSet rscheck = statement.executeQuery(checkif);
+//                rscheck.next();
+//                int returncode = rscheck.getInt(1);
+//                if (returncode == 0) {
+//
+//                    String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
+//                    ResultSet rs = statement.executeQuery(addSyntelestes);
+//                } else if (returncode == 3) {
+//                    System.out.println("Factor does not exist");
+//                }
+//
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//            it.remove();
+//            add.remove(pair.getKey());
+//
+////            System.out.println(pair.getKey() + " = " + pair.getValue());
+//            // avoids a ConcurrentModificationException
+//        }
+//        Pop.toBack();
+//        seC.filterSyntelestes();
+//        seC.createRole();
+//
+//
+//    }
 
-    private int value() {
-        return 1;
+    @FXML
+    private void addProgram() {
+        int intValue;
+        try {
+            String day = choiceDayPro.getValue();
+            String name = addNamePro.getText();
+            String type = choiceTypePro.getValue();
+            String time = String.valueOf(addTimePro.getText());
+            if(day.isEmpty()) {
+                proErrLabel.setText("ADD DAY!");
+            }else if (name.isEmpty()) {
+                proErrLabel.setText("ADD NAME!");
+            } else if (type.isEmpty()) {
+                proErrLabel.setText("ADD TYPE!");
+            } else if (isNumeric.isNumeric(time) || time.isEmpty()) {
+                proErrLabel.setText("ADD TIME! ");
+            } else {
+                String addbroadcast = "select getPrograms('" + day + "','" + name + "','"+ type + "','" + time + "');";
+                Statement statement = DBConnection.c.createStatement();
+                ResultSet rs = statement.executeQuery(addbroadcast);
+
+                System.out.println("Success");
+//                filterEkpompi();
+//                addNameBro.clear();
+//                choiceRatingBro.setValue(null);
+//                choiceTypeBro.setValue(null);
+//                timeSlider.setValue(0);
+//                broErrLabel.setText("");
+//                paneEkpompi.toFront();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

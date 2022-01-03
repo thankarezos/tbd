@@ -75,17 +75,6 @@ public class Secondary_Controller implements Initializable {
     }
 
     // Is Numeric Method
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return true;
-        }
-        try {
-            Integer d = Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return true;
-        }
-        return false;
-    }
 
     // Handle Clicks Popup
     @FXML

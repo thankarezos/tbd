@@ -75,7 +75,7 @@ public class Ekpompi_Controller implements Initializable {
     private ChoiceBox<?> choiceEditDay;
 
     @FXML
-    private ChoiceBox choiceRatingBro;
+    private ChoiceBox choiceRatingBro,choiceTypeBro;
 
     @FXML
     private AnchorPane editAnchorPane;
@@ -99,7 +99,7 @@ public class Ekpompi_Controller implements Initializable {
     private TextField filterName;
 
     @FXML
-    private ChoiceBox<String> filterRating;
+    private ChoiceBox<String> filterRating,filterType;
 
     @FXML
     private Label labelGetName;
@@ -138,12 +138,13 @@ public class Ekpompi_Controller implements Initializable {
     int high = 300;
     int valueRange;
     private ArrayList<String> ratingC = new ArrayList<String>();
+    private ArrayList<String> type_ekC = new ArrayList<String>();
 
     // Load Results Ekpompi
-    private void loadResults(String id, String name, String rating, String timeLow, String timeHigh) {
+    private void loadResults(String id, String name, String rating, String timeLow, String timeHigh,String type_ek) {
         ekpompivbox.getChildren().clear();
         String getEkmompes = "select * from getResult(" + id + "," + name + "," + rating + "," + timeLow + ","
-                + timeHigh + ");";
+                + timeHigh  + "," + type_ek + ");";
 
         Statement statement;
         try {
@@ -159,12 +160,12 @@ public class Ekpompi_Controller implements Initializable {
                     hbox.setSpacing(3);
                     HBox hboxinside = new HBox();
                     hboxinside.getStyleClass().add("hboxStyle");
-                    hboxinside.setPrefWidth(200.5);
+                    hboxinside.setPrefWidth(160);
                     hboxinside.setAlignment(CENTER);
                     hboxinside.setPadding(new Insets(5, 5, 5, 5));
                     Text text = new Text();
                     text.setText(String.valueOf(rs.getString(i)));
-                    text.setWrappingWidth(160);
+                    text.setWrappingWidth(145);
                     text.setTextAlignment(TextAlignment.CENTER);
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
@@ -284,6 +285,27 @@ public class Ekpompi_Controller implements Initializable {
         }
 
     }
+    private void createType_ek() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
+            ResultSet rs2 = statement.executeQuery(setType_ek);
+            type_ekC.clear();
+            type_ekC.add("");
+            while (rs2.next()) {
+                type_ekC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(type_ekC);
+            filterType.setItems(rate);
+            choiceTypeBro.setItems(rate);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     // Add Ekpompi
     @FXML
@@ -292,14 +314,17 @@ public class Ekpompi_Controller implements Initializable {
         try {
             String name = addNameBro.getText();
             String rating = (String) choiceRatingBro.getValue();
+            String type =(String) choiceTypeBro.getValue();
             int time = valueRange;
             if (name == "") {
                 broErrLabel.setText("ADD NAME!");
             } else if (rating == null || rating == "empty") {
                 broErrLabel.setText("ADD RATING!");
             } else if (time == 0) {
-                broErrLabel.setText("ADD TIME ");
-            } else {
+                broErrLabel.setText("ADD TIME! ");
+            } else if (type == null) {
+                broErrLabel.setText("ADD TYPE! ");
+            } else{
                 String addbroadcast = "select addbroadcast('" + name + "','" + rating + "','" + time + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
@@ -308,6 +333,7 @@ public class Ekpompi_Controller implements Initializable {
                 filterEkpompi();
                 addNameBro.clear();
                 choiceRatingBro.setValue(null);
+                choiceTypeBro.setValue(null);
                 timeSlider.setValue(0);
                 broErrLabel.setText("");
                 paneEkpompi.toFront();
@@ -322,6 +348,7 @@ public class Ekpompi_Controller implements Initializable {
     private void addBroadcast(MouseEvent event) {
         addBroadcast.toFront();
         createRating();
+        createType_ek();
 
     }
 
@@ -330,6 +357,7 @@ public class Ekpompi_Controller implements Initializable {
     private void reloadPage(MouseEvent event) {
         filterEkpompi();
         createRating();
+        createType_ek();
         filterID.clear();
         filterName.clear();
         high = 300;
@@ -340,22 +368,11 @@ public class Ekpompi_Controller implements Initializable {
     }
 
     // Is Numeric Method
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return true;
-        }
-        try {
-            Integer d = Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return true;
-        }
-        return false;
-    }
 
     // Filter Ekpompi
     private void filterEkpompi() {
         String id = "'" + filterID.getText() + "'";
-        if (isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
+        if (isNumeric.isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
             id = "null";
         }
         String name = "'" + filterName.getText() + "'";
@@ -369,15 +386,24 @@ public class Ekpompi_Controller implements Initializable {
         if (String.valueOf(filterRating.getValue()).isEmpty() || filterRating.getValue() == null) {
             rating = "null";
         }
-        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high));
+
+        String type_ek = "'" + String.valueOf(filterType.getValue()) + "'";
+
+        if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
+            type_ek = "null";
+        }
+        loadResults(id, name, rating, String.valueOf(low), String.valueOf(high),type_ek);
     }
 
     // Override
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // choice rating
+        // choice Rating
         createRating();
+        //choise Type
+        createType_ek();
+
 
         // Range Slider
         sliderr.setLowValue(low);
@@ -393,7 +419,9 @@ public class Ekpompi_Controller implements Initializable {
         filterRating.valueProperty().addListener((observable, oldValue, newValue) -> {
             filterEkpompi();
         });
-
+        filterType.valueProperty().addListener((observable, oldValue, newValue) -> {
+                    filterEkpompi();
+        });
         sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
 
             high = (int) Math.round(newValue.doubleValue());
@@ -415,7 +443,7 @@ public class Ekpompi_Controller implements Initializable {
             filterEkpompi();
         });
 
-        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high));
+        loadResults("null", "null", "null", String.valueOf(low), String.valueOf(high),"null");
     }
 
     @FXML
