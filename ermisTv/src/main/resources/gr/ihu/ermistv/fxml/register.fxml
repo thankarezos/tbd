@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="459.0" styleClass="login" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Register_Controller">
+<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="459.0" styleClass="login" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Register_Controller">
    <children>
       <HBox id="Hbox" fx:id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="459.0" spacing="5.0">
          <children>
@@ -74,7 +74,7 @@
                                     <Font name="Georgia Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="lName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
+                              <TextField fx:id="lName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="310.0">
@@ -126,12 +126,12 @@
                   </Label>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="380.0" spacing="50.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Back">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#back" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Back">
                            <font>
                               <Font name="Georgia Bold" size="16.0" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#closeWindow" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegisterButtonOnAction" prefHeight="35.0" prefWidth="110.0" styleClass="bevel_grey" text="Register">
                            <font>
                               <Font name="Georgia Bold" size="16.0" />
                            </font>
@@ -145,11 +145,6 @@
             <Insets bottom="12.0" top="5.0" />
          </padding>
       </VBox>
-      <Label alignment="CENTER" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="459.0" textFill="RED">
-         <font>
-            <Font name="Arial Bold" size="20.0" />
-         </font>
-      </Label>
       <Label alignment="CENTER" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="459.0" text="Register" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
