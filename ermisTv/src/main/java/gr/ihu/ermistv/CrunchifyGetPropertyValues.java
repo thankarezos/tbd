@@ -17,11 +17,11 @@ import java.util.Properties;
 public class CrunchifyGetPropertyValues {
     String file;
 
-    CrunchifyGetPropertyValues(String file) {
+    public CrunchifyGetPropertyValues(String file) {
         this.file = file;
     }
 
-    String getProperty(String property) {
+    public String getProperty(String property) {
 
         Properties prop = new Properties();
         try (FileInputStream fis = new FileInputStream(file)) {

@@ -10,8 +10,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
