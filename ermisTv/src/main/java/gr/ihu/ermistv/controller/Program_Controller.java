@@ -1,6 +1,7 @@
 package gr.ihu.ermistv.controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 
 import java.beans.PropertyChangeEvent;
@@ -44,6 +45,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 
 
@@ -65,6 +68,15 @@ public class Program_Controller implements Initializable {
     private HBox daysV;
     @FXML
     private AnchorPane paneProgram;
+    
+    @FXML
+    private AnchorPane addEkpompi;
+    
+    @FXML
+    private AnchorPane popupEkpompi;
+    
+    
+    
     @FXML
     private Label proErrLabel;
 
@@ -91,6 +103,21 @@ public class Program_Controller implements Initializable {
         return bounds;
     }
 
+    @FXML
+    private void add(MouseEvent event) {
+        System.out.println("add");
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addEkpompi.fxml"));
+
+            popupEkpompi.getChildren().add(loader.load());
+
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        addEkpompi.toFront();
+    }
 
     @FXML
     private void day(MouseEvent event) {

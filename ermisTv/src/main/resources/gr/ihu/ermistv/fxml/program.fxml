@@ -14,18 +14,18 @@
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
     <children>
-      <AnchorPane id="x" fx:id="addProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="435.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
+      <AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
          <children>
-            <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="435.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+            <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="359.0" text="Add Program" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Factor" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
                      <graphic>
-                        <FontAwesomeIconView glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
+                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
                      </graphic>
                      <HBox.margin>
                         <Insets />
@@ -39,6 +39,7 @@
                   <Insets right="5.0" />
                </padding>
             </HBox>
+            <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
          </children>
       </AnchorPane>
         <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="850.0" styleClass="child" stylesheets="@../css/style.css">
@@ -110,9 +111,9 @@
                   </VBox>
                     </children>
                 </VBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#add" prefHeight="36.0" prefWidth="36.0">
                <graphic>
-                  <FontAwesomeIconView glyphName="PLUS" size="2.5em" />
+                  <FontAwesomeIconView fx:id="add" glyphName="PLUS" size="2.5em" />
                </graphic>
             </Label>
             </children>
