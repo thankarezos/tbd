@@ -37,13 +37,16 @@ import javafx.scene.Node;
 public class Program_Controller implements Initializable{
 
     @FXML
-    private Button btnMonday, btnTuesday, btnWednesday, btnThursday, btnFriday, btnSaturday, btnSunday;
+    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
     @FXML
     private VBox emptypane, time, program;
     @FXML
     private ScrollPane extension;
+    
+    @FXML
+    private HBox daysV;
 
-    private String[] days = {"Monday","Tuesday","Thursday","Wednesday","Friday","Saturday","Sunday"};
+    private String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     private String[] colors = {"white","grey","Thursday","Wednesday","Friday","Saturday","Sunday"};
     private int daysize = 130;
     private int emptyS = 15;
@@ -273,42 +276,42 @@ public class Program_Controller implements Initializable{
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         String day;
-        MyClassWithText interestingText = new MyClassWithText();
-        MyTextListener listener = new MyTextListener();
-        interestingText.addPropertyChangeListener(listener);
+        DayS days = new DayS();
+        Listener listener = new Listener();
+        days.addPropertyChangeListener(listener);
         extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
 //            System.out.println(newValue);
               if((double)newValue <= 0.109){
-                interestingText.setText("Monday");
+                days.setText("Monday");
               }
               else if((double)newValue > 0.109 && (double)newValue <= 0.259){
-                interestingText.setText("Tuesday");
+                days.setText("Tuesday");
               }
               else if((double)newValue > 0.259 && (double)newValue <= 0.404){
-                interestingText.setText("Wednestay");
+                days.setText("Wednesday");
               }
               else if((double)newValue > 0.404 && (double)newValue <= 0.554){
-                interestingText.setText("Thurstday");
+                days.setText("Thursday");
               }
               else if((double)newValue > 0.554 && (double)newValue <= 0.698){
-                interestingText.setText("Friday");
+                days.setText("Friday");
               }
               else if((double)newValue > 0.698 && (double)newValue <= 0.849){
-                interestingText.setText("Saturday");
+                days.setText("Saturday");
               }
               else if((double)newValue > 0.849){
-                interestingText.setText("Sunday");
+                days.setText("Sunday");
               }
 
         });
         
         
     }
-    public class MyClassWithText {
+    public class DayS {
         protected PropertyChangeSupport propertyChangeSupport;
         private String text;
 
-        public MyClassWithText () {
+        public DayS () {
             propertyChangeSupport = new PropertyChangeSupport(this);
         }
 
@@ -323,10 +326,19 @@ public class Program_Controller implements Initializable{
         }
     }
 
-    public class MyTextListener implements PropertyChangeListener {
+    public class Listener implements PropertyChangeListener {
         @Override
         public void propertyChange(PropertyChangeEvent event) {
             if (event.getPropertyName().equals("MyTextProperty")) {
+                
+                Button button = (Button)daysV.lookup("#" + event.getNewValue().toString());
+                for(int i = 1;i < daysV.getChildren().size();i++ ){
+                    daysV.getChildren().get(i).setStyle("-fx-background-color:white");
+                }
+                
+                
+                button.setStyle("-fx-background-color:blue");
+                
                 System.out.println(event.getNewValue().toString());
             }
         }
