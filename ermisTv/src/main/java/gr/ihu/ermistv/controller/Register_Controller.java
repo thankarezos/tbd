@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -55,16 +57,8 @@ public class Register_Controller {
 
 
     @FXML
-    void back(MouseEvent event) {
-        Parent root;
-        try {
-            root = FXMLLoader.load(App.class.getResource("fxml/login_view.fxml"));
-
-            Scene scene = new ScenesSet(root, App.stage, 876, 517);
-            register.getChildren().add(root);
-        } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    void back(MouseEvent event) throws IOException {
+        loginBack();
     }
     private String regexPattern = "^(.+)@(\\S+)$";
 
@@ -137,6 +131,8 @@ public class Register_Controller {
         } else {
             setError("Incorect Email");
         }
+        loginBack();
+
     }
 
     public void registerUser() throws SQLException {
@@ -155,7 +151,7 @@ public class Register_Controller {
         String Password = fPass.getText();
 
         Statement statement;
-        String setAccount= "";
+        String setAccount= "select setAccount('"+ fName + "','" + lName + "','" + email + "','" + uName + "','" + fPass +"')";
         try {
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(setAccount);
@@ -185,5 +181,24 @@ public class Register_Controller {
     public void setError(String error) {
         messageLabel.setStyle("-fx-text-fill: red;");
         messageLabel.setText(error);
+    }
+    private void loginBack() throws IOException {
+        Stage stage = (Stage) register.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root;
+        root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480,"#Hbox");
+
+        stage.setScene(scene);
+
+        stage.setX(stage.getX() - 200);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+        stage.show();
+        stage.setResizable(false);
+
     }
 }
