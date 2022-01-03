@@ -1,32 +1,19 @@
 package gr.ihu.ermistv.controller;
 
 import gr.ihu.ermistv.DBConnection;
-import gr.ihu.ermistv.HboxEnch;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ResourceBundle;
 
-import javafx.beans.DefaultProperty;
-import javafx.collections.ObservableList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import static javafx.geometry.Pos.CENTER;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -35,13 +22,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.text.Text;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.text.TextAlignment;
+import gr.ihu.scrollfx.ZoomableScrollPane;
+import javafx.geometry.Bounds;
 
 public class Program_Controller implements Initializable{
 
@@ -62,7 +46,6 @@ public class Program_Controller implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        ZoomableScrollPane zoomablePane = (ZoomableScrollPane) extension;
 //        
 //        
 //        zoomablePane.getId();
@@ -74,7 +57,7 @@ public class Program_Controller implements Initializable{
         time.setSpacing(spaces);
         AnchorPane.setTopAnchor(time, emptyS -((double)emptyS/2 - spaces/2));
         int t;
-        
+        HBox test = new HBox();
         String panecolor = "";
         for(int i=1; i<=7;i++){
             if(i%2 == 0){
@@ -95,7 +78,9 @@ public class Program_Controller implements Initializable{
             dayBox.setPrefWidth(daysize);
             dayBox.setPrefHeight(30);
 //            scrollDay.put(days[i - 1], dayBox);
-
+            
+            test = dayBox;
+            
 
             for(int j = 1; j <=47;j++){
 
@@ -211,6 +196,24 @@ public class Program_Controller implements Initializable{
                     time.getChildren().add(Htime);
                     emptypane.getChildren().add(hbox);
         }
+        Bounds viewport = extension.getViewportBounds();
+        double contentHeight = extension.getContent().localToScene(extension.getContent().getBoundsInLocal()).getHeight();
+        double nodeMinY = test.localToScene(test.getBoundsInLocal()).getMinY();
+        double nodeMaxY = test.localToScene(test.getBoundsInLocal()).getMaxY();
+
+        double vValueDelta = 0;
+        double vValueCurrent = extension.getVvalue();
+
+        if (nodeMaxY < 0) {
+            // currently located above (remember, top left is (0,0))
+            vValueDelta = (nodeMinY - viewport.getHeight()) / contentHeight;
+        } else if (nodeMinY > viewport.getHeight()) {
+            // currently located below
+            vValueDelta = (nodeMinY + viewport.getHeight()) / contentHeight;
+        }
+        extension.setVvalue(vValueCurrent + vValueDelta);
+
+        
         double halfhours ;
         
 //        HBox hbox = new HBox();

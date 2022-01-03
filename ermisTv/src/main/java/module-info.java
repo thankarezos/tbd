@@ -5,6 +5,7 @@ module gr.ihu.ermistv {
     requires de.jensd.fx.glyphs.fontawesome;
     requires org.controlsfx.controls;
     requires org.postgresql.jdbc;
+    requires gr.ihu.scrollfx;
 //    requires jsch;
     
     
