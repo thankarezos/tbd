@@ -92,20 +92,11 @@ public class AddFactor_Controller implements Initializable {
         Iterator it = add.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
-            String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
             Statement statement;
             try {
                 statement = DBConnection.c.createStatement();
-                ResultSet rscheck = statement.executeQuery(checkif);
-                rscheck.next();
-                int returncode = rscheck.getInt(1);
-                if (returncode == 0) {
-
-                    String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
-                    ResultSet rs = statement.executeQuery(addSyntelestes);
-                } else if (returncode == 3) {
-                    System.out.println("Factor does not exist");
-                }
+                String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
+                ResultSet rs = statement.executeQuery(addSyntelestes);
 
 
             } catch (SQLException ex) {

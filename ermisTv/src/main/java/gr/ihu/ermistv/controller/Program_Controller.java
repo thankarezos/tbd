@@ -243,7 +243,7 @@ public class Program_Controller implements Initializable {
             emptypane.getChildren().add(hbox);
         }
         t = 30;
-        for (int j = 1; j <= 10; j++) {
+        for (int j = 1; j <= 12; j++) {
 
             HBox hbox = new HBox();
             hbox.setSpacing(spacesH);
@@ -379,7 +379,6 @@ public class Program_Controller implements Initializable {
 
                 Button button = (Button) daysV.lookup("#" + event.getNewValue().toString());
                 for (int i = 1; i < daysV.getChildren().size(); i++) {
-//                    daysV.getStyleClass().clear();
                     daysV.getChildren().get(i).getStyleClass().add("unpressbutton");
                 }
 
@@ -396,41 +395,6 @@ public class Program_Controller implements Initializable {
             paneProgram.toFront();
         }
     }
-
-//    @FXML
-//    private void addfactor() {
-//        Iterator it = add.entrySet().iterator();
-//        while (it.hasNext()) {
-//            Map.Entry pair = (Map.Entry) it.next();
-//            String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
-//            Statement statement;
-//            try {
-//                statement = DBConnection.c.createStatement();
-//                ResultSet rscheck = statement.executeQuery(checkif);
-//                rscheck.next();
-//                int returncode = rscheck.getInt(1);
-//                if (returncode == 0) {
-//
-//                    String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
-//                    ResultSet rs = statement.executeQuery(addSyntelestes);
-//                } else if (returncode == 3) {
-//                    System.out.println("Factor does not exist");
-//                }
-//
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//            it.remove();
-//            add.remove(pair.getKey());
-//
-////            System.out.println(pair.getKey() + " = " + pair.getValue());
-//            // avoids a ConcurrentModificationException
-//        }
-//        Pop.toBack();
-//        seC.filterSyntelestes();
-//        seC.createRole();
 //
 //
 //    }
@@ -457,13 +421,6 @@ public class Program_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
-//                filterEkpompi();
-//                addNameBro.clear();
-//                choiceRatingBro.setValue(null);
-//                choiceTypeBro.setValue(null);
-//                timeSlider.setValue(0);
-//                broErrLabel.setText("");
-//                paneEkpompi.toFront();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

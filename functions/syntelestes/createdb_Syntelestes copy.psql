@@ -48,17 +48,6 @@ RETURNS SETOF syntelestesekp  AS $$
     SELECT * FROM syntelestesekp WHERE sidek = $1 ORDER BY sidsy;
 $$  LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION addSyntelestesek(sidek integer,sidsy integer)
- RETURNS void
- LANGUAGE plpgsql
-AS $function$
-    BEGIN
-        INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
-        SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
-        FROM ekpompes,syntelestes
-        WHERE ekpompes.sid=sidek AND syntelestes.sid=sidsy ;
-    END;
-$function$;
 
 CREATE OR REPLACE FUNCTION deleteSyntelestesek(idek integer,id integer)
  RETURNS void
@@ -164,13 +153,17 @@ RETURNS setof syntelestes AS
 $$  LANGUAGE sql;
 
 
-CREATE OR REPLACE FUNCTION checkif(idek integer,idsy integer)
+CREATE OR REPLACE FUNCTION addSyntelestesek(idek integer,idsy integer)
  RETURNS integer
  LANGUAGE plpgsql
 AS $function$
     BEGIN
         IF NOT EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
+            INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
+            SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
+            FROM ekpompes,syntelestes
+            WHERE ekpompes.sid=idek AND syntelestes.sid=idsy ;
             return 0;
             -- Den yparxei kai yparxei gia prosthiki
         ELSIF EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)

@@ -5,6 +5,8 @@ AS $function$
     BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pr_day') THEN 
     CREATE type pr_day as enum('Monday' ,'Tuesday','Wednesday', 'Thursday','Friday','Saturday','Sunday')  ;END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
+    CREATE type type_ek AS ENUM ('Movie','Series','Broadcast','Documentary','NEWS');END IF;
     DROP TABLE IF EXISTS programs cascade;
     CREATE TABLE IF NOT EXISTS programs
     (
@@ -12,6 +14,7 @@ AS $function$
         sid int,
         name varchar(100),
         rating varchar,
+        type type_ek,
         strtime timestamp,
         endtime timestamp,
         time int,
@@ -43,29 +46,65 @@ CREATE TRIGGER updateTimet
 after insert on programs
 For each row execute procedure updateTime();
 
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/1 00:30','45','Monday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/1 23:00','102','Monday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 2:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 3:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/2 23:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/3 00:00','80','Tuesday');
-INSERT INTO programs(sid,name,rating,strtime,time,day) values ('1','kalhmera','18','0001/01/7 00:00','80','Sunday');     
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/1 00:30','45','Monday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/1 23:00','102','Monday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 2:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 3:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 23:00','60','Tuesday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/3 00:00','80','Tuesday');
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/7 00:00','80','Sunday');     
+INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/8 00:00','80','Sunday');   
 
 select * from programs;
 
 CREATE OR REPLACE FUNCTION getPrograms() RETURNS SETOF programs  AS $$
-    SELECT * FROM programs ORDER BY identry;
+    SELECT * FROM programs ORDER BY strtime;
 $$  LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION addPrograms(sidE int, name text, strtime time, times int, day text)
- RETURNS void
+CREATE OR REPLACE FUNCTION addPrograms(id int,strtimeS timestamp,day pr_day)
+ RETURNS integer
  LANGUAGE plpgsql
 AS $function$
+    DECLARE
+        endtimeS timestamp;
+
     BEGIN
-    INSERT INTO programs (sidE,name,strtime,time,day)
-    VALUES (sidE,name,strtime,times,day);
+
+    endtimeS := strtimeS + ((select time from ekpompes where sid=id) * interval '1 minute');
+
+    IF EXISTS (
+        Select 1 from (
+            SELECT
+            CASE WHEN
+            (strtimeS >= t2.strtime  AND strtimeS < t2.endtime ) OR
+            (endtimeS > t2.strtime  AND endtimeS <= t2.endtime) OR
+            (strtimeS <= t2.strtime  AND endtimeS >= t2.endtime) OR
+            (strtimeS >= t2.strtime AND endtimeS <= t2.endtime)
+            THEN
+            'yes'
+            ELSE
+            'no'
+            END AS OverLapping
+            FROM programs AS t2
+        ) AS overL
+        where overlapping= 'yes'
+    )
+    THEN
+        return 1;
+    END IF;
+
+
+    INSERT INTO programs (sid,name,rating,type,strtime,time,day)
+    SELECT ekpompes.sid, ekpompes.name, ekpompes.rating, ekpompes.type_ek, strtimeS, ekpompes.time ,day
+    FROM ekpompes
+    WHERE ekpompes.sid=id;
+
+    return 0;
+
     END;
 $function$;
+
+-- select addPrograms(2,'0001/01/4 00:00','Thursday')
 
 CREATE OR REPLACE FUNCTION deletePrograms(id int)
  RETURNS void
@@ -76,21 +115,23 @@ AS $function$
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION isOverlaping(timestamp ,timestamp) 
-    RETURNS integer AS $$
-        Select 1 from (
-            SELECT
-            CASE WHEN
-            ($1 >= t2.strtime  AND $1 < t2.endtime ) OR
-            ($2 > t2.strtime  AND $2 <= t2.endtime) OR
-            ($1 <= t2.strtime  AND $2 >= t2.endtime) OR
-            ($1 >= t2.strtime AND $2 <= t2.endtime)
-            THEN
-            'yes'
-            ELSE
-            'no'
-            END AS OverLapping
-            FROM programs AS t2
-        ) AS overL
-        where overlapping= 'yes'
-$$  LANGUAGE sql
+
+
+-- CREATE OR REPLACE FUNCTION isOverlaping(timestamp ,timestamp) 
+--     RETURNS integer AS $$
+--         Select 1 from (
+--             SELECT
+--             CASE WHEN
+--             ($1 >= t2.strtime  AND $1 < t2.endtime ) OR
+--             ($2 > t2.strtime  AND $2 <= t2.endtime) OR
+--             ($1 <= t2.strtime  AND $2 >= t2.endtime) OR
+--             ($1 >= t2.strtime AND $2 <= t2.endtime)
+--             THEN
+--             'yes'
+--             ELSE
+--             'no'
+--             END AS OverLapping
+--             FROM programs AS t2
+--         ) AS overL
+--         where overlapping= 'yes'
+-- $$  LANGUAGE sql
