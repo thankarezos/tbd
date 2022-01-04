@@ -27,6 +27,21 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        
+        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
+        String user = properties.getProperty("user");
+        String pass = properties.getProperty("pass");
+        String url = properties.getProperty("url");
+        
+        
+        try{
+            DBConnection.connect(url, user, pass);
+        }catch(SQLException e){
+             System.out.println("Connection Failed");
+             
+        }
+        
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
@@ -44,16 +59,10 @@ public class App extends Application {
 
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
-        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
-        String user = properties.getProperty("user");
-        String pass = properties.getProperty("pass");
-        String url = properties.getProperty("url");
-//        
-
-        DBConnection.connect(url, user, pass);
         launch();
     }
+        
 
 }
