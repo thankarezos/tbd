@@ -89,8 +89,8 @@ public class Program_Controller implements Initializable {
     private double spaces = 5;
     private double spacesH = 10;
     private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
-    
-    
+
+
 
     public static Bounds getVisibleBounds(Node aNode) {
         // If node not visible, return empty bounds
@@ -345,7 +345,7 @@ public class Program_Controller implements Initializable {
 
 
         });
-        daysV.getChildren().get(1).getStyleClass().add("pressButton");
+        daysV.getChildren().get(1).getStyleClass().add("pressBtn");
 
     }
 
@@ -375,11 +375,11 @@ public class Program_Controller implements Initializable {
 
                 Button button = (Button) daysV.lookup("#" + event.getNewValue().toString());
                 for (int i = 1; i < daysV.getChildren().size(); i++) {
-                    daysV.getChildren().get(i).getStyleClass().add("unpressbutton");
+                    daysV.getChildren().get(i).getStyleClass().add("unPressBtn");
                 }
 
                 button.getStyleClass().clear();
-                button.getStyleClass().add("pressButton");
+                button.getStyleClass().add("pressBtn");
 
                 System.out.println(event.getNewValue().toString());
             }
