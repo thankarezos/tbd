@@ -391,6 +391,8 @@ public class Program_Controller implements Initializable {
                 ResultSet rs = statement.executeQuery(addbroadcast);
 
                 System.out.println("Success");
+                statement.close();
+                rs.close();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -440,6 +442,8 @@ public class Program_Controller implements Initializable {
                 
                 pTime = rs.getTimestamp("endtime");
                 
+                Statement statement2 ;
+                statement2 = DBConnection.c.createStatement();
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -454,8 +458,11 @@ public class Program_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
                                 try {
-                                    statement.executeQuery(deleteek);
+                                    
+                                    statement2.executeQuery(deleteek);
                                     loadPrograms();
+                                    statement2.close();
+                                    rs.close();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -488,6 +495,8 @@ public class Program_Controller implements Initializable {
                 });
                 
             }
+            statement.close();
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -92,6 +92,8 @@ public class login_Controller {
             } else {
                 messageLabel.setText("Invalid login. Please try again !");
             }
+            statement.close();
+            queryResult.close();
 
         } catch (Exception e) {
             e.printStackTrace();

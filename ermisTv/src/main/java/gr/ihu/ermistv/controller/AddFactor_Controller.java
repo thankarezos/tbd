@@ -97,6 +97,8 @@ public class AddFactor_Controller implements Initializable {
                 statement = DBConnection.c.createStatement();
                 String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                 ResultSet rs = statement.executeQuery(addSyntelestes);
+                statement.close();
+                rs.close();
 
 
             } catch (SQLException ex) {
@@ -201,6 +203,8 @@ public class AddFactor_Controller implements Initializable {
                 });
                 vboxSyntelestes.getChildren().add(hbox);
             }
+            statement.close();
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -252,6 +256,8 @@ public class AddFactor_Controller implements Initializable {
             }
             ObservableList<String> rate = FXCollections.observableArrayList(Role);
             syntelestisRole.setItems(rate);
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

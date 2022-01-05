@@ -227,6 +227,7 @@ public class Ekpompi_Controller implements Initializable {
                                 try {
                                     statement.executeQuery(deleteek);
                                     filterEkpompi();
+                                    statement.close();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -280,6 +281,8 @@ public class Ekpompi_Controller implements Initializable {
             ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
             filterRating.setItems(rate);
             choiceRatingBro.setItems(rate);
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -301,6 +304,8 @@ public class Ekpompi_Controller implements Initializable {
             ObservableList<String> rate = FXCollections.observableArrayList(type_ekC);
             filterType.setItems(rate);
             choiceTypeBro.setItems(rate);
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -338,6 +343,8 @@ public class Ekpompi_Controller implements Initializable {
                 timeSlider.setValue(0);
                 broErrLabel.setText("");
                 paneEkpompi.toFront();
+                statement.close();
+                rs.close();
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

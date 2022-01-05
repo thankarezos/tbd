@@ -108,6 +108,8 @@ public class addEkpompi_Controller implements Initializable {
             Pop.toBack();
             pC.loadPrograms();
         }
+        statement.close();
+        rs.close();
     } catch (SQLException ex) {
         Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -260,7 +262,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             }
             ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
             ekpompiRating.setItems(rate);
-
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -281,7 +284,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             }
             ObservableList<String> rate = FXCollections.observableArrayList(typeC);
             ekpompiType.setItems(rate);
-
+            statement.close();
+            rs2.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

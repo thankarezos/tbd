@@ -147,6 +147,9 @@ public class Syntelestes_Contoller implements Initializable {
                             });
 
                 }
+                Statement statement2;
+                statement2 = DBConnection.c.createStatement();
+                
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -163,7 +166,7 @@ public class Syntelestes_Contoller implements Initializable {
                                 Text text2 = (Text) hboxC.getChildren().get(0);
                                 String deleteek = "select * from deleteSyntelestes(" + text2.getText() + ");";
                                 try {
-                                    statement.executeQuery(deleteek);
+                                    statement2.executeQuery(deleteek);
                                     filterSyntelestes();
 
                                 } catch (SQLException ex) {
@@ -177,6 +180,8 @@ public class Syntelestes_Contoller implements Initializable {
                 });
                 vboxSyntelestes.getChildren().add(hbox);
             }
+            statement.close();
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -271,6 +276,8 @@ public class Syntelestes_Contoller implements Initializable {
             }
             ObservableList<String> rate = FXCollections.observableArrayList(Role);
             syntelestisRole.setItems(rate);
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

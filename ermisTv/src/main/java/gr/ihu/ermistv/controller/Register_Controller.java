@@ -155,6 +155,8 @@ public class Register_Controller {
             ResultSet rs = statement.executeQuery(setAccount);
             messageLabel.setStyle("-fx-text-fill: green;");
             messageLabel.setText("User has been registered successfully!");
+            statement.close();
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

@@ -195,8 +195,12 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                     }
 
                 });
+//                
                 vboxSyntelestes.getChildren().add(hbox);
+                
             }
+            statement.close();
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -257,6 +261,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             }
             ObservableList<String> rate = FXCollections.observableArrayList(Role);
             syntelestisRole.setItems(rate);
+            statement.close();
+            rs2.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
