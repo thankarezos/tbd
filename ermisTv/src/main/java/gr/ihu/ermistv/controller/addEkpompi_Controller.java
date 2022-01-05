@@ -124,7 +124,7 @@ public class addEkpompi_Controller implements Initializable {
 
 private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
     vboxEkpompi.getChildren().clear();
-    String getEkmompes = "select * from getResult(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
+    String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
 
     Statement statement;
     try {
