@@ -47,10 +47,7 @@ public class addEkpompi_Controller implements Initializable {
     private TextField ekpompiName;
 
     @FXML
-    private ChoiceBox<String> ekpompiRating;
-
-    @FXML
-    private ChoiceBox<String> ekpompiType;
+    private ChoiceBox<String> ekpompiType ,ekpompiRating;
 
     @FXML
     private Text sliderText;
@@ -71,8 +68,8 @@ public class addEkpompi_Controller implements Initializable {
     @FXML
     private void reloadFactor(MouseEvent event) {
         filterAddEkpompi();
-//        createRating();
-//        createType();
+        createType();
+        createRating();
         ekpompiID.clear();
         ekpompiName.clear();
         ekpompiType.setValue(null);
@@ -88,8 +85,8 @@ public class addEkpompi_Controller implements Initializable {
     private AnchorPane Pop;
     private Pane mainP;
     private Program_Controller pC;
-    private ArrayList<String> RatingC = new ArrayList<String>();
-    private ArrayList<String> TypeC = new ArrayList<String>();
+    private ArrayList<String> ratingC = new ArrayList<String>();
+    private ArrayList<String> typeC = new ArrayList<String>();
     private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
     @FXML
@@ -231,49 +228,51 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
     }
 
-//    private void createRating() {//createRole
-//
-//        Statement statement;
-//        try {
-//            statement = DBConnection.c.createStatement();
-//            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
-//            ResultSet rs2 = statement.executeQuery(setRating);
-//            RatingC.clear();
-//            RatingC.add("");
-//            while (rs2.next()) {
-//                RatingC.add(rs2.getString("rating"));
-//            }
-//            ObservableList<String> rating = FXCollections.observableArrayList(RatingC);
-//            /*syntelestisRole*/ekpompiRating.setItems(rating);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }   
-//    private void createType() {//createRole
-//
-//        Statement statement;
-//        try {
-//            statement = DBConnection.c.createStatement();
-//            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
-//            ResultSet rs2 = statement.executeQuery(setRating);
-//            TypeC.clear();
-//            TypeC.add("");
-//            while (rs2.next()) {
-//                TypeC.add(rs2.getString("rating"));
-//            }
-//            ObservableList<String> type = FXCollections.observableArrayList(TypeC);
-//            /*syntelestisRole*/ekpompiType.setItems(type);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
+    private void createRating() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            ratingC.clear();
+            ratingC.add("");
+            while (rs2.next()) {
+                ratingC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
+            ekpompiRating.setItems(rate);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    private void createType() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
+            ResultSet rs2 = statement.executeQuery(setType_ek);
+            typeC.clear();
+            typeC.add("");
+            while (rs2.next()) {
+                typeC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(typeC);
+            ekpompiType.setItems(rate);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        createType();
+        createRating();
         sliderr.setLowValue(low);
         sliderr.setHighValue(high);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
