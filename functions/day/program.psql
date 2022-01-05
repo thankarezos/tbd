@@ -46,14 +46,7 @@ CREATE TRIGGER updateTimet
 after insert on programs
 For each row execute procedure updateTime();
 
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/1 00:30','45','Monday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/1 23:00','102','Monday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 2:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 3:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/2 23:00','60','Tuesday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/3 00:00','80','Tuesday');
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/7 00:00','80','Sunday');     
-INSERT INTO programs(sid,name,rating,type,strtime,time,day) values ('1','kalhmera','18','Movie','0001/01/8 00:00','80','Sunday');   
+
 
 select * from programs;
 
@@ -104,7 +97,8 @@ AS $function$
     END;
 $function$;
 
--- select addPrograms(2,'0001/01/4 00:00','Thursday')
+
+select addPrograms(2,'0001/01/4 00:00','Thursday');
 
 CREATE OR REPLACE FUNCTION deletePrograms(id int)
  RETURNS void
@@ -114,30 +108,3 @@ AS $function$
     DELETE FROM programs where identry = id;
     END;
 $function$;
-
-
-
-
-select * from getPrograms()
-
--- CREATE OR REPLACE FUNCTION isOverlaping(timestamp ,timestamp) 
---     RETURNS integer AS $$
---         Select 1 from (
---             SELECT
---             CASE WHEN
---             ($1 >= t2.strtime  AND $1 < t2.endtime ) OR
---             ($2 > t2.strtime  AND $2 <= t2.endtime) OR
---             ($1 <= t2.strtime  AND $2 >= t2.endtime) OR
---             ($1 >= t2.strtime AND $2 <= t2.endtime)
---             THEN
---             'yes'
---             ELSE
---             'no'
---             END AS OverLapping
---             FROM programs AS t2
---         ) AS overL
---         where overlapping= 'yes'
--- $$  LANGUAGE sql
-
-
-select * from deletePrograms(10)

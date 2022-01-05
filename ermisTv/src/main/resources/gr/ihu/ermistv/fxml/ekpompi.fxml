@@ -100,7 +100,7 @@
                                 </Label>
                                 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="160.0">
                                     <children>
-                                        <Slider fx:id="timeSlider" majorTickUnit="1.0" max="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="160.0" />
+                                        <Slider fx:id="timeSlider" majorTickUnit="1.0" max="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="14.0" prefWidth="160.0" />
                                         <Text fx:id="txtRange" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                                             <font>
                                                 <Font name="System Bold" size="15.0" />
@@ -206,11 +206,11 @@
             </VBox>
             <AnchorPane layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="876.0" styleClass="hboxRGBAHbox">
                <children>
-                  <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="700.0">
+                  <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="742.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="705.0" spacing="5.0">
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="735.0" spacing="5.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="706.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="735.0" spacing="10.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadPage" prefHeight="36.0" prefWidth="36.0">
                                        <graphic>
@@ -226,9 +226,9 @@
                                     <TextField fx:id="filterName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Name" />
                                     <ChoiceBox fx:id="filterRating" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
                                     <ChoiceBox fx:id="filterType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
-                                    <VBox alignment="CENTER" prefHeight="40.0" prefWidth="178.0">
+                                    <VBox alignment="CENTER" prefHeight="40.0" prefWidth="193.0">
                                        <children>
-                                          <RangeSlider fx:id="sliderr" highValue="300.0" highValueChanging="true" lowValue="10.0" majorTickUnit="1.0" max="300.0" min="10.0" minorTickCount="0" snapToTicks="true" />
+                                          <RangeSlider fx:id="sliderr" highValue="300.0" highValueChanging="true" lowValue="10.0" majorTickUnit="1.0" max="300.0" min="10.0" minorTickCount="1" snapToTicks="true" />
                                           <Text fx:id="sliderText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0 - 0">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />

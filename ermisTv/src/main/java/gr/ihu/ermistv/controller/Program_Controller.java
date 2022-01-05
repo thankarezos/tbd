@@ -3,6 +3,8 @@ package gr.ihu.ermistv.controller;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
+import gr.ihu.ermistv.HboxEnch;
+import gr.ihu.ermistv.ScenesSet;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -45,8 +47,11 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 
 
 
@@ -414,22 +419,81 @@ public class Program_Controller implements Initializable {
                 LocalDateTime to = pTime.toLocalDateTime();
                 Duration d = Duration.between(to, from);
                 
-                HBox hbox = new HBox();
+                HBox hboxE = new HBox();
                 halfhours = ((double)d.toMinutes())/30;
-                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-                program.getChildren().add(hbox);
+                hboxE.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                program.getChildren().add(hboxE);
 ////
-                hbox = new HBox();
+                HboxEnch hbox = new HboxEnch();
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                hbox.setAlignment(Pos.CENTER);
+                Text text = new Text();
+                hbox.getChildren().add(text);
+                text.setStyle("-fx-font-size:30px");
+                hbox.setMinHeight(Region.USE_PREF_SIZE);
+                hbox.setMinWidth(Region.USE_PREF_SIZE);
+                text.setText(rs.getString("name"));
+                hbox.setValueID(rs.getInt("identry"));
                 program.getChildren().add(hbox);
                 
                 pTime = rs.getTimestamp("endtime");
+                
+                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MouseButton button = event.getButton();
+                        if (button == MouseButton.SECONDARY) {
+                            ContextMenu menu = new ContextMenu();
+                            MenuItem item = new MenuItem();
+                            item.setText("Delete");
+                            menu.getItems().add(item);
+                            menu.show(hbox, event.getScreenX(), event.getScreenY());
+                            item.setOnAction(event2 -> {
+                                String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
+                                try {
+                                    statement.executeQuery(deleteek);
+                                    loadPrograms();
+
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                });
+        }
+//                        if (button == MouseButton.PRIMARY) {
+//                            Parent root;
+//                            try {
+//                                HBox hboxC = (HBox) hbox.getChildren().get(0);
+//                                Text text2 = (Text) hboxC.getChildren().get(0);
+//                                int id = Integer.parseInt(text2.getText());
+//
+//                                FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
+//                                SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id);
+//                                loader.setController(controller);
+//                                root = loader.load();
+//                                Scene scene = new ScenesSet(root, App.stage, 876, 517);
+//
+//                                controller.setAp(mainAp);
+//                                mainAp.getChildren().add(root);
+//
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                        }
+
+                    }
+
+                });
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
     }
 
 }

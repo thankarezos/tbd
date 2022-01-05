@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 public class HboxEnch extends HBox {
 
     private boolean state = false;
+    private int id;
 
     public void setState(boolean state) {
         this.state = state;
@@ -20,5 +21,14 @@ public class HboxEnch extends HBox {
     public boolean getState() {
         return state;
     }
+    
+    public void setValueID(int id) {
+        this.id = id;
+    }
+
+    public int getValueID() {
+        return id;
+    }
+
 
 }

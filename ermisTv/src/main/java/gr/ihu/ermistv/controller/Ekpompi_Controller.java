@@ -431,8 +431,10 @@ public class Ekpompi_Controller implements Initializable {
 
         });
         sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
+            
             low = (int) Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+            System.out.println(newValue);
             filterEkpompi();
 
         });
