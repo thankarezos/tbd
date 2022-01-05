@@ -60,8 +60,6 @@ public class login_Controller {
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
         String verifyLogin = "select * from checkaccount('" + user + "','" + pass + "');";
-        System.out.println(
-                "select * from checkaccount('" + String.valueOf(fdUser.getText()) + "','" + fdPass.getText() + "')");
         boolean bypass = true;
 
         try {

@@ -127,7 +127,6 @@ public class Program_Controller implements Initializable {
     private void day(MouseEvent event) {
         Button button = (Button) event.getSource();
         String id = button.getId();
-        System.out.println(id);
         Bounds bounds = extension.getViewportBounds();
         extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
                 (1 / (emptypane.getHeight() - bounds.getHeight())) - 0.003);
@@ -380,8 +379,6 @@ public class Program_Controller implements Initializable {
 
                 button.getStyleClass().clear();
                 button.getStyleClass().add("pressBtn");
-
-                System.out.println(event.getNewValue().toString());
             }
         }
     }

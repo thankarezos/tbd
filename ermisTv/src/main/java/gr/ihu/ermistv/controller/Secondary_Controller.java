@@ -17,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
