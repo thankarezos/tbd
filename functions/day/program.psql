@@ -138,3 +138,6 @@ select * from getPrograms()
 --         ) AS overL
 --         where overlapping= 'yes'
 -- $$  LANGUAGE sql
+
+
+select * from deletePrograms(10)

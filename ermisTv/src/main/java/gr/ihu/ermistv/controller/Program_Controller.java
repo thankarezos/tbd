@@ -79,6 +79,11 @@ public class Program_Controller implements Initializable {
     
     @FXML
     private Label proErrLabel;
+    
+    @FXML
+    private void refresh(){
+        loadPrograms();
+    }
 
 
 
@@ -285,41 +290,8 @@ public class Program_Controller implements Initializable {
             emptypane.getChildren().add(hbox);
         }
 
-
-        double halfhours;
-
-        String getSyntelestes = "select * from getPrograms()";
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getSyntelestes);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-
-            Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
-            while (rs.next()) {
-                Timestamp start  = rs.getTimestamp("strtime");
-
-                LocalDateTime from = start.toLocalDateTime();
-                LocalDateTime to = pTime.toLocalDateTime();
-                Duration d = Duration.between(to, from);
-                
-                HBox hbox = new HBox();
-                halfhours = ((double)d.toMinutes())/30;
-                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
-                program.getChildren().add(hbox);
-////
-                hbox = new HBox();
-                hbox.getStyleClass().add("vboxProgram");
-                halfhours = rs.getDouble("time") / 30;
-                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
-                program.getChildren().add(hbox);
-                
-                pTime = rs.getTimestamp("endtime");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadPrograms();
+        
         String day;
         DayS days = new DayS();
         Listener listener = new Listener();
@@ -419,6 +391,45 @@ public class Program_Controller implements Initializable {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    public void loadPrograms(){
+        
+        program.getChildren().clear();
+        double halfhours;
+
+        String getSyntelestes = "select * from getPrograms()";
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getSyntelestes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+
+            Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
+            while (rs.next()) {
+                Timestamp start  = rs.getTimestamp("strtime");
+
+                LocalDateTime from = start.toLocalDateTime();
+                LocalDateTime to = pTime.toLocalDateTime();
+                Duration d = Duration.between(to, from);
+                
+                HBox hbox = new HBox();
+                halfhours = ((double)d.toMinutes())/30;
+                hbox.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                program.getChildren().add(hbox);
+////
+                hbox = new HBox();
+                hbox.getStyleClass().add("vboxProgram");
+                halfhours = rs.getDouble("time") / 30;
+                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                program.getChildren().add(hbox);
+                
+                pTime = rs.getTimestamp("endtime");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

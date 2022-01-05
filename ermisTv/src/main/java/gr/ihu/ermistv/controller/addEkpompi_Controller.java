@@ -94,26 +94,19 @@ public class addEkpompi_Controller implements Initializable {
 
     @FXML
     private void addBroadcast() {
-    Iterator it = add.entrySet().iterator();
-    while (it.hasNext()) {
-        Map.Entry pair = (Map.Entry) it.next();
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
+    Statement statement;
+    try {
+        statement = DBConnection.c.createStatement();
 
-            String addSyntelestes = "select addPrograms(2,'0001/01/4 00:00','Thursday')";
-            ResultSet rs = statement.executeQuery(addSyntelestes);
+        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/4 05:00','Thursday')";
+        ResultSet rs = statement.executeQuery(addSyntelestes);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        it.remove();
-        add.remove(pair.getKey());
+    } catch (SQLException ex) {
+        Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
 //            System.out.println(pair.getKey() + " = " + pair.getValue());
         // avoids a ConcurrentModificationException
-    }
     Pop.toBack();
 //    pC.filterSyntelestes();
 //    pC.createRole();

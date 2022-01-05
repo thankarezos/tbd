@@ -65,7 +65,7 @@
                      <children>
                               <HBox fx:id="daysV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="876.0" spacing="6.0" styleClass="hboxRGBAHbox">
                                   <children>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                                      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refresh" prefHeight="36.0" prefWidth="36.0">
                                           <graphic>
                                               <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
                                           </graphic>
