@@ -97,11 +97,13 @@ public class AddFactor_Controller implements Initializable {
                 statement = DBConnection.c.createStatement();
                 String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                 ResultSet rs = statement.executeQuery(addSyntelestes);
+                App.controller.errorMessage("added Successfully!");
                 statement.close();
                 rs.close();
 
 
             } catch (SQLException ex) {
+                App.controller.errorMessage("Error");
                 Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
             }
 

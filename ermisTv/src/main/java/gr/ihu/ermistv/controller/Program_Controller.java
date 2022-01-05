@@ -389,12 +389,13 @@ public class Program_Controller implements Initializable {
                 String addbroadcast = "select getPrograms('" + day + "','" + name + "','"+ type + "','" + time + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
-
+                App.controller.errorMessage("Added Successfully!");
                 System.out.println("Success");
                 statement.close();
                 rs.close();
             }
         } catch (SQLException ex) {
+            App.controller.errorMessage("Error");
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 

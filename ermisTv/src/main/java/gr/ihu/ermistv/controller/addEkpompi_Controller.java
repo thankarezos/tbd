@@ -96,21 +96,22 @@ public class addEkpompi_Controller implements Initializable {
     try {
         statement = DBConnection.c.createStatement();
 
-        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/6 11:00','Thursday')";
+        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','Thursday')";
         ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
         rs.next();
         rs.getInt(1);
-        System.out.println(rs.getInt(1));
+//        System.out.println(rs.getInt(1));
         if(rs.getInt(1) == 1){
             App.controller.errorMessage("Overlapping");
         }else{
-            App.controller.errorMessage("Added Successfully");
+            App.controller.errorMessage("Added Successfully!");
             Pop.toBack();
             pC.loadPrograms();
         }
         statement.close();
         rs.close();
     } catch (SQLException ex) {
+        App.controller.errorMessage("Error");
         Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
     }
 

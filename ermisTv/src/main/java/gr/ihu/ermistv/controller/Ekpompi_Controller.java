@@ -42,9 +42,6 @@ import javafx.scene.Scene;
 public class Ekpompi_Controller implements Initializable {
 
     @FXML
-    private ScrollBar ScrollBar;
-
-    @FXML
     private AnchorPane addBroadcast;
 
     @FXML
@@ -60,70 +57,24 @@ public class Ekpompi_Controller implements Initializable {
     private Button btnConfBro;
 
     @FXML
-    private Button btnConfEdit;
-
-    @FXML
-    private Button btnEditBroPane;
-
-    @FXML
-    private Button btnEditCheck;
-
-    @FXML
-    private CheckBox checkBox;
-
-    @FXML
-    private ChoiceBox<?> choiceEditDay;
-
-    @FXML
     private ChoiceBox choiceRatingBro,choiceTypeBro;
-
-    @FXML
-    private AnchorPane editAnchorPane;
-
-    @FXML
-    private AnchorPane editFactorBroadcast;
-
-    @FXML
-    private TextField editName;
-
-    @FXML
-    private TextField editTime;
 
     @FXML
     private VBox ekpompivbox;
 
     @FXML
-    private TextField filterID;
-
-    @FXML
-    private TextField filterName;
+    private TextField filterID,addTimeBro,filterName;
 
     @FXML
     private ChoiceBox<String> filterRating,filterType;
 
     @FXML
-    private Label labelGetName;
-
-    @FXML
     private AnchorPane paneEkpompi;
-
-    @FXML
-    private Label searchIcon;
-
-    @FXML
-    private TextField searchName;
-
     @FXML
     private Text sliderText;
 
     @FXML
     private RangeSlider sliderr;
-
-    @FXML
-    private Slider timeSlider;
-
-    @FXML
-    private Text txtRange;
 
     @FXML
     private FontAwesomeIconView x;
@@ -136,7 +87,6 @@ public class Ekpompi_Controller implements Initializable {
     private AnchorPane mainAp;
     int low = 10;
     int high = 300;
-    int valueRange;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> type_ekC = new ArrayList<String>();
     
@@ -321,32 +271,36 @@ public class Ekpompi_Controller implements Initializable {
             String name = addNameBro.getText();
             String rating = (String) choiceRatingBro.getValue();
             String type =(String) choiceTypeBro.getValue();
-            int time = valueRange;
+            String time = addTimeBro.getText();
             if (name == "") {
                 broErrLabel.setText("ADD NAME!");
-            } else if (rating == null || rating == "empty") {
+            } else if (rating == null || rating == "") {
                 broErrLabel.setText("ADD RATING!");
-            } else if (time == 0) {
-                broErrLabel.setText("ADD TIME! ");
-            } else if (type == null) {
+            } else if (type == null|| type == "") {
                 broErrLabel.setText("ADD TYPE! ");
-            } else{
-                String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time  + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addbroadcast);
+            } else if (time == null || isNumeric.isNumeric(time)) {
+                broErrLabel.setText("ADD TIME! ");
+            } else {
+                int x = Integer.parseInt(time);
+                if(x >= 30 && x <=300 ) {
+                    String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time + "');";
+                    Statement statement = DBConnection.c.createStatement();
+                    ResultSet rs = statement.executeQuery(addbroadcast);
 
-                System.out.println("Success");
-                filterEkpompi();
-                addNameBro.clear();
-                choiceRatingBro.setValue(null);
-                choiceTypeBro.setValue(null);
-                timeSlider.setValue(0);
-                broErrLabel.setText("");
-                paneEkpompi.toFront();
-                statement.close();
-                rs.close();
+                    App.controller.errorMessage("Added Successfully!");
+                    filterEkpompi();
+                    addNameBro.clear();
+                    choiceRatingBro.setValue(null);
+                    choiceTypeBro.setValue(null);
+                    addTimeBro.clear();
+                    broErrLabel.setText("");
+                    paneEkpompi.toFront();
+                }else{
+                    broErrLabel.setText("Time must be greater than 30sec and less than 300sec");
+                }
             }
         } catch (SQLException ex) {
+            App.controller.errorMessage("Error");
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -363,6 +317,7 @@ public class Ekpompi_Controller implements Initializable {
     // Reload Table Ekpompi ??
     @FXML
     private void reloadPage(MouseEvent event) {
+//        App.controller.errorMessage("Reload");
         filterEkpompi();
         createRating();
         createType_ek();
@@ -446,12 +401,8 @@ public class Ekpompi_Controller implements Initializable {
 
         });
 
-        timeSlider.setValue(0);
-        timeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            valueRange = (int) Math.round((newValue.doubleValue()));
-            txtRange.setText(" 0  -  " + String.valueOf(valueRange));
-            filterEkpompi();
-        });
+
+
 
         loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
     }

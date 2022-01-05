@@ -222,11 +222,13 @@ public class Syntelestes_Contoller implements Initializable {
     // add Factor Syntelestes
     @FXML
     private void addfactor() {
+        Statement statement;
         try {
             String name = addFacName.getText();
             String surname = addFacSurname.getText();
             String role = addFacRole.getText();
             String phoneN = addFacPhoneN.getText();
+            statement = DBConnection.c.createStatement();
 
             if (name == "") {
                 facErrLabel.setText("ADD NAME!");
@@ -239,7 +241,7 @@ public class Syntelestes_Contoller implements Initializable {
             } else {
                 String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
                         + phoneN + "');";
-                Statement statement = DBConnection.c.createStatement();
+                
                 ResultSet rs = statement.executeQuery(addSyntelestes);
 
                 System.out.println("Success");
@@ -250,7 +252,9 @@ public class Syntelestes_Contoller implements Initializable {
                 addFacPhoneN.clear();
                 facErrLabel.setText("");
                 paneSyntelestes.toFront();
+                rs.close();
             }
+        statement.close();
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -313,6 +317,7 @@ public class Syntelestes_Contoller implements Initializable {
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x4) {
+            facErrLabel.setText("");
             paneSyntelestes.toFront();
         }
     }
