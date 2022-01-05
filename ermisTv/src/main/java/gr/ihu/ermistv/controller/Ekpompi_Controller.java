@@ -159,13 +159,14 @@ public class Ekpompi_Controller implements Initializable {
                             });
 
                 }
+                ContextMenu menu = new ContextMenu();
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
                     public void handle(MouseEvent event) {
                         MouseButton button = event.getButton();
                         if (button == MouseButton.SECONDARY) {
-                            ContextMenu menu = new ContextMenu();
+                            menu.getItems().clear();
                             MenuItem item = new MenuItem();
                             item.setText("Delete");
                             menu.getItems().add(item);
