@@ -299,17 +299,11 @@ public class Program_Controller implements Initializable {
 
             Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
             while (rs.next()) {
-//                System.out.println( - rs.getTime("endtime"));
                 Timestamp start  = rs.getTimestamp("strtime");
-                
-                System.out.println("Prev: " + pTime);
-                System.out.println("Next:" + start);
+
                 LocalDateTime from = start.toLocalDateTime();
                 LocalDateTime to = pTime.toLocalDateTime();
                 Duration d = Duration.between(to, from);
-//                System.out.println(d.toMinutes());
-                
-                System.out.println(d.toMinutes()/30);
                 
                 HBox hbox = new HBox();
                 halfhours = ((double)d.toMinutes())/30;
@@ -323,8 +317,6 @@ public class Program_Controller implements Initializable {
                 program.getChildren().add(hbox);
                 
                 pTime = rs.getTimestamp("endtime");
-//                System.out.println(pTime);
-                System.out.println("--------------");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
