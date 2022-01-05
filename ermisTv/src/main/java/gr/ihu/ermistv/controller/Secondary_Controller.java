@@ -23,30 +23,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Secondary_Controller implements Initializable {
-
-    @FXML
-    private FontAwesomeIconView x3;
-    @FXML
-    private AnchorPane addProgram, addFactor, editFactorBroadcast, addBroadcast;
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram;
     @FXML
-    private TextField addNamePro;
-    @FXML
-    private TextField addTimePro;
-    @FXML
-    private Button btnConfPro;
-    @FXML
-    private Button btnEkpompi, btnProgram;
+    private Button btnEkpompi, btnProgram,btnLogout;
     @FXML
     private Button btnSyntelestes;
     @FXML
-    private ChoiceBox<String> choiceDayPro;
-    @FXML
-    private ChoiceBox<String> choiceTypePro;
-    @FXML
     private AnchorPane paneSyntelestes;
 
+    String color ="-fx-background-color: #F5F6F8;";
+    String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1); -fx-text-fill: white;";
+    String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA); -fx-text-fill: white;";
+    String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2); -fx-text-fill: white;";
+    String color4 ="-fx-background-color: linear-gradient(#02B3C6, #02B7CB); -fx-text-fill: white;";
     // Minimize Window
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -74,23 +64,37 @@ public class Secondary_Controller implements Initializable {
         stage.setX(stage.getX() + 200);
     }
 
-    // Is Numeric Method
+    //clear Color
+    private void clearColor(){
+        btnProgram.setStyle(color);
+        btnEkpompi.setStyle(color);
+        btnSyntelestes.setStyle(color);
+        btnLogout.setStyle(color);
+    }
 
     // Handle Clicks Popup
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnProgram) {
-
+            clearColor();
+            btnProgram.setStyle(color1);
             paneProgram.toFront();
         } else if (event.getSource() == btnEkpompi) {
+            clearColor();
+            btnEkpompi.setStyle(color2);
             paneEkpompi.toFront();
         } else if (event.getSource() == btnSyntelestes) {
+            clearColor();
+            btnSyntelestes.setStyle(color3);
             paneSyntelestes.toFront();
+        }else if(event.getSource() == btnLogout){
+            btnLogout.setStyle(color4);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnProgram.setStyle(color1);
         Parent root;
         try {
             root = FXMLLoader.load(App.class.getResource("fxml/program.fxml"));
