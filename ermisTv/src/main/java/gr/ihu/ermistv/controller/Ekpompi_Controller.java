@@ -85,8 +85,10 @@ public class Ekpompi_Controller implements Initializable {
     }
 
     private AnchorPane mainAp;
-    int low = 10;
-    int high = 300;
+    int lowinit = 30;
+    int highinit = 300;
+    int low = lowinit;
+    int high = highinit;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> type_ekC = new ArrayList<String>();
     
@@ -324,10 +326,8 @@ public class Ekpompi_Controller implements Initializable {
         createType_ek();
         filterID.clear();
         filterName.clear();
-        high = 300;
-        low = 10;
-        sliderr.setHighValue(high);
-        sliderr.setLowValue(low);
+        sliderr.setHighValue(highinit);
+        sliderr.setLowValue(lowinit);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
     }
 
@@ -397,7 +397,6 @@ public class Ekpompi_Controller implements Initializable {
             
             low = (int) Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            System.out.println(newValue);
             filterEkpompi();
 
         });
