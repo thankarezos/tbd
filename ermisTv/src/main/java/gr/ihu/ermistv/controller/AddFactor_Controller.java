@@ -112,7 +112,7 @@ public class AddFactor_Controller implements Initializable {
         Pop.toBack();
         seC.filterSyntelestes();
         seC.createRole();
-
+        System.out.println(addFactor.getParent().getId());
 
     }
 

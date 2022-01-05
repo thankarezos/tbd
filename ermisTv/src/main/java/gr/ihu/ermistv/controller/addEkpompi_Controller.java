@@ -78,37 +78,31 @@ public class addEkpompi_Controller implements Initializable {
         ekpompiType.setValue(null);
         ekpompiRating.setValue(null);
     }
+    
+    addEkpompi_Controller(Program_Controller pC) {
+        this.pC = pC;
+    }
 
 
 
     private AnchorPane Pop;
     private Pane mainP;
-    private int id;
-    private SyntelestesEkpompon_Controller seC;
+    private Program_Controller pC;
     private ArrayList<String> RatingC = new ArrayList<String>();
     private ArrayList<String> TypeC = new ArrayList<String>();
     private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
     @FXML
-    private void addfactor() {
+    private void addBroadcast() {
     Iterator it = add.entrySet().iterator();
     while (it.hasNext()) {
         Map.Entry pair = (Map.Entry) it.next();
-        String checkif = "select checkif(" + this.id + "," + pair.getKey() + ");";
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            ResultSet rscheck = statement.executeQuery(checkif);
-            rscheck.next();
-            int returncode = rscheck.getInt(1);
-            if (returncode == 0) {
 
-                String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-            } else if (returncode == 3) {
-                System.out.println("Factor does not exist");
-            }
-
+            String addSyntelestes = "select addPrograms(2,'0001/01/4 00:00','Thursday')";
+            ResultSet rs = statement.executeQuery(addSyntelestes);
 
         } catch (SQLException ex) {
             Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,8 +115,8 @@ public class addEkpompi_Controller implements Initializable {
         // avoids a ConcurrentModificationException
     }
     Pop.toBack();
-    seC.filterSyntelestes();
-    seC.createRole();
+//    pC.filterSyntelestes();
+//    pC.createRole();
 
 
 }

@@ -139,6 +139,8 @@ public class Ekpompi_Controller implements Initializable {
     int valueRange;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> type_ekC = new ArrayList<String>();
+    
+    
 
     // Load Results Ekpompi
     private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {

@@ -89,6 +89,8 @@ public class Program_Controller implements Initializable {
     private double spaces = 5;
     private double spacesH = 10;
     private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
+    
+    
 
     public static Bounds getVisibleBounds(Node aNode) {
         // If node not visible, return empty bounds
@@ -109,7 +111,9 @@ public class Program_Controller implements Initializable {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addEkpompi.fxml"));
-
+            addEkpompi_Controller controller = new addEkpompi_Controller(this);
+            loader.setController(controller);
+            controller.setPop(addEkpompi);
             popupEkpompi.getChildren().add(loader.load());
 
         } catch (IOException ex) {

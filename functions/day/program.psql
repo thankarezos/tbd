@@ -117,6 +117,9 @@ $function$;
 
 
 
+
+select * from getPrograms()
+
 -- CREATE OR REPLACE FUNCTION isOverlaping(timestamp ,timestamp) 
 --     RETURNS integer AS $$
 --         Select 1 from (
