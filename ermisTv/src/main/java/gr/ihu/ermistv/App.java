@@ -1,5 +1,6 @@
 package gr.ihu.ermistv;
 
+import gr.ihu.ermistv.controller.Secondary_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,7 @@ public class App extends Application {
 
     private static Scene scene;
     public static Stage stage;
+    public static Secondary_Controller controller ;
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -30,6 +30,8 @@ public class Secondary_Controller implements Initializable {
     private Button btnSyntelestes;
     @FXML
     private AnchorPane paneSyntelestes;
+    @FXML
+    private TextArea infoArea;
 
     String color ="-fx-background-color: #F5F6F8;";
 //    String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1); -fx-text-fill: white;";
@@ -90,6 +92,12 @@ public class Secondary_Controller implements Initializable {
             btnSyntelestes.setStyle(color3);
             paneSyntelestes.toFront();
         }
+    }
+
+    public void errorMessage(String error){
+        infoArea.setWrapText(true);
+        infoArea.appendText(error);
+        infoArea.appendText("\n");
     }
 
     @Override

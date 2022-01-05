@@ -66,7 +66,7 @@
             </VBox>
             </children>
         </VBox>
-      <TextArea editable="false" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="148.0" />
+      <TextArea fx:id="infoArea" editable="false" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="148.0" />
       <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
          <font>
             <Font name="Arial Bold" size="15.0" />
@@ -74,8 +74,8 @@
       </Button>
         <StackPane layoutX="148.0" layoutY="34.0">
             <children>
-                <AnchorPane id="paneEkpompi" fx:id="paneEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
                 <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
+                <AnchorPane id="paneEkpompi" fx:id="paneEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
                 <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
             </children>
         </StackPane>

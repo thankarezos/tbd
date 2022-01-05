@@ -1,5 +1,6 @@
 package gr.ihu.ermistv.controller;
 
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.HboxEnch;
 import javafx.collections.FXCollections;
@@ -75,7 +76,7 @@ public class addEkpompi_Controller implements Initializable {
         ekpompiType.setValue(null);
         ekpompiRating.setValue(null);
     }
-    
+
     addEkpompi_Controller(Program_Controller pC) {
         this.pC = pC;
     }
@@ -95,18 +96,21 @@ public class addEkpompi_Controller implements Initializable {
     try {
         statement = DBConnection.c.createStatement();
 
-        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/4 05:00','Thursday')";
-        ResultSet rs = statement.executeQuery(addSyntelestes);
-
+        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/6 11:00','Thursday')";
+        ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
+        rs.next();
+        rs.getInt(1);
+        System.out.println(rs.getInt(1));
+        if(rs.getInt(1) == 1){
+            App.controller.errorMessage("Overlapping");
+        }else{
+            App.controller.errorMessage("Added Successfully");
+            Pop.toBack();
+            pC.loadPrograms();
+        }
     } catch (SQLException ex) {
         Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
     }
-
-//            System.out.println(pair.getKey() + " = " + pair.getValue());
-        // avoids a ConcurrentModificationException
-    Pop.toBack();
-//    pC.filterSyntelestes();
-//    pC.createRole();
 
 
 }
@@ -256,6 +260,7 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             }
             ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
             ekpompiRating.setItems(rate);
+
 
         } catch (SQLException ex) {
             Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);

@@ -39,6 +39,8 @@ public class login_Controller {
         stage.setIconified(true);
     }
 
+
+
     @FXML
     private void closeWindow(MouseEvent event) {
         System.exit(0);
@@ -68,6 +70,7 @@ public class login_Controller {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
             if (queryResult.getInt(1) == 1 || bypass) {
+
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
 
@@ -76,10 +79,16 @@ public class login_Controller {
                 Parent root;
                 root = fxmlLoader.load();
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
-
+                /* */
+                fxmlLoader.getController();
+                App.controller = fxmlLoader.getController();
+                /* */
                 stage.setScene(scene);
 
                 stage.setX(stage.getX() - 200);
+                /* */
+                App.controller.errorMessage("Congratulations!");
+                /* */
             } else {
                 messageLabel.setText("Invalid login. Please try again !");
             }
