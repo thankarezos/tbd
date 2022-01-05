@@ -98,16 +98,7 @@
                                         <Font name="Arial Black" size="14.0" />
                                     </font>
                                 </Label>
-                                <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="160.0">
-                                    <children>
-                                        <Slider fx:id="timeSlider" majorTickUnit="1.0" max="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="1" prefHeight="14.0" prefWidth="160.0" />
-                                        <Text fx:id="txtRange" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-                                            <font>
-                                                <Font name="System Bold" size="15.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </VBox>
+                        <TextField fx:id="addTimeBro" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" />
                             </children>
                             <VBox.margin>
                                 <Insets />
@@ -214,7 +205,7 @@
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadPage" prefHeight="36.0" prefWidth="36.0">
                                        <graphic>
-                                          <FontAwesomeIconView glyphName="REFRESH" onMouseClicked="#reloadPage" size="1.8em" />
+                                          <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
                                        </graphic>
                                     </Label>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">

@@ -306,6 +306,7 @@ public class Syntelestes_Contoller implements Initializable {
     @FXML
     private void popupsHandleClicks(MouseEvent event) throws IOException {
         if (event.getSource() == x4) {
+            facErrLabel.setText("");
             paneSyntelestes.toFront();
         }
     }
