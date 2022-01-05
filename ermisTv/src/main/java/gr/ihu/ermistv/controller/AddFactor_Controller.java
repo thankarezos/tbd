@@ -143,11 +143,9 @@ public class AddFactor_Controller implements Initializable {
                     if (add.containsKey(Integer.parseInt(rs.getString(1)))) {
 
                         hboxinside.getStyleClass().add("hboxStylehover");
-                        hbox.setState(true);
                     } else {
                         hboxinside.getStyleClass().clear();
                         hboxinside.getStyleClass().add("hboxStyle");
-                        hbox.setState(false);
                     }
                     text.setWrappingWidth(80);
                     text.setTextAlignment(TextAlignment.CENTER);

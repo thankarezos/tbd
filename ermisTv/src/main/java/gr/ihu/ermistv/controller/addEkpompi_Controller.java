@@ -90,7 +90,7 @@ public class addEkpompi_Controller implements Initializable {
     private Program_Controller pC;
     private ArrayList<String> RatingC = new ArrayList<String>();
     private ArrayList<String> TypeC = new ArrayList<String>();
-    private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
+    int pressed;
 
     @FXML
     private void addBroadcast() {
@@ -146,15 +146,18 @@ private void loadResults(String id, String name,String type_ek, String rating, S
                 hboxinside.setPadding(new Insets(5, 5, 5, 5));
                 Text text = new Text();
                 text.setText(String.valueOf(rs.getString(i)));
-                if (add.containsKey(Integer.parseInt(rs.getString(1)))) {
-
+                
+                
+                
+                if (Integer.parseInt(rs.getString(1)) == pressed) {
                     hboxinside.getStyleClass().add("hboxStylehover");
-                    hbox.setState(true);
+                    
                 } else {
                     hboxinside.getStyleClass().clear();
                     hboxinside.getStyleClass().add("hboxStyle");
-                    hbox.setState(false);
                 }
+                
+                
                 text.setWrappingWidth(80);
                 text.setTextAlignment(TextAlignment.CENTER);
                 hboxinside.getChildren().add(text);
@@ -173,31 +176,49 @@ private void loadResults(String id, String name,String type_ek, String rating, S
                         int id = Integer.parseInt(text2.getText());
 
                         HboxEnch hbox = (HboxEnch) event.getSource();
-                        hbox.getChildren().get(0);
-                        hbox.getChildren();
                         if (hbox.getState()) {
-                            add.remove(id);
-                            for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                HBox pane = (HBox) hbox.getChildren().get(i);
-                                pane.getStyleClass().clear();
-                                pane.getStyleClass().add("hboxStyle");
-                                Text text = (Text) pane.getChildren().get(0);
+                            
+                            
+                            for (int i = 0; i < vboxEkpompi.getChildren().size(); i++){
+                                HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
+                                hbox2.setState(false);
+                                for (int j = 0; j < hbox.getChildren().size(); j++) {
+                                    HBox pane = (HBox) hbox2 .getChildren().get(j);
+                                    pane.getStyleClass().clear();
+                                    pane.getStyleClass().add("hboxStyle");
+                                    
+                                }
+                                
                             }
+                            
+                            
                             hbox.setState(false);
 
                         } else {
-                            add.put(id, id);
+                            for (int i = 0; i < vboxEkpompi.getChildren().size(); i++){
+                                HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
+                                hbox2.setState(false);
+                                for (int j = 0; j < hbox.getChildren().size(); j++) {
+                                    HBox pane = (HBox) hbox2 .getChildren().get(j);
+                                    pane.getStyleClass().clear();
+                                    pane.getStyleClass().add("hboxStyle");
+                                }
+                                
+                            }
+                            
                             for (int i = 0; i < hbox.getChildren().size(); i++) {
-
-
                                 HBox pane = (HBox) hbox.getChildren().get(i);
                                 pane.getStyleClass().add("hboxStylehover");
                             }
+                            
+                            
                             hbox.setState(true);
                         }
 //
                     }
-
+                    HBox inside = (HBox)hbox.getChildren().get(0);
+                    
+                    pressed = Integer.parseInt(((Text)inside.getChildren().get(0)).getText());
                 }
 
             });
