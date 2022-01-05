@@ -32,10 +32,13 @@ public class Secondary_Controller implements Initializable {
     private AnchorPane paneSyntelestes;
 
     String color ="-fx-background-color: #F5F6F8;";
-    String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1); -fx-text-fill: white;";
-    String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA); -fx-text-fill: white;";
-    String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2); -fx-text-fill: white;";
-    String color4 ="-fx-background-color: linear-gradient(#02B3C6, #02B7CB); -fx-text-fill: white;";
+//    String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1); -fx-text-fill: white;";
+//    String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA); -fx-text-fill: white;";
+//    String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2); -fx-text-fill: white;";
+    String color1 ="-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
+    String color2 ="-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
+    String color3 ="-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
+
     // Minimize Window
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -86,8 +89,6 @@ public class Secondary_Controller implements Initializable {
             clearColor();
             btnSyntelestes.setStyle(color3);
             paneSyntelestes.toFront();
-        }else if(event.getSource() == btnLogout){
-            btnLogout.setStyle(color4);
         }
     }
 

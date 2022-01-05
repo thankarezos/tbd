@@ -204,11 +204,11 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <AnchorPane layoutY="367.0" prefHeight="147.0" prefWidth="863.0" styleClass="hboxRGBAHbox">
+            <AnchorPane layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="876.0" styleClass="hboxRGBAHbox">
                <children>
-                  <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="707.0">
+                  <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="700.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="100.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="705.0" spacing="5.0">
+                        <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="705.0" spacing="5.0">
                            <children>
                               <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="706.0" spacing="10.0">
                                  <children>
@@ -242,7 +242,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox id="program" alignment="CENTER" layoutX="284.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="315.0" spacing="6.0">
+                  <HBox id="program" alignment="CENTER" layoutX="315.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="270.0" spacing="6.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="151.0" text="Add Broadcast">
                            <font>

@@ -196,9 +196,9 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <AnchorPane layoutY="367.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="850.0" styleClass="hboxRGBAHbox">
+            <AnchorPane layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="876.0" styleClass="hboxRGBAHbox">
                <children>
-                  <HBox id="program" alignment="CENTER" layoutX="266.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="316.0" spacing="12.0">
+                  <HBox id="program" alignment="CENTER" layoutX="283.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="316.0" spacing="12.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="164.0" text="Add Factor">
                            <font>
@@ -212,7 +212,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="647.0">
+                  <VBox alignment="CENTER_LEFT" layoutX="116.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="647.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="647.0" spacing="10.0">
                            <children>

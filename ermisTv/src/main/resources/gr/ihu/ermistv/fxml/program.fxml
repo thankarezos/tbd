@@ -42,7 +42,7 @@
             <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
          </children>
       </AnchorPane>
-        <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="850.0" styleClass="child" stylesheets="@../css/style.css">
+        <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
             <children>
                 <VBox alignment="CENTER" prefHeight="515.0" prefWidth="850.0">
                     <children>
@@ -63,7 +63,7 @@
                         </ScrollPane>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                              <HBox fx:id="daysV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="850.0" spacing="6.0" styleClass="hboxRGBAHbox">
+                              <HBox fx:id="daysV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="876.0" spacing="6.0" styleClass="hboxRGBAHbox">
                                   <children>
                                       <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
                                           <graphic>
@@ -111,7 +111,7 @@
                   </VBox>
                     </children>
                 </VBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="407.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#add" prefHeight="36.0" prefWidth="36.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#add" prefHeight="36.0" prefWidth="36.0">
                <graphic>
                   <FontAwesomeIconView fx:id="add" glyphName="PLUS" size="2.5em" />
                </graphic>
