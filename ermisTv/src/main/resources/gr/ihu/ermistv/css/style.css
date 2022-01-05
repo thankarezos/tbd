@@ -111,6 +111,20 @@ FontAwesomeIconView:hover {
     -fx-background-radius: 5px;
 }
 
+.hboxRGBA {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 20px;
+}
+
+.hboxRGBABtn {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-radius: 0 0 20 20;
+}
+
+.hboxRGBAHbox {
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
 
 /************************************************** HBOX END **************************************************/
 
