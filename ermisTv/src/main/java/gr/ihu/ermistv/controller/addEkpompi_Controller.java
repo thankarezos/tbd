@@ -71,8 +71,8 @@ public class addEkpompi_Controller implements Initializable {
     @FXML
     private void reloadFactor(MouseEvent event) {
         filterAddEkpompi();
-        createRating();
-        createType();
+//        createRating();
+//        createType();
         ekpompiID.clear();
         ekpompiName.clear();
         ekpompiType.setValue(null);
@@ -231,46 +231,46 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
     }
 
-    private void createRating() {//createRole
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            RatingC.clear();
-            RatingC.add("");
-            while (rs2.next()) {
-                RatingC.add(rs2.getString("rating"));
-            }
-            ObservableList<String> rating = FXCollections.observableArrayList(RatingC);
-            /*syntelestisRole*/ekpompiRating.setItems(rating);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }   
-    private void createType() {//createRole
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            TypeC.clear();
-            TypeC.add("");
-            while (rs2.next()) {
-                TypeC.add(rs2.getString("rating"));
-            }
-            ObservableList<String> type = FXCollections.observableArrayList(TypeC);
-            /*syntelestisRole*/ekpompiType.setItems(type);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+//    private void createRating() {//createRole
+//
+//        Statement statement;
+//        try {
+//            statement = DBConnection.c.createStatement();
+//            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
+//            ResultSet rs2 = statement.executeQuery(setRating);
+//            RatingC.clear();
+//            RatingC.add("");
+//            while (rs2.next()) {
+//                RatingC.add(rs2.getString("rating"));
+//            }
+//            ObservableList<String> rating = FXCollections.observableArrayList(RatingC);
+//            /*syntelestisRole*/ekpompiRating.setItems(rating);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }   
+//    private void createType() {//createRole
+//
+//        Statement statement;
+//        try {
+//            statement = DBConnection.c.createStatement();
+//            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
+//            ResultSet rs2 = statement.executeQuery(setRating);
+//            TypeC.clear();
+//            TypeC.add("");
+//            while (rs2.next()) {
+//                TypeC.add(rs2.getString("rating"));
+//            }
+//            ObservableList<String> type = FXCollections.observableArrayList(TypeC);
+//            /*syntelestisRole*/ekpompiType.setItems(type);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -306,10 +306,6 @@ private void loadResults(String id, String name,String type_ek, String rating, S
         loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
     }
 
-
-        public void setId(int id) {
-        this.id = id;
-    }
 
         public void setPop(AnchorPane pop) {
         Pop = pop;
