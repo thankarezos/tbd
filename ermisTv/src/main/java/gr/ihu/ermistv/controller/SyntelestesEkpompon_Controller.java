@@ -166,6 +166,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
                 }
                 ContextMenu menu = new ContextMenu();
+                Statement statement2 = DBConnection.c.createStatement();
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -182,7 +183,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                 Text text2 = (Text) hboxC.getChildren().get(0);
                                 String deleteek = "select * from deleteSyntelestesek(" + setid + "," + text2.getText() + ");";
                                 try {
-                                    statement.executeQuery(deleteek);
+                                    statement2.executeQuery(deleteek);
                                     filterSyntelestes();
                                     createRole();
 

@@ -162,6 +162,7 @@ public class Ekpompi_Controller implements Initializable {
 
                 }
                 ContextMenu menu = new ContextMenu();
+                Statement statement2 = DBConnection.c.createStatement();
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -178,9 +179,9 @@ public class Ekpompi_Controller implements Initializable {
                                 Text text2 = (Text) hboxC.getChildren().get(0);
                                 String deleteek = "select * from deleteEkpompi(" + text2.getText() + ");";
                                 try {
-                                    statement.executeQuery(deleteek);
+                                    statement2.executeQuery(deleteek);
                                     filterEkpompi();
-                                    statement.close();
+                                    statement2.close();
 
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,6 +373,8 @@ public class Ekpompi_Controller implements Initializable {
         // Range Slider
         sliderr.setLowValue(low);
         sliderr.setHighValue(high);
+        sliderr.setMin(lowinit);
+        sliderr.setMax(highinit);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
 
         filterID.textProperty().addListener((observable, oldValue, newValue) -> {

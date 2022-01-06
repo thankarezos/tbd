@@ -63,8 +63,10 @@ public class addEkpompi_Controller implements Initializable {
     private void addfactor(MouseEvent event) {
 
     }
-    private int low = 10;
-    private int high = 300;
+    private int lowinit = 30;
+    private int highinit = 300;
+    private int low = lowinit;
+    private int high = highinit ;
 
     @FXML
     private void reloadFactor(MouseEvent event) {
@@ -75,6 +77,8 @@ public class addEkpompi_Controller implements Initializable {
         ekpompiName.clear();
         ekpompiType.setValue(null);
         ekpompiRating.setValue(null);
+        sliderr.setLowValue(lowinit);
+        sliderr.setHighValue(highinit);
     }
 
     addEkpompi_Controller(Program_Controller pC) {
@@ -299,6 +303,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
         createRating();
         sliderr.setLowValue(low);
         sliderr.setHighValue(high);
+        sliderr.setMin(lowinit);
+        sliderr.setMax(highinit);
         sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
 
         ekpompiID.textProperty().addListener((observable, oldValue, newValue) -> {
