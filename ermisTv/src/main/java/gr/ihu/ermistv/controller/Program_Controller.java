@@ -46,18 +46,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
 
-
-
 public class Program_Controller implements Initializable {
 
     @FXML
     private FontAwesomeIconView x;
     @FXML
-    private ChoiceBox<String> choiceDayPro ,choiceTypePro;
+    private ChoiceBox<String> choiceDayPro, choiceTypePro;
     @FXML
-    private TextField addNamePro,addTimePro;
+    private TextField addNamePro, addTimePro;
     @FXML
-    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday,btnConfPro;
+    private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, btnConfPro;
     @FXML
     private VBox emptypane, time, program;
     @FXML
@@ -66,45 +64,42 @@ public class Program_Controller implements Initializable {
     private HBox daysV;
     @FXML
     private AnchorPane paneProgram;
-    
+
     @FXML
     private AnchorPane addEkpompi;
-    
+
     @FXML
     private AnchorPane popupEkpompi;
-    
-    
-    
+
     @FXML
     private Label proErrLabel;
-    
+
     @FXML
-    private void refresh(){
+    private void refresh() {
         loadPrograms();
     }
 
-
-
-    private String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-    private String[] colors = {"white", "grey", "Thursday", "Wednesday", "Friday", "Saturday", "Sunday"};
+    private String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+    private String[] colors = { "white", "grey", "Thursday", "Wednesday", "Friday", "Saturday", "Sunday" };
     private int daysize = 130;
     private int emptyS = 30;
     private double spaces = 5;
     private double spacesH = 10;
     private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
 
-
-
     public static Bounds getVisibleBounds(Node aNode) {
         // If node not visible, return empty bounds
-        if (!aNode.isVisible()) return new BoundingBox(0, 0, -1, -1);
+        if (!aNode.isVisible())
+            return new BoundingBox(0, 0, -1, -1);
 
         // If node has clip, return clip bounds in node coords
-        if (aNode.getClip() != null) return aNode.getClip().getBoundsInParent();
+        if (aNode.getClip() != null)
+            return aNode.getClip().getBoundsInParent();
 
         // If node has parent, get parent visible bounds in node coords
         Bounds bounds = aNode.getParent() != null ? getVisibleBounds(aNode.getParent()) : null;
-        if (bounds != null && !bounds.isEmpty()) bounds = aNode.parentToLocal(bounds);
+        if (bounds != null && !bounds.isEmpty())
+            bounds = aNode.parentToLocal(bounds);
         return bounds;
     }
 
@@ -170,7 +165,6 @@ public class Program_Controller implements Initializable {
             scrollDay.put(days[i - 1], dayBox);
             dayBox.setId(days[i - 1]);
 
-
             for (int j = 1; j <= 47; j++) {
 
                 HBox hbox = new HBox();
@@ -187,7 +181,6 @@ public class Program_Controller implements Initializable {
                     day.getChildren().add(dayBox);
                     dayBox = null;
                 }
-
 
                 Pane pane = new Pane();
                 pane.setPrefHeight(emptyS);
@@ -207,14 +200,12 @@ public class Program_Controller implements Initializable {
                 t += 30;
                 Htime.getChildren().add(text);
 
-
                 text.getStyleClass().add("textname");
 
                 hbox.getChildren().addAll(day, pane);
                 time.getChildren().add(Htime);
                 emptypane.getChildren().add(hbox);
             }
-
 
             HBox hbox = new HBox();
             hbox.setSpacing(spacesH);
@@ -225,7 +216,6 @@ public class Program_Controller implements Initializable {
             day.setPrefHeight(emptyS);
             day.setMinHeight(Region.USE_PREF_SIZE);
             day.setMinWidth(Region.USE_PREF_SIZE);
-
 
             Pane pane = new Pane();
             pane.setPrefHeight(emptyS);
@@ -241,7 +231,6 @@ public class Program_Controller implements Initializable {
             Text text = new Text();
             text.setText("00:00");
             Htime.getChildren().add(text);
-
 
             text.getStyleClass().add("textname");
 
@@ -262,7 +251,6 @@ public class Program_Controller implements Initializable {
             day.setMinHeight(Region.USE_PREF_SIZE);
             day.setMinWidth(Region.USE_PREF_SIZE);
 
-
             Pane pane = new Pane();
             pane.setPrefHeight(emptyS);
             pane.setMinHeight(Region.USE_PREF_SIZE);
@@ -281,7 +269,6 @@ public class Program_Controller implements Initializable {
             t += 30;
             Htime.getChildren().add(text);
 
-
             text.getStyleClass().add("textname");
 
             hbox.getChildren().addAll(day, pane);
@@ -290,13 +277,13 @@ public class Program_Controller implements Initializable {
         }
 
         loadPrograms();
-        
+
         String day;
         DayS days = new DayS();
         Listener listener = new Listener();
         days.addPropertyChangeListener(listener);
         extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-//            System.out.println(newValue);
+            // System.out.println(newValue);
             if ((double) newValue <= 0.109) {
                 days.setText("Monday");
             } else if ((double) newValue > 0.109 && (double) newValue <= 0.259) {
@@ -312,7 +299,6 @@ public class Program_Controller implements Initializable {
             } else if ((double) newValue > 0.849) {
                 days.setText("Sunday");
             }
-
 
         });
         daysV.getChildren().get(1).getStyleClass().add("pressBtn");
@@ -353,15 +339,16 @@ public class Program_Controller implements Initializable {
             }
         }
     }
+
     @FXML
     private void popupsHandleClicks(MouseEvent event) {
         if (event.getSource() == x) {
             paneProgram.toFront();
         }
     }
-//
-//
-//    }
+    //
+    //
+    // }
 
     @FXML
     private void addProgram() throws IOException {
@@ -371,16 +358,16 @@ public class Program_Controller implements Initializable {
             String name = addNamePro.getText();
             String type = choiceTypePro.getValue();
             String time = String.valueOf(addTimePro.getText());
-            if(day.isEmpty()) {
+            if (day.isEmpty()) {
                 proErrLabel.setText("ADD DAY!");
-            }else if (name.isEmpty()) {
+            } else if (name.isEmpty()) {
                 proErrLabel.setText("ADD NAME!");
             } else if (type.isEmpty()) {
                 proErrLabel.setText("ADD TYPE!");
             } else if (isNumeric.isNumeric(time) || time.isEmpty()) {
                 proErrLabel.setText("ADD TIME! ");
             } else {
-                String addbroadcast = "select getPrograms('" + day + "','" + name + "','"+ type + "','" + time + "');";
+                String addbroadcast = "select getPrograms('" + day + "','" + name + "','" + type + "','" + time + "');";
                 Statement statement = DBConnection.c.createStatement();
                 ResultSet rs = statement.executeQuery(addbroadcast);
                 App.controller.errorMessage("Added Successfully!");
@@ -395,9 +382,9 @@ public class Program_Controller implements Initializable {
         }
 
     }
-    
-    public void loadPrograms(){
-        
+
+    public void loadPrograms() {
+
         program.getChildren().clear();
         double halfhours;
 
@@ -411,17 +398,17 @@ public class Program_Controller implements Initializable {
 
             Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
             while (rs.next()) {
-                Timestamp start  = rs.getTimestamp("strtime");
+                Timestamp start = rs.getTimestamp("strtime");
 
                 LocalDateTime from = start.toLocalDateTime();
                 LocalDateTime to = pTime.toLocalDateTime();
                 Duration d = Duration.between(to, from);
-                
+
                 HBox hboxE = new HBox();
-                halfhours = ((double)d.toMinutes())/30;
-                hboxE.setPrefHeight(emptyS*halfhours+halfhours*spaces);
+                halfhours = ((double) d.toMinutes()) / 30;
+                hboxE.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 program.getChildren().add(hboxE);
-////
+                ////
                 HboxEnch hbox = new HboxEnch();
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
@@ -435,13 +422,13 @@ public class Program_Controller implements Initializable {
                 text.setText(rs.getString("name"));
                 hbox.setValueID(rs.getInt("identry"));
                 program.getChildren().add(hbox);
-                
+
                 pTime = rs.getTimestamp("endtime");
-                
-                Statement statement2 ;
+
+                Statement statement2;
                 statement2 = DBConnection.c.createStatement();
                 ContextMenu menu = new ContextMenu();
-                
+
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                     @Override
@@ -456,7 +443,7 @@ public class Program_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
                                 try {
-                                    
+
                                     statement2.executeQuery(deleteek);
                                     loadPrograms();
                                     statement2.close();
@@ -466,33 +453,36 @@ public class Program_Controller implements Initializable {
                                     ex.printStackTrace();
                                     ex.getCause();
                                 }
-                });
-        }
-//                        if (button == MouseButton.PRIMARY) {
-//                            Parent root;
-//                            try {
-//                                HBox hboxC = (HBox) hbox.getChildren().get(0);
-//                                Text text2 = (Text) hboxC.getChildren().get(0);
-//                                int id = Integer.parseInt(text2.getText());
-//
-//                                FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
-//                                SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id);
-//                                loader.setController(controller);
-//                                root = loader.load();
-//                                Scene scene = new ScenesSet(root, App.stage, 876, 517);
-//
-//                                controller.setAp(mainAp);
-//                                mainAp.getChildren().add(root);
-//
-//                            } catch (IOException ex) {
-//                                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//                        }
+                            });
+                        }
+                        // if (button == MouseButton.PRIMARY) {
+                        // Parent root;
+                        // try {
+                        // HBox hboxC = (HBox) hbox.getChildren().get(0);
+                        // Text text2 = (Text) hboxC.getChildren().get(0);
+                        // int id = Integer.parseInt(text2.getText());
+                        //
+                        // FXMLLoader loader = new
+                        // FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
+                        // SyntelestesEkpompon_Controller controller = new
+                        // SyntelestesEkpompon_Controller(id);
+                        // loader.setController(controller);
+                        // root = loader.load();
+                        // Scene scene = new ScenesSet(root, App.stage, 876, 517);
+                        //
+                        // controller.setAp(mainAp);
+                        // mainAp.getChildren().add(root);
+                        //
+                        // } catch (IOException ex) {
+                        // Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE,
+                        // null, ex);
+                        // }
+                        // }
 
                     }
 
                 });
-                
+
             }
             statement.close();
             rs.close();
@@ -500,9 +490,7 @@ public class Program_Controller implements Initializable {
             ex.printStackTrace();
             ex.getCause();
         }
-        
-        
-        
+
     }
 
 }

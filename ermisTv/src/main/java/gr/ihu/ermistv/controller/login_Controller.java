@@ -36,8 +36,6 @@ public class login_Controller {
         stage.setIconified(true);
     }
 
-
-
     @FXML
     private void closeWindow(MouseEvent event) {
         System.exit(0);
@@ -62,7 +60,7 @@ public class login_Controller {
         boolean bypass = true;
 
         try {
-            
+
             CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
             String userDB = properties.getProperty("user");
             String passDB = properties.getProperty("pass");

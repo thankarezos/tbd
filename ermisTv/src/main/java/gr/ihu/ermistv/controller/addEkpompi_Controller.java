@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import org.controlsfx.control.RangeSlider;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -47,7 +48,7 @@ public class addEkpompi_Controller implements Initializable {
     private TextField ekpompiName;
 
     @FXML
-    private ChoiceBox<String> ekpompiType ,ekpompiRating;
+    private ChoiceBox<String> ekpompiType, ekpompiRating;
 
     @FXML
     private Text sliderText;
@@ -62,10 +63,11 @@ public class addEkpompi_Controller implements Initializable {
     private void addfactor(MouseEvent event) {
 
     }
+
     private int lowinit = 30;
     private int highinit = 300;
     private int low = lowinit;
-    private int high = highinit ;
+    private int high = highinit;
 
     @FXML
     private void reloadFactor(MouseEvent event) {
@@ -84,8 +86,6 @@ public class addEkpompi_Controller implements Initializable {
         this.pC = pC;
     }
 
-
-
     private AnchorPane Pop;
     private Pane mainP;
     private Program_Controller pC;
@@ -99,138 +99,132 @@ public class addEkpompi_Controller implements Initializable {
     try {
         statement = DBConnection.c.createStatement();
 
-        String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','Thursday')";
-        ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
-        rs.next();
-        rs.getInt(1);
-//        System.out.println(rs.getInt(1));
-        if(rs.getInt(1) == 1){
-            App.controller.errorMessage("Overlapping");
-        }else{
-            App.controller.errorMessage("Added Successfully!");
-            Pop.toBack();
-            pC.loadPrograms();
-        }
-        statement.close();
-        rs.close();
-    } catch (SQLException ex) {
-        App.controller.errorMessage("Error");
-        ex.printStackTrace();
-        ex.getCause();
-    }
-
-
-}
-
-
-private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
-    vboxEkpompi.getChildren().clear();
-    String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
-
-    Statement statement;
-    try {
-        statement = DBConnection.c.createStatement();
-        ResultSet rs = statement.executeQuery(getEkmompes);
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (rs.next()) {
-            HboxEnch hbox = new HboxEnch();
-
-            for (int i = 1; i <= columnsNumber; i++) {
-
-                hbox.setSpacing(3);
-                HBox hboxinside = new HBox();
-
-                hboxinside.setPrefWidth(131);
-                hboxinside.setAlignment(CENTER);
-                hboxinside.getStyleClass().add("hboxStyle");
-                hboxinside.setPadding(new Insets(5, 5, 5, 5));
-                Text text = new Text();
-                text.setText(String.valueOf(rs.getString(i)));
-                
-                
-                
-                if (Integer.parseInt(rs.getString(1)) == pressed) {
-                    hboxinside.getStyleClass().add("hboxStylehover");
-                    
-                } else {
-                    hboxinside.getStyleClass().clear();
-                    hboxinside.getStyleClass().add("hboxStyle");
-                }
-                
-                
-                text.setWrappingWidth(80);
-                text.setTextAlignment(TextAlignment.CENTER);
-                hboxinside.getChildren().add(text);
-                hbox.getChildren().add(hboxinside);
-
-
+            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','Thursday')";
+            ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
+            rs.next();
+            rs.getInt(1);
+            // System.out.println(rs.getInt(1));
+            if (rs.getInt(1) == 1) {
+                App.controller.errorMessage("Overlapping");
+            } else {
+                App.controller.errorMessage("Added Successfully!");
+                Pop.toBack();
+                pC.loadPrograms();
             }
-            hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent event) {
-                    MouseButton button = event.getButton();
-                    if (button == MouseButton.PRIMARY) {
-                        HBox hboxC = (HBox) hbox.getChildren().get(0);
-                        Text text2 = (Text) hboxC.getChildren().get(0);
-                        int id = Integer.parseInt(text2.getText());
-
-                        HboxEnch hbox = (HboxEnch) event.getSource();
-                        if (hbox.getState()) {
-                            
-                            
-                            for (int i = 0; i < vboxEkpompi.getChildren().size(); i++){
-                                HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
-                                hbox2.setState(false);
-                                for (int j = 0; j < hbox.getChildren().size(); j++) {
-                                    HBox pane = (HBox) hbox2 .getChildren().get(j);
-                                    pane.getStyleClass().clear();
-                                    pane.getStyleClass().add("hboxStyle");
-                                    
-                                }
-                                
-                            }
-                            
-                            
-                            hbox.setState(false);
-
-                        } else {
-                            for (int i = 0; i < vboxEkpompi.getChildren().size(); i++){
-                                HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
-                                hbox2.setState(false);
-                                for (int j = 0; j < hbox.getChildren().size(); j++) {
-                                    HBox pane = (HBox) hbox2 .getChildren().get(j);
-                                    pane.getStyleClass().clear();
-                                    pane.getStyleClass().add("hboxStyle");
-                                }
-                                
-                            }
-                            
-                            for (int i = 0; i < hbox.getChildren().size(); i++) {
-                                HBox pane = (HBox) hbox.getChildren().get(i);
-                                pane.getStyleClass().add("hboxStylehover");
-                            }
-                            
-                            
-                            hbox.setState(true);
-                        }
-//
-                    }
-                    HBox inside = (HBox)hbox.getChildren().get(0);
-                    
-                    pressed = Integer.parseInt(((Text)inside.getChildren().get(0)).getText());
-                }
-
-            });
-            vboxEkpompi.getChildren().add(hbox);
+            statement.close();
+            rs.close();
+        } catch (SQLException ex) {
+            App.controller.errorMessage("Error");
+            ex.printStackTrace();
+            ex.getCause();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        ex.getCause();
+
     }
 
-}
+    private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
+        vboxEkpompi.getChildren().clear();
+        String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + ","
+                + timeLow + "," + timeHigh + ");";
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getEkmompes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (rs.next()) {
+                HboxEnch hbox = new HboxEnch();
+
+                for (int i = 1; i <= columnsNumber; i++) {
+
+                    hbox.setSpacing(3);
+                    HBox hboxinside = new HBox();
+
+                    hboxinside.setPrefWidth(131);
+                    hboxinside.setAlignment(CENTER);
+                    hboxinside.getStyleClass().add("hboxStyle");
+                    hboxinside.setPadding(new Insets(5, 5, 5, 5));
+                    Text text = new Text();
+                    text.setText(String.valueOf(rs.getString(i)));
+
+                    if (Integer.parseInt(rs.getString(1)) == pressed) {
+                        hboxinside.getStyleClass().add("hboxStylehover");
+
+                    } else {
+                        hboxinside.getStyleClass().clear();
+                        hboxinside.getStyleClass().add("hboxStyle");
+                    }
+
+                    text.setWrappingWidth(80);
+                    text.setTextAlignment(TextAlignment.CENTER);
+                    hboxinside.getChildren().add(text);
+                    hbox.getChildren().add(hboxinside);
+
+                }
+                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MouseButton button = event.getButton();
+                        if (button == MouseButton.PRIMARY) {
+                            HBox hboxC = (HBox) hbox.getChildren().get(0);
+                            Text text2 = (Text) hboxC.getChildren().get(0);
+                            int id = Integer.parseInt(text2.getText());
+
+                            HboxEnch hbox = (HboxEnch) event.getSource();
+                            if (hbox.getState()) {
+
+                                for (int i = 0; i < vboxEkpompi.getChildren().size(); i++) {
+                                    HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
+                                    hbox2.setState(false);
+                                    for (int j = 0; j < hbox.getChildren().size(); j++) {
+                                        HBox pane = (HBox) hbox2.getChildren().get(j);
+                                        pane.getStyleClass().clear();
+                                        pane.getStyleClass().add("hboxStyle");
+
+                                    }
+
+                                }
+
+                                hbox.setState(false);
+
+                            } else {
+                                for (int i = 0; i < vboxEkpompi.getChildren().size(); i++) {
+                                    HboxEnch hbox2 = (HboxEnch) vboxEkpompi.getChildren().get(i);
+                                    hbox2.setState(false);
+                                    for (int j = 0; j < hbox.getChildren().size(); j++) {
+                                        HBox pane = (HBox) hbox2.getChildren().get(j);
+                                        pane.getStyleClass().clear();
+                                        pane.getStyleClass().add("hboxStyle");
+                                    }
+
+                                }
+
+                                for (int i = 0; i < hbox.getChildren().size(); i++) {
+                                    HBox pane = (HBox) hbox.getChildren().get(i);
+                                    pane.getStyleClass().add("hboxStylehover");
+                                }
+
+                                hbox.setState(true);
+                            }
+                            //
+                        }
+                        HBox inside = (HBox) hbox.getChildren().get(0);
+
+                        pressed = Integer.parseInt(((Text) inside.getChildren().get(0)).getText());
+                    }
+
+                });
+                vboxEkpompi.getChildren().add(hbox);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+
+    }
 
     // Filter Ekpompi
     private void filterAddEkpompi() {
@@ -251,7 +245,7 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             rating = "null";
         }
 
-            loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
+        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
     }
 
     private void createRating() {
@@ -277,6 +271,7 @@ private void loadResults(String id, String name,String type_ek, String rating, S
         }
 
     }
+
     private void createType() {
 
         Statement statement;
@@ -335,15 +330,14 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             filterAddEkpompi();
 
         });
-        loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
+        loadResults("null", "null", "null", "null", String.valueOf(low), String.valueOf(high));
     }
 
-
-        public void setPop(AnchorPane pop) {
+    public void setPop(AnchorPane pop) {
         Pop = pop;
     }
 
-        public void setP(Pane p) {
+    public void setP(Pane p) {
         mainP = p;
     }
 

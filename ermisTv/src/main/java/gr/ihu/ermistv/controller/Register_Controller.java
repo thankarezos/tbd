@@ -50,7 +50,6 @@ public class Register_Controller {
     @FXML
     private TextField uName;
 
-
     @FXML
     void back(MouseEvent event) throws IOException {
         loginBack();
@@ -71,7 +70,6 @@ public class Register_Controller {
         System.exit(0);
         Platform.exit();
     }
-
 
     @FXML
     private void clearbox(MouseEvent event) {
@@ -136,7 +134,7 @@ public class Register_Controller {
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
-//
+        //
 
         DBConnection.connect(url, user, pass);
 
@@ -147,7 +145,8 @@ public class Register_Controller {
         String Password = fPass.getText();
 
         Statement statement;
-        String setAccount = "select setAccount('" + fName + "','" + lName + "','" + email + "','" + uName + "','" + fPass + "')";
+        String setAccount = "select setAccount('" + fName + "','" + lName + "','" + email + "','" + uName + "','"
+                + fPass + "')";
         try {
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(setAccount);
@@ -160,7 +159,6 @@ public class Register_Controller {
             e.getCause();
         }
     }
-
 
     public static boolean patternMatches(String emailAddress, String regexPattern) {
         return Pattern.compile(regexPattern)
@@ -186,10 +184,9 @@ public class Register_Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root;
         root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480,"#Hbox");
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
         stage.setX(stage.getX() - 100);
         stage.setScene(scene);
-
 
     }
 }

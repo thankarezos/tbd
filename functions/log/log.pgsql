@@ -12,8 +12,6 @@ CREATE TABLE logging.t_history (
         newValue text
 );
 
-
-
 CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
        BEGIN
          IF TG_OP = 'INSERT'

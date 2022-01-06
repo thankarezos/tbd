@@ -14,34 +14,34 @@
 
 <StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
     <children>
-      <AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
-         <children>
-            <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Factor" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
-                     <graphic>
-                        <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
-                     </graphic>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </HBox>
-            <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
-         </children>
-      </AnchorPane>
+        <AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
+            <children>
+                <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Factor" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
+                            <graphic>
+                                <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
+                            </graphic>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets right="5.0" />
+                    </padding>
+                </HBox>
+                <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
+            </children>
+        </AnchorPane>
         <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
             <children>
                 <VBox alignment="CENTER" prefHeight="515.0" prefWidth="850.0">
@@ -61,61 +61,61 @@
                                 </VBox>
                             </content>
                         </ScrollPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                              <HBox fx:id="daysV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="876.0" spacing="6.0" styleClass="hboxRGBAHbox">
-                                  <children>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refresh" prefHeight="36.0" prefWidth="36.0">
-                                          <graphic>
-                                              <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
-                                          </graphic>
-                                      </Label>
-                                      <Button fx:id="Monday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Monday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Tuesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Tuesday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Wednesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Wednesday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Thursday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Thursday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Friday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Friday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Saturday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Saturday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                      <Button fx:id="Sunday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Sunday">
-                                          <font>
-                                              <Font name="Arial Bold Italic" size="14.0" />
-                                          </font>
-                                      </Button>
-                                  </children>
-                              </HBox>
-                     </children>
-                  </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox fx:id="daysV" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="876.0" spacing="6.0" styleClass="hboxRGBAHbox">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#refresh" prefHeight="36.0" prefWidth="36.0">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
+                                            </graphic>
+                                        </Label>
+                                        <Button fx:id="Monday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Monday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Tuesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Tuesday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Wednesday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Wednesday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Thursday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Thursday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Friday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Friday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Saturday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Saturday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="Sunday" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#day" prefHeight="30.0" prefWidth="106.0" text="Sunday">
+                                            <font>
+                                                <Font name="Arial Bold Italic" size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
                     </children>
                 </VBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#add" prefHeight="36.0" prefWidth="36.0">
-               <graphic>
-                  <FontAwesomeIconView fx:id="add" glyphName="PLUS" size="2.5em" />
-               </graphic>
-            </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#add" prefHeight="36.0" prefWidth="36.0">
+                    <graphic>
+                        <FontAwesomeIconView fx:id="add" glyphName="PLUS" size="2.5em" />
+                    </graphic>
+                </Label>
             </children>
         </AnchorPane>
     </children>

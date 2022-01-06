@@ -79,7 +79,6 @@ public class AddFactor_Controller implements Initializable {
         this.seC = seC;
     }
 
-
     private AnchorPane Pop;
     private Pane mainP;
     private int id;
@@ -101,7 +100,6 @@ public class AddFactor_Controller implements Initializable {
                 statement.close();
                 rs.close();
 
-
             } catch (SQLException ex) {
                 App.controller.errorMessage("Error");
                 ex.printStackTrace();
@@ -111,7 +109,7 @@ public class AddFactor_Controller implements Initializable {
             it.remove();
             add.remove(pair.getKey());
 
-//            System.out.println(pair.getKey() + " = " + pair.getValue());
+            // System.out.println(pair.getKey() + " = " + pair.getValue());
             // avoids a ConcurrentModificationException
         }
         Pop.toBack();
@@ -121,10 +119,10 @@ public class AddFactor_Controller implements Initializable {
 
     }
 
-
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
-        String getSyntelestes = "select * from getResultSykminus(" + this.id + "," + id + "," + name + "," + surname + "," + role + "," + phoneNumber + ");";
+        String getSyntelestes = "select * from getResultSykminus(" + this.id + "," + id + "," + name + "," + surname
+                + "," + role + "," + phoneNumber + ");";
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
@@ -157,7 +155,6 @@ public class AddFactor_Controller implements Initializable {
                     hboxinside.getChildren().add(text);
                     hbox.getChildren().add(hboxinside);
 
-
                 }
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -186,19 +183,17 @@ public class AddFactor_Controller implements Initializable {
                                 add.put(id, id);
                                 for (int i = 0; i < hbox.getChildren().size(); i++) {
 
-
                                     HBox pane = (HBox) hbox.getChildren().get(i);
                                     pane.getStyleClass().add("hboxStylehover");
                                 }
                                 hbox.setState(true);
                             }
 
-
-//                            HBox hbox = (HBox) event.getSource();
-//                            hbox.getChildren().get(0);
-//                            hbox.getChildren();
-//
-//                            
+                            // HBox hbox = (HBox) event.getSource();
+                            // hbox.getChildren().get(0);
+                            // hbox.getChildren();
+                            //
+                            //
                         }
 
                     }
@@ -251,7 +246,8 @@ public class AddFactor_Controller implements Initializable {
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek(" + this.id + ");";
+            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek("
+                    + this.id + ");";
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
@@ -293,7 +289,6 @@ public class AddFactor_Controller implements Initializable {
         loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
@@ -305,6 +300,5 @@ public class AddFactor_Controller implements Initializable {
     public void setP(Pane p) {
         mainP = p;
     }
-
 
 }

@@ -45,33 +45,33 @@
         </HBox>
         <VBox alignment="TOP_RIGHT" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="150.0" spacing="10.0" styleClass="child1" stylesheets="@../css/style.css">
             <children>
-            <VBox alignment="CENTER_RIGHT" prefHeight="189.0" prefWidth="150.0" spacing="10.0">
-               <children>
-                      <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Program">
-                          <font>
-                              <Font name="Arial Bold" size="15.0" />
-                          </font>
-                      </Button>
-                      <Button id="btnEkpompi" fx:id="btnEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Broadcast">
-                          <font>
-                              <Font name="Arial Bold" size="15.0" />
-                          </font>
-                      </Button>
-                      <Button id="btnSyntelestes" fx:id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Factor">
-                          <font>
-                              <Font name="Arial Bold" size="15.0" />
-                          </font>
-                      </Button>
-               </children>
-            </VBox>
+                <VBox alignment="CENTER_RIGHT" prefHeight="189.0" prefWidth="150.0" spacing="10.0">
+                    <children>
+                        <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Program">
+                            <font>
+                                <Font name="Arial Bold" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button id="btnEkpompi" fx:id="btnEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Broadcast">
+                            <font>
+                                <Font name="Arial Bold" size="15.0" />
+                            </font>
+                        </Button>
+                        <Button id="btnSyntelestes" fx:id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Factor">
+                            <font>
+                                <Font name="Arial Bold" size="15.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
             </children>
         </VBox>
-      <TextArea fx:id="infoArea" editable="false" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="148.0" />
-      <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-      </Button>
+        <TextArea fx:id="infoArea" editable="false" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="148.0" />
+        <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
+            <font>
+                <Font name="Arial Bold" size="15.0" />
+            </font>
+        </Button>
         <StackPane layoutX="148.0" layoutY="34.0">
             <children>
                 <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />

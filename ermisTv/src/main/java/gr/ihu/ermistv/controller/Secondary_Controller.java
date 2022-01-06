@@ -27,7 +27,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram;
     @FXML
-    private Button btnEkpompi, btnProgram,btnLogout;
+    private Button btnEkpompi, btnProgram, btnLogout;
     @FXML
     private Button btnSyntelestes;
     @FXML
@@ -35,13 +35,16 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private TextArea infoArea;
 
-    String color ="-fx-background-color: #F5F6F8;";
-//    String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1); -fx-text-fill: white;";
-//    String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA); -fx-text-fill: white;";
-//    String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2); -fx-text-fill: white;";
-    String color1 ="-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
-    String color2 ="-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
-    String color3 ="-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
+    String color = "-fx-background-color: #F5F6F8;";
+    // String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1);
+    // -fx-text-fill: white;";
+    // String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA);
+    // -fx-text-fill: white;";
+    // String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2);
+    // -fx-text-fill: white;";
+    String color1 = "-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
+    String color2 = "-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
+    String color3 = "-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
 
     // Minimize Window
     @FXML
@@ -64,8 +67,8 @@ public class Secondary_Controller implements Initializable {
         loginBack();
     }
 
-    //clear Color
-    private void clearColor(){
+    // clear Color
+    private void clearColor() {
         btnProgram.setStyle(color);
         btnEkpompi.setStyle(color);
         btnSyntelestes.setStyle(color);
@@ -90,16 +93,15 @@ public class Secondary_Controller implements Initializable {
         }
     }
 
-    public void errorMessage(String error) throws IOException{
+    public void errorMessage(String error) throws IOException {
         infoArea.setWrapText(true);
         infoArea.appendText(error);
         infoArea.appendText("\n");
-        try{
-            if(DBConnection.c.isClosed()){
+        try {
+            if (DBConnection.c.isClosed()) {
                 loginBack();
             }
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
             ex.getCause();
         }
@@ -141,7 +143,7 @@ public class Secondary_Controller implements Initializable {
         }
 
     }
-    
+
     private void loginBack() throws IOException {
         try {
             Stage stage = (Stage) secondary.getScene().getWindow();
@@ -156,7 +158,6 @@ public class Secondary_Controller implements Initializable {
             ex.printStackTrace();
             ex.getCause();
         }
-
 
     }
 }

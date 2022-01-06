@@ -243,7 +243,7 @@ public class Syntelestes_Contoller implements Initializable {
             } else {
                 String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
                         + phoneN + "');";
-                
+
                 ResultSet rs = statement.executeQuery(addSyntelestes);
 
                 System.out.println("Success");
@@ -256,7 +256,7 @@ public class Syntelestes_Contoller implements Initializable {
                 paneSyntelestes.toFront();
                 rs.close();
             }
-        statement.close();
+            statement.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             ex.getCause();
@@ -290,7 +290,6 @@ public class Syntelestes_Contoller implements Initializable {
             ex.printStackTrace();
             ex.getCause();
         }
-
 
     }
 

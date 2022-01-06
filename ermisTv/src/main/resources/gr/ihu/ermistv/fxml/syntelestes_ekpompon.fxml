@@ -113,47 +113,47 @@
                         </ScrollPane>
                     </children>
                 </VBox>
-            <AnchorPane layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="863.0" styleClass="hboxRGBAHbox">
-               <children>
-                      <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="647.0">
-                          <children>
-                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="647.0" spacing="10.0">
-                                  <children>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadFactor" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
-                                          <graphic>
-                                              <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
-                                          </graphic>
-                                      </Label>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
-                                          <graphic>
-                                              <FontAwesomeIconView glyphName="SEARCH" size="1.8em" />
-                                          </graphic>
-                                      </Label>
-                                      <TextField fx:id="syntelestisID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="ID" />
-                                      <TextField fx:id="syntelestisName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Name" />
-                                      <TextField fx:id="syntelestisSurname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Surname" />
-                                      <ChoiceBox fx:id="syntelestisRole" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
-                                      <TextField fx:id="syntelestisPhoneN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Phone Number" />
-                                  </children>
-                              </HBox>
-                          </children>
-                      </VBox>
-                      <HBox id="program" alignment="CENTER" layoutX="283.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="315.0" spacing="12.0">
-                          <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="164.0" text="Add Factor">
-                                  <font>
-                                      <Font name="Arial Bold" size="13.0" />
-                                  </font>
-                              </Label>
-                              <Button fx:id="btnAddFacPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClkick" prefHeight="35.0" prefWidth="100.0" text="Add">
-                                  <font>
-                                      <Font size="14.0" />
-                                  </font>
-                              </Button>
-                          </children>
-                      </HBox>
-               </children>
-            </AnchorPane>
+                <AnchorPane layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="863.0" styleClass="hboxRGBAHbox">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" layoutX="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="647.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="647.0" spacing="10.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#reloadFactor" prefHeight="36.0" prefWidth="36.0" styleClass="min-btn">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="REFRESH" size="1.8em" />
+                                            </graphic>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="SEARCH" size="1.8em" />
+                                            </graphic>
+                                        </Label>
+                                        <TextField fx:id="syntelestisID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="ID" />
+                                        <TextField fx:id="syntelestisName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Name" />
+                                        <TextField fx:id="syntelestisSurname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Surname" />
+                                        <ChoiceBox fx:id="syntelestisRole" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" value="" />
+                                        <TextField fx:id="syntelestisPhoneN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Phone Number" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <HBox id="program" alignment="CENTER" layoutX="283.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="315.0" spacing="12.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="164.0" text="Add Factor">
+                                    <font>
+                                        <Font name="Arial Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="btnAddFacPane" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onClkick" prefHeight="35.0" prefWidth="100.0" text="Add">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="52.0">
                     <graphic>
                         <FontAwesomeIconView fx:id="backIcon" glyphName="CHEVRON_CIRCLE_LEFT" onMouseClicked="#back" size="5em" text="" />

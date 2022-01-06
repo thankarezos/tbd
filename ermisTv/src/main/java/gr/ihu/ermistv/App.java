@@ -25,27 +25,25 @@ public class App extends Application {
 
     private static Scene scene;
     public static Stage stage;
-    public static Secondary_Controller controller ;
+    public static Secondary_Controller controller;
 
     @Override
     public void start(Stage stage) throws IOException {
-        
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
 
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-            double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-            stage.setX(x);
-            stage.setY(y);
-            stage.show();
-            stage.setResizable(false);
-            this.stage = stage;
-        
-        
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+        stage.show();
+        stage.setResizable(false);
+        this.stage = stage;
 
     }
 
@@ -53,6 +51,5 @@ public class App extends Application {
 
         launch();
     }
-        
 
 }

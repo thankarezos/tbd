@@ -7,7 +7,6 @@ module gr.ihu.ermistv {
     requires org.postgresql.jdbc;
     requires java.desktop;
 
-
     opens gr.ihu.ermistv to javafx.fxml;
 
     exports gr.ihu.ermistv;

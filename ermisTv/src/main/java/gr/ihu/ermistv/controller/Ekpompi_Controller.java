@@ -57,16 +57,16 @@ public class Ekpompi_Controller implements Initializable {
     private Button btnConfBro;
 
     @FXML
-    private ChoiceBox choiceRatingBro,choiceTypeBro;
+    private ChoiceBox choiceRatingBro, choiceTypeBro;
 
     @FXML
     private VBox ekpompivbox;
 
     @FXML
-    private TextField filterID,addTimeBro,filterName;
+    private TextField filterID, addTimeBro, filterName;
 
     @FXML
-    private ChoiceBox<String> filterRating,filterType;
+    private ChoiceBox<String> filterRating, filterType;
 
     @FXML
     private AnchorPane paneEkpompi;
@@ -91,13 +91,12 @@ public class Ekpompi_Controller implements Initializable {
     int high = highinit;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> type_ekC = new ArrayList<String>();
-    
-    
 
     // Load Results Ekpompi
-    private void loadResults(String id, String name,String type_ek, String rating, String timeLow, String timeHigh) {
+    private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
-        String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + "," +  timeLow + "," + timeHigh + ");";
+        String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + ","
+                + timeLow + "," + timeHigh + ");";
 
         Statement statement;
         try {
@@ -196,7 +195,8 @@ public class Ekpompi_Controller implements Initializable {
                                 Text text2 = (Text) hboxC.getChildren().get(0);
                                 int id = Integer.parseInt(text2.getText());
 
-                                FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
+                                FXMLLoader loader = new FXMLLoader(
+                                        App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
                                 SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id);
                                 loader.setController(controller);
                                 root = loader.load();
@@ -247,6 +247,7 @@ public class Ekpompi_Controller implements Initializable {
         }
 
     }
+
     private void createType_ek() {
 
         Statement statement;
@@ -267,7 +268,8 @@ public class Ekpompi_Controller implements Initializable {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            ex.getCause();;
+            ex.getCause();
+            ;
         }
 
     }
@@ -279,20 +281,21 @@ public class Ekpompi_Controller implements Initializable {
         try {
             String name = addNameBro.getText();
             String rating = (String) choiceRatingBro.getValue();
-            String type =(String) choiceTypeBro.getValue();
+            String type = (String) choiceTypeBro.getValue();
             String time = addTimeBro.getText();
             if (name == "") {
                 broErrLabel.setText("ADD NAME!");
             } else if (rating == null || rating == "") {
                 broErrLabel.setText("ADD RATING!");
-            } else if (type == null|| type == "") {
+            } else if (type == null || type == "") {
                 broErrLabel.setText("ADD TYPE! ");
             } else if (time == null || isNumeric.isNumeric(time)) {
                 broErrLabel.setText("ADD TIME! ");
             } else {
                 int x = Integer.parseInt(time);
-                if(x >= 30 && x <=300 ) {
-                    String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time + "');";
+                if (x >= 30 && x <= 300) {
+                    String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time
+                            + "');";
                     Statement statement = DBConnection.c.createStatement();
                     ResultSet rs = statement.executeQuery(addbroadcast);
 
@@ -304,7 +307,7 @@ public class Ekpompi_Controller implements Initializable {
                     addTimeBro.clear();
                     broErrLabel.setText("");
                     paneEkpompi.toFront();
-                }else{
+                } else {
                     broErrLabel.setText("Time must be greater than 30sec and less than 300sec");
                 }
             }
@@ -327,7 +330,7 @@ public class Ekpompi_Controller implements Initializable {
     // Reload Table Ekpompi ??
     @FXML
     private void reloadPage(MouseEvent event) {
-//        App.controller.errorMessage("Reload");
+        // App.controller.errorMessage("Reload");
         filterEkpompi();
         createRating();
         createType_ek();
@@ -363,7 +366,7 @@ public class Ekpompi_Controller implements Initializable {
         if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
             type_ek = "null";
         }
-        loadResults(id, name, type_ek,rating, String.valueOf(low), String.valueOf(high));
+        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
     }
 
     // Override
@@ -372,9 +375,8 @@ public class Ekpompi_Controller implements Initializable {
 
         // choice Rating
         createRating();
-        //choise Type
+        // choise Type
         createType_ek();
-
 
         // Range Slider
         sliderr.setLowValue(low);
@@ -393,7 +395,7 @@ public class Ekpompi_Controller implements Initializable {
             filterEkpompi();
         });
         filterType.valueProperty().addListener((observable, oldValue, newValue) -> {
-                    filterEkpompi();
+            filterEkpompi();
         });
         sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
 
@@ -403,17 +405,14 @@ public class Ekpompi_Controller implements Initializable {
 
         });
         sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
-            
+
             low = (int) Math.round(newValue.doubleValue());
             sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
             filterEkpompi();
 
         });
 
-
-
-
-        loadResults("null", "null", "null", "null",String.valueOf(low), String.valueOf(high));
+        loadResults("null", "null", "null", "null", String.valueOf(low), String.valueOf(high));
     }
 
     @FXML

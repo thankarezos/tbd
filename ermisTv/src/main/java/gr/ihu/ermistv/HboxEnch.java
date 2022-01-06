@@ -21,7 +21,7 @@ public class HboxEnch extends HBox {
     public boolean getState() {
         return state;
     }
-    
+
     public void setValueID(int id) {
         this.id = id;
     }
@@ -29,6 +29,5 @@ public class HboxEnch extends HBox {
     public int getValueID() {
         return id;
     }
-
 
 }
