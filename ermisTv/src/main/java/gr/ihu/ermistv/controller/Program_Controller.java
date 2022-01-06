@@ -364,7 +364,7 @@ public class Program_Controller implements Initializable {
 //    }
 
     @FXML
-    private void addProgram() {
+    private void addProgram() throws IOException {
         int intValue;
         try {
             String day = choiceDayPro.getValue();

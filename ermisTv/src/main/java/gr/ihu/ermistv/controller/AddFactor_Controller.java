@@ -88,7 +88,7 @@ public class AddFactor_Controller implements Initializable {
     private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
     @FXML
-    private void addfactor() {
+    private void addfactor() throws IOException {
         Iterator it = add.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();

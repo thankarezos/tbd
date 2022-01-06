@@ -3,6 +3,7 @@ package gr.ihu.ermistv.controller;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.HboxEnch;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,8 +29,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -95,7 +94,7 @@ public class addEkpompi_Controller implements Initializable {
     int pressed;
 
     @FXML
-    private void addBroadcast() {
+    private void addBroadcast() throws IOException {
     Statement statement;
     try {
         statement = DBConnection.c.createStatement();

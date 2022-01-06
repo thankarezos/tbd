@@ -274,7 +274,7 @@ public class Ekpompi_Controller implements Initializable {
 
     // Add Ekpompi
     @FXML
-    private void addbroadcast() {
+    private void addbroadcast() throws IOException {
         int intValue;
         try {
             String name = addNameBro.getText();
