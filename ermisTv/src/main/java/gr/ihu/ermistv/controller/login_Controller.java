@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.*;
 
 import gr.ihu.ermistv.App;
+import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
 import javafx.fxml.FXML;
@@ -65,11 +66,17 @@ public class login_Controller {
         boolean bypass = true;
 
         try {
+            
+            CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
+            String userDB = properties.getProperty("user");
+            String passDB = properties.getProperty("pass");
+            String url = properties.getProperty("url");
+            DBConnection.connect(url, userDB, passDB);
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
-            if (queryResult.getInt(1) == 1 || bypass) {
+            if (queryResult.getInt(1) == 0 || bypass) {
 
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
@@ -87,7 +94,6 @@ public class login_Controller {
 
                 stage.setX(stage.getX() - 200);
                 /* */
-                App.controller.errorMessage("Congratulations!");
                 /* */
             } else {
                 messageLabel.setText("Invalid login. Please try again !");

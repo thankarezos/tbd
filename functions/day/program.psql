@@ -98,6 +98,8 @@ AS $function$
 $function$;
 
 
+select * from getPrograms()
+
 select addPrograms(2,'0001/01/4 00:00','Thursday');
 
 CREATE OR REPLACE FUNCTION deletePrograms(id int)

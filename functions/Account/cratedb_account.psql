@@ -1,3 +1,20 @@
+CREATE OR REPLACE FUNCTION userS()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DROP TABLE IF EXISTS userS CASCADE;
+    CREATE TABLE userS
+    (
+        sesionid text,
+        username varchar(100),
+        primary key(sesionid)
+    );
+
+    END;
+$function$;
+
+
 CREATE OR REPLACE FUNCTION "account"()
  RETURNS void
  LANGUAGE plpgsql
@@ -19,11 +36,26 @@ AS $function$
 $function$;
 
 SELECT account();
+select userS();
 
-CREATE OR REPLACE FUNCTION checkaccount(varchar(100),varchar(100)) 
-    RETURNS integer AS $$
-        SELECT 1 FROM account WHERE username = $1 AND pass = $2;
-$$  LANGUAGE sql
+
+CREATE OR REPLACE FUNCTION checkaccount(users text,passs text)
+ RETURNS integer
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    IF EXISTS (
+        SELECT 1 FROM account a WHERE a.username = users AND a.pass = passs
+    )
+    THEN
+        INSERT into userS(sesionid,username) VALUES (CONCAT(pg_backend_pid(),pg_postmaster_start_time()),users);
+        return 0;
+    END IF;
+        return 1;
+    END;
+$function$;
+
+select * from userS
 
 --select checkaccount('peris','1234')
 

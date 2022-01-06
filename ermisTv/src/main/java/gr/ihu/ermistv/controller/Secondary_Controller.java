@@ -7,7 +7,9 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import gr.ihu.ermistv.App;
+import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
+import java.sql.SQLException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,13 +61,18 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void Logout(ActionEvent event) throws IOException {
 
-        Stage stage = (Stage) secondary.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-        Parent root;
-        root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-        stage.setScene(scene);
-        stage.setX(stage.getX() + 200);
+        try {
+            Stage stage = (Stage) secondary.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+            Parent root;
+            root = fxmlLoader.load();
+            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+            stage.setScene(scene);
+            stage.setX(stage.getX() + 200);
+            DBConnection.c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //clear Color
