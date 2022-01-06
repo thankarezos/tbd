@@ -25,9 +25,9 @@ import java.util.logging.Logger;
 
 public class Secondary_Controller implements Initializable {
     @FXML
-    private AnchorPane secondary, paneEkpompi, paneProgram;
+    private AnchorPane secondary, paneEkpompi, paneProgram,paneLog;
     @FXML
-    private Button btnEkpompi, btnProgram, btnLogout;
+    private Button btnEkpompi, btnProgram, btnLogout,btnLog;
     @FXML
     private Button btnSyntelestes;
     @FXML
@@ -90,6 +90,9 @@ public class Secondary_Controller implements Initializable {
             clearColor();
             btnSyntelestes.setStyle(color3);
             paneSyntelestes.toFront();
+        }else if (event.getSource() == btnLog){
+            btnLog.setStyle(color3);
+            paneLog.toFront();
         }
     }
 

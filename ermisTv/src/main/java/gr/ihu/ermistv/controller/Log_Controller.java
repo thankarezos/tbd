@@ -1,4 +1,4 @@
 package gr.ihu.ermistv.controller;
 
-public class addLog {
+public class Log_Controller {
 }

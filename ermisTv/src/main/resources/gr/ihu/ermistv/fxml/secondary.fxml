@@ -62,7 +62,7 @@
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
-                  <Button id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
+                  <Button id="btnSyntelestes" fx:id="btnLog" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>
