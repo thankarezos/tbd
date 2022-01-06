@@ -6,6 +6,7 @@ module gr.ihu.ermistv {
     requires org.controlsfx.controls;
     requires org.postgresql.jdbc;
     requires java.desktop;
+    requires com.dlsc.gemsfx;
 
     opens gr.ihu.ermistv to javafx.fxml;
 

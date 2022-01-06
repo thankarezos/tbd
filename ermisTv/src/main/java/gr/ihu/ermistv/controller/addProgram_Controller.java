@@ -29,6 +29,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import com.dlsc.gemsfx.TimePicker;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -40,6 +41,8 @@ public class addProgram_Controller implements Initializable {
     private TextField addTime2;
     @FXML
     private AnchorPane addEkpompi;
+    @FXML
+    private HBox timePicker;
 
     @FXML
     private Label broErrLabel;
@@ -327,6 +330,9 @@ public class addProgram_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        TimePicker picker = new TimePicker();
+        timePicker.getChildren().add(picker);
+        System.out.println(timePicker.getId());
         createType();
         createDay();
         createRating();
