@@ -144,3 +144,7 @@ END
 
 SELECT checkif(1,4);
 
+SELECT 'DROP FUNCTION ' || ns.nspname || '.' || proname 
+       || '(' || oidvectortypes(proargtypes) || ');'
+FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+WHERE ns.nspname = 'it185193'  order by proname;
