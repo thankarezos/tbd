@@ -18,9 +18,6 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -51,10 +48,6 @@ public class Program_Controller implements Initializable {
     @FXML
     private FontAwesomeIconView x;
     @FXML
-    private ChoiceBox<String> choiceDayPro, choiceTypePro;
-    @FXML
-    private TextField addNamePro, addTimePro;
-    @FXML
     private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, btnConfPro;
     @FXML
     private VBox emptypane, time, program;
@@ -71,8 +64,6 @@ public class Program_Controller implements Initializable {
     @FXML
     private AnchorPane popupEkpompi;
 
-    @FXML
-    private Label proErrLabel;
 
     @FXML
     private void refresh() {
@@ -108,8 +99,8 @@ public class Program_Controller implements Initializable {
         System.out.println("add");
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addEkpompi.fxml"));
-            addEkpompi_Controller controller = new addEkpompi_Controller(this);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addProgram.fxml"));
+            addProgram_Controller controller = new addProgram_Controller(this);
             loader.setController(controller);
             controller.setPop(addEkpompi);
             popupEkpompi.getChildren().add(loader.load());
@@ -346,42 +337,6 @@ public class Program_Controller implements Initializable {
             paneProgram.toFront();
         }
     }
-    //
-    //
-    // }
-
-    @FXML
-    private void addProgram() throws IOException {
-        int intValue;
-        try {
-            String day = choiceDayPro.getValue();
-            String name = addNamePro.getText();
-            String type = choiceTypePro.getValue();
-            String time = String.valueOf(addTimePro.getText());
-            if (day.isEmpty()) {
-                proErrLabel.setText("ADD DAY!");
-            } else if (name.isEmpty()) {
-                proErrLabel.setText("ADD NAME!");
-            } else if (type.isEmpty()) {
-                proErrLabel.setText("ADD TYPE!");
-            } else if (isNumeric.isNumeric(time) || time.isEmpty()) {
-                proErrLabel.setText("ADD TIME! ");
-            } else {
-                String addbroadcast = "select getPrograms('" + day + "','" + name + "','" + type + "','" + time + "');";
-                Statement statement = DBConnection.c.createStatement();
-                ResultSet rs = statement.executeQuery(addbroadcast);
-                App.controller.errorMessage("Added Successfully!");
-                System.out.println("Success");
-                statement.close();
-                rs.close();
-            }
-        } catch (SQLException ex) {
-            App.controller.errorMessage("Error");
-            ex.printStackTrace();
-            ex.getCause();
-        }
-
-    }
 
     public void loadPrograms() {
 
@@ -455,29 +410,6 @@ public class Program_Controller implements Initializable {
                                 }
                             });
                         }
-                        // if (button == MouseButton.PRIMARY) {
-                        // Parent root;
-                        // try {
-                        // HBox hboxC = (HBox) hbox.getChildren().get(0);
-                        // Text text2 = (Text) hboxC.getChildren().get(0);
-                        // int id = Integer.parseInt(text2.getText());
-                        //
-                        // FXMLLoader loader = new
-                        // FXMLLoader(App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
-                        // SyntelestesEkpompon_Controller controller = new
-                        // SyntelestesEkpompon_Controller(id);
-                        // loader.setController(controller);
-                        // root = loader.load();
-                        // Scene scene = new ScenesSet(root, App.stage, 876, 517);
-                        //
-                        // controller.setAp(mainAp);
-                        // mainAp.getChildren().add(root);
-                        //
-                        // } catch (IOException ex) {
-                        // Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE,
-                        // null, ex);
-                        // }
-                        // }
 
                     }
 

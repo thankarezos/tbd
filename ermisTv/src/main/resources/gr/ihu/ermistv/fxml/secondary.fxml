@@ -62,12 +62,17 @@
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
+                  <Button id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Button>
                     </children>
                 </VBox>
             </children>
         </VBox>
         <TextArea fx:id="infoArea" editable="false" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.0" prefWidth="148.0" />
-        <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
+        <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
             <font>
                 <Font name="Arial Bold" size="15.0" />
             </font>

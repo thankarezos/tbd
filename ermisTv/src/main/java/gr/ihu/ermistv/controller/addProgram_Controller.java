@@ -23,7 +23,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import org.controlsfx.control.RangeSlider;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -33,8 +32,12 @@ import java.util.*;
 
 import static javafx.geometry.Pos.CENTER;
 
-public class addEkpompi_Controller implements Initializable {
+public class addProgram_Controller implements Initializable {
 
+    @FXML
+    private ChoiceBox<String> addDay,addTime1;
+    @FXML
+    private TextField addTime2;
     @FXML
     private AnchorPane addEkpompi;
 
@@ -70,19 +73,21 @@ public class addEkpompi_Controller implements Initializable {
     private int high = highinit;
 
     @FXML
-    private void reloadFactor(MouseEvent event) {
+    private void reloadProgram(MouseEvent event) {
         filterAddEkpompi();
         createType();
         createRating();
+        createDay();
         ekpompiID.clear();
         ekpompiName.clear();
         ekpompiType.setValue(null);
         ekpompiRating.setValue(null);
+        addDay.setValue(null);
         sliderr.setLowValue(lowinit);
         sliderr.setHighValue(highinit);
     }
 
-    addEkpompi_Controller(Program_Controller pC) {
+    addProgram_Controller(Program_Controller pC) {
         this.pC = pC;
     }
 
@@ -91,10 +96,13 @@ public class addEkpompi_Controller implements Initializable {
     private Program_Controller pC;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> typeC = new ArrayList<String>();
+    private ArrayList<String> dayC = new ArrayList<String>();
+//    ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList("Monday", "Tuesday","Wednesday", "Thursday","Friday","Saturday","Sunday"));
+
     int pressed;
 
     @FXML
-    private void addBroadcast() throws IOException {
+    private void addProgram() throws IOException {
     Statement statement;
     try {
         statement = DBConnection.c.createStatement();
@@ -295,9 +303,32 @@ public class addEkpompi_Controller implements Initializable {
 
     }
 
+    private void createDay() {
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setPr_day = "SELECT unnest(enum_range(NULL::pr_day)) ";
+            ResultSet rs2 = statement.executeQuery(setPr_day);
+            dayC.clear();
+            dayC.add("");
+            while (rs2.next()) {
+                dayC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(dayC);
+            addDay.setItems(rate);
+            statement.close();
+            rs2.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createType();
+        createDay();
         createRating();
         sliderr.setLowValue(low);
         sliderr.setHighValue(high);
