@@ -99,6 +99,8 @@ public class AddFactor_Controller implements Initializable {
                 App.controller.errorMessage("added Successfully!");
                 statement.close();
                 rs.close();
+                
+                //1234
 
             } catch (SQLException ex) {
                 App.controller.errorMessage("Error");

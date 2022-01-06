@@ -104,7 +104,7 @@ public class addEkpompi_Controller implements Initializable {
             rs.next();
             rs.getInt(1);
             // System.out.println(rs.getInt(1));
-            if (rs.getInt(1) == 1) {
+            if (rs.getInt(1) == 2) {
                 App.controller.errorMessage("Overlapping");
             } else {
                 App.controller.errorMessage("Added Successfully!");

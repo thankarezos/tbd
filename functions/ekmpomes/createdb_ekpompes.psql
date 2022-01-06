@@ -65,6 +65,7 @@ AS $function$
     BEGIN
     DELETE FROM ekpompes WHERE sid = id;
     DELETE FROM syntelestesekp WHERE sidek = id ;
+    DELETE FROM programs where sid= id;
     END;
 $function$;
 

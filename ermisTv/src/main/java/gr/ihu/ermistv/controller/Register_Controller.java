@@ -125,7 +125,7 @@ public class Register_Controller {
         } else {
             setError("Incorect Email");
         }
-        loginBack();
+//        loginBack();
 
     }
 
@@ -135,7 +135,7 @@ public class Register_Controller {
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
         //
-
+        System.out.println("test");
         DBConnection.connect(url, user, pass);
 
         String firstName = fName.getText();
@@ -145,13 +145,16 @@ public class Register_Controller {
         String Password = fPass.getText();
 
         Statement statement;
-        String setAccount = "select setAccount('" + fName + "','" + lName + "','" + email + "','" + uName + "','"
-                + fPass + "')";
+        String setAccount = "select setAccount('" + firstName + "','" + lastName + "','" + Email  + "','" + Username + "','"
+                + Password + "')";
         try {
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(setAccount);
+            rs.next();
+            System.out.println(rs.getInt(1));
             messageLabel.setStyle("-fx-text-fill: green;");
             messageLabel.setText("User has been registered successfully!");
+            //1234
             statement.close();
             rs.close();
         } catch (Exception e) {

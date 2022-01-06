@@ -1,0 +1,87 @@
+CREATE OR REPLACE FUNCTION userS()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DROP TABLE IF EXISTS userS CASCADE;
+    CREATE TABLE userS
+    (
+        sesionid text,
+        username varchar(100),
+        primary key(sesionid)
+    );
+
+    END;
+$function$;
+
+
+CREATE OR REPLACE FUNCTION "account"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DROP TABLE IF EXISTS account CASCADE;
+    CREATE TABLE account
+    (
+        firstname varchar(100),
+        lastname varchar(100),
+        email varchar(100),
+        username varchar(100),
+        pass varchar(100),
+        primary key(username,email)
+    );
+
+    END;
+$function$;
+
+SELECT account();
+select userS();
+
+
+CREATE OR REPLACE FUNCTION checkaccount(users text,passs text)
+ RETURNS integer
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    IF EXISTS (
+        SELECT 1 FROM account a WHERE a.username = users AND a.pass = passs
+    )
+    THEN
+        INSERT into userS(sesionid,username) VALUES (CONCAT(pg_backend_pid(),pg_postmaster_start_time()),users);
+        return 0;
+    END IF;
+        return 1;
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION setAccount(firstname text, lastname text, emails text, usernames text, pass text)
+ RETURNS integer
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    IF NOT EXISTS (SELECT 1 FROM account a WHERE a.email = emails) AND NOT EXISTS (SELECT 1 FROM account a WHERE a.username = usernames)
+        THEN
+            INSERT INTO account (firstname, lastname , email , username , pass )
+            VALUES (firstname, lastname , emails , usernames , pass);
+            return 0;
+    ELSIF EXISTS (SELECT 1 FROM account a WHERE a.email = emails) AND NOT EXISTS (SELECT 1 FROM account a WHERE a.username = usernames)
+        THEN
+            return 1;
+    ELSIF NOT EXISTS (SELECT 1 FROM account a WHERE a.email = emails) AND EXISTS (SELECT 1 FROM account a WHERE a.username = usernames)
+        THEN
+            return 2;
+    ELSIF EXISTS (SELECT 1 FROM account a WHERE a.email = emails) AND EXISTS (SELECT 1 FROM account a WHERE a.username = usernames)
+        THEN
+            return 3;
+        ELSE
+            return 4;
+    END IF;
+
+    
+    
+    END;
+$function$;
+
+Select setAccount('Thanasis','Karezos','email','thankarezos','pass');
+
+select * from account;

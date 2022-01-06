@@ -144,7 +144,136 @@ END
 
 SELECT checkif(1,4);
 
-SELECT 'DROP FUNCTION ' || ns.nspname || '.' || proname 
+
+
+DO
+$do$
+DECLARE
+   _sql text;
+BEGIN
+   SELECT INTO _sql
+          string_agg(format('DROP %s %s;'
+                          , CASE WHEN proisagg THEN 'AGGREGATE' ELSE 'FUNCTION' END
+                          , oid::regprocedure)
+                   , E'\n')
+   FROM   pg_proc
+   WHERE  pronamespace = 'public'::regnamespace;  -- schema name here!
+
+   IF _sql IS NOT NULL THEN
+      RAISE NOTICE '%', _sql;  -- debug / check first
+      -- EXECUTE _sql;         -- uncomment payload once you are sure
+   ELSE 
+      RAISE NOTICE 'No fuctions found in schema %', quote_ident(_schema);
+   END IF;
+END
+$do$;
+
+DO
+$do$
+DECLARE
+   _sql text;
+BEGIN
+   
+
+   IF _sql IS NOT NULL THEN
+    --   RAISE NOTICE '%', _sql;  -- debug / check first
+      EXECUTE _sql;         -- uncomment payload once you are sure
+   ELSE 
+      RAISE NOTICE 'No fuctions found in schema %', quote_ident(_schema);
+   END IF;
+END
+$do$;
+
+CREATE FUNCTION systool_generatescript_functiondelete()
+    RETURNS character varying
+    LANGUAGE 'plpgsql'
+
+    COST 100
+    VOLATILE 
+    
+AS $BODY$
+Declare
+_sql text;
+BEGIN
+
+    SELECT into _sql 'DROP FUNCTION ' || ns.nspname || '.' || proname 
        || '(' || oidvectortypes(proargtypes) || ');'
-FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
-WHERE ns.nspname = 'it185193'  order by proname;
+    FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+    WHERE ns.nspname = 'it185193'  order by proname;
+
+    RETURN _sql;
+    
+END;
+$BODY$;
+
+select systool_generatescript_functiondelete();
+
+SELECT ns.nspname || '.' || proname 
+       || '(' || oidvectortypes(proargtypes) || ');'
+    FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+    WHERE ns.nspname = 'it185193'
+
+Declare @sql NVARCHAR(MAX) = N'';
+
+SELECT @sql = @sql + N' DROP FUNCTION ' 
+                   + QUOTENAME(SCHEMA_NAME(it185193)) 
+                   + N'.' + QUOTENAME(name)
+FROM sys.objects
+WHERE type_desc LIKE '%FUNCTION%';
+
+Exec sp_executesql @sql
+GO;
+
+
+DROP FUNCTION ns.nspname || '.' || proname 
+       || '(' || oidvectortypes(proargtypes) || ')'
+        FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+        WHERE ns.nspname = 'it185193'
+
+
+DO $$ 
+  DECLARE 
+    r RECORD;
+BEGIN
+  FOR r IN 
+    (
+      SELECT table_name 
+      FROM pg_proc
+      WHERE table_schema=current_schema()
+    ) 
+  LOOP
+     EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.table_name) || ' CASCADE';
+  END LOOP;
+END $$ ;
+
+DO $$ 
+  DECLARE 
+    r RECORD;
+BEGIN
+  FOR r IN 
+    (
+      SELECT ns.nspname || '.' || proname 
+       || '(' || oidvectortypes(proargtypes) || ')' as name
+        FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+        WHERE ns.nspname = 'it185193'
+    ) 
+  LOOP
+     EXECUTE 'DROP FUNCTION IF EXISTS ' || quote_ident(r.name) || ' CASCADE';
+  END LOOP;
+END $$ ;
+
+CREATE OR REPLACE FUNCTION drop()
+ RETURNS setof t
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+        
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION drop() RETURNS SETOF t  AS $$
+    SELECT ns.nspname || '.' || proname 
+       || '(' || oidvectortypes(proargtypes) || ')' AS name
+    FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+    WHERE ns.nspname = 'it185193' 
+$$  LANGUAGE sql;
