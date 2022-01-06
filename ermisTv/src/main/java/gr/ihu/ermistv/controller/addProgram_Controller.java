@@ -107,7 +107,7 @@ public class addProgram_Controller implements Initializable {
     try {
         statement = DBConnection.c.createStatement();
 
-            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','Thursday')";
+            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00', " + dayC +")";
             ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
             rs.next();
             rs.getInt(1);
