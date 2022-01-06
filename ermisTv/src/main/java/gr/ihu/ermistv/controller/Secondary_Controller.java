@@ -72,7 +72,7 @@ public class Secondary_Controller implements Initializable {
         btnProgram.setStyle(color);
         btnEkpompi.setStyle(color);
         btnSyntelestes.setStyle(color);
-        btnLogout.setStyle(color);
+        btnLog.setStyle(color);
     }
 
     // Handle Clicks Popup
@@ -91,6 +91,7 @@ public class Secondary_Controller implements Initializable {
             btnSyntelestes.setStyle(color3);
             paneSyntelestes.toFront();
         }else if (event.getSource() == btnLog){
+            clearColor();
             btnLog.setStyle(color3);
             paneLog.toFront();
         }
