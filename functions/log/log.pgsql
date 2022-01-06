@@ -12,6 +12,8 @@ CREATE TABLE logging.t_history (
         newValue text
 );
 
+
+
 CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
        BEGIN
          IF TG_OP = 'INSERT'
@@ -45,20 +47,19 @@ CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
        END;
 $$ LANGUAGE 'plpgsql' SECURITY DEFINER;
 
-drop trigger if EXISTS ek on ekpompes;
+
+drop trigger if EXISTS ek on ekpompes cascade;
 CREATE TRIGGER ek after INSERT OR UPDATE OR DELETE ON ekpompes
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
 
-drop trigger if EXISTS syn on syntelestes;
+drop trigger if EXISTS syn on syntelestes cascade;
 CREATE TRIGGER syn after INSERT OR UPDATE OR DELETE ON syntelestes
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
 
-drop trigger if EXISTS syn on syntelestesekp;
+drop trigger if EXISTS synekp on syntelestesekp cascade;
 CREATE TRIGGER synekp after INSERT OR UPDATE OR DELETE ON syntelestesekp
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
 
-drop trigger if EXISTS prog on programs;
+drop trigger if EXISTS prog on programs cascade;
 CREATE TRIGGER prog after INSERT OR UPDATE OR DELETE ON programs
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
-
-select * from logging.t_history
