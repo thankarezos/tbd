@@ -63,3 +63,5 @@ CREATE TRIGGER synekp after INSERT OR UPDATE OR DELETE ON syntelestesekp
 drop trigger if EXISTS prog on programs cascade;
 CREATE TRIGGER prog after INSERT OR UPDATE OR DELETE ON programs
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
+
+select * from logging.t_history

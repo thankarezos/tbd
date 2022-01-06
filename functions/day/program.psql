@@ -65,6 +65,13 @@ AS $function$
 
     endtimeS := strtimeS + ((select time from ekpompes where sid=id) * interval '1 minute');
 
+    IF NOT EXISTS (
+        Select 1 from ekpompes where sid=id
+    )
+    THEN
+        return 1;
+    END IF;
+
     IF EXISTS (
         Select 1 from (
             SELECT
@@ -83,7 +90,7 @@ AS $function$
         where overlapping= 'yes'
     )
     THEN
-        return 1;
+        return 2;
     END IF;
 
 
