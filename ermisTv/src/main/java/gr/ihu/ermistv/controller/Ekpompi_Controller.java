@@ -184,7 +184,8 @@ public class Ekpompi_Controller implements Initializable {
                                     statement2.close();
 
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                    ex.printStackTrace();
+                                    ex.getCause();
                                 }
                             });
                         }
@@ -205,7 +206,8 @@ public class Ekpompi_Controller implements Initializable {
                                 mainAp.getChildren().add(root);
 
                             } catch (IOException ex) {
-                                Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                ex.printStackTrace();
+                                ex.getCause();
                             }
                         }
 
@@ -215,7 +217,8 @@ public class Ekpompi_Controller implements Initializable {
                 ekpompivbox.getChildren().add(hbox);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -239,7 +242,8 @@ public class Ekpompi_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -262,7 +266,8 @@ public class Ekpompi_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();;
         }
 
     }
@@ -305,7 +310,8 @@ public class Ekpompi_Controller implements Initializable {
             }
         } catch (SQLException ex) {
             App.controller.errorMessage("Error");
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }

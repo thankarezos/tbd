@@ -1,6 +1,5 @@
 package gr.ihu.ermistv.controller;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.*;
 
@@ -11,7 +10,6 @@ import gr.ihu.ermistv.ScenesSet;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,8 +19,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Screen;
-import javafx.stage.StageStyle;
 
 public class login_Controller {
     @FXML

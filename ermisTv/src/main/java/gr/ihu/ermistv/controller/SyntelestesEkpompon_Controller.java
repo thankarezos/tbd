@@ -188,7 +188,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                     createRole();
 
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                    ex.printStackTrace();
+                                    ex.getCause();
                                 }
                             });
                         }
@@ -203,7 +204,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -266,7 +268,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -309,7 +312,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             controller.setAp(mainAp);
             mainAp.getChildren().add(root);
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
     }
 
@@ -339,7 +343,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             popupFactor.getChildren().add(loader.load());
 
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
         addFactor.toFront();

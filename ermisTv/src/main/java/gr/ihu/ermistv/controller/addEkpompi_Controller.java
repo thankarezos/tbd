@@ -116,7 +116,8 @@ public class addEkpompi_Controller implements Initializable {
         rs.close();
     } catch (SQLException ex) {
         App.controller.errorMessage("Error");
-        Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
+        ex.getCause();
     }
 
 
@@ -226,7 +227,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             vboxEkpompi.getChildren().add(hbox);
         }
     } catch (SQLException ex) {
-        Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
+        ex.getCause();
     }
 
 }
@@ -271,7 +273,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -292,7 +295,8 @@ private void loadResults(String id, String name,String type_ek, String rating, S
             statement.close();
             rs2.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }

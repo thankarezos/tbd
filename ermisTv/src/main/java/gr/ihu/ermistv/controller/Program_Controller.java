@@ -4,7 +4,6 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.HboxEnch;
-import gr.ihu.ermistv.ScenesSet;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -17,8 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import java.util.logging.Level;
@@ -42,15 +39,11 @@ import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 
 
@@ -127,7 +120,8 @@ public class Program_Controller implements Initializable {
             popupEkpompi.getChildren().add(loader.load());
 
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
         addEkpompi.toFront();
@@ -396,7 +390,8 @@ public class Program_Controller implements Initializable {
             }
         } catch (SQLException ex) {
             App.controller.errorMessage("Error");
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -468,7 +463,8 @@ public class Program_Controller implements Initializable {
                                     rs.close();
 
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                    ex.printStackTrace();
+                                    ex.getCause();
                                 }
                 });
         }
@@ -501,7 +497,8 @@ public class Program_Controller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
         
         

@@ -170,7 +170,8 @@ public class Syntelestes_Contoller implements Initializable {
                                     filterSyntelestes();
 
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                    ex.printStackTrace();
+                                    ex.getCause();
                                 }
                             });
                         }
@@ -183,7 +184,8 @@ public class Syntelestes_Contoller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -256,7 +258,8 @@ public class Syntelestes_Contoller implements Initializable {
             }
         statement.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
     }
 
@@ -284,7 +287,8 @@ public class Syntelestes_Contoller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
 

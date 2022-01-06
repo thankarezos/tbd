@@ -61,18 +61,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void Logout(ActionEvent event) throws IOException {
 
-        try {
-            Stage stage = (Stage) secondary.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-            Parent root;
-            root = fxmlLoader.load();
-            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-            stage.setScene(scene);
-            stage.setX(stage.getX() + 200);
-            DBConnection.c.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loginBack();
     }
 
     //clear Color
@@ -101,10 +90,19 @@ public class Secondary_Controller implements Initializable {
         }
     }
 
-    public void errorMessage(String error){
+    public void errorMessage(String error) throws IOException{
         infoArea.setWrapText(true);
         infoArea.appendText(error);
         infoArea.appendText("\n");
+        try{
+            if(DBConnection.c.isClosed()){
+                loginBack();
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            ex.getCause();
+        }
     }
 
     @Override
@@ -117,7 +115,8 @@ public class Secondary_Controller implements Initializable {
             Scene scene = new ScenesSet(root, App.stage, 876, 517);
             paneProgram.getChildren().add(root);
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
@@ -128,7 +127,8 @@ public class Secondary_Controller implements Initializable {
             controller.setAp(paneEkpompi);
             paneEkpompi.getChildren().add(root);
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
         try {
             root = FXMLLoader.load(App.class.getResource("fxml/syntelestes.fxml"));
@@ -136,8 +136,27 @@ public class Secondary_Controller implements Initializable {
             Scene scene = new ScenesSet(root, App.stage, 876, 517);
             paneSyntelestes.getChildren().add(root);
         } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
+
+    }
+    
+    private void loginBack() throws IOException {
+        try {
+            Stage stage = (Stage) secondary.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+            Parent root;
+            root = fxmlLoader.load();
+            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+            stage.setScene(scene);
+            stage.setX(stage.getX() + 200);
+            DBConnection.c.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+
 
     }
 }

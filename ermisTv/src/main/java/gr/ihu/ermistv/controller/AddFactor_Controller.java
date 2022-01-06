@@ -104,7 +104,8 @@ public class AddFactor_Controller implements Initializable {
 
             } catch (SQLException ex) {
                 App.controller.errorMessage("Error");
-                Logger.getLogger(AddFactor_Controller.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
+                ex.getCause();
             }
 
             it.remove();
@@ -208,7 +209,8 @@ public class AddFactor_Controller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
@@ -262,7 +264,8 @@ public class AddFactor_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            ex.getCause();
         }
 
     }
