@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="paneEkpompi" fx:id="paneLog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="863.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.addLog">
    <children>
-      <TextArea layoutX="121.0" layoutY="44.0" prefHeight="363.0" prefWidth="619.0" text="PARE AYTO KAI TA ALLA SE LIGO" wrapText="true" />
+      <ScrollPane layoutX="25.0" prefHeight="463.0" prefWidth="838.0" style="-fx-background-color: transparent;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="825.0" />
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

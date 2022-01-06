@@ -100,7 +100,6 @@ public class addProgram_Controller implements Initializable {
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> typeC = new ArrayList<String>();
     private ArrayList<String> dayC = new ArrayList<String>();
-//    ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList("Monday", "Tuesday","Wednesday", "Thursday","Friday","Saturday","Sunday"));
 
     int pressed;
 
