@@ -100,7 +100,6 @@ public class addProgram_Controller implements Initializable {
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> typeC = new ArrayList<String>();
     private ArrayList<String> dayC = new ArrayList<String>();
-//    ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList("Monday", "Tuesday","Wednesday", "Thursday","Friday","Saturday","Sunday"));
 
     int pressed;
 
@@ -110,7 +109,7 @@ public class addProgram_Controller implements Initializable {
     try {
         statement = DBConnection.c.createStatement();
 
-            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00', " + dayC +")";
+            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00', " + ekpompiType +")";
             ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
             rs.next();
             rs.getInt(1);
