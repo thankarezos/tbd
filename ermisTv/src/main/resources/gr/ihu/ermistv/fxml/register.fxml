@@ -156,7 +156,7 @@
          <graphic>
             <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
                <image>
-                  <Image url="@../../../../../../../../../../../../AppData/Local/Temp/icons8_disconnected_52px.png" />
+                  <Image url="@../images/disconnected_48px.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
