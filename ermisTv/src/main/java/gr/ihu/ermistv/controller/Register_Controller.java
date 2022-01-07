@@ -54,7 +54,6 @@ public class Register_Controller {
     void back(MouseEvent event) throws IOException {
         loginBack();
     }
-
     private String regexPattern = "^(.+)@(\\S+)$";
 
     @FXML
@@ -74,7 +73,7 @@ public class Register_Controller {
     @FXML
     private void clearbox(MouseEvent event) {
         TextField text = ((TextField) event.getSource());
-        text.setStyle("-fx-border-color: red ;");
+        text.getStyleClass().add("error");
         setError("");
 
     }
@@ -88,42 +87,55 @@ public class Register_Controller {
                 cPass.getText().equals("");
 
         if (anyEmpty) {
-            if (fName.getText().equals("")) {
-                fName.setStyle("-fx-border-color: red;");
+            if (fName.getText().equals("") || isNumeric.isNotNumeric(fName.getText())) {
+                fName.getStyleClass().add("error");
 
+            }else {
+                fName.getStyleClass().add("noError");
             }
-            if (lName.getText().equals("")) {
-                lName.setStyle("-fx-border-color: red;");
+            if (lName.getText().equals("") || isNumeric.isNotNumeric(lName.getText())) {
+                lName.getStyleClass().add("error");
+            }else {
+                lName.getStyleClass().add("noError");
             }
-            if (email.getText().equals("")) {
-                email.setStyle("-fx-border-color: red;");
+            if (email.getText().equals("") ) {
+                email.getStyleClass().add("error");
 
+            }else {
+                email.getStyleClass().add("noError");
             }
             if (uName.getText().equals("")) {
-                uName.setStyle("-fx-border-color: red;");
+                uName.getStyleClass().add("error");
 
+            }else {
+                uName.getStyleClass().add("noError");
             }
             if (fPass.getText().equals("")) {
-                fPass.setStyle("-fx-border-color: red;");
+                fPass.getStyleClass().add("error");
 
+            }else {
+                fPass.getStyleClass().add("noError");
             }
             if (cPass.getText().equals("")) {
-                cPass.setStyle("-fx-border-color: red;");
+                cPass.getStyleClass().add("error");
 
+            }else {
+                cPass.getStyleClass().add("noError");
             }
             setError("Fill the Blanks");
             return;
         }
         if (patternMatches(email.getText(), regexPattern)) {
             if (fPass.getText().equals(cPass.getText())) {
+                messageLabel.setText("");
                 registerUser();
 
             } else {
-                cPass.setStyle("-fx-border-color: red;");
+                cPass.getStyleClass().add("error");
                 setError("Not Matching Password");
             }
         } else {
-            setError("Incorect Email");
+            setError("Incorrect Email");
         }
 //        loginBack();
 
@@ -134,8 +146,6 @@ public class Register_Controller {
         String user = properties.getProperty("user");
         String pass = properties.getProperty("pass");
         String url = properties.getProperty("url");
-        //
-        System.out.println("test");
         DBConnection.connect(url, user, pass);
 
         String firstName = fName.getText();
@@ -149,14 +159,34 @@ public class Register_Controller {
                 + Password + "')";
         try {
             statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(setAccount);
+            ResultSet rs =statement.executeQuery(setAccount) ;
             rs.next();
-            System.out.println(rs.getInt(1));
-            messageLabel.setStyle("-fx-text-fill: green;");
-            messageLabel.setText("User has been registered successfully!");
-            //1234
-            statement.close();
-            rs.close();
+            System.out.println(statement.executeQuery(setAccount));
+            if(rs.equals(0)){
+                System.out.println(rs.getInt(1));
+                messageLabel.getStyleClass().add("green");
+                messageLabel.setText("User has been registered successfully!");
+                loginBack();
+            }else if(rs.equals(1)){
+                messageLabel.getStyleClass().add("red");
+                messageLabel.setText("To email xreisimopoiite eidi!");
+            }else if(rs.equals(2)){
+                messageLabel.getStyleClass().add("red");
+                messageLabel.setText("To username xreisimopoiite eidi!");
+            }else if(rs.equals(3)){
+                messageLabel.getStyleClass().add("red");
+                messageLabel.setText("Yparxei eidi!");
+            }else if(rs.equals(4)){
+                messageLabel.getStyleClass().add("red");
+                messageLabel.setText("ERROR!");
+            }
+
+//            //1234
+//            statement.close();
+//            rs.close();
+//            statement.close();
+//                rs.close();
+//
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

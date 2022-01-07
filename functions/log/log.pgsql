@@ -12,8 +12,6 @@ CREATE TABLE logging.t_history (
         newValue text
 );
 
-
-
 CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
        BEGIN
          IF TG_OP = 'INSERT'
@@ -47,7 +45,6 @@ CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
        END;
 $$ LANGUAGE 'plpgsql' SECURITY DEFINER;
 
-
 CREATE OR REPLACE FUNCTION getLog() RETURNS SETOF logging.t_history  AS $$
     SELECT * FROM logging.t_history  ORDER BY tstamp;
 $$  LANGUAGE sql;
@@ -69,4 +66,4 @@ drop trigger if EXISTS prog on programs cascade;
 CREATE TRIGGER prog after INSERT OR UPDATE OR DELETE ON programs
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();
 
-select * from logging.t_history
+select * from logging.t_history;

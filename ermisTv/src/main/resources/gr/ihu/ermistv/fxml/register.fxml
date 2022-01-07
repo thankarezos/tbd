@@ -64,7 +64,7 @@
                                                 <Font name="Georgia Bold" size="18.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="fName" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
+                                        <TextField fx:id="fName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" styleClass="textField" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="310.0">

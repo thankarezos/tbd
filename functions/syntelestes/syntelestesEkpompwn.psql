@@ -42,12 +42,10 @@ $function$;
 
 SELECT syntelestesek();
 
-
 CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
 RETURNS SETOF syntelestesekp  AS $$
     SELECT * FROM syntelestesekp WHERE sidek = $1 ORDER BY sidsy;
 $$  LANGUAGE sql;
-
 
 CREATE OR REPLACE FUNCTION deleteSyntelestesek(idek integer,id integer)
  RETURNS void
@@ -57,8 +55,6 @@ AS $function$
     DELETE FROM syntelestesekp WHERE sidsy = id AND sidek = idek;
     END;
 $function$;
-
-
 
 CREATE OR REPLACE FUNCTION getResultSyntelestesek(int,int,text,text,text,text) 
 RETURNS setof syntelestesekp AS
@@ -165,28 +161,25 @@ AS $function$
             FROM ekpompes,syntelestes
             WHERE ekpompes.sid=idek AND syntelestes.sid=idsy ;
             return 0;
-            -- Den yparxei kai yparxei gia prosthiki
+            -- Den yparxei kai yparxei gia prosthiki    0 1
         ELSIF EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 1;
-            -- Yparxei hdh kai yparxei gia prosthiki
+            -- Yparxei hdh kai yparxei gia prosthiki     1~1
         ELSIF EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 2;
-            -- yparxei kai den yparxei gia prosthiki
+            -- yparxei kai den yparxei gia prosthiki     1 0
 
         ELSIF NOT EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 3;
-            -- den yparxei kai den yparxei gia prosthiki
+            -- den yparxei kai den yparxei gia prosthiki  0 0 
         ELSE
             return 4;
         END IF;
     END;
 $function$;
 
-CREATE OR REPLACE FUNCTION getSyntelestesek(integer) 
-RETURNS SETOF syntelestesekp  AS $$
-    SELECT * FROM syntelestesekp WHERE sidek = $1 ORDER BY sidsy;
-$$  LANGUAGE sql;
+
 

@@ -5,7 +5,7 @@ CREATE TEMP TABLE dropF (
 
 INSERT INTO dropF (name) SELECT format('DROP FUNCTION %I.%I(%s) CASCADE;', nspname, proname, oidvectortypes(proargtypes))
 FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid) 
-WHERE ns.nspname = 'it185193'  order by proname;
+WHERE ns.nspname = 'it175073'  order by proname;
 
 
 
@@ -28,7 +28,7 @@ EXECUTE functionName;
 
 END LOOP;
 
-FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'it185193') LOOP
+FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'it175073') LOOP
     EXECUTE 'DROP TABLE ' || quote_ident(r.tablename) || ' CASCADE';
 END LOOP;
 

@@ -204,7 +204,7 @@ public class addProgram_Controller implements Initializable {
                                 }
 
                                 hbox.setState(false);
-                                pressed = -1;
+                                //pressed = -1; edw
 
                             } else {
                                 for (int i = 0; i < vboxEkpompi.getChildren().size(); i++) {

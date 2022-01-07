@@ -29,6 +29,8 @@ public class login_Controller {
 
     @FXML
     private Label messageLabel;
+    @FXML
+    private Label errLabel;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -57,7 +59,7 @@ public class login_Controller {
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
         String verifyLogin = "select * from checkaccount('" + user + "','" + pass + "');";
-        boolean bypass = false;
+        boolean bypass = true;
 
         try {
 
@@ -96,6 +98,7 @@ public class login_Controller {
             queryResult.close();
 
         } catch (Exception e) {
+            errLabel.setText("Connection Error!");
             e.printStackTrace();
             e.getCause();
         }
