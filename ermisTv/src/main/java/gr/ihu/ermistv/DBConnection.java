@@ -13,10 +13,19 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     public static Connection c;
+    
+    
 
-    public static void connect(String url, String user, String pass) throws SQLException {
+    public static void connect() throws SQLException {
+        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
+        String userDB = properties.getProperty("user");
+        String passDB = properties.getProperty("pass");
+        String url = properties.getProperty("url");
         DriverManager.setLoginTimeout(1000);
-        c = DriverManager.getConnection(url, user, pass);
+        c = DriverManager.getConnection(url, userDB, passDB);
     }
-
+    
+    
 }
+
+

@@ -11,8 +11,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -25,6 +23,9 @@ import javafx.stage.Screen;
  */
 
 public class App extends Application {
+    
+    public static String cacheduseer;
+    public static String cachedpass;
 
     private static Scene scene;
     public static Stage stage;
@@ -33,12 +34,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         
-        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
-        String userDB = properties.getProperty("user");
-        String passDB = properties.getProperty("pass");
-        String url = properties.getProperty("url");
+        
         try {
-            DBConnection.connect(url, userDB, passDB);
+            DBConnection.connect();
+            
+            
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");

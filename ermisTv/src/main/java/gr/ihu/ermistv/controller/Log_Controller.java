@@ -1,5 +1,6 @@
 package gr.ihu.ermistv.controller;
 
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -8,25 +9,22 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class Log_Controller implements Initializable{
     @FXML
-    private TextArea log;
+    private TextFlow log;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("test");
-        log.setWrapText(true);
         load();
 
     }
 
     public void load(){
 
-        log.clear();
-        log.setScrollTop(Double.MAX_VALUE);
+        log.getChildren().clear();
         try {
             
             String logfile = "select * from getLog();";
@@ -37,17 +35,35 @@ public class Log_Controller implements Initializable{
                 if(queryResult.getString("operation").equals("DELETE")){
                     String logString = queryResult.getTimestamp("tstamp") + " User:" + queryResult.getString("who") 
                     + " DELETED " + queryResult.getString("oldValue") + " FROM " + queryResult.getString("tabname");
-                    log.appendText(logString + "\n");
+                    Text t1 = new Text();
+                    Text tStatic = new Text();
+                    tStatic.setText("\n");
+                    String c = "-fx-fill: red";
+                    t1.setStyle(c);
+                    t1.setText(logString);
+                    log.getChildren().addAll(t1 , tStatic);
                 }
                 else if(queryResult.getString("operation").equals("INSERT")){
                     String logString = queryResult.getTimestamp("tstamp") + " User:" + queryResult.getString("who") 
                     + " INSERTED " + queryResult.getString("newValue") + " TO " + queryResult.getString("tabname");
-                    log.appendText(logString + "\n");
+                    Text t1 = new Text();
+                    Text tStatic = new Text();
+                    tStatic.setText("\n");
+                    String c = "-fx-fill: green";
+                    t1.setStyle(c);
+                    t1.setText(logString);
+                    log.getChildren().addAll(t1 , tStatic);
                 }
                 else{
                     String logString = queryResult.getTimestamp("tstamp") + " User:" + queryResult.getString("who") 
                     + " UPDATED " + queryResult.getString("oldValue") + " TO " + queryResult.getString("oldValue") + " ON "+ queryResult.getString("tabname");
-                    log.appendText(logString + "\n");
+                    Text t1 = new Text();
+                    Text tStatic = new Text();
+                    tStatic.setText("\n");
+                    String c = "-fx-fill: black";
+                    t1.setStyle(c);
+                    t1.setText(logString);
+                    log.getChildren().addAll(t1 , tStatic);
                 }
                 
             }
@@ -57,9 +73,7 @@ public class Log_Controller implements Initializable{
             queryResult.close();
 
         } catch (SQLException e) {
-
-            e.printStackTrace();
-            e.getCause();
+            App.controller.errorMessage();
         }
     }
 }

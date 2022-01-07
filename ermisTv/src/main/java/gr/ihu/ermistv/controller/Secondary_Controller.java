@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import gr.ihu.ermistv.App;
@@ -32,7 +34,7 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private AnchorPane paneSyntelestes;
     @FXML
-    private TextArea infoArea;
+    private TextFlow infoArea;
 
     String color = "-fx-background-color: #F5F6F8;";
     // String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1);
@@ -93,22 +95,47 @@ public class Secondary_Controller implements Initializable {
         }
     }
 
-    public void errorMessage(String error) throws IOException {
+    public void errorMessage(Integer num,String error){
+        String color = "";
+        if(num == 0){
+            color = "-fx-fill: black";
+        }else if(num == 1){
+            color = "-fx-fill: red";
+        }else if(num == 2){
+            color = "-fx-fill: green";
+        }
+        Text t1 = new Text();
         try {
             if (DBConnection.c.isClosed()) {
-                infoArea.setWrapText(true);
-                infoArea.appendText("Connection Error");
-                infoArea.appendText("\n");
+                System.out.println("Connection Error");
+                return;
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        
+        t1.setStyle(color);
+        t1.setText(error);
+        Text t2 = new Text();
+        t2.setText("\n");
+        infoArea.getChildren().addAll(t1,t2);
+        
+        
+
+    }
+    
+    public void errorMessage(){
+        Text t1 = new Text();
+        try {
+            if (DBConnection.c.isClosed()) {
+                System.out.println("Connection Error");
                 return;
             }
         } catch (SQLException ex) {
         }
-        infoArea.setWrapText(true);
-        infoArea.appendText(error);
-        infoArea.appendText("\n");
-        
-
     }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

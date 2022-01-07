@@ -181,12 +181,9 @@ public class Ekpompi_Controller implements Initializable {
                                     statement2.executeQuery(deleteek);
                                     filterEkpompi();
                                     statement2.close();
-                                    App.controller.errorMessage("Deleted!");
+                                    App.controller.errorMessage(1,"Deleted!");
                                 } catch (SQLException ex) {
-                                    ex.printStackTrace();
-                                    ex.getCause();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                    App.controller.errorMessage();
                                 }
                             });
                         }
@@ -219,8 +216,7 @@ public class Ekpompi_Controller implements Initializable {
                 ekpompivbox.getChildren().add(hbox);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage();
         }
 
     }
@@ -244,8 +240,7 @@ public class Ekpompi_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage();
         }
 
     }
@@ -269,9 +264,8 @@ public class Ekpompi_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-            ;
+            App.controller.errorMessage();
+
         }
 
     }
@@ -301,7 +295,7 @@ public class Ekpompi_Controller implements Initializable {
                     Statement statement = DBConnection.c.createStatement();
                     ResultSet rs = statement.executeQuery(addbroadcast);
 
-                    App.controller.errorMessage("Added Successfully!");
+                    App.controller.errorMessage(2,"Added Successfully!");
                     filterEkpompi();
                     addNameBro.clear();
                     choiceRatingBro.setValue(null);
@@ -314,9 +308,7 @@ public class Ekpompi_Controller implements Initializable {
                 }
             }
         } catch (SQLException ex) {
-            App.controller.errorMessage("Error");
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage(1,"Error");
         }
 
     }

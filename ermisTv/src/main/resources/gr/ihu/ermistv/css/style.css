@@ -29,6 +29,11 @@ FontAwesomeIconView:hover {
     -fx-background-insets: 0;
 }
 
+.redF {
+    -fx-fill: null;
+    -fx-fill: red;
+}
+
 
 /************************************************** STANDARD END **************************************************/
 
@@ -315,16 +320,22 @@ Button:hover {
 .textLog {
     -fx-font-family: Arial, Helvetica, sans-serif;
     /* 1 */
+    -fx-text-fill: Black;
+    -fx-fill: Black;
 }
 
 .textProgram {
     -fx-font-family: 'Courier New', Courier, monospace;
     /* 2 */
+    -fx-text-fill: Black;
+    -fx-fill: Black;
 }
 
 .testText {
     -fx-font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     /* 3 */
+    -fx-text-fill: Black;
+    -fx-fill: Black;
 }
 
 

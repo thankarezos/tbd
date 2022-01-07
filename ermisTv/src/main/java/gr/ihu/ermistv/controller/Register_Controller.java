@@ -142,12 +142,8 @@ public class Register_Controller {
 
     }
 
-    public void registerUser() throws SQLException {
+    public void registerUser() throws IOException {
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
-        String user = properties.getProperty("user");
-        String pass = properties.getProperty("pass");
-        String url = properties.getProperty("url");
-        DBConnection.connect(url, user, pass);
 
         String firstName = fName.getText();
         String lastName = lName.getText();
@@ -194,9 +190,8 @@ public class Register_Controller {
 //            statement.close();
 //                rs.close();
 //
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        } catch (SQLException e) {
+            App.controller.errorMessage();
         }
     }
 

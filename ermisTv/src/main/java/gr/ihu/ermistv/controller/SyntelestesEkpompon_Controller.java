@@ -27,17 +27,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 
 import static javafx.geometry.Pos.CENTER;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 
 public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
@@ -189,13 +184,10 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                     statement2.executeQuery(deleteek);
                                     filterSyntelestes();
                                     createRole();
-                                    App.controller.errorMessage("Deleted!");
+                                    App.controller.errorMessage(1,"Deleted!");
 
                                 } catch (SQLException ex) {
-                                    ex.printStackTrace();
-                                    ex.getCause();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                    App.controller.errorMessage();
                                 }
                             });
                         }
@@ -210,8 +202,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage();
         }
 
     }
@@ -273,8 +264,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
             rs2.close();
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage();
         }
 
     }

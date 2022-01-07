@@ -62,12 +62,15 @@ public class login_Controller {
         boolean bypass = true;
 
         try {
-
+            
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
             if (queryResult.getInt(1) == 0 || bypass) {
+                
+                App.cacheduseer=user;
+                App.cachedpass=pass;
 
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");

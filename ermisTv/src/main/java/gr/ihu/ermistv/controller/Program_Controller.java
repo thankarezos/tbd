@@ -117,8 +117,7 @@ public class Program_Controller implements Initializable {
             popupEkpompi.getChildren().add(loader.load());
 
         } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+
         }
 
         addEkpompi.toFront();
@@ -449,13 +448,10 @@ public class Program_Controller implements Initializable {
                                     ResultSet rs = statement.executeQuery(deleteek);
                                     loadPrograms();
                                     statement.close();
-                                    App.controller.errorMessage("Deleted!");
+                                    App.controller.errorMessage(1,"Deleted!");
                                 } catch (SQLException ex) {
-                                    ex.printStackTrace();
-                                    ex.getCause();
+                                    App.controller.errorMessage();
                                     
-                                } catch (IOException e) {
-                                    e.printStackTrace();
                                 }
                             });
                         }
@@ -476,7 +472,7 @@ public class Program_Controller implements Initializable {
                                 }
                                 else{
                                     loadPrograms();
-                                    App.controller.errorMessage("Does not Exist Anymore");
+                                    App.controller.errorMessage(1,"Does not Exist Anymore");
                                 }
                                 
                                 
@@ -484,11 +480,7 @@ public class Program_Controller implements Initializable {
                                 statement.close();
                                 rs.close();
                             } catch (SQLException ex) {
-                                ex.printStackTrace();
-                                ex.getCause();
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                                ex.getCause();
+                                App.controller.errorMessage();
                             }
                         }
 
@@ -500,8 +492,7 @@ public class Program_Controller implements Initializable {
             statement.close();
             rs.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            App.controller.errorMessage();
         }
 
     }
