@@ -94,17 +94,19 @@ public class Secondary_Controller implements Initializable {
     }
 
     public void errorMessage(String error) throws IOException {
+        try {
+            if (DBConnection.c.isClosed()) {
+                infoArea.setWrapText(true);
+                infoArea.appendText("Connection Error");
+                infoArea.appendText("\n");
+                return;
+            }
+        } catch (SQLException ex) {
+        }
         infoArea.setWrapText(true);
         infoArea.appendText(error);
         infoArea.appendText("\n");
-        try {
-            if (DBConnection.c.isClosed()) {
-                loginBack();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
+        
 
     }
 

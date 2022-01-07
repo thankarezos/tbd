@@ -39,25 +39,25 @@ public class App extends Application {
         String url = properties.getProperty("url");
         try {
             DBConnection.connect(url, userDB, passDB);
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+            double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+            double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+            stage.setX(x);
+            stage.setY(y);
+            stage.show();
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
+            this.stage = stage;
         } catch (SQLException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(0);
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-        stage.setX(x);
-        stage.setY(y);
-        stage.show();
-        stage.setResizable(false);
-        stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
-        this.stage = stage;
 
     }
 
