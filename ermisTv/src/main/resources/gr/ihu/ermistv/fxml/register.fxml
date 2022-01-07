@@ -152,25 +152,29 @@
                 <Font name="Arial Bold" size="20.0" />
             </font>
         </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="3.0" prefHeight="0.0" prefWidth="0.0">
-         <graphic>
-            <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
-               <image>
-                  <Image url="@../images/disconnected_48px.png" />
-               </image>
+      <HBox layoutX="10.0" layoutY="2.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
+                     <image>
+                        <Image url="@../images/disconnected_48px.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-         </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="2.0" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
