@@ -308,7 +308,7 @@ public class Ekpompi_Controller implements Initializable {
                     broErrLabel.setText("");
                     paneEkpompi.toFront();
                 } else {
-                    broErrLabel.setText("Time must be greater than 30sec and less than 300sec");
+                    broErrLabel.setText("Time must be greater than 30min and less than 300min");
                 }
             }
         } catch (SQLException ex) {

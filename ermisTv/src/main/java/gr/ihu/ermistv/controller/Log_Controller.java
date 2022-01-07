@@ -8,12 +8,13 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 public class Log_Controller implements Initializable{
     @FXML
     private TextArea log;
+
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +56,7 @@ public class Log_Controller implements Initializable{
             queryResult.close();
 
         } catch (SQLException e) {
+
             e.printStackTrace();
             e.getCause();
         }

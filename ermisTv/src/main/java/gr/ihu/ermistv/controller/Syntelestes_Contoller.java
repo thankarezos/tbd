@@ -25,8 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static javafx.geometry.Pos.CENTER;
 
@@ -70,7 +68,7 @@ public class Syntelestes_Contoller implements Initializable {
     public void reloadFactor() {
         filterSyntelestes();
         createRole();
-        addfactor();
+        addfactors();
         syntelestisID.clear();
         syntelestisName.clear();
         syntelestisSurname.clear();
@@ -223,7 +221,7 @@ public class Syntelestes_Contoller implements Initializable {
 
     // add Factor Syntelestes
     @FXML
-    private void addfactor() {
+    private void addfactors() {
         Statement statement;
         try {
             String name = addFacName.getText();
@@ -264,8 +262,9 @@ public class Syntelestes_Contoller implements Initializable {
     }
 
     @FXML
-    private void addFactor(MouseEvent event) {
+    private void AddFactor(MouseEvent event) {
         addFactor.toFront();
+        facErrLabel.setText("");
         createRole();
     }
 

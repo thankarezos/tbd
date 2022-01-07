@@ -292,5 +292,23 @@ Button:hover {
     -fx-fill: white;
 }
 
+.text-field:focused {
+    -fx-border-color: null;
+}
+.error{
+    -fx-border-color: red ;
+}
+
+.noError{
+    -fx-border-color: null ;
+}
+
+.red{
+    -fx-text-fill: green;
+}
+
+.green{
+    -fx-text-fill: green;
+}
 
 /************************************************** TEXT END **************************************************/

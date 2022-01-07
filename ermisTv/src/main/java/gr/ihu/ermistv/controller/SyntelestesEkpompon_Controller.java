@@ -98,6 +98,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     // Load Results Syntelestes
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
+
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSyntelestesek(" + this.id + "," + id + "," + name + ","
                 + surname + "," + role
@@ -105,6 +106,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         int setid = this.id;
         Statement statement;
         try {
+
             statement = DBConnection.c.createStatement();
             ResultSet rs = statement.executeQuery(getSyntelestes);
             ResultSetMetaData rsmd = rs.getMetaData();
