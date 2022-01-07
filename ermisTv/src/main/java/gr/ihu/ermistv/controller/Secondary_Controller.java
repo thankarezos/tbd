@@ -118,19 +118,13 @@ public class Secondary_Controller implements Initializable {
     }
 
     private void loginBack() throws IOException {
-        try {
-            Stage stage = (Stage) secondary.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-            Parent root;
-            root = fxmlLoader.load();
-            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-            stage.setScene(scene);
-            stage.setX(stage.getX() + 200);
-            DBConnection.c.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
+        Stage stage = (Stage) secondary.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root;
+        root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+        stage.setScene(scene);
+        stage.setX(stage.getX() + 200);
 
     }
     

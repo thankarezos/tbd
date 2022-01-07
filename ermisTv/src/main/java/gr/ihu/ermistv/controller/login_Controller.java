@@ -54,7 +54,7 @@ public class login_Controller {
     }
 
     @FXML
-    private void validateLogin() throws SQLException, IOException {
+    private void validateLogin() throws  IOException {
 
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
@@ -63,11 +63,6 @@ public class login_Controller {
 
         try {
 
-            CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
-            String userDB = properties.getProperty("user");
-            String passDB = properties.getProperty("pass");
-            String url = properties.getProperty("url");
-            DBConnection.connect(url, userDB, passDB);
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -97,10 +92,8 @@ public class login_Controller {
             statement.close();
             queryResult.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             errLabel.setText("Connection Error!");
-            e.printStackTrace();
-            e.getCause();
         }
     }
 

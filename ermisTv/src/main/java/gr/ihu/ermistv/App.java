@@ -11,6 +11,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -30,6 +32,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
+        String userDB = properties.getProperty("user");
+        String passDB = properties.getProperty("pass");
+        String url = properties.getProperty("url");
+        try {
+            DBConnection.connect(url, userDB, passDB);
+        } catch (SQLException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root = fxmlLoader.load();

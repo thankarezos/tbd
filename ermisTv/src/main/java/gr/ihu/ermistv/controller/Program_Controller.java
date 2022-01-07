@@ -383,6 +383,11 @@ public class Program_Controller implements Initializable {
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
+                
+                HBox hboxL = new HBox();
+                hbox.setHgrow(hboxL, Priority.ALWAYS);
+                hboxL.setAlignment(Pos.CENTER);
+                
                 Label label = new Label();
                 label.setTextAlignment(TextAlignment.CENTER);
                 hbox.setMargin(label, new Insets(0, 20, 0, 10));
@@ -393,11 +398,16 @@ public class Program_Controller implements Initializable {
                 
                 
                 label.setText(rs.getString("name"));
-                hbox.getChildren().add(label);
+                hboxL.getChildren().add(label);
                 
+                hbox.getChildren().add(hboxL);
+                
+                HBox hboxT = new HBox();
+                hboxT.setPrefWidth(100);
+                hboxT.setAlignment(Pos.CENTER_RIGHT);
                 Text text = new Text();
                 hbox.setMargin(text, new Insets(0, 20, 0, 0));
-                text.setTextAlignment(TextAlignment.CENTER);
+                text.setTextAlignment(TextAlignment.RIGHT);
                 
                 Time str = rs.getTime("strtime");
                 LocalTime Stime = str.toLocalTime();
@@ -406,7 +416,10 @@ public class Program_Controller implements Initializable {
                 LocalTime Etime = end.toLocalTime();
                 
                 text.setText(Stime + " - " + Etime);
-                hbox.getChildren().add(text);
+                hboxT.getChildren().add(text);
+                
+                hbox.getChildren().add(hboxT);
+                
                 
                 
                 
