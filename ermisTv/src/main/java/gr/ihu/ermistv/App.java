@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.*;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 //import com.jcraft.jsch.*;
 //import java.util.Properties;
@@ -43,6 +44,7 @@ public class App extends Application {
         stage.setY(y);
         stage.show();
         stage.setResizable(false);
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
         this.stage = stage;
 
     }
