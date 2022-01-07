@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
     <children>
@@ -157,110 +158,92 @@
                   <Insets right="5.0" />
                </padding>
             </HBox>
-            <VBox layoutY="35.0" minHeight="-Infinity" prefHeight="358.0" prefWidth="690.0">
+            <VBox layoutY="35.0" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0">
                <children>
-                  <HBox>
+                  <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial Bold" size="39.0" />
+                              <Font name="Arial Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="2.0" />
-                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
-                  <HBox maxHeight="1.7976931348623157E308">
+                  <HBox maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="name" wrappingWidth="600.0">
                            <font>
-                              <Font name="Arial" size="39.0" />
+                              <Font name="System Bold" size="19.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="4.0" />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
+                        </Text>
                      </children>
-                     <padding>
-                        <Insets bottom="2.0" />
-                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox>
+                  <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Type:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial Bold" size="39.0" />
+                              <Font name="Arial Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
                         </Label>
                      </children>
                      <padding>
                         <Insets bottom="2.0" />
                      </padding>
                   </HBox>
-                  <HBox>
+                  <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="type" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial" size="39.0" />
+                              <Font name="Arial Bold" size="19.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="4.0" />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
                         </Label>
                      </children>
-                     <padding>
-                        <Insets bottom="2.0" />
-                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </HBox>
-                  <HBox>
+                  <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rating:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial Bold" size="39.0" />
+                              <Font name="Arial Bold" size="24.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
                         </Label>
                      </children>
                      <padding>
                         <Insets bottom="2.0" />
                      </padding>
                   </HBox>
-                  <HBox>
+                  <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="xfgxcvxcvxvxcvxcvxv" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="rating" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial" size="39.0" />
+                              <Font name="Arial Bold" size="23.0" />
                            </font>
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="4.0" />
                            </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
                         </Label>
                      </children>
                      <padding>
@@ -269,17 +252,23 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="345.0" style="-fx-background-color: #015562;" text="Label" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #015562;" text="Label" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial" size="38.0" />
+                              <Font name="Arial" size="30.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="65.0" prefWidth="345.0" style="-fx-background-color: #015562;" text="Label" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #015562;" text="Label" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Arial" size="38.0" />
+                              <Font name="Arial" size="30.0" />
                            </font>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
                <padding>
