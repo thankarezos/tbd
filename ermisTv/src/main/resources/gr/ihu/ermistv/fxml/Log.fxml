@@ -14,7 +14,7 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="load" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="463.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="463.0" onMouseClicked="#load">
          <graphic>
             <FontAwesomeIconView glyphName="REFRESH" size="2.5em" />
          </graphic>

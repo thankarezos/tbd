@@ -1,9 +1,6 @@
 package gr.ihu.ermistv.controller;
 
-import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,17 +19,14 @@ public class Log_Controller implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("test");
         log.setWrapText(true);
-        try {
-            load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        load();
 
     }
-    
-    public void load() throws IOException {
+
+    public void load(){
+
         log.clear();
-        App.controller.errorMessage("Reload");
+        log.setScrollTop(Double.MAX_VALUE);
         try {
             
             String logfile = "select * from getLog();";

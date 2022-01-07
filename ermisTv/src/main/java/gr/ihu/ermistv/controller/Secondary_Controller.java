@@ -105,6 +105,7 @@ public class Secondary_Controller implements Initializable {
             ex.printStackTrace();
             ex.getCause();
         }
+
     }
 
     @Override
@@ -233,11 +234,7 @@ public class Secondary_Controller implements Initializable {
                     clearColor();
                     btnLog.setStyle(color2);
                     paneLog.toFront();
-                    try {
-                        controller.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    controller.load();
 
                 }
 
@@ -251,7 +248,7 @@ public class Secondary_Controller implements Initializable {
         }
     }
     
-    @FXML
+
     private void loadtabs(){
         
         loadProgram();

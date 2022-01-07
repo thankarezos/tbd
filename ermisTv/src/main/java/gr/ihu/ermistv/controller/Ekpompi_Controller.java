@@ -285,7 +285,7 @@ public class Ekpompi_Controller implements Initializable {
             String rating = (String) choiceRatingBro.getValue();
             String type = (String) choiceTypeBro.getValue();
             String time = addTimeBro.getText();
-            if (name == "") {
+            if (name == "" || isNumeric.isNotNumeric(name)) {
                 broErrLabel.setText("ADD NAME!");
             } else if (rating == null || rating == "") {
                 broErrLabel.setText("ADD RATING!");
@@ -333,6 +333,7 @@ public class Ekpompi_Controller implements Initializable {
     @FXML
     public void reloadPage() {
         // App.controller.errorMessage("Reload");
+
         filterEkpompi();
         createRating();
         createType_ek();

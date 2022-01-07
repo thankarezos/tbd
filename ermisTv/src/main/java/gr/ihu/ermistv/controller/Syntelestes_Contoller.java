@@ -233,13 +233,13 @@ public class Syntelestes_Contoller implements Initializable {
             String phoneN = addFacPhoneN.getText();
             statement = DBConnection.c.createStatement();
 
-            if (name == "") {
+            if (name == "" || isNumeric.isNotNumeric(name)) {
                 facErrLabel.setText("ADD NAME!");
-            } else if (surname == "") {
+            } else if (surname == ""|| isNumeric.isNotNumeric(surname)) {
                 facErrLabel.setText("ADD SURNAME!");
-            } else if (role == "") {
+            } else if (role == "" || isNumeric.isNotNumeric(role)) {
                 facErrLabel.setText("ADD ROLE ");
-            } else if (phoneN == "") {
+            } else if (phoneN == "" || isNumeric.isNumeric(phoneN)) {
                 facErrLabel.setText("ADD PHONE NUMBER ");
             } else {
                 String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"

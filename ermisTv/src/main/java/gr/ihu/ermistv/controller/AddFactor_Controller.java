@@ -96,6 +96,7 @@ public class AddFactor_Controller implements Initializable {
                 statement = DBConnection.c.createStatement();
                 String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                 ResultSet rs = statement.executeQuery(addSyntelestes);
+                rs.next();
                 switch (rs.getInt(1)){
                     case 0:
                         App.controller.errorMessage("H ekpompi den iparxei");

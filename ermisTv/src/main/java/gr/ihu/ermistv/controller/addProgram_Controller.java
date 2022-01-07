@@ -28,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
 import java.util.*;
 import com.dlsc.gemsfx.TimePicker;
 
@@ -70,6 +71,9 @@ public class addProgram_Controller implements Initializable {
 
     }
 
+    private TimePicker timeP = new TimePicker();
+
+
     private int lowinit = 30;
     private int highinit = 300;
     private int low = lowinit;
@@ -81,6 +85,7 @@ public class addProgram_Controller implements Initializable {
         createType();
         createRating();
         createDay();
+        timeP.setTime(LocalTime.parse("00:00"));
         ekpompiID.clear();
         ekpompiName.clear();
         ekpompiType.setValue(null);
@@ -106,20 +111,43 @@ public class addProgram_Controller implements Initializable {
     @FXML
     private void addProgram() throws IOException {
     Statement statement;
-
+    String time = String.valueOf(timeP.getTime());
+    App.controller.errorMessage(String.valueOf(timeP.getTime()));
+    int dayId = 0;
+        switch (addDay.getValue()){
+            case "Monday":
+                dayId = 1;
+                break;
+            case "Tuesday":
+                dayId = 2;
+                break;
+            case "Wednesday":
+                dayId = 3;
+                break;
+            case "Thursday":
+                dayId = 4;
+                break;
+            case "Friday":
+                dayId = 5;
+                break;
+            case "Saturday":
+                dayId = 6;
+                break;
+            case "Sunday":
+                dayId = 7;
+                break;
+        }
         if(pressed == -1){
             App.controller.errorMessage("Epelekse gia prosthiki!");
-        }else if(1==1){
+        }else if(1!=1){
             App.controller.errorMessage("Prosthese wra!");
         }else if(addDay.getValue().equals(null)){
             App.controller.errorMessage("Bale hmera!");
         }else {
             try {
                 statement = DBConnection.c.createStatement();
-
-                //elenxos gia null
-
-                String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','" + addDay.getValue() + "')";
+                                                            //         "+dayId + " " + "10:00"+"','" + addDay.getValue() +"')"
+                String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/" + dayId + " " + time + "','" +  addDay.getValue() + "');";
                 ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
                 rs.next();
                 rs.getInt(1);
@@ -345,9 +373,8 @@ public class addProgram_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TimePicker picker = new TimePicker();
-        timePicker.getChildren().add(picker);
-        System.out.println(timePicker.getId());
+        timePicker.getChildren().add(timeP);
+        timeP.setTime(LocalTime.parse("00:00"));
         createType();
         createDay();
         createRating();
