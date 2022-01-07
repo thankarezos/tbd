@@ -391,7 +391,7 @@ public class Program_Controller implements Initializable {
                 label.setTextAlignment(TextAlignment.CENTER);
                 hbox.setMargin(label, new Insets(0, 20, 0, 10));
                 
-                label.setStyle("-fx-font-size:20px");
+                label.getStyleClass().add("textPro");
                 hbox.setMinHeight(Region.USE_PREF_SIZE);
                 hbox.setMinWidth(Region.USE_PREF_SIZE);
                 
@@ -405,6 +405,8 @@ public class Program_Controller implements Initializable {
                 hboxT.setPrefWidth(100);
                 hboxT.setAlignment(Pos.CENTER_RIGHT);
                 Text text = new Text();
+                text.getStyleClass().add("textPro");
+
                 hbox.setMargin(text, new Insets(0, 20, 0, 0));
                 text.setTextAlignment(TextAlignment.RIGHT);
                 

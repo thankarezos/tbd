@@ -35,6 +35,7 @@ public class Secondary_Controller implements Initializable {
     private AnchorPane paneSyntelestes;
     @FXML
     private TextFlow infoArea;
+//    private TextArea infoArea;
 
     String color = "-fx-background-color: #F5F6F8;";
     // String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1);
