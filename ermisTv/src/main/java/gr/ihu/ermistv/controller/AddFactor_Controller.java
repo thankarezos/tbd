@@ -99,25 +99,25 @@ public class AddFactor_Controller implements Initializable {
                 rs.next();
                 switch (rs.getInt(1)){
                     case 0:
-                        App.controller.errorMessage("H ekpompi den iparxei");
+                        App.controller.errorMessage(0,"H ekpompi den iparxei");
                         break;
                     case 1:
-                        App.controller.errorMessage("O syntelestis uparxei eidi");
+                        App.controller.errorMessage(0,"O syntelestis uparxei eidi");
                         break;
                     case 2:
-                        App.controller.errorMessage("O syntelestis den uparxei pleon");
+                        App.controller.errorMessage(0,"O syntelestis den uparxei pleon");
                         break;
                     case 3:
-                        App.controller.errorMessage("added Successfully!");
+                        App.controller.errorMessage(2,"added Successfully!");
                         statement.close();
                         rs.close();
                         break;
                     case 4:
-                        App.controller.errorMessage("ERROR!");
+                        App.controller.errorMessage(1,"ERROR!");
                         break;
                 }
             } catch (SQLException ex) {
-                App.controller.errorMessage("Error");
+                App.controller.errorMessage(1,"Error");
                 ex.printStackTrace();
                 ex.getCause();
             }

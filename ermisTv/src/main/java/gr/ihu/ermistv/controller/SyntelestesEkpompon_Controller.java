@@ -189,7 +189,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                     statement2.executeQuery(deleteek);
                                     filterSyntelestes();
                                     createRole();
-                                    App.controller.errorMessage("Deleted!");
+                                    App.controller.errorMessage(1,"Deleted!");
 
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();

@@ -112,15 +112,15 @@ public class addProgram_Controller implements Initializable {
     private void addProgram() throws IOException {
     Statement statement;
     String time = String.valueOf(timeP.getTime());
-    App.controller.errorMessage(String.valueOf(timeP.getTime()));
+
     int dayId = 0;
-        
+
         if(pressed == -1){
-            App.controller.errorMessage("Epelekse gia prosthiki!");
+            App.controller.errorMessage(1,"Epelekse gia prosthiki!");
         }else if(1!=1){
-            App.controller.errorMessage("Prosthese wra!");
+            App.controller.errorMessage(1,"Prosthese wra!");
         }else if(addDay.getValue() == null){
-            App.controller.errorMessage("Bale hmera!");
+            App.controller.errorMessage(1,"Bale hmera!");
         }else {
             switch (addDay.getValue()){
             case "Monday":
@@ -154,9 +154,9 @@ public class addProgram_Controller implements Initializable {
                 rs.getInt(1);
                 // System.out.println(rs.getInt(1));
                 if (rs.getInt(1) == 2) {
-                    App.controller.errorMessage("Overlapping");
+                    App.controller.errorMessage(1,"Overlapping");
                 } else {
-                    App.controller.errorMessage("Added Successfully!");
+                    App.controller.errorMessage(2,"Added Successfully!");
                     Pop.toBack();
                     pC.loadPrograms();
                 }
@@ -164,11 +164,11 @@ public class addProgram_Controller implements Initializable {
                 rs.close();
 
             } catch (SQLException ex) {
-                App.controller.errorMessage("Error");
+                App.controller.errorMessage(1,"Error");
                 ex.printStackTrace();
                 ex.getCause();
             } catch (IOException e) {
-                App.controller.errorMessage("Error");
+                App.controller.errorMessage(1,"Error");
                 e.printStackTrace();
             }
         }
@@ -268,9 +268,9 @@ public class addProgram_Controller implements Initializable {
                             }
                             //
                         }
-                        
 
-                        
+
+
                     }
 
                 });

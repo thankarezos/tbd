@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="paneEkpompi" fx:id="paneLog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="863.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Log_Controller">
    <children>
       <ScrollPane layoutX="25.0" prefHeight="463.0" prefWidth="838.0" style="-fx-background-color: transparent;">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="825.0">
-               <children>
-                  <TextArea fx:id="log" layoutX="21.0" layoutY="26.0" prefHeight="412.0" prefWidth="777.0" />
-               </children></AnchorPane>
-        </content>
+         <content>
+            <TextFlow fx:id="log" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: white;" styleClass="textLog">
+               <padding>
+                  <Insets left="10.0" right="5.0" top="10.0" />
+               </padding></TextFlow>
+         </content>
       </ScrollPane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="463.0" onMouseClicked="#load">
          <graphic>

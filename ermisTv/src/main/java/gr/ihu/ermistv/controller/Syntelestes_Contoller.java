@@ -167,7 +167,7 @@ public class Syntelestes_Contoller implements Initializable {
                                 try {
                                     statement2.executeQuery(deleteek);
                                     filterSyntelestes();
-                                    App.controller.errorMessage("Deleted!");
+                                    App.controller.errorMessage(1,"Deleted!");
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                     ex.getCause();
@@ -247,7 +247,7 @@ public class Syntelestes_Contoller implements Initializable {
 
                 ResultSet rs = statement.executeQuery(addSyntelestes);
 
-                System.out.println("Success");
+                App.controller.errorMessage(2,"Success");
                 filterSyntelestes();
                 addFacName.clear();
                 addFacSurname.clear();
@@ -261,6 +261,8 @@ public class Syntelestes_Contoller implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
             ex.getCause();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
