@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.EventHandler;
 
 public class Secondary_Controller implements Initializable {
     @FXML
@@ -79,21 +80,18 @@ public class Secondary_Controller implements Initializable {
     @FXML
     private void handleClicks(ActionEvent event) throws IOException {
         if (event.getSource() == btnProgram) {
-            clearColor();
-            btnProgram.setStyle(color1);
-            paneProgram.toFront();
+            
+
+            
         } else if (event.getSource() == btnEkpompi) {
-            clearColor();
-            btnEkpompi.setStyle(color2);
-            paneEkpompi.toFront();
+            
+            
+            
         } else if (event.getSource() == btnSyntelestes) {
-            clearColor();
-            btnSyntelestes.setStyle(color3);
-            paneSyntelestes.toFront();
+            
+            
         }else if (event.getSource() == btnLog){
-            clearColor();
-            btnLog.setStyle(color3);
-            paneLog.toFront();
+
         }
     }
 
@@ -113,38 +111,10 @@ public class Secondary_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
         btnProgram.setStyle(color1);
-        Parent root;
-        try {
-            root = FXMLLoader.load(App.class.getResource("fxml/program.fxml"));
-
-            Scene scene = new ScenesSet(root, App.stage, 876, 517);
-            paneProgram.getChildren().add(root);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
-            root = loader.load();
-
-            Scene scene = new ScenesSet(root, App.stage, 876, 517);
-            Ekpompi_Controller controller = loader.getController();
-            controller.setAp(paneEkpompi);
-            paneEkpompi.getChildren().add(root);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
-        try {
-            root = FXMLLoader.load(App.class.getResource("fxml/syntelestes.fxml"));
-
-            Scene scene = new ScenesSet(root, App.stage, 876, 517);
-            paneSyntelestes.getChildren().add(root);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
+        loadtabs();
+        
 
     }
 
@@ -163,5 +133,130 @@ public class Secondary_Controller implements Initializable {
             ex.getCause();
         }
 
+    }
+    
+    
+    private void loadProgram(){
+        Parent root;
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/program.fxml"));
+            root = loader.load();
+            Program_Controller controller = loader.getController();
+            
+                    
+            btnProgram.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    clearColor();
+                    btnProgram.setStyle(color1);
+                    paneProgram.toFront();
+                    controller.loadPrograms();
+
+                }
+
+            });
+            
+           
+            paneProgram.getChildren().add(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+    }
+    private void loadEkpompi(){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
+            root = loader.load();
+            Ekpompi_Controller controller = loader.getController();
+            
+                    
+            btnEkpompi.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    clearColor();
+                    btnEkpompi.setStyle(color2);
+                    paneEkpompi.toFront();
+                    controller.reloadPage();
+
+                }
+
+            });
+            
+            paneEkpompi.getChildren().add(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+    }
+    
+    private void loadSyntelestes(){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes.fxml"));
+            root = loader.load();
+            Syntelestes_Contoller controller = loader.getController();
+            
+                    
+            btnSyntelestes.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    clearColor();
+                    btnSyntelestes.setStyle(color2);
+                    paneSyntelestes.toFront();
+                    controller.reloadFactor();
+
+                }
+
+            });
+            
+            paneSyntelestes.getChildren().add(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+    }
+    private void loadLog(){
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/Log.fxml"));
+            root = loader.load();
+            Log_Controller controller = loader.getController();
+            
+                    
+            btnLog.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+                    clearColor();
+                    btnLog.setStyle(color2);
+                    paneLog.toFront();
+                    controller.lodad();
+
+                }
+
+            });
+            
+            
+            paneLog.getChildren().add(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+    }
+    
+    
+    private void loadtabs(){
+        
+        loadProgram();
+        loadEkpompi();
+        loadSyntelestes();
+        loadLog();
+        
+        
     }
 }

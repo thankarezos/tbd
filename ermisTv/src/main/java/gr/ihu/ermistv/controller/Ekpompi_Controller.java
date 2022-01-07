@@ -329,7 +329,7 @@ public class Ekpompi_Controller implements Initializable {
 
     // Reload Table Ekpompi ??
     @FXML
-    private void reloadPage(MouseEvent event) {
+    public void reloadPage() {
         // App.controller.errorMessage("Reload");
         filterEkpompi();
         createRating();

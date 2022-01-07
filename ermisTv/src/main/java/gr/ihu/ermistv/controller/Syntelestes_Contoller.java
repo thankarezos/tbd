@@ -67,7 +67,7 @@ public class Syntelestes_Contoller implements Initializable {
     private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
 
     @FXML
-    private void reloadFactor(MouseEvent event) {
+    public void reloadFactor() {
         filterSyntelestes();
         createRole();
         addfactor();

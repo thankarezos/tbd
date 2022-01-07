@@ -108,8 +108,10 @@ public class addProgram_Controller implements Initializable {
     Statement statement;
     try {
         statement = DBConnection.c.createStatement();
+        
+            //elenxos gia null
 
-            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00', " + ekpompiType +")";
+            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','" + addDay.getValue() +"')";
             ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
             rs.next();
             rs.getInt(1);
@@ -135,6 +137,9 @@ public class addProgram_Controller implements Initializable {
 
     private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
         vboxEkpompi.getChildren().clear();
+        
+        
+        
         String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + ","
                 + timeLow + "," + timeHigh + ");";
 
@@ -199,6 +204,7 @@ public class addProgram_Controller implements Initializable {
                                 }
 
                                 hbox.setState(false);
+                                pressed = -1;
 
                             } else {
                                 for (int i = 0; i < vboxEkpompi.getChildren().size(); i++) {
