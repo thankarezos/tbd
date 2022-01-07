@@ -99,7 +99,9 @@ public class AddFactor_Controller implements Initializable {
                 rs.next();
                 switch (rs.getInt(1)){
                     case 0:
-                        App.controller.errorMessage(0,"H ekpompi den iparxei");
+                        App.controller.errorMessage(2,"added Successfully!");
+                        statement.close();
+                        rs.close();
                         break;
                     case 1:
                         App.controller.errorMessage(0,"O syntelestis uparxei eidi");
@@ -108,9 +110,7 @@ public class AddFactor_Controller implements Initializable {
                         App.controller.errorMessage(0,"O syntelestis den uparxei pleon");
                         break;
                     case 3:
-                        App.controller.errorMessage(2,"added Successfully!");
-                        statement.close();
-                        rs.close();
+                        App.controller.errorMessage(0,"H ekpompi den iparxei");
                         break;
                     case 4:
                         App.controller.errorMessage(1,"ERROR!");

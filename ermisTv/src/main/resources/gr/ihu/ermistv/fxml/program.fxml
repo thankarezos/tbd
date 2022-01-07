@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<StackPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
+<StackPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
     <children>
-      <AnchorPane fx:id="info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="690.0" style="-fx-border-color: gray;" styleClass="child" stylesheets="@../css/style.css">
+        <AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" styleClass="child" stylesheets="@../css/style.css">
+            <children>
+                <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Program" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
+                            <graphic>
+                                <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
+                            </graphic>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets right="5.0" />
+                    </padding>
+                </HBox>
+                <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
+            </children>
+        </AnchorPane>
+      <AnchorPane fx:id="info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="690.0" styleClass="shadow" stylesheets="@../css/style.css">
          <children>
             <HBox id="Hbox" fx:id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="690.0" spacing="5.0" styleClass="parent">
                <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="643.0" text="INFO!!" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="22.0" />
+                     </font>
+                  </Label>
                   <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
                      <graphic>
                         <FontAwesomeIconView fx:id="popupX" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em">
@@ -37,7 +76,7 @@
                <children>
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" styleClass="hboxRGBAHbox" text="Name:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -67,7 +106,7 @@
                   </HBox>
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Type:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="hboxRGBAHbox" text="Type:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -97,7 +136,7 @@
                   </HBox>
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Rating:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="hboxRGBAHbox" text="Rating:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -130,7 +169,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Duration:" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="hboxRGBAHbox" text="Duration:" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="24.0" />
                            </font>
@@ -168,34 +207,6 @@
             <Insets />
          </StackPane.margin>
       </AnchorPane>
-        <AnchorPane fx:id="addEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="700.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
-            <children>
-                <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="700.0" spacing="5.0" styleClass="parent" stylesheets="@../css/style.css">
-                    <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="633.0" text="Add Program" textFill="WHITE">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#popupsHandleClicks" prefHeight="25.0" prefWidth="25.0" styleClass="close-btn" stylesheets="@../css/style.css">
-                            <graphic>
-                                <FontAwesomeIconView id="x" glyphName="CLOSE" onMouseClicked="#popupsHandleClicks" size="1.5em" fx:id="x" />
-                            </graphic>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets right="5.0" />
-                    </padding>
-                </HBox>
-                <AnchorPane fx:id="popupEkpompi" layoutY="35.0" prefHeight="410.0" prefWidth="700.0" />
-            </children>
-        </AnchorPane>
         <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css">
             <children>
                 <VBox alignment="CENTER" prefHeight="515.0" prefWidth="850.0">
