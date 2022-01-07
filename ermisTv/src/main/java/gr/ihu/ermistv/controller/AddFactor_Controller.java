@@ -96,34 +96,32 @@ public class AddFactor_Controller implements Initializable {
                 statement = DBConnection.c.createStatement();
                 String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                 ResultSet rs = statement.executeQuery(addSyntelestes);
-                if(rs.equals(0)){
-                    App.controller.errorMessage("H ekpompi den iparxei");
-                }else if(rs.equals(1)){
-                    App.controller.errorMessage("O syntelestis uparxei eidi");
-                }else if(rs.equals(2)){
-                    App.controller.errorMessage("O syntelestis den uparxei pleon");
-                }else if(rs.equals(3)){
-                    App.controller.errorMessage("H ekpompi kai o syntelestis den iparxoun pleon");
-                }else{
-                    App.controller.errorMessage("added Successfully!");
-                    statement.close();
-                    rs.close();
+                switch (rs.getInt(1)){
+                    case 0:
+                        App.controller.errorMessage("H ekpompi den iparxei");
+                        break;
+                    case 1:
+                        App.controller.errorMessage("O syntelestis uparxei eidi");
+                        break;
+                    case 2:
+                        App.controller.errorMessage("O syntelestis den uparxei pleon");
+                        break;
+                    case 3:
+                        App.controller.errorMessage("added Successfully!");
+                        statement.close();
+                        rs.close();
+                        break;
+                    case 4:
+                        App.controller.errorMessage("ERROR!");
+                        break;
                 }
-//                App.controller.errorMessage("added Successfully!");
-//                statement.close();
-//                rs.close();
-
             } catch (SQLException ex) {
                 App.controller.errorMessage("Error");
                 ex.printStackTrace();
                 ex.getCause();
             }
-
             it.remove();
             add.remove(pair.getKey());
-
-//             System.out.println(pair.getKey() + " = " + pair.getValue());
-//             avoids a ConcurrentModificationException
         }
         Pop.toBack();
         seC.filterSyntelestes();

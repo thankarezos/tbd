@@ -106,33 +106,43 @@ public class addProgram_Controller implements Initializable {
     @FXML
     private void addProgram() throws IOException {
     Statement statement;
-    try {
-        statement = DBConnection.c.createStatement();
-        
-            //elenxos gia null
 
-            String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','" + addDay.getValue() +"')";
-            ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
-            rs.next();
-            rs.getInt(1);
-            // System.out.println(rs.getInt(1));
-            if (rs.getInt(1) == 2) {
-                App.controller.errorMessage("Overlapping");
-            } else {
-                App.controller.errorMessage("Added Successfully!");
-                Pop.toBack();
-                pC.loadPrograms();
+        if(pressed == -1){
+            App.controller.errorMessage("Epelekse gia prosthiki!");
+        }else if(1==1){
+            App.controller.errorMessage("Prosthese wra!");
+        }else if(addDay.getValue().equals(null)){
+            App.controller.errorMessage("Bale hmera!");
+        }else {
+            try {
+                statement = DBConnection.c.createStatement();
+
+                //elenxos gia null
+
+                String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/2 19:00','" + addDay.getValue() + "')";
+                ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
+                rs.next();
+                rs.getInt(1);
+                // System.out.println(rs.getInt(1));
+                if (rs.getInt(1) == 2) {
+                    App.controller.errorMessage("Overlapping");
+                } else {
+                    App.controller.errorMessage("Added Successfully!");
+                    Pop.toBack();
+                    pC.loadPrograms();
+                }
+                statement.close();
+                rs.close();
+
+            } catch (SQLException ex) {
+                App.controller.errorMessage("Error");
+                ex.printStackTrace();
+                ex.getCause();
+            } catch (IOException e) {
+                App.controller.errorMessage("Error");
+                e.printStackTrace();
             }
-            statement.close();
-            rs.close();
-        } catch (SQLException ex) {
-            App.controller.errorMessage("Error");
-            ex.printStackTrace();
-            ex.getCause();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
     }
 
     private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
@@ -204,7 +214,7 @@ public class addProgram_Controller implements Initializable {
                                 }
 
                                 hbox.setState(false);
-                                //pressed = -1; edw
+                                pressed = -1;
 
                             } else {
                                 for (int i = 0; i < vboxEkpompi.getChildren().size(); i++) {

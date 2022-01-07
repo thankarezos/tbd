@@ -1,6 +1,7 @@
 package gr.ihu.ermistv.controller;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -166,10 +167,12 @@ public class Syntelestes_Contoller implements Initializable {
                                 try {
                                     statement2.executeQuery(deleteek);
                                     filterSyntelestes();
-
+                                    App.controller.errorMessage("Deleted!");
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                     ex.getCause();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             });
                         }

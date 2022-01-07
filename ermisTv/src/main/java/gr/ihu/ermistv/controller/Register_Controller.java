@@ -79,7 +79,8 @@ public class Register_Controller {
     }
 
     public void RegisterButtonOnAction() throws Exception {
-        boolean anyEmpty = fName.getText().equals("") ||
+        boolean anyEmpty = fName.getText().equals("") || isNumeric.isNotNumeric(fName.getText())||
+                isNumeric.isNotNumeric(lName.getText()) ||
                 lName.getText().equals("") ||
                 email.getText().equals("") ||
                 uName.getText().equals("") ||
@@ -161,26 +162,32 @@ public class Register_Controller {
             statement = DBConnection.c.createStatement();
             ResultSet rs =statement.executeQuery(setAccount) ;
             rs.next();
-            System.out.println(statement.executeQuery(setAccount));
-            if(rs.equals(0)){
-                System.out.println(rs.getInt(1));
-                messageLabel.getStyleClass().add("green");
-                messageLabel.setText("User has been registered successfully!");
-                loginBack();
-            }else if(rs.equals(1)){
-                messageLabel.getStyleClass().add("red");
-                messageLabel.setText("To email xreisimopoiite eidi!");
-            }else if(rs.equals(2)){
-                messageLabel.getStyleClass().add("red");
-                messageLabel.setText("To username xreisimopoiite eidi!");
-            }else if(rs.equals(3)){
-                messageLabel.getStyleClass().add("red");
-                messageLabel.setText("Yparxei eidi!");
-            }else if(rs.equals(4)){
-                messageLabel.getStyleClass().add("red");
-                messageLabel.setText("ERROR!");
+            switch (rs.getInt(1)){
+                case 0:
+                    messageLabel.getStyleClass().add("green");
+                    messageLabel.setText("User has been registered successfully!");
+                    statement.close();
+                    rs.close();
+                    loginBack();
+                    break;
+                case 1:
+                    messageLabel.getStyleClass().add("red");
+                    messageLabel.setText("To email xreisimopoiite eidi!");
+                    break;
+                case 2:
+                    messageLabel.getStyleClass().add("red");
+                    messageLabel.setText("To username xreisimopoiite eidi!");
+                    break;
+                case 3:
+                    messageLabel.getStyleClass().add("red");
+                    messageLabel.setText("Yparxei eidi!");
+                    break;
+                case 4:
+                    messageLabel.getStyleClass().add("red");
+                    messageLabel.setText("ERROR!");
+                    break;
             }
-
+//
 //            //1234
 //            statement.close();
 //            rs.close();

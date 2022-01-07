@@ -181,10 +181,12 @@ public class Ekpompi_Controller implements Initializable {
                                     statement2.executeQuery(deleteek);
                                     filterEkpompi();
                                     statement2.close();
-
+                                    App.controller.errorMessage("Deleted!");
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                     ex.getCause();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             });
                         }

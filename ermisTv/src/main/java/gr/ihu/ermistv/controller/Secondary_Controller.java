@@ -20,8 +20,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.EventHandler;
 
 public class Secondary_Controller implements Initializable {
@@ -171,7 +169,7 @@ public class Secondary_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
             root = loader.load();
             Ekpompi_Controller controller = loader.getController();
-            
+
                     
             btnEkpompi.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -185,7 +183,7 @@ public class Secondary_Controller implements Initializable {
                 }
 
             });
-            
+            controller.setAp(paneEkpompi);
             paneEkpompi.getChildren().add(root);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -235,7 +233,11 @@ public class Secondary_Controller implements Initializable {
                     clearColor();
                     btnLog.setStyle(color2);
                     paneLog.toFront();
-                    controller.lodad();
+                    try {
+                        controller.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 }
 
@@ -249,7 +251,7 @@ public class Secondary_Controller implements Initializable {
         }
     }
     
-    
+    @FXML
     private void loadtabs(){
         
         loadProgram();

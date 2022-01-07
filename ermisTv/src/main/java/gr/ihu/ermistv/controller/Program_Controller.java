@@ -403,10 +403,12 @@ public class Program_Controller implements Initializable {
                                     loadPrograms();
                                     statement2.close();
                                     rs.close();
-
+                                    App.controller.errorMessage("Deleted!");
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                     ex.getCause();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             });
                         }

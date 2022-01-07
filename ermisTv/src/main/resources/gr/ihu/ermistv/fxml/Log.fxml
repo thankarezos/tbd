@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="paneEkpompi" fx:id="paneLog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="863.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Log_Controller">
+<AnchorPane id="paneEkpompi" fx:id="paneLog" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="863.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Log_Controller">
    <children>
       <ScrollPane layoutX="25.0" prefHeight="463.0" prefWidth="838.0" style="-fx-background-color: transparent;">
         <content>
@@ -14,5 +14,10 @@
                </children></AnchorPane>
         </content>
       </ScrollPane>
+      <Label fx:id="load" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="463.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="REFRESH" size="2.5em" />
+         </graphic>
+      </Label>
    </children>
 </AnchorPane>
