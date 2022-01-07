@@ -44,7 +44,7 @@ public class Log_Controller implements Initializable{
                 }
                 else{
                     String logString = queryResult.getTimestamp("tstamp") + " User:" + queryResult.getString("who") 
-                    + " UPDATED " + queryResult.getString("oldValue") + " TO " + queryResult.getString("oldValue") + " ON"+ queryResult.getString("tabname");
+                    + " UPDATED " + queryResult.getString("oldValue") + " TO " + queryResult.getString("oldValue") + " ON "+ queryResult.getString("tabname");
                     log.appendText(logString + "\n");
                 }
                 

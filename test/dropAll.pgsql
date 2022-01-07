@@ -3,9 +3,10 @@ CREATE TEMP TABLE dropF (
 );
 
 
-INSERT INTO dropF (name) SELECT format('DROP FUNCTION %I.%I(%s);', nspname, proname, oidvectortypes(proargtypes))
-FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid)
+INSERT INTO dropF (name) SELECT format('DROP FUNCTION %I.%I(%s) CASCADE;', nspname, proname, oidvectortypes(proargtypes))
+FROM pg_proc INNER JOIN pg_namespace ns ON (pg_proc.pronamespace = ns.oid) 
 WHERE ns.nspname = 'it185193'  order by proname;
+
 
 
 DO $$

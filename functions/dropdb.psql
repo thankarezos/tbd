@@ -1,8 +1,0 @@
-CREATE OR REPLACE FUNCTION dropdb()
- RETURNS void
- LANGUAGE plpgsql
-AS $function$
-    BEGIN
-    DROP TABLE IF EXISTS Syntelestes;
-    END;
-$function$

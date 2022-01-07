@@ -1,3 +1,0 @@
-CREATE OR REPLACE FUNCTION getbyname(varchar(20),varchar(20)) RETURNS Syntelestes AS $$
-    SELECT * FROM Syntelestes WHERE name = $1 AND surname = $2;
-$$  LANGUAGE sql

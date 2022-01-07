@@ -48,6 +48,11 @@ CREATE or REPLACE FUNCTION change_trigger() RETURNS trigger AS $$
 $$ LANGUAGE 'plpgsql' SECURITY DEFINER;
 
 
+CREATE OR REPLACE FUNCTION getLog() RETURNS SETOF logging.t_history  AS $$
+    SELECT * FROM logging.t_history  ORDER BY tstamp;
+$$  LANGUAGE sql;
+
+select * from getLog();
 drop trigger if EXISTS ek on ekpompes cascade;
 CREATE TRIGGER ek after INSERT OR UPDATE OR DELETE ON ekpompes
         FOR EACH ROW EXECUTE PROCEDURE change_trigger();

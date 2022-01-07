@@ -30,26 +30,6 @@ $function$;
 select programs();
 
 
-Drop trigger IF EXISTS updateTimeT on programs;
-
-CREATE OR REPLACE FUNCTION updateTime()
-RETURNS trigger 
-LANGUAGE plpgsql
-AS $$
-begin
-    update programs set endtime = new.strtime + (new.time * interval '1 minute') where identry=new.identry;
-    return new;
-end;
-$$;
-
-CREATE TRIGGER updateTimet
-after insert on programs
-For each row execute procedure updateTime();
-
-
-
-select * from programs;
-
 CREATE OR REPLACE FUNCTION getPrograms() RETURNS SETOF programs  AS $$
     SELECT * FROM programs ORDER BY strtime;
 $$  LANGUAGE sql;
@@ -94,8 +74,8 @@ AS $function$
     END IF;
 
 
-    INSERT INTO programs (sid,name,rating,type,strtime,time,day)
-    SELECT ekpompes.sid, ekpompes.name, ekpompes.rating, ekpompes.type_ek, strtimeS, ekpompes.time ,day
+    INSERT INTO programs (sid,name,rating,type,strtime,endtime,time,day)
+    SELECT ekpompes.sid, ekpompes.name, ekpompes.rating, ekpompes.type_ek, strtimeS, endtimeS, ekpompes.time ,day
     FROM ekpompes
     WHERE ekpompes.sid=id;
 
@@ -113,3 +93,5 @@ AS $function$
     DELETE FROM programs where identry = id;
     END;
 $function$;
+
+select * from getPrograms()
