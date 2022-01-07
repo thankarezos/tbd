@@ -191,7 +191,7 @@ public class Register_Controller {
 //                rs.close();
 //
         } catch (SQLException e) {
-            App.controller.errorMessage();
+            messageLabel.setText("Connection Error!");
         }
     }
 
