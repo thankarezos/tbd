@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.sql.*;
 
 import gr.ihu.ermistv.App;
-import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,7 @@ public class login_Controller {
     }
 
     @FXML
-    public void Login(KeyEvent event) throws SQLException, IOException {
+    public void Login(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             System.out.println("Enter");
             validateLogin();
@@ -111,6 +112,17 @@ public class login_Controller {
         stage.setScene(scene);
 
         stage.setX(stage.getX() + 100);
+
+    }
+    @FXML
+    private void reconnect(MouseEvent event){
+        System.out.println("Reconnecting");
+        
+        try {
+            DBConnection.connect();
+        } catch (SQLException ex) {
+            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

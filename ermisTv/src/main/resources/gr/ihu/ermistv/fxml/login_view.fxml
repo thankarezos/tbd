@@ -120,7 +120,7 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" prefHeight="35.0" prefWidth="42.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" onMouseClicked="#reconnect" prefHeight="35.0" prefWidth="42.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
