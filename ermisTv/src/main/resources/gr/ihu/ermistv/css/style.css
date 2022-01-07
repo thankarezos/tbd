@@ -295,20 +295,37 @@ Button:hover {
 .text-field:focused {
     -fx-border-color: null;
 }
-.error{
-    -fx-border-color: red ;
+
+.error {
+    -fx-border-color: red;
 }
 
-.noError{
-    -fx-border-color: null ;
+.noError {
+    -fx-border-color: null;
 }
 
-.red{
+.red {
     -fx-text-fill: red;
 }
 
-.green{
+.green {
     -fx-text-fill: green;
 }
+
+.textLog {
+    -fx-font-family: Arial, Helvetica, sans-serif;
+    /* 1 */
+}
+
+.textProgram {
+    -fx-font-family: 'Courier New', Courier, monospace;
+    /* 2 */
+}
+
+.testText {
+    -fx-font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    /* 3 */
+}
+
 
 /************************************************** TEXT END **************************************************/

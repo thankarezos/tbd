@@ -46,7 +46,11 @@ import javafx.scene.input.MouseButton;
 public class Program_Controller implements Initializable {
 
     @FXML
-    private FontAwesomeIconView x;
+    private Text popupName;
+    @FXML
+    private Label popupType,popupRating,popupDay,popupTime;
+    @FXML
+    private FontAwesomeIconView x,popupX;
     @FXML
     private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, btnConfPro;
     @FXML
@@ -57,10 +61,8 @@ public class Program_Controller implements Initializable {
     private HBox daysV;
     @FXML
     private AnchorPane paneProgram;
-
     @FXML
     private AnchorPane addEkpompi;
-
     @FXML
     private AnchorPane popupEkpompi;
 
@@ -334,6 +336,8 @@ public class Program_Controller implements Initializable {
     @FXML
     private void popupsHandleClicks(MouseEvent event) {
         if (event.getSource() == x) {
+            paneProgram.toFront();
+        }else if(event.getSource() == popupX) {
             paneProgram.toFront();
         }
     }
