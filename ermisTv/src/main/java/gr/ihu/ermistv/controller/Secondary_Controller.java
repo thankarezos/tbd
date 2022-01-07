@@ -11,7 +11,11 @@ import javafx.scene.Scene;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,6 +53,38 @@ public class Secondary_Controller implements Initializable {
     String color3 = "-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
 
     // Minimize Window
+    
+    @FXML
+    private void reconnect(MouseEvent event){
+        System.out.println("Reconnecting");
+        
+        String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
+        boolean bypass = true;
+
+        try {
+            
+
+            Statement statement = DBConnection.c.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            queryResult.next();
+            if (queryResult.getInt(1) != 0) {
+                
+            } else {
+            }
+            statement.close();
+            queryResult.close();
+
+        } catch (SQLException e) {
+        }
+        
+        try {
+            DBConnection.connect();
+        } catch (SQLException ex) {
+            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     @FXML
     private void minimizedWindow(MouseEvent event) {
         Stage stage = (Stage) secondary.getScene().getWindow();
