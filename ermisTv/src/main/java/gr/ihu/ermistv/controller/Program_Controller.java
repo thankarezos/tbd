@@ -53,7 +53,7 @@ public class Program_Controller implements Initializable {
     @FXML
     private Text popupName;
     @FXML
-    private Label popupType,popupRating,popupDay,popupTime;
+    private Label popupType,popupRating,popupTime;
     @FXML
     private FontAwesomeIconView x,popupX;
     @FXML
@@ -70,6 +70,10 @@ public class Program_Controller implements Initializable {
     private AnchorPane addEkpompi;
     @FXML
     private AnchorPane popupEkpompi;
+    
+    @FXML
+    private AnchorPane info;
+    
 
 
     @FXML
@@ -377,20 +381,22 @@ public class Program_Controller implements Initializable {
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
-                Text text = new Text();
-                text.setTextAlignment(TextAlignment.CENTER);
-                hbox.setMargin(text, new Insets(0, 20, 0, 0));
+                Label label = new Label();
+                label.setTextAlignment(TextAlignment.CENTER);
+                hbox.setMargin(label, new Insets(0, 20, 0, 10));
                 
-                text.setStyle("-fx-font-size:30px");
+                label.setStyle("-fx-font-size:20px");
                 hbox.setMinHeight(Region.USE_PREF_SIZE);
                 hbox.setMinWidth(Region.USE_PREF_SIZE);
                 
                 
-                text.setText(rs.getString("name"));
-                hbox.getChildren().add(text);
+                label.setText(rs.getString("name"));
+                hbox.getChildren().add(label);
                 
-                text = new Text();
+                Text text = new Text();
+                hbox.setMargin(text, new Insets(0, 20, 0, 0));
                 text.setTextAlignment(TextAlignment.CENTER);
                 
                 Time str = rs.getTime("strtime");
@@ -449,6 +455,11 @@ public class Program_Controller implements Initializable {
                                 ResultSet rs = statement.executeQuery(show);
                                 if(rs.next()){
                                     System.out.println(rs.getString("name"));
+                                    info.toFront();
+                                    popupName.setText(rs.getString("name"));
+                                    popupType.setText(rs.getString("type"));
+                                    popupRating.setText(rs.getString("rating"));
+                                    popupTime.setText(rs.getString("time"));
                                 }
                                 else{
                                     loadPrograms();
