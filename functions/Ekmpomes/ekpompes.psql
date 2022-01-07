@@ -1,0 +1,103 @@
+CREATE OR REPLACE FUNCTION "ekpompes"()
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rating') THEN 
+    CREATE type rating AS ENUM('K' ,'8','12', '16','18')  ;END IF;
+    -- IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
+    -- CREATE type type_ek AS ENUM('Movie','Series','Broadcast','Documentary','NEWS');END IF;
+    DROP TABLE IF EXISTS ekpompes CASCADE;
+    CREATE TABLE IF NOT EXISTS ekpompes
+    (
+        sid SERIAL,
+        name varchar(100),
+        type_ek type_ek,
+        rating rating,
+        time int,
+        primary key(sid)
+    );
+
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhmera','Broadcast','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhnyxta','Movie','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('kalo mesimeri','Series','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('dwaaasfgdf','Series','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhmera','Documentary','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhnyxta','Broadcast','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('kalo mesimeri','NEWS','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhmera','Series','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('Kalhnyxta','NEWS','18', '30');
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES ('kalo mesimeri','Movie','18', '30');
+
+    END;
+$function$;
+
+SELECT ekpompes();
+
+CREATE OR REPLACE FUNCTION getekpompes() RETURNS SETOF ekpompes  AS $$
+    SELECT * FROM ekpompes  ORDER BY sid;
+$$  LANGUAGE sql;
+
+CREATE OR REPLACE FUNCTION addbroadcast(name text,type_ek type_ek, rating rating,times integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    INSERT INTO ekpompes (name,type_ek,rating,time)
+    VALUES (name,type_ek,rating,times);
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION deleteEkpompi(id integer)
+ RETURNS void
+ LANGUAGE plpgsql
+AS $function$
+    BEGIN
+    DELETE FROM ekpompes WHERE sid = id;
+    DELETE FROM syntelestesekp WHERE sidek = id ;
+    DELETE FROM programs where sid= id;
+    END;
+$function$;
+
+CREATE OR REPLACE FUNCTION getResults(int,text,type_ek,rating,int,int) 
+RETURNS setof ekpompes AS
+ $$
+    SELECT * FROM ekpompes 
+    WHERE CAST(sid AS TEXT) Like 
+    CONCAT(
+    CASE
+        WHEN $1 IS NULL THEN sid ELSE $1 
+    END,
+    '%')
+    AND LOWER(name) LIKE
+    LOWER(
+        CONCAT('%',
+        CASE
+            WHEN $2 IS NULL THEN name ELSE $2
+        END,
+        '%')
+    )
+    AND type_ek = ( 
+    CASE
+        WHEN $3 IS NULL THEN type_ek ELSE $3
+    END
+    )
+    AND rating = ( 
+    CASE
+        WHEN $4 IS NULL THEN rating ELSE $4
+    END
+    )
+    AND time BETWEEN $5 AND $6
+    
+$$  LANGUAGE sql
+

@@ -1,0 +1,17 @@
+Athanasios Garezos it1851933
+Periklhs Christos Gousios it175073
+Dhmhtrios Kyriakidhs it032378
+
+------------------------------------
+
+In order to run the program, you will need to run 
+the Stored procedures in the following order.
+
+1.Account\account
+2.Program\program
+3.Ekmpomes\ekmpomes
+4.Syntelestes\Syntelestes
+5.Syntelestes\syntelestesEkpompwn
+6.Log\log
+
+and edit Config file to connect to the data base.
