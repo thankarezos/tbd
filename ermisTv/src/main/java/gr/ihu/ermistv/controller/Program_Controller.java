@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -38,10 +39,14 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseButton;
+import javafx.scene.text.TextAlignment;
 
 public class Program_Controller implements Initializable {
 
@@ -374,18 +379,37 @@ public class Program_Controller implements Initializable {
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 hbox.setAlignment(Pos.CENTER);
                 Text text = new Text();
-                hbox.getChildren().add(text);
+                text.setTextAlignment(TextAlignment.CENTER);
+                hbox.setMargin(text, new Insets(0, 20, 0, 0));
+                
                 text.setStyle("-fx-font-size:30px");
                 hbox.setMinHeight(Region.USE_PREF_SIZE);
                 hbox.setMinWidth(Region.USE_PREF_SIZE);
+                
+                
                 text.setText(rs.getString("name"));
+                hbox.getChildren().add(text);
+                
+                text = new Text();
+                text.setTextAlignment(TextAlignment.CENTER);
+                
+                Time str = rs.getTime("strtime");
+                LocalTime Stime = str.toLocalTime();
+                
+                Time end = rs.getTime("endtime");
+                LocalTime Etime = end.toLocalTime();
+                
+                text.setText(Stime + " - " + Etime);
+                hbox.getChildren().add(text);
+                
+                
+                
+                
                 hbox.setValueID(rs.getInt("identry"));
                 program.getChildren().add(hbox);
 
                 pTime = rs.getTimestamp("endtime");
 
-                Statement statement2;
-                statement2 = DBConnection.c.createStatement();
                 ContextMenu menu = new ContextMenu();
 
                 hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -402,19 +426,46 @@ public class Program_Controller implements Initializable {
                             item.setOnAction(event2 -> {
                                 String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
                                 try {
-
-                                    statement2.executeQuery(deleteek);
+                                    Statement statement = DBConnection.c.createStatement();
+                                    ResultSet rs = statement.executeQuery(deleteek);
                                     loadPrograms();
-                                    statement2.close();
-                                    rs.close();
+                                    statement.close();
                                     App.controller.errorMessage("Deleted!");
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();
                                     ex.getCause();
+                                    
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
                             });
+                        }
+                        
+                        if (button == MouseButton.PRIMARY) {
+                            menu.getItems().clear();
+                            try {
+                                String show = "select * from getPrograms() WHERE identry = " + hbox.getValueID() + ";";
+                                Statement statement = DBConnection.c.createStatement();
+                                ResultSet rs = statement.executeQuery(show);
+                                if(rs.next()){
+                                    System.out.println(rs.getString("name"));
+                                }
+                                else{
+                                    loadPrograms();
+                                    App.controller.errorMessage("Does not Exist Anymore");
+                                }
+                                
+                                
+//                                loadPrograms();
+                                statement.close();
+                                rs.close();
+                            } catch (SQLException ex) {
+                                ex.printStackTrace();
+                                ex.getCause();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                                ex.getCause();
+                            }
                         }
 
                     }

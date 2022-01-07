@@ -106,7 +106,7 @@ public class addProgram_Controller implements Initializable {
     private ArrayList<String> typeC = new ArrayList<String>();
     private ArrayList<String> dayC = new ArrayList<String>();
 
-    int pressed;
+    int pressed = -1;
 
     @FXML
     private void addProgram() throws IOException {
@@ -114,7 +114,15 @@ public class addProgram_Controller implements Initializable {
     String time = String.valueOf(timeP.getTime());
     App.controller.errorMessage(String.valueOf(timeP.getTime()));
     int dayId = 0;
-        switch (addDay.getValue()){
+        
+        if(pressed == -1){
+            App.controller.errorMessage("Epelekse gia prosthiki!");
+        }else if(1!=1){
+            App.controller.errorMessage("Prosthese wra!");
+        }else if(addDay.getValue() == null){
+            App.controller.errorMessage("Bale hmera!");
+        }else {
+            switch (addDay.getValue()){
             case "Monday":
                 dayId = 1;
                 break;
@@ -136,14 +144,7 @@ public class addProgram_Controller implements Initializable {
             case "Sunday":
                 dayId = 7;
                 break;
-        }
-        if(pressed == -1){
-            App.controller.errorMessage("Epelekse gia prosthiki!");
-        }else if(1!=1){
-            App.controller.errorMessage("Prosthese wra!");
-        }else if(addDay.getValue().equals(null)){
-            App.controller.errorMessage("Bale hmera!");
-        }else {
+            }
             try {
                 statement = DBConnection.c.createStatement();
                                                             //         "+dayId + " " + "10:00"+"','" + addDay.getValue() +"')"
@@ -262,12 +263,14 @@ public class addProgram_Controller implements Initializable {
                                 }
 
                                 hbox.setState(true);
+                                HBox inside = (HBox) hbox.getChildren().get(0);
+                                pressed = Integer.parseInt(((Text) inside.getChildren().get(0)).getText());
                             }
                             //
                         }
-                        HBox inside = (HBox) hbox.getChildren().get(0);
+                        
 
-                        pressed = Integer.parseInt(((Text) inside.getChildren().get(0)).getText());
+                        
                     }
 
                 });
