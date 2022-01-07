@@ -97,9 +97,9 @@
                 <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
             </children>
         </StackPane>
-      <HBox layoutX="10.0">
+      <HBox fx:id="reconnect" layoutX="10.0" visible="false">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
                      <image>

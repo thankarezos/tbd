@@ -152,9 +152,9 @@
                 <Font name="Arial Bold" size="20.0" />
             </font>
         </Label>
-      <HBox layoutX="10.0" layoutY="2.0">
+      <HBox fx:id="reconnect" layoutX="10.0" layoutY="2.0" visible="false">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
                      <image>

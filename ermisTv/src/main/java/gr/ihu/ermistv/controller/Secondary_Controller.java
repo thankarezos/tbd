@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.event.EventHandler;
+import javafx.scene.layout.HBox;
 
 public class Secondary_Controller implements Initializable {
     @FXML
@@ -39,6 +40,9 @@ public class Secondary_Controller implements Initializable {
     private AnchorPane paneSyntelestes;
     @FXML
     private TextFlow infoArea;
+    
+    @FXML
+    private HBox reconnect;
 //    private TextArea infoArea;
 
     String color = "-fx-background-color: #F5F6F8;";
@@ -62,14 +66,16 @@ public class Secondary_Controller implements Initializable {
         boolean bypass = true;
 
         try {
-            
+            DBConnection.connect();
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
             if (queryResult.getInt(1) != 0) {
-                
-            } else {
+                DBConnection.c.close();
+            }
+            else{
+                reconnect.setVisible(false);
             }
             statement.close();
             queryResult.close();
@@ -144,7 +150,8 @@ public class Secondary_Controller implements Initializable {
         Text t1 = new Text();
         try {
             if (DBConnection.c.isClosed()) {
-                System.out.println("Connection Error");
+                reconnect.setVisible(true);
+                
                 return;
             }
         } catch (SQLException ex) {
@@ -166,7 +173,7 @@ public class Secondary_Controller implements Initializable {
         Text t1 = new Text();
         try {
             if (DBConnection.c.isClosed()) {
-                System.out.println("Connection Error");
+                reconnect.setVisible(true);
                 return;
             }
         } catch (SQLException ex) {

@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class Register_Controller {
@@ -49,6 +51,9 @@ public class Register_Controller {
 
     @FXML
     private TextField uName;
+    
+    @FXML
+    private HBox reconnect;
 
     @FXML
     void back(MouseEvent event) throws IOException {
@@ -191,6 +196,7 @@ public class Register_Controller {
 //                rs.close();
 //
         } catch (SQLException e) {
+            reconnect.setVisible(true);
             messageLabel.setText("Connection Error!");
         }
     }
@@ -222,6 +228,18 @@ public class Register_Controller {
         Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
         stage.setX(stage.getX() - 100);
         stage.setScene(scene);
+
+    }
+    @FXML
+    private void reconnect(MouseEvent event){
+        System.out.println("Reconnecting");
+        
+        try {
+            DBConnection.connect();
+            reconnect.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }

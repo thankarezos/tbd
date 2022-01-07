@@ -21,7 +21,6 @@ public class DBConnection {
         String userDB = properties.getProperty("user");
         String passDB = properties.getProperty("pass");
         String url = properties.getProperty("url");
-        DriverManager.setLoginTimeout(1000);
         c = DriverManager.getConnection(url, userDB, passDB);
     }
     

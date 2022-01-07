@@ -120,7 +120,7 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <HBox layoutX="5.0">
+      <HBox fx:id="reconnect" layoutX="5.0" visible="false">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="35.0" prefWidth="42.0">
                <cursor>

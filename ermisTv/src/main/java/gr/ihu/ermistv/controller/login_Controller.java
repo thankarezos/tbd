@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class login_Controller {
     @FXML
@@ -32,6 +33,9 @@ public class login_Controller {
     private Label messageLabel;
     @FXML
     private Label errLabel;
+    
+    @FXML
+    private HBox reconnect;
 
     @FXML
     private void minimizedWindow(MouseEvent event) {
@@ -97,6 +101,7 @@ public class login_Controller {
             queryResult.close();
 
         } catch (SQLException e) {
+            reconnect.setVisible(true);
             errLabel.setText("Connection Error!");
         }
     }
@@ -120,6 +125,7 @@ public class login_Controller {
         
         try {
             DBConnection.connect();
+            reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
