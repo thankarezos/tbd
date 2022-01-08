@@ -53,6 +53,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     private AnchorPane mainAp;
     private int id;
+    private String name;
     private ArrayList<String> Role = new ArrayList<String>();
 
     @FXML
@@ -283,17 +284,22 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     public void setId(int id) {
         this.id = id;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setAp(AnchorPane ap) {
         mainAp = ap;
     }
 
-    SyntelestesEkpompon_Controller(int id) {
+    SyntelestesEkpompon_Controller(int id,String name) {
         this.id = id;
+        this.name = name;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(name);
         createRole();
 
         syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {

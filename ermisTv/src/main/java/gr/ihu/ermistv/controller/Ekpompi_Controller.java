@@ -310,13 +310,16 @@ public class Ekpompi_Controller implements Initializable {
                         if (button == MouseButton.PRIMARY) {
                             Parent root;
                             try {
-                                HBox hboxC = (HBox) hbox.getChildren().get(0);
-                                Text text2 = (Text) hboxC.getChildren().get(0);
-                                int id = Integer.parseInt(text2.getText());
+                                HBox hboxID = (HBox) hbox.getChildren().get(0);
+                                Text idT = (Text) hboxID.getChildren().get(0);
+                                HBox hboxN = (HBox) hbox.getChildren().get(1);
+                                Text nameT  = (Text) hboxN.getChildren().get(0);
+                                int id = Integer.parseInt(idT.getText());
+                                String name = nameT.getText();
 
                                 FXMLLoader loader = new FXMLLoader(
                                         App.class.getResource("fxml/syntelestes_ekpompon.fxml"));
-                                SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id);
+                                SyntelestesEkpompon_Controller controller = new SyntelestesEkpompon_Controller(id,name);
                                 loader.setController(controller);
                                 root = loader.load();
                                 Scene scene = new ScenesSet(root, App.stage, 876, 517);
