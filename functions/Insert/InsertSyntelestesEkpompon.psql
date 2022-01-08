@@ -854,3 +854,4 @@ SELECT addSyntelestesek(23,35);
 SELECT addSyntelestesek(23,36);
 SELECT addSyntelestesek(23,37);
 
+TRUNCATE TABLE logging.t_history RESTART IDENTITY;

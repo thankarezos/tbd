@@ -61,7 +61,7 @@ public class login_Controller implements Initializable, Runnable {
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
         String verifyLogin = "select * from checkaccount('" + user + "','" + pass + "');";
-        boolean bypass = true;
+        boolean bypass = false;
 
         try {
 

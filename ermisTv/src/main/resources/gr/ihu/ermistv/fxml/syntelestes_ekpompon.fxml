@@ -152,11 +152,15 @@
                                 </Button>
                             </children>
                         </HBox>
-                  <Text fx:id="labelPlace" fill="WHITE" layoutX="88.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="248.13671875">
-                     <font>
-                        <Font name="Arial Black" size="21.0" />
-                     </font>
-                  </Text>
+                  <HBox alignment="CENTER" layoutX="77.0" layoutY="52.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="labelPlace" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME" textAlignment="CENTER" wrappingWidth="232.13671875">
+                           <font>
+                              <Font name="Arial Black" size="21.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
                     </children>
                 </AnchorPane>
                 <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="446.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="52.0">
