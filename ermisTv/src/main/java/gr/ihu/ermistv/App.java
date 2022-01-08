@@ -49,6 +49,7 @@ public class App extends Application {
             stage.show();
             stage.setResizable(false);
             stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
+            stage.setTitle("ErmisTV");
             this.stage = stage;
         } catch (SQLException ex) {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/error.fxml"));
@@ -64,6 +65,7 @@ public class App extends Application {
             stage.show();
             stage.setResizable(false);
             stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
+            stage.setTitle("ErmisTV");
             this.stage = stage;
         }
     }
