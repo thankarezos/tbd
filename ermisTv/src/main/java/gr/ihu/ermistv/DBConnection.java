@@ -13,8 +13,6 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     public static Connection c;
-    
-    
 
     public static void connect() throws SQLException {
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
@@ -23,8 +21,5 @@ public class DBConnection {
         String url = properties.getProperty("url");
         c = DriverManager.getConnection(url, userDB, passDB);
     }
-    
-    
+
 }
-
-

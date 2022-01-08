@@ -37,7 +37,7 @@ import static javafx.geometry.Pos.CENTER;
 public class addProgram_Controller implements Initializable {
 
     @FXML
-    private ChoiceBox<String> addDay,addTime1;
+    private ChoiceBox<String> addDay, addTime1;
     @FXML
     private TextField addTime2;
     @FXML
@@ -72,7 +72,6 @@ public class addProgram_Controller implements Initializable {
     }
 
     private TimePicker timeP = new TimePicker();
-
 
     private int lowinit = 30;
     private int highinit = 300;
@@ -110,53 +109,54 @@ public class addProgram_Controller implements Initializable {
 
     @FXML
     private void addProgram() throws IOException {
-    Statement statement;
-    String time = String.valueOf(timeP.getTime());
+        Statement statement;
+        String time = String.valueOf(timeP.getTime());
 
-    int dayId = 0;
+        int dayId = 0;
 
-        if(pressed == -1){
-            App.controller.errorMessage(1,"Epelekse gia prosthiki!");
-        }else if(1!=1){
-            App.controller.errorMessage(1,"Prosthese wra!");
-        }else if(addDay.getValue() == null){
-            App.controller.errorMessage(1,"Bale hmera!");
-        }else {
-            switch (addDay.getValue()){
-            case "Monday":
-                dayId = 1;
-                break;
-            case "Tuesday":
-                dayId = 2;
-                break;
-            case "Wednesday":
-                dayId = 3;
-                break;
-            case "Thursday":
-                dayId = 4;
-                break;
-            case "Friday":
-                dayId = 5;
-                break;
-            case "Saturday":
-                dayId = 6;
-                break;
-            case "Sunday":
-                dayId = 7;
-                break;
+        if (pressed == -1) {
+            App.controller.errorMessage(1, "Epelekse gia prosthiki!");
+        } else if (1 != 1) {
+            App.controller.errorMessage(1, "Prosthese wra!");
+        } else if (addDay.getValue() == null) {
+            App.controller.errorMessage(1, "Bale hmera!");
+        } else {
+            switch (addDay.getValue()) {
+                case "Monday":
+                    dayId = 1;
+                    break;
+                case "Tuesday":
+                    dayId = 2;
+                    break;
+                case "Wednesday":
+                    dayId = 3;
+                    break;
+                case "Thursday":
+                    dayId = 4;
+                    break;
+                case "Friday":
+                    dayId = 5;
+                    break;
+                case "Saturday":
+                    dayId = 6;
+                    break;
+                case "Sunday":
+                    dayId = 7;
+                    break;
             }
             try {
                 statement = DBConnection.c.createStatement();
-                                                            //         "+dayId + " " + "10:00"+"','" + addDay.getValue() +"')"
-                String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/" + dayId + " " + time + "','" +  addDay.getValue() + "');";
+                // "+dayId + " " + "10:00"+"','" + addDay.getValue() +"')"
+                String addSyntelestes = "select addPrograms(" + pressed + ",'0001/01/" + dayId + " " + time + "','"
+                        + addDay.getValue() + "');";
                 ResultSet rs = statement.executeQuery(addSyntelestes);// 0 or 1
                 rs.next();
                 rs.getInt(1);
                 // System.out.println(rs.getInt(1));
                 if (rs.getInt(1) == 2) {
-                    App.controller.errorMessage(1,"Overlapping");
+                    App.controller.errorMessage(1, "Overlapping");
                 } else {
-                    App.controller.errorMessage(2,"Added Successfully!");
+                    App.controller.errorMessage(2, "Added Successfully!");
                     Pop.toBack();
                     pC.loadPrograms();
                 }
@@ -164,16 +164,14 @@ public class addProgram_Controller implements Initializable {
                 rs.close();
 
             } catch (SQLException ex) {
-                App.controller.errorMessage(1,"Error");
+                App.controller.errorMessage(1, "Error");
             }
         }
     }
 
     private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
         vboxEkpompi.getChildren().clear();
-        
-        
-        
+
         String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + ","
                 + timeLow + "," + timeHigh + ");";
 
@@ -263,8 +261,6 @@ public class addProgram_Controller implements Initializable {
                             }
                             //
                         }
-
-
 
                     }
 
@@ -413,6 +409,5 @@ public class addProgram_Controller implements Initializable {
     public void setP(Pane p) {
         mainP = p;
     }
-
 
 }

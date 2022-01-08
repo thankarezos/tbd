@@ -23,7 +23,7 @@ import javafx.stage.Screen;
  */
 
 public class App extends Application {
-    
+
     public static String cacheduseer;
     public static String cachedpass;
 
@@ -33,12 +33,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        
-        
+
         try {
             DBConnection.connect();
-            
-            
+
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
@@ -70,7 +68,6 @@ public class App extends Application {
             stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
             this.stage = stage;
         }
-
 
     }
 

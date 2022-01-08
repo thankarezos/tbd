@@ -11,13 +11,14 @@ import java.util.ResourceBundle;
 
 public class error_controller implements Initializable {
     @FXML
-    private FontAwesomeIconView one,two;
+    private FontAwesomeIconView one, two;
 
     @FXML
     private void close(MouseEvent event) {
         System.exit(0);
         Platform.exit();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         one.getStyleClass().setAll("redF");

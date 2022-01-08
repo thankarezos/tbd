@@ -25,7 +25,7 @@ public class CrunchifyGetPropertyValues {
         try (FileInputStream fis = new FileInputStream(file)) {
             prop.load(fis);
         } catch (FileNotFoundException ex) {
-            System.out.println("file not found");
+
         } catch (IOException ex) {
         }
         return prop.getProperty(property);

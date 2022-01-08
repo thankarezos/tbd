@@ -53,9 +53,9 @@ public class Program_Controller implements Initializable {
     @FXML
     private Text popupName;
     @FXML
-    private Label popupType,popupRating,popupTime;
+    private Label popupType, popupRating, popupTime;
     @FXML
-    private FontAwesomeIconView x,popupX;
+    private FontAwesomeIconView x, popupX;
     @FXML
     private Button Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, btnConfPro;
     @FXML
@@ -70,11 +70,9 @@ public class Program_Controller implements Initializable {
     private AnchorPane addEkpompi;
     @FXML
     private AnchorPane popupEkpompi;
-    
+
     @FXML
     private AnchorPane info;
-    
-
 
     @FXML
     private void refresh() {
@@ -345,7 +343,7 @@ public class Program_Controller implements Initializable {
     private void popupsHandleClicks(MouseEvent event) {
         if (event.getSource() == x) {
             paneProgram.toFront();
-        }else if(event.getSource() == popupX) {
+        } else if (event.getSource() == popupX) {
             paneProgram.toFront();
         }
     }
@@ -382,25 +380,24 @@ public class Program_Controller implements Initializable {
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
                 hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
-                
+
                 HBox hboxL = new HBox();
                 hbox.setHgrow(hboxL, Priority.ALWAYS);
                 hboxL.setAlignment(Pos.CENTER);
-                
+
                 Label label = new Label();
                 label.setTextAlignment(TextAlignment.CENTER);
                 hbox.setMargin(label, new Insets(0, 20, 0, 10));
-                
+
                 label.getStyleClass().add("textPro");
                 hbox.setMinHeight(Region.USE_PREF_SIZE);
                 hbox.setMinWidth(Region.USE_PREF_SIZE);
-                
-                
+
                 label.setText(rs.getString("name"));
                 hboxL.getChildren().add(label);
-                
+
                 hbox.getChildren().add(hboxL);
-                
+
                 HBox hboxT = new HBox();
                 hboxT.setPrefWidth(100);
                 hboxT.setAlignment(Pos.CENTER_RIGHT);
@@ -409,22 +406,18 @@ public class Program_Controller implements Initializable {
 
                 hbox.setMargin(text, new Insets(0, 20, 0, 0));
                 text.setTextAlignment(TextAlignment.RIGHT);
-                
+
                 Time str = rs.getTime("strtime");
                 LocalTime Stime = str.toLocalTime();
-                
+
                 Time end = rs.getTime("endtime");
                 LocalTime Etime = end.toLocalTime();
-                
+
                 text.setText(Stime + " - " + Etime);
                 hboxT.getChildren().add(text);
-                
+
                 hbox.getChildren().add(hboxT);
-                
-                
-                
-                
-                
+
                 hbox.setValueID(rs.getInt("identry"));
                 program.getChildren().add(hbox);
 
@@ -450,35 +443,33 @@ public class Program_Controller implements Initializable {
                                     ResultSet rs = statement.executeQuery(deleteek);
                                     loadPrograms();
                                     statement.close();
-                                    App.controller.errorMessage(1,"Deleted!");
+                                    App.controller.errorMessage(1, "Deleted!");
                                 } catch (SQLException ex) {
                                     App.controller.errorMessage();
-                                    
+
                                 }
                             });
                         }
-                        
+
                         if (button == MouseButton.PRIMARY) {
                             menu.getItems().clear();
                             try {
                                 String show = "select * from getPrograms() WHERE identry = " + hbox.getValueID() + ";";
                                 Statement statement = DBConnection.c.createStatement();
                                 ResultSet rs = statement.executeQuery(show);
-                                if(rs.next()){
+                                if (rs.next()) {
                                     System.out.println(rs.getString("name"));
                                     info.toFront();
                                     popupName.setText(rs.getString("name"));
                                     popupType.setText(rs.getString("type"));
                                     popupRating.setText(rs.getString("rating"));
                                     popupTime.setText(rs.getString("time"));
-                                }
-                                else{
+                                } else {
                                     loadPrograms();
-                                    App.controller.errorMessage(1,"Does not Exist Anymore");
+                                    App.controller.errorMessage(1, "Does not Exist Anymore");
                                 }
-                                
-                                
-//                                loadPrograms();
+
+                                // loadPrograms();
                                 statement.close();
                                 rs.close();
                             } catch (SQLException ex) {

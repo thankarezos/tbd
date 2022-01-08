@@ -115,31 +115,31 @@
                 </VBox>
             </children>
         </AnchorPane>
-      <Label fx:id="errLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="380.0" textFill="RED">
-         <font>
-            <Font name="Arial Bold" size="20.0" />
-         </font>
-      </Label>
-      <HBox fx:id="reconnect" layoutX="5.0" visible="false">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="35.0" prefWidth="42.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="38.0">
-                     <image>
-                        <Image url="@../images/disconnected_48px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+        <Label fx:id="errLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="380.0" textFill="RED">
+            <font>
+                <Font name="Arial Bold" size="20.0" />
+            </font>
+        </Label>
+        <HBox fx:id="reconnect" layoutX="5.0" visible="false">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="35.0" prefWidth="42.0">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="38.0">
+                            <image>
+                                <Image url="@../images/disconnected_48px.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

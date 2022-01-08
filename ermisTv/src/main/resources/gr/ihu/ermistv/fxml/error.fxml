@@ -23,7 +23,7 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-       1        <cursor>
+               <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>

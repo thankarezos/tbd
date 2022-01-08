@@ -13,7 +13,8 @@
             <TextFlow fx:id="log" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: white;" styleClass="textLog">
                <padding>
                   <Insets left="10.0" right="5.0" top="10.0" />
-               </padding></TextFlow>
+               </padding>
+            </TextFlow>
          </content>
       </ScrollPane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="463.0" onMouseClicked="#load">

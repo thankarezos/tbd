@@ -33,7 +33,7 @@ public class login_Controller {
     private Label messageLabel;
     @FXML
     private Label errLabel;
-    
+
     @FXML
     private HBox reconnect;
 
@@ -59,7 +59,7 @@ public class login_Controller {
     }
 
     @FXML
-    private void validateLogin() throws  IOException {
+    private void validateLogin() throws IOException {
 
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
@@ -67,15 +67,14 @@ public class login_Controller {
         boolean bypass = false;
 
         try {
-            
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
             if (queryResult.getInt(1) == 0 || bypass) {
-                
-                App.cacheduseer=user;
-                App.cachedpass=pass;
+
+                App.cacheduseer = user;
+                App.cachedpass = pass;
 
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
@@ -119,10 +118,11 @@ public class login_Controller {
         stage.setX(stage.getX() + 100);
 
     }
+
     @FXML
-    private void reconnect(MouseEvent event){
+    private void reconnect(MouseEvent event) {
         System.out.println("Reconnecting");
-        
+
         try {
             DBConnection.connect();
             reconnect.setVisible(false);

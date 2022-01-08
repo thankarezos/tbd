@@ -33,7 +33,6 @@ import java.util.ResourceBundle;
 
 import static javafx.geometry.Pos.CENTER;
 
-
 public class AddFactor_Controller implements Initializable {
     @FXML
     private AnchorPane addFactor;
@@ -89,27 +88,27 @@ public class AddFactor_Controller implements Initializable {
                 String addSyntelestes = "select addSyntelestesek(" + this.id + "," + pair.getKey() + ");";
                 ResultSet rs = statement.executeQuery(addSyntelestes);
                 rs.next();
-                switch (rs.getInt(1)){
+                switch (rs.getInt(1)) {
                     case 0:
-                        App.controller.errorMessage(2,"added Successfully!");
+                        App.controller.errorMessage(2, "added Successfully!");
                         statement.close();
                         rs.close();
                         break;
                     case 1:
-                        App.controller.errorMessage(0,"O syntelestis uparxei eidi");
+                        App.controller.errorMessage(0, "O syntelestis uparxei eidi");
                         break;
                     case 2:
-                        App.controller.errorMessage(0,"O syntelestis den uparxei pleon");
+                        App.controller.errorMessage(0, "O syntelestis den uparxei pleon");
                         break;
                     case 3:
-                        App.controller.errorMessage(0,"H ekpompi den iparxei");
+                        App.controller.errorMessage(0, "H ekpompi den iparxei");
                         break;
                     case 4:
-                        App.controller.errorMessage(1,"ERROR!");
+                        App.controller.errorMessage(1, "ERROR!");
                         break;
                 }
             } catch (SQLException ex) {
-                App.controller.errorMessage(1,"Error");
+                App.controller.errorMessage(1, "Error");
             }
             it.remove();
             add.remove(pair.getKey());
@@ -117,8 +116,6 @@ public class AddFactor_Controller implements Initializable {
         Pop.toBack();
         seC.filterSyntelestes();
         seC.createRole();
-        System.out.println(addFactor.getParent().getId());
-
     }
 
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {

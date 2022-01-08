@@ -167,7 +167,7 @@ public class Syntelestes_Contoller implements Initializable {
                                 try {
                                     statement2.executeQuery(deleteek);
                                     filterSyntelestes();
-                                    App.controller.errorMessage(1,"Deleted!");
+                                    App.controller.errorMessage(1, "Deleted!");
                                 } catch (SQLException ex) {
                                     App.controller.errorMessage();
                                 }
@@ -231,7 +231,7 @@ public class Syntelestes_Contoller implements Initializable {
 
             if (name == "" || isNumeric.isNotNumeric(name)) {
                 facErrLabel.setText("ADD NAME!");
-            } else if (surname == ""|| isNumeric.isNotNumeric(surname)) {
+            } else if (surname == "" || isNumeric.isNotNumeric(surname)) {
                 facErrLabel.setText("ADD SURNAME!");
             } else if (role == "" || isNumeric.isNotNumeric(role)) {
                 facErrLabel.setText("ADD ROLE ");
@@ -243,7 +243,7 @@ public class Syntelestes_Contoller implements Initializable {
 
                 ResultSet rs = statement.executeQuery(addSyntelestes);
 
-                App.controller.errorMessage(2,"Success");
+                App.controller.errorMessage(2, "Success");
                 filterSyntelestes();
                 addFacName.clear();
                 addFacSurname.clear();
