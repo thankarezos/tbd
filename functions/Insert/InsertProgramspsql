@@ -1,3 +1,4 @@
+TRUNCATE TABLE programs RESTART IDENTITY;
 Select addbroadcast('TOM & JERRY','Cartoon','K','30');
 Select addbroadcast('THE LOONEY TUNES SHOW','Cartoon','K','30');
 Select addbroadcast('BABY LOONEY TUNES','Cartoon','K','30');

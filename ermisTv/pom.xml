@@ -144,6 +144,8 @@
                             <winDirChooser>true</winDirChooser>
                             <!--<winConsole>true</winConsole>-->
                             <winMenu>true</winMenu>
+                            <winShortcut>true</winShortcut>
+                            <winUpgradeUuid>fef016fc-34a0-419c-80d6-ca12a6f94451</winUpgradeUuid>
                         </configuration>
                     </execution>
                 </executions>

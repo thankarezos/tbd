@@ -1,3 +1,4 @@
+TRUNCATE TABLE syntelestes RESTART IDENTITY;
 SELECT addSyntelestes('Marilena','Gerantoni','Presenters','6909935877');
 SELECT addSyntelestes('Rania','Tzima','Presenters','6909342367');
 SELECT addSyntelestes('Katerina','Panagopoulou','Presenters','6909748677');
