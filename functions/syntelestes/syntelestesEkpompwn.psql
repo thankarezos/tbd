@@ -7,11 +7,11 @@ AS $function$
     CREATE TABLE IF NOT EXISTS syntelestesekp
     (   
         sidek  integer,
-        nameek varchar(20),
+        nameek varchar(100),
         sidsy integer,
-        name varchar(20),
-        surname varchar(20),
-        role varchar(20),
+        name varchar(100),
+        surname varchar(100),
+        role varchar(100),
         phoneNumber varchar(15),
         primary key(sidek,sidsy)
     );
