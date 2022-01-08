@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-public class Register_Controller {
+public class Register_Controller extends Thread{
 
     @FXML
     private HBox Hbox;
@@ -51,7 +51,7 @@ public class Register_Controller {
 
     @FXML
     private TextField uName;
-
+    
     @FXML
     private HBox reconnect;
 
@@ -59,7 +59,6 @@ public class Register_Controller {
     void back(MouseEvent event) throws IOException {
         loginBack();
     }
-
     private String regexPattern = "^(.+)@(\\S+)$";
 
     @FXML
@@ -85,7 +84,7 @@ public class Register_Controller {
     }
 
     public void RegisterButtonOnAction() throws Exception {
-        boolean anyEmpty = fName.getText().equals("") || isNumeric.isNotNumeric(fName.getText()) ||
+        boolean anyEmpty = fName.getText().equals("") || isNumeric.isNotNumeric(fName.getText())||
                 isNumeric.isNotNumeric(lName.getText()) ||
                 lName.getText().equals("") ||
                 email.getText().equals("") ||
@@ -97,36 +96,36 @@ public class Register_Controller {
             if (fName.getText().equals("") || isNumeric.isNotNumeric(fName.getText())) {
                 fName.getStyleClass().add("error");
 
-            } else {
+            }else {
                 fName.getStyleClass().add("noError");
             }
             if (lName.getText().equals("") || isNumeric.isNotNumeric(lName.getText())) {
                 lName.getStyleClass().add("error");
-            } else {
+            }else {
                 lName.getStyleClass().add("noError");
             }
-            if (email.getText().equals("")) {
+            if (email.getText().equals("") ) {
                 email.getStyleClass().add("error");
 
-            } else {
+            }else {
                 email.getStyleClass().add("noError");
             }
             if (uName.getText().equals("")) {
                 uName.getStyleClass().add("error");
 
-            } else {
+            }else {
                 uName.getStyleClass().add("noError");
             }
             if (fPass.getText().equals("")) {
                 fPass.getStyleClass().add("error");
 
-            } else {
+            }else {
                 fPass.getStyleClass().add("noError");
             }
             if (cPass.getText().equals("")) {
                 cPass.getStyleClass().add("error");
 
-            } else {
+            }else {
                 cPass.getStyleClass().add("noError");
             }
             setError("Fill the Blanks");
@@ -144,7 +143,7 @@ public class Register_Controller {
         } else {
             setError("Incorrect Email");
         }
-        // loginBack();
+//        loginBack();
 
     }
 
@@ -158,14 +157,13 @@ public class Register_Controller {
         String Password = fPass.getText();
 
         Statement statement;
-        String setAccount = "select setAccount('" + firstName + "','" + lastName + "','" + Email + "','" + Username
-                + "','"
+        String setAccount = "select setAccount('" + firstName + "','" + lastName + "','" + Email  + "','" + Username + "','"
                 + Password + "')";
         try {
             statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(setAccount);
+            ResultSet rs =statement.executeQuery(setAccount) ;
             rs.next();
-            switch (rs.getInt(1)) {
+            switch (rs.getInt(1)){
                 case 0:
                     messageLabel.getStyleClass().add("green");
                     messageLabel.setText("User has been registered successfully!");
@@ -190,13 +188,13 @@ public class Register_Controller {
                     messageLabel.setText("ERROR!");
                     break;
             }
-            //
-            // //1234
-            // statement.close();
-            // rs.close();
-            // statement.close();
-            // rs.close();
-            //
+//
+//            //1234
+//            statement.close();
+//            rs.close();
+//            statement.close();
+//                rs.close();
+//
         } catch (SQLException e) {
             reconnect.setVisible(true);
             messageLabel.setText("Connection Error!");
@@ -232,17 +230,19 @@ public class Register_Controller {
         stage.setScene(scene);
 
     }
-
-    @FXML
-    private void reconnect(MouseEvent event) {
-        System.out.println("Reconnecting");
-
+    @Override
+     public void run(){
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+     } 
+    
+    @FXML
+    private void reconnect(MouseEvent event){
+        this.start();
     }
+    
 }
