@@ -3,13 +3,11 @@ SELECT addSyntelestes('Rania','Tzima','Presenters','6909342367');
 SELECT addSyntelestes('Katerina','Panagopoulou','Presenters','6909748677');
 SELECT addSyntelestes('Nikos','Euaggelatos','Presenters','6941028987');
 SELECT addSyntelestes('Iordanis','Hasapopoulos','Presenters','6978945877');
-
 SELECT addSyntelestes('Joseph', 'Barbera','Actor','6941728987');
 SELECT addSyntelestes('Bob', 'Bergen','Actor','6945643498');
 SELECT addSyntelestes('Jim', 'Cummings','Actor','6973545487');
 SELECT addSyntelestes('Kristen', 'Wiig','Actor','6909346367');
 SELECT addSyntelestes('Grey', 'DeLisle','Actor','6941061423');
-
 SELECT addSyntelestes('Henry', 'Cavill','Actor','6941061423');
 SELECT addSyntelestes('Joey', 'Batey','Actor','6941069403');
 SELECT addSyntelestes('Dwayne' ,'Johnson','Actor','6978145877');
@@ -19,7 +17,6 @@ SELECT addSyntelestes('Anya', 'Chalotra', 'Actor','6941469423');
 SELECT addSyntelestes('Jensen', 'Ackles','Actor','6978965877');
 SELECT addSyntelestes('Jared', 'Padalecki','Actor','6943643478');
 SELECT addSyntelestes('Lauren' ,'Cohan','Actor','6941063423');
-
 SELECT addSyntelestes('Michelle' ,'Ackerley','Presenters','6999342367');
 SELECT addSyntelestes('Melinda' ,'Messenger','Presenters','6961069423');
 SELECT addSyntelestes('Lindsey' ,'Russell','Presenters','6941369423');
@@ -36,7 +33,6 @@ SELECT addSyntelestes('Galvão' ,'Bueno','Presenters','6945633478');
 SELECT addSyntelestes('Carlos' ,'Mata','Presenters','6945643568');
 SELECT addSyntelestes('Maria-Eugenia', 'Mosquera','Presenters','6948243478');
 SELECT addSyntelestes('Bob' ,'Blumer','Presenters','6945644478');
-
 SELECT addSyntelestes('Will' ,'Smith','Actor','6941083423');
 SELECT addSyntelestes('Samuel L.' ,'Jackson','Actor','6941663423');
 SELECT addSyntelestes('Morgan' ,'Freeman','Actor','6941083423');
