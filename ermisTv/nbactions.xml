@@ -24,7 +24,6 @@
             <exec.appArgs></exec.appArgs>
             <exec.mainClass>gr.ihu.ermistv.App</exec.mainClass>
             <exec.executable>java</exec.executable>
-
         </properties>
     </action>
     <action>

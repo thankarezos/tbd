@@ -3,10 +3,12 @@ CREATE OR REPLACE FUNCTION "ekpompes"()
  LANGUAGE plpgsql
 AS $function$
     BEGIN
+    DROP type if EXISTS type_ek CASCADE;
+    DROP type if EXISTS rating CASCADE;
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rating') THEN 
     CREATE type rating AS ENUM('K' ,'8','12', '16','18')  ;END IF;
-    -- IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
-    -- CREATE type type_ek AS ENUM('Movie','Series','Broadcast','Documentary','NEWS');END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
+    CREATE type type_ek AS ENUM('Movie','Series','Broadcast','Documentary','NEWS','Cartoon');END IF;
     DROP TABLE IF EXISTS ekpompes CASCADE;
     CREATE TABLE IF NOT EXISTS ekpompes
     (
@@ -17,27 +19,6 @@ AS $function$
         time int,
         primary key(sid)
     );
-
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhmera','Broadcast','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhnyxta','Movie','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('kalo mesimeri','Series','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('dwaaasfgdf','Series','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhmera','Documentary','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhnyxta','Broadcast','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('kalo mesimeri','NEWS','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhmera','Series','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('Kalhnyxta','NEWS','18', '30');
-    INSERT INTO ekpompes (name,type_ek,rating,time)
-    VALUES ('kalo mesimeri','Movie','18', '30');
 
     END;
 $function$;

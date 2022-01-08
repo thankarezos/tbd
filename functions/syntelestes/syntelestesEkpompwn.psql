@@ -170,7 +170,6 @@ AS $function$
         THEN
             return 2;
             -- yparxei kai den yparxei gia prosthiki     1 0
-
         ELSIF NOT EXISTS (SELECT 1 FROM getSyntelestesek(idek) WHERE sidsy = idsy) AND NOT EXISTS (SELECT 1 FROM getSyntelestes() WHERE sid = idsy)
         THEN
             return 3;
