@@ -50,6 +50,9 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
     private TextField syntelestisID, syntelestisName, syntelestisPhoneN, syntelestisSurname, addFacSurname, addFacName,
             addFacPhoneN, addFacRole;
+    
+    @FXML
+    private Text labelPlace;
 
     private AnchorPane mainAp;
     private int id;
@@ -299,7 +302,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(name);
+        labelPlace.setText(name);
         createRole();
 
         syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
