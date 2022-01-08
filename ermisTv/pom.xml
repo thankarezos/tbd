@@ -73,18 +73,14 @@
     </dependencies>
     <build>
         <plugins>
+            
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
                     <release>11</release>
-                    <compilerArgs>
-                        <arg>--add-exports=javafx.base/com.sun.javafx.runtime=ALL-UNNAMED</arg>
-                        <arg>--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED</arg>
-                        <arg>--add-exports=avafx.controls/com.sun.javafx.scene.control.inputmap=ALL-UNNAMED</arg>
-                        <arg>--add-exports=javafx.graphics/com.sun.javafx.scene.traversal=ALL-UNNAMED</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -124,9 +120,6 @@
                     <destination>target/dist</destination>
                     <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
                     <input>app</input>
-                    <!--                  <modulePaths>
-                    <modulePath>test.txt</modulePath>
-                  </modulePaths>-->
 
                     <runtimeImage>target/ermisTv</runtimeImage>
                     <javaOptions>
@@ -139,15 +132,15 @@
                     <execution>
                         <id>mac</id>
                         <configuration>
-                            <icon>icons/icons.icns</icon>
+                            <icon>icons/tv.icns</icon>
                         </configuration>
                     </execution>
                     <execution>
                         <id>win</id>
                         <configuration>
-                            <!--<icon>icons/athena.ico</icon>-->
+                            <icon>icons/tv.ico</icon>
                             <winDirChooser>true</winDirChooser>
-                            <winConsole>true</winConsole>
+                            <!--<winConsole>true</winConsole>-->
                             <winMenu>true</winMenu>
                         </configuration>
                     </execution>
@@ -167,9 +160,32 @@
                     <jlinkImageName>ermistv</jlinkImageName>
                     <jlinkZipName>ermistv</jlinkZipName>
                     <mainClass>gr.ihu.ermistv.App</mainClass>
+                    <output>${basedir}/app</output>
 
                 </configuration>
             </plugin>
+            <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>deploy</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${basedir}/target/</outputDirectory>
+                  <resources>
+                    <resource>
+                        <directory>app</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
 
         </plugins>
     </build>
