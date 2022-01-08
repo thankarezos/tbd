@@ -66,8 +66,8 @@ public class Program_Controller implements Initializable {
     private AnchorPane paneProgram, popupEkpompi, addEkpompi, info;
 
     private int daysize = 130;
-    private int emptyS = 30;
-    private double spaces = 5;
+    private int emptyS = 40;
+    private double spaces = 0;
     private double spacesH = 10;
     private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
     private String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
@@ -186,15 +186,14 @@ public class Program_Controller implements Initializable {
 
                 HBox hboxE = new HBox();
                 halfhours = ((double) d.toMinutes()) / 30;
-                hboxE.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                hboxE.setPrefHeight(emptyS * halfhours);
                 program.getChildren().add(hboxE);
                 ////
                 HboxEnch hbox = new HboxEnch();
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
-                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
-//                System.out.println(emptyS * halfhours + halfhours * spaces);
-//                System.out.println("--------------------------------");
+                System.out.println(rs.getString("name"));
+                hbox.setPrefHeight(emptyS * halfhours);
                 hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
 
@@ -316,9 +315,9 @@ public class Program_Controller implements Initializable {
         String panecolor = "";
         for (int i = 1; i <= 7; i++) {
             if (i % 2 == 0) {
-                panecolor = "-fx-background-color:grey";
+                panecolor = "-fx-background-color:grey; -fx-border-width: 5px 0px 5px 0px; -fx-border-color: black";
             } else {
-                panecolor = "-fx-background-color:#f6f7f9";
+                panecolor = "-fx-background-color:#f6f7f9; -fx-border-width: 5px 0px 5px 0px; -fx-border-color: black";
 
             }
             t = 30;
