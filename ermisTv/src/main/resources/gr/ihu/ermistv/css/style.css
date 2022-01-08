@@ -177,7 +177,7 @@ FontAwesomeIconView:hover {
 }
 
 .shadow {
-    -fx-effect: dropshadow(three-pass-box, derive(rgb(41, 28, 224), -20%), 10, 0, 4, 4);
+    -fx-effect: dropshadow(three-pass-box, derive(rgb(0, 0, 0), -20%), 10, 0, 4, 4);
     -fx-background-color: derive(rgb(146, 116, 133), -20%);
     -fx-background-insets: 20;
     -fx-background-radius: 16;

@@ -120,6 +120,8 @@
                     <destination>target/dist</destination>
                     <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
                     <input>app</input>
+                    <copyright>International Hellenic Univesity</copyright>
+                    <description>International Hellenic Univesity</description>
 
                     <runtimeImage>target/ermisTv</runtimeImage>
                     <javaOptions>
@@ -160,8 +162,6 @@
                     <jlinkImageName>ermistv</jlinkImageName>
                     <jlinkZipName>ermistv</jlinkZipName>
                     <mainClass>gr.ihu.ermistv.App</mainClass>
-                    <output>${basedir}/app</output>
-
                 </configuration>
             </plugin>
 
