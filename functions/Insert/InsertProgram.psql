@@ -10,7 +10,9 @@ SELECT addPrograms('8','001/01/1 04:00','Monday');
 SELECT addPrograms('9','001/01/1 04:45','Monday');
 SELECT addPrograms('10','001/01/1 05:30','Monday');
 SELECT addPrograms('11','001/01/1 06:35','Monday');
-SELECT addPrograms('12','001/01/1 08:05','Monday');
+SELECT addPrograms('19','001/01/1 8:15','Monday');
+SELECT addPrograms('1','001/01/1 9:00','Monday');
+SELECT addPrograms('1','001/01/1 9:30','Monday');
 SELECT addPrograms('13','001/01/1 10:00','Monday');
 SELECT addPrograms('14','001/01/1 12:00','Monday');
 SELECT addPrograms('15','001/01/1 15:30','Monday');
@@ -22,4 +24,6 @@ SELECT addPrograms('20','001/01/1 20:10','Monday');
 SELECT addPrograms('21','001/01/1 21:05','Monday');
 SELECT addPrograms('22','001/01/1 21:50','Monday');
 SELECT addPrograms('23','001/01/1 23:10','Monday');
-SELECT addPrograms('24','001/01/1 01:00','Monday');
+SELECT addPrograms('24','001/01/2 01:00','Tuesday');
+
+TRUNCATE TABLE logging.t_history RESTART IDENTITY;

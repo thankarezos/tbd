@@ -1,4 +1,4 @@
-TRUNCATE TABLE programs RESTART IDENTITY;
+TRUNCATE TABLE ekpompes RESTART IDENTITY;
 Select addbroadcast('TOM & JERRY','Cartoon','K','30');
 Select addbroadcast('THE LOONEY TUNES SHOW','Cartoon','K','30');
 Select addbroadcast('BABY LOONEY TUNES','Cartoon','K','30');
@@ -23,3 +23,5 @@ Select addbroadcast('X Factor','Broadcast','K','45');
 Select addbroadcast('Tsoubelas Football','Broadcast','K','80');
 Select addbroadcast('Nightmare In The Kitchen','Broadcast','K','30');
 Select addbroadcast('Master Chef','Broadcast','K','110');
+
+TRUNCATE TABLE logging.t_history RESTART IDENTITY;

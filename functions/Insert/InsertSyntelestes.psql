@@ -37,3 +37,5 @@ SELECT addSyntelestes('Bob' ,'Blumer','Presenters','6945644478');
 SELECT addSyntelestes('Will' ,'Smith','Actor','6941083423');
 SELECT addSyntelestes('Samuel L.' ,'Jackson','Actor','6941663423');
 SELECT addSyntelestes('Morgan' ,'Freeman','Actor','6941083423');
+
+TRUNCATE TABLE logging.t_history RESTART IDENTITY;
