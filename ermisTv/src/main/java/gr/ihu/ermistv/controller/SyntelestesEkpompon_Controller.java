@@ -50,7 +50,6 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
     private TextField syntelestisID, syntelestisName, syntelestisPhoneN, syntelestisSurname, addFacSurname, addFacName,
             addFacPhoneN, addFacRole;
-    
     @FXML
     private Text labelPlace;
 
