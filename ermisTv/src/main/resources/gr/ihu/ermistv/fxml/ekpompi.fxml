@@ -8,7 +8,9 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Ekpompi_Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/style.css"
+   xmlns="http://javafx.com/javafx/16"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Ekpompi_Controller">
    <children>
       <AnchorPane fx:id="addBroadcast" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="435.0" style="-fx-border-color: #222222;" styleClass="child" stylesheets="@../css/style.css">
          <children>

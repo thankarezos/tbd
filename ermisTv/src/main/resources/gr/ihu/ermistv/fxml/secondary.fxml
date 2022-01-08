@@ -16,7 +16,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1024.0" styleClass="child" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
+<AnchorPane fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1024.0" styleClass="child" stylesheets="@../css/style.css"
+    xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Secondary_Controller">
     <children>
         <HBox id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1024.0" spacing="5.0" styleClass="parent_secontary" stylesheets="@../css/style.css">
             <children>
@@ -66,24 +68,24 @@
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
-                  <Button id="btnSyntelestes" fx:id="btnLog" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
-                     <font>
-                        <Font name="Arial Bold" size="15.0" />
-                     </font>
-                  </Button>
+                        <Button id="btnSyntelestes" fx:id="btnLog" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
+                            <font>
+                                <Font name="Arial Bold" size="15.0" />
+                            </font>
+                        </Button>
                     </children>
                 </VBox>
             </children>
         </VBox>
-      <TitledPane layoutY="266.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="147.0" rotate="180.0">
-         <content>
-            <ScrollPane rotate="180.0">
-               <content>
-                  <TextFlow fx:id="infoArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="194.0" prefWidth="131.0" />
-               </content>
-            </ScrollPane>
-         </content>
-      </TitledPane>
+        <TitledPane layoutY="266.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="147.0" rotate="180.0">
+            <content>
+                <ScrollPane rotate="180.0">
+                    <content>
+                        <TextFlow fx:id="infoArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="194.0" prefWidth="131.0" />
+                    </content>
+                </ScrollPane>
+            </content>
+        </TitledPane>
         <Button id="btnSyntelestes" fx:id="btnLogout" alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="500.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" prefHeight="30.0" prefWidth="105.0" text="Logout">
             <font>
                 <Font name="Arial Bold" size="15.0" />
@@ -91,35 +93,35 @@
         </Button>
         <StackPane layoutX="148.0" layoutY="34.0">
             <children>
-            <AnchorPane fx:id="paneLog" prefHeight="200.0" prefWidth="200.0" styleClass="child" />
+                <AnchorPane fx:id="paneLog" prefHeight="200.0" prefWidth="200.0" styleClass="child" />
                 <AnchorPane id="paneSyntelestes" fx:id="paneSyntelestes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
                 <AnchorPane id="paneEkpompi" fx:id="paneEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
                 <AnchorPane id="paneProgram" fx:id="paneProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="876.0" styleClass="child" stylesheets="@../css/style.css" />
             </children>
         </StackPane>
-      <HBox fx:id="reconnect" layoutX="10.0" visible="false">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
-                     <image>
-                        <Image url="@../images/disconnected_48px.png" />
-                     </image>
-                     <cursor>
+        <HBox fx:id="reconnect" layoutX="10.0" visible="false">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
+                            <image>
+                                <Image url="@../images/disconnected_48px.png" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+                    </cursor>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

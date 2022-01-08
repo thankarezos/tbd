@@ -37,7 +37,7 @@ import static javafx.geometry.Pos.CENTER;
 public class addProgram_Controller implements Initializable {
 
     @FXML
-    private ChoiceBox<String> addDay, addTime1,ekpompiType, ekpompiRating;
+    private ChoiceBox<String> addDay, addTime1, ekpompiType, ekpompiRating;
     @FXML
     private AnchorPane addEkpompi;
     @FXML
@@ -45,7 +45,7 @@ public class addProgram_Controller implements Initializable {
     @FXML
     private Label broErrLabel;
     @FXML
-    private TextField ekpompiName,ekpompiID, addTime2;
+    private TextField ekpompiName, ekpompiID, addTime2;
     @FXML
     private Text sliderText;
     @FXML

@@ -7,7 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
+<StackPane stylesheets="@../css/style.css"
+   xmlns="http://javafx.com/javafx/16"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Program_Controller">
    <children>
       <AnchorPane fx:id="info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="690.0" styleClass="shadow" stylesheets="@../css/style.css">
          <children>

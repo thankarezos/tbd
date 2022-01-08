@@ -42,24 +42,23 @@ import javafx.scene.Scene;
 public class Ekpompi_Controller implements Initializable {
 
     @FXML
-    private AnchorPane addBroadcast,paneEkpompi;
+    private AnchorPane addBroadcast, paneEkpompi;
     @FXML
     private Label broErrLabel;
     @FXML
-    private Button btnAddBroPane,btnConfBro;
+    private Button btnAddBroPane, btnConfBro;
     @FXML
     private VBox ekpompivbox;
     @FXML
-    private TextField filterID, addTimeBro, filterName,addNameBro;
+    private TextField filterID, addTimeBro, filterName, addNameBro;
     @FXML
-    private ChoiceBox<String> filterRating, filterType,choiceRatingBro, choiceTypeBro;
+    private ChoiceBox<String> filterRating, filterType, choiceRatingBro, choiceTypeBro;
     @FXML
     private Text sliderText;
     @FXML
     private RangeSlider sliderr;
     @FXML
     private FontAwesomeIconView x;
-
 
     int lowinit = 30;
     int highinit = 300;

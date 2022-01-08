@@ -23,8 +23,5 @@ public class DBConnection {
         String url = properties.getProperty("url");
         c = DriverManager.getConnection(url, userDB, passDB);
     }
-    
-    
+
 }
-
-

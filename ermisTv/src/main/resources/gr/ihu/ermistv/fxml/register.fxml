@@ -14,7 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="459.0" styleClass="child1" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Register_Controller">
+<AnchorPane fx:id="register" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="459.0" styleClass="child1" stylesheets="@../css/style.css"
+    xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="gr.ihu.ermistv.controller.Register_Controller">
     <children>
         <HBox id="Hbox" fx:id="Hbox" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="459.0" spacing="5.0" styleClass="parent_secontary">
             <children>
@@ -152,29 +154,29 @@
                 <Font name="Arial Bold" size="20.0" />
             </font>
         </Label>
-      <HBox fx:id="reconnect" layoutX="10.0" layoutY="2.0" visible="false">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
-                     <image>
-                        <Image url="@../images/disconnected_48px.png" />
-                     </image>
-                     <cursor>
+        <HBox fx:id="reconnect" layoutX="10.0" layoutY="2.0" visible="false">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#reconnect" prefHeight="0.0" prefWidth="0.0">
+                    <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" nodeOrientation="INHERIT">
+                            <image>
+                                <Image url="@../images/disconnected_48px.png" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
+                    </cursor>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="126.0" text="RECONNECT" textFill="#c81b1b">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

@@ -38,7 +38,7 @@ public class AddFactor_Controller implements Initializable {
     @FXML
     private AnchorPane addFactor;
     @FXML
-    private TextField syntelestisName,syntelestisPhoneN,syntelestisID;
+    private TextField syntelestisName, syntelestisPhoneN, syntelestisID;
     @FXML
     private ChoiceBox<String> syntelestisRole;
     @FXML
@@ -86,13 +86,13 @@ public class AddFactor_Controller implements Initializable {
                         rs.close();
                         break;
                     case 1:
-                        App.controller.errorMessage(0, "O syntelestis uparxei eidi");
+                        App.controller.errorMessage(0, "Rate Exists Species!");
                         break;
                     case 2:
-                        App.controller.errorMessage(0, "O syntelestis den uparxei pleon");
+                        App.controller.errorMessage(0, "Rate Does Not Exist!");
                         break;
                     case 3:
-                        App.controller.errorMessage(0, "H ekpompi den iparxei");
+                        App.controller.errorMessage(0, "The Show Does Not Exist!");
                         break;
                     case 4:
                         App.controller.errorMessage(1, "ERROR!");

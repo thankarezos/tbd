@@ -25,13 +25,13 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class login_Controller implements Initializable,Runnable {
+public class login_Controller implements Initializable, Runnable {
     @FXML
     private AnchorPane primary;
     @FXML
     private TextField fdUser, fdPass;
     @FXML
-    private Label messageLabel,errLabel;
+    private Label messageLabel, errLabel;
     @FXML
     private HBox reconnect;
 
@@ -56,7 +56,7 @@ public class login_Controller implements Initializable,Runnable {
     }
 
     @FXML
-    private void validateLogin() throws  IOException {
+    private void validateLogin() throws IOException {
 
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
@@ -64,15 +64,14 @@ public class login_Controller implements Initializable,Runnable {
         boolean bypass = true;
 
         try {
-            
 
             Statement statement = DBConnection.c.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             queryResult.next();
             if (queryResult.getInt(1) == 0 || bypass) {
-                
-                App.cacheduseer=user;
-                App.cachedpass=pass;
+
+                App.cacheduseer = user;
+                App.cachedpass = pass;
 
                 messageLabel.setStyle("-fx-text-fill: green");
                 messageLabel.setText("Congratulations!");
@@ -93,7 +92,7 @@ public class login_Controller implements Initializable,Runnable {
             statement.close();
             queryResult.close();
 
-        }   catch (SQLException ex) {
+        } catch (SQLException ex) {
             reconnect.setVisible(true);
         }
     }
@@ -113,8 +112,8 @@ public class login_Controller implements Initializable,Runnable {
     }
 
     @FXML
-    private void reconnect(MouseEvent event){
-        if(!running){
+    private void reconnect(MouseEvent event) {
+        if (!running) {
             Thread thread = new Thread(this);
             thread.start();
         }
@@ -123,7 +122,7 @@ public class login_Controller implements Initializable,Runnable {
     private boolean running = false;
 
     @Override
-    public void run(){
+    public void run() {
         running = true;
         try {
             DBConnection.connect();
@@ -138,7 +137,7 @@ public class login_Controller implements Initializable,Runnable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             DBConnection.connect();
-            
+
         } catch (SQLException ex) {
             System.out.println("reconnect failed");
         }

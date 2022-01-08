@@ -29,9 +29,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.EventHandler;
 import javafx.scene.layout.HBox;
 
-public class Secondary_Controller implements Initializable,Runnable {
+public class Secondary_Controller implements Initializable, Runnable {
     @FXML
-    private AnchorPane secondary, paneEkpompi, paneProgram,paneLog,paneSyntelestes;
+    private AnchorPane secondary, paneEkpompi, paneProgram, paneLog, paneSyntelestes;
     @FXML
     private Button btnEkpompi, btnProgram, btnLogout, btnLog, btnSyntelestes;
     @FXML
@@ -57,9 +57,9 @@ public class Secondary_Controller implements Initializable,Runnable {
     }
 
     @FXML
-    private void reconnect(MouseEvent event) throws IOException{
+    private void reconnect(MouseEvent event) throws IOException {
         System.out.println("Reconnecting");
-        if(!running){
+        if (!running) {
             Thread thread = new Thread(this);
             thread.start();
         }
@@ -77,35 +77,35 @@ public class Secondary_Controller implements Initializable,Runnable {
         btnLog.setStyle(color);
     }
 
-    public void errorMessage(Integer num,String error){
+    public void errorMessage(Integer num, String error) {
         String color = "";
-        if(num == 0){
+        if (num == 0) {
             color = "-fx-fill: black";
-        }else if(num == 1){
+        } else if (num == 1) {
             color = "-fx-fill: red";
-        }else if(num == 2){
+        } else if (num == 2) {
             color = "-fx-fill: green";
         }
         Text t1 = new Text();
         try {
             if (DBConnection.c.isClosed()) {
                 reconnect.setVisible(true);
-                
+
                 return;
             }
         } catch (SQLException ex) {
 
         }
-        
+
         t1.setStyle(color);
         t1.setText(error);
         Text t2 = new Text();
         t2.setText("\n");
-        infoArea.getChildren().addAll(t1,t2);
+        infoArea.getChildren().addAll(t1, t2);
 
     }
-    
-    public void errorMessage(){
+
+    public void errorMessage() {
         Text t1 = new Text();
         try {
             if (DBConnection.c.isClosed()) {
@@ -125,19 +125,17 @@ public class Secondary_Controller implements Initializable,Runnable {
         Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
         stage.setScene(scene);
         stage.setX(stage.getX() + 200);
-        
 
     }
-    
-    private void loadProgram(){
+
+    private void loadProgram() {
         Parent root;
         try {
-            
+
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/program.fxml"));
             root = loader.load();
             Program_Controller controller = loader.getController();
-            
-                    
+
             btnProgram.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
@@ -149,8 +147,7 @@ public class Secondary_Controller implements Initializable,Runnable {
                 }
 
             });
-            
-           
+
             paneProgram.getChildren().add(root);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -158,14 +155,13 @@ public class Secondary_Controller implements Initializable,Runnable {
         }
     }
 
-    private void loadEkpompi(){
+    private void loadEkpompi() {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
             root = loader.load();
             Ekpompi_Controller controller = loader.getController();
 
-                    
             btnEkpompi.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
@@ -185,15 +181,14 @@ public class Secondary_Controller implements Initializable,Runnable {
             ex.getCause();
         }
     }
-    
-    private void loadSyntelestes(){
+
+    private void loadSyntelestes() {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/syntelestes.fxml"));
             root = loader.load();
             Syntelestes_Contoller controller = loader.getController();
-            
-                    
+
             btnSyntelestes.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
@@ -206,7 +201,7 @@ public class Secondary_Controller implements Initializable,Runnable {
                 }
 
             });
-            
+
             paneSyntelestes.getChildren().add(root);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -214,14 +209,13 @@ public class Secondary_Controller implements Initializable,Runnable {
         }
     }
 
-    private void loadLog(){
+    private void loadLog() {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/Log.fxml"));
             root = loader.load();
             Log_Controller controller = loader.getController();
-            
-                    
+
             btnLog.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
                 @Override
@@ -240,7 +234,7 @@ public class Secondary_Controller implements Initializable,Runnable {
         }
     }
 
-    private void loadtabs(){
+    private void loadtabs() {
         loadProgram();
         loadEkpompi();
         loadSyntelestes();
@@ -260,7 +254,6 @@ public class Secondary_Controller implements Initializable,Runnable {
         String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
         System.out.println("test");
 
-
         try {
             DBConnection.connect();
             Statement statement = DBConnection.c.createStatement();
@@ -268,8 +261,7 @@ public class Secondary_Controller implements Initializable,Runnable {
             queryResult.next();
             if (queryResult.getInt(1) != 0) {
                 loginBack();
-            }
-            else{
+            } else {
                 reconnect.setVisible(false);
             }
             statement.close();

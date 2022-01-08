@@ -63,8 +63,7 @@ public class Program_Controller implements Initializable {
     @FXML
     private HBox daysV;
     @FXML
-    private AnchorPane paneProgram, popupEkpompi, addEkpompi,info;
-
+    private AnchorPane paneProgram, popupEkpompi, addEkpompi, info;
 
     private int daysize = 130;
     private int emptyS = 30;

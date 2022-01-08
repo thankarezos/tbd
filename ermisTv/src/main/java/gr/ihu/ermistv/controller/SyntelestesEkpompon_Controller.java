@@ -48,7 +48,8 @@ public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
     private VBox vboxSyntelestes;
     @FXML
-    private TextField syntelestisID, syntelestisName, syntelestisPhoneN, syntelestisSurname, addFacSurname, addFacName, addFacPhoneN, addFacRole;
+    private TextField syntelestisID, syntelestisName, syntelestisPhoneN, syntelestisSurname, addFacSurname, addFacName,
+            addFacPhoneN, addFacRole;
 
     private AnchorPane mainAp;
     private int id;

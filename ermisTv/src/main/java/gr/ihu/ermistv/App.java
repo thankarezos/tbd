@@ -21,7 +21,7 @@ import javafx.stage.Screen;
  */
 
 public class App extends Application {
-    
+
     public static String cacheduseer;
     public static String cachedpass;
 
@@ -31,8 +31,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        
-        
+
         try {
             DBConnection.connect();
 

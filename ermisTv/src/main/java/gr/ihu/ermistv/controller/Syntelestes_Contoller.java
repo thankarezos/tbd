@@ -45,7 +45,8 @@ public class Syntelestes_Contoller implements Initializable {
     @FXML
     private Label facErrLabel;
     @FXML
-    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole, syntelestisID, syntelestisName, syntelestisPhoneN;
+    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole, syntelestisID, syntelestisName,
+            syntelestisPhoneN;
 
     private ArrayList<String> Role = new ArrayList<String>();
 
