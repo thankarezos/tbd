@@ -6,11 +6,14 @@ import java.sql.*;
 import gr.ihu.ermistv.App;
 import gr.ihu.ermistv.DBConnection;
 import gr.ihu.ermistv.ScenesSet;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class login_Controller {
+public class login_Controller extends Thread implements Initializable {
     @FXML
     private AnchorPane primary;
 
@@ -100,9 +103,8 @@ public class login_Controller {
             statement.close();
             queryResult.close();
 
-        } catch (SQLException e) {
-            reconnect.setVisible(true);
-            errLabel.setText("Connection Error!");
+        }   catch (SQLException ex) {
+            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -119,17 +121,31 @@ public class login_Controller {
         stage.setX(stage.getX() + 100);
 
     }
-    @FXML
-    private void reconnect(MouseEvent event){
-        System.out.println("Reconnecting");
-        
+    @Override
+     public void run(){
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+     } 
+    
+    @FXML
+    private void reconnect(MouseEvent event){
+        this.start();
     }
 
+    
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try {
+            DBConnection.connect();
+            System.out.println(DBConnection.c.isClosed());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

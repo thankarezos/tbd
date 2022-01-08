@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-public class Register_Controller {
+public class Register_Controller extends Thread{
 
     @FXML
     private HBox Hbox;
@@ -230,16 +230,19 @@ public class Register_Controller {
         stage.setScene(scene);
 
     }
-    @FXML
-    private void reconnect(MouseEvent event){
-        System.out.println("Reconnecting");
-        
+    @Override
+     public void run(){
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+     } 
+    
+    @FXML
+    private void reconnect(MouseEvent event){
+        this.start();
     }
+    
 }

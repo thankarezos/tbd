@@ -15,14 +15,12 @@ import java.sql.*;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
-//import com.jcraft.jsch.*;
-//import java.util.Properties;
 
 /**
  * JavaFX App
  */
 
-public class App extends Application {
+public class App extends Application implements Runnable{
     
     public static String cacheduseer;
     public static String cachedpass;
@@ -35,48 +33,34 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         
         
-        try {
-            DBConnection.connect();
-            
-            
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
-
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-            double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-            stage.setX(x);
-            stage.setY(y);
-            stage.show();
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
-            this.stage = stage;
-        } catch (SQLException ex) {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/error.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new ScenesSet(root, stage, 475, 200, "#Hbox");
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UNDECORATED);
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
-            double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
-            stage.setX(x);
-            stage.setY(y);
-            stage.show();
-            stage.setResizable(false);
-            stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
-            this.stage = stage;
-        }
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+        stage.show();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("images/tv.png")));
+        this.stage = stage;
 
 
     }
 
     public static void main(String[] args) {
-
         launch();
+        
     }
+
+    @Override
+    public void run() {
+        
+    }
+    
+    
 
 }

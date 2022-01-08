@@ -9,8 +9,11 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import gr.ihu.ermistv.App;
+import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
+import static gr.ihu.ermistv.DBConnection.c;
 import gr.ihu.ermistv.ScenesSet;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +32,34 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.EventHandler;
 import javafx.scene.layout.HBox;
 
-public class Secondary_Controller implements Initializable {
+public class Secondary_Controller extends Thread implements Initializable {
+    @Override
+     public void run()  
+    {    
+        String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
+        System.out.println("test");
+        
+
+        try {
+            DBConnection.connect();
+            Statement statement = DBConnection.c.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            queryResult.next();
+            if (queryResult.getInt(1) != 0) {
+                loginBack();
+            }
+            else{
+                reconnect.setVisible(false);
+            }
+            statement.close();
+            queryResult.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            System.out.println("reconnect failed");
+        }
+    } 
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram,paneLog;
     @FXML
@@ -46,12 +76,6 @@ public class Secondary_Controller implements Initializable {
 //    private TextArea infoArea;
 
     String color = "-fx-background-color: #F5F6F8;";
-    // String color1 ="-fx-background-color: linear-gradient(#029EAC, #02A2B1);
-    // -fx-text-fill: white;";
-    // String color2 ="-fx-background-color: linear-gradient(#02A5B5, #02A9BA);
-    // -fx-text-fill: white;";
-    // String color3 ="-fx-background-color: linear-gradient(#02ABBD, #02AFC2);
-    // -fx-text-fill: white;";
     String color1 = "-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
     String color2 = "-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
     String color3 = "-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
@@ -59,35 +83,10 @@ public class Secondary_Controller implements Initializable {
     // Minimize Window
     
     @FXML
-    private void reconnect(MouseEvent event){
+    private void reconnect(MouseEvent event) throws IOException{
         System.out.println("Reconnecting");
+        this.start();
         
-        String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
-        boolean bypass = true;
-
-        try {
-            DBConnection.connect();
-
-            Statement statement = DBConnection.c.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            queryResult.next();
-            if (queryResult.getInt(1) != 0) {
-                DBConnection.c.close();
-            }
-            else{
-                reconnect.setVisible(false);
-            }
-            statement.close();
-            queryResult.close();
-
-        } catch (SQLException e) {
-        }
-        
-        try {
-            DBConnection.connect();
-        } catch (SQLException ex) {
-            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }
     
@@ -106,7 +105,7 @@ public class Secondary_Controller implements Initializable {
 
     // Logout
     @FXML
-    private void Logout(ActionEvent event) throws IOException {
+    private void Logout(ActionEvent event) throws IOException, SQLException {
 
         loginBack();
     }
@@ -190,7 +189,8 @@ public class Secondary_Controller implements Initializable {
 
     }
 
-    private void loginBack() throws IOException {
+    private void loginBack() throws IOException, SQLException {
+        DBConnection.c.close();
         Stage stage = (Stage) secondary.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login_view.fxml"));
         Parent root;
@@ -198,6 +198,7 @@ public class Secondary_Controller implements Initializable {
         Scene scene = new ScenesSet(root, stage, 640, 480, "#Hbox");
         stage.setScene(scene);
         stage.setX(stage.getX() + 200);
+        
 
     }
     

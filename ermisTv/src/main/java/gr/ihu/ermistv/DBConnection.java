@@ -7,6 +7,8 @@ package gr.ihu.ermistv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author User
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 public class DBConnection {
     public static Connection c;
     
+     
     
 
     public static void connect() throws SQLException {
