@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-public class Register_Controller extends Thread{
+public class Register_Controller implements Runnable{
 
     @FXML
     private HBox Hbox;
@@ -232,17 +232,28 @@ public class Register_Controller extends Thread{
     }
     @Override
      public void run(){
+         running = true;
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
+        running = false;
      } 
+     
     
     @FXML
     private void reconnect(MouseEvent event){
-        this.start();
+        if(!running){
+            Thread thread = new Thread(this);
+            thread.start();
+        }
+        
+            
+
     }
+
+    private boolean running = false;
     
 }
