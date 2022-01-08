@@ -28,15 +28,10 @@ import javafx.scene.layout.HBox;
 public class login_Controller implements Initializable,Runnable {
     @FXML
     private AnchorPane primary;
-
     @FXML
     private TextField fdUser, fdPass;
-
     @FXML
-    private Label messageLabel;
-    @FXML
-    private Label errLabel;
-    
+    private Label messageLabel,errLabel;
     @FXML
     private HBox reconnect;
 
@@ -55,7 +50,6 @@ public class login_Controller implements Initializable,Runnable {
     @FXML
     public void Login(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
-            System.out.println("Enter");
             validateLogin();
         }
 
@@ -67,7 +61,7 @@ public class login_Controller implements Initializable,Runnable {
         String user = String.valueOf(fdUser.getText());
         String pass = fdPass.getText();
         String verifyLogin = "select * from checkaccount('" + user + "','" + pass + "');";
-        boolean bypass = false;
+        boolean bypass = true;
 
         try {
             
@@ -88,15 +82,11 @@ public class login_Controller implements Initializable,Runnable {
                 Parent root;
                 root = fxmlLoader.load();
                 Scene scene = new ScenesSet(root, stage, 1024, 550, "#Hbox");
-                /* */
                 fxmlLoader.getController();
                 App.controller = fxmlLoader.getController();
-                /* */
                 stage.setScene(scene);
 
                 stage.setX(stage.getX() - 200);
-                /* */
-                /* */
             } else {
                 messageLabel.setText("Invalid login. Please try again !");
             }
@@ -121,8 +111,19 @@ public class login_Controller implements Initializable,Runnable {
         stage.setX(stage.getX() + 100);
 
     }
+
+    @FXML
+    private void reconnect(MouseEvent event){
+        if(!running){
+            Thread thread = new Thread(this);
+            thread.start();
+        }
+    }
+
+    private boolean running = false;
+
     @Override
-     public void run(){
+    public void run(){
         running = true;
         try {
             DBConnection.connect();
@@ -131,29 +132,15 @@ public class login_Controller implements Initializable,Runnable {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         running = false;
-     } 
-    
-    @FXML
-    private void reconnect(MouseEvent event){
-        if(!running){
-            Thread thread = new Thread(this);
-            thread.start();
-        }
-        
-            
-
     }
-
-    private boolean running = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             DBConnection.connect();
-            System.out.println(DBConnection.c.isClosed());
             
         } catch (SQLException ex) {
-            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("reconnect failed");
         }
     }
 }

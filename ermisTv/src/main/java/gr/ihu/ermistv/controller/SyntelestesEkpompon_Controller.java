@@ -36,42 +36,23 @@ import javafx.scene.Scene;
 
 public class SyntelestesEkpompon_Controller implements Initializable {
     @FXML
+    private Label facErrLabel;
+    @FXML
     private FontAwesomeIconView backIcon, x;
     @FXML
     private Button btnAddFacPane;
-
     @FXML
-    private AnchorPane paneSyntelestes;
-
-    @FXML
-    private AnchorPane addFactor;
-
-    @FXML
-    private AnchorPane popupFactor;
-
-    @FXML
-    private TextField syntelestisID;
-
-    @FXML
-    private TextField syntelestisName;
-
-    @FXML
-    private TextField syntelestisPhoneN;
-
+    private AnchorPane addFactor, popupFactor, paneSyntelestes;
     @FXML
     private ChoiceBox<String> syntelestisRole;
-
-    @FXML
-    private TextField syntelestisSurname;
-
     @FXML
     private VBox vboxSyntelestes;
-
     @FXML
-    private Label facErrLabel;
+    private TextField syntelestisID, syntelestisName, syntelestisPhoneN, syntelestisSurname, addFacSurname, addFacName, addFacPhoneN, addFacRole;
 
-    @FXML
-    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
+    private AnchorPane mainAp;
+    private int id;
+    private ArrayList<String> Role = new ArrayList<String>();
 
     @FXML
     private void reloadFactor(MouseEvent event) {
@@ -83,15 +64,78 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         syntelestisPhoneN.clear();
     }
 
-    SyntelestesEkpompon_Controller(int id) {
-        this.id = id;
+    @FXML
+    private void back(MouseEvent event) throws IOException {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
+            root = loader.load();
+
+            Scene scene = new ScenesSet(root, App.stage, 876, 517);
+            Ekpompi_Controller controller = loader.getController();
+            controller.setAp(mainAp);
+            mainAp.getChildren().add(root);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
     }
 
-    private AnchorPane mainAp;
-    private int id;
-    private ArrayList<String> Role = new ArrayList<String>();
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) throws IOException {
+        if (event.getSource() == x) {
+            paneSyntelestes.toFront();
+        }
+    }
 
-    // Load Results Syntelestes
+    @FXML
+    public void onClkick(MouseEvent event) throws IOException {
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
+            AddFactor_Controller controller = new AddFactor_Controller(id, this);
+            loader.setController(controller);
+            controller.setPop(addFactor);
+            popupFactor.getChildren().add(loader.load());
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            ex.getCause();
+        }
+
+        addFactor.toFront();
+
+    }
+
+    @FXML
+    private void addFactor(MouseEvent event) {
+        addFactor.toFront();
+        createRole();
+    }
+
+    public void createRole() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "select Distinct role from getSyntelestesek(" + this.id + ");";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            Role.clear();
+            Role.add("");
+            while (rs2.next()) {
+                Role.add(rs2.getString("role"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(Role);
+            syntelestisRole.setItems(rate);
+            statement.close();
+            rs2.close();
+
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
+
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
 
         vboxSyntelestes.getChildren().clear();
@@ -191,9 +235,7 @@ public class SyntelestesEkpompon_Controller implements Initializable {
                                 }
                             });
                         }
-
                     }
-
                 });
                 //
                 vboxSyntelestes.getChildren().add(hbox);
@@ -207,7 +249,6 @@ public class SyntelestesEkpompon_Controller implements Initializable {
 
     }
 
-    // Filter Syntelestes
     public void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
         if (isNumeric.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
@@ -238,40 +279,20 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         loadResultsSyntelestes(id, name, surname, role, phoneN);
     }
 
-    // add Factor Syntelestes
-
-    @FXML
-    private void addFactor(MouseEvent event) {
-        addFactor.toFront();
-        createRole();
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void createRole() {
+    public void setAp(AnchorPane ap) {
+        mainAp = ap;
+    }
 
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "select Distinct role from getSyntelestesek(" + this.id + ");";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            Role.clear();
-            Role.add("");
-            while (rs2.next()) {
-                Role.add(rs2.getString("role"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(Role);
-            syntelestisRole.setItems(rate);
-            statement.close();
-            rs2.close();
-
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
+    SyntelestesEkpompon_Controller(int id) {
+        this.id = id;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(id);
         createRole();
 
         syntelestisID.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -291,62 +312,6 @@ public class SyntelestesEkpompon_Controller implements Initializable {
         });
 
         loadResultsSyntelestes("null", "null", "null", "null", "null");
-
-    }
-
-    @FXML
-    private void back(MouseEvent event) throws IOException {
-        System.out.println("test");
-        Parent root;
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/ekpompi.fxml"));
-            root = loader.load();
-
-            Scene scene = new ScenesSet(root, App.stage, 876, 517);
-            Ekpompi_Controller controller = loader.getController();
-            controller.setAp(mainAp);
-            mainAp.getChildren().add(root);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setAp(AnchorPane ap) {
-        mainAp = ap;
-    }
-
-    @FXML
-    private void popupsHandleClicks(MouseEvent event) throws IOException {
-        if (event.getSource() == x) {
-            paneSyntelestes.toFront();
-        }
-    }
-
-    @FXML
-    public void onClkick(MouseEvent event) throws IOException {
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addFactor.fxml"));
-            AddFactor_Controller controller = new AddFactor_Controller(id, this);
-            loader.setController(controller);
-            controller.setPop(addFactor);
-            popupFactor.getChildren().add(loader.load());
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            ex.getCause();
-        }
-
-        addFactor.toFront();
-
-    }
-
-    public void set() {
 
     }
 }

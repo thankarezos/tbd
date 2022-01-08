@@ -42,57 +42,178 @@ import javafx.scene.Scene;
 public class Ekpompi_Controller implements Initializable {
 
     @FXML
-    private AnchorPane addBroadcast;
-
-    @FXML
-    private TextField addNameBro;
-
+    private AnchorPane addBroadcast,paneEkpompi;
     @FXML
     private Label broErrLabel;
-
     @FXML
-    private Button btnAddBroPane;
-
-    @FXML
-    private Button btnConfBro;
-
-    @FXML
-    private ChoiceBox choiceRatingBro, choiceTypeBro;
-
+    private Button btnAddBroPane,btnConfBro;
     @FXML
     private VBox ekpompivbox;
-
     @FXML
-    private TextField filterID, addTimeBro, filterName;
-
+    private TextField filterID, addTimeBro, filterName,addNameBro;
     @FXML
-    private ChoiceBox<String> filterRating, filterType;
-
-    @FXML
-    private AnchorPane paneEkpompi;
+    private ChoiceBox<String> filterRating, filterType,choiceRatingBro, choiceTypeBro;
     @FXML
     private Text sliderText;
-
     @FXML
     private RangeSlider sliderr;
-
     @FXML
     private FontAwesomeIconView x;
 
-    @FXML
-    void editFactorBroadcast(MouseEvent event) {
 
-    }
-
-    private AnchorPane mainAp;
     int lowinit = 30;
     int highinit = 300;
     int low = lowinit;
     int high = highinit;
+    private AnchorPane mainAp;
     private ArrayList<String> ratingC = new ArrayList<String>();
     private ArrayList<String> type_ekC = new ArrayList<String>();
 
-    // Load Results Ekpompi
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) throws IOException {
+        if (event.getSource() == x) {
+            paneEkpompi.toFront();
+        }
+    }
+
+    @FXML
+    private void addbroadcast() throws IOException {
+        int intValue;
+        try {
+            String name = addNameBro.getText();
+            String rating = (String) choiceRatingBro.getValue();
+            String type = (String) choiceTypeBro.getValue();
+            String time = addTimeBro.getText();
+            if (name == "" || isNumeric.isNotNumeric(name)) {
+                broErrLabel.setText("ADD NAME!");
+            } else if (rating == null || rating == "") {
+                broErrLabel.setText("ADD RATING!");
+            } else if (type == null || type == "") {
+                broErrLabel.setText("ADD TYPE! ");
+            } else if (time == null || isNumeric.isNumeric(time)) {
+                broErrLabel.setText("ADD TIME! ");
+            } else {
+                int x = Integer.parseInt(time);
+                if (x >= 30 && x <= 300) {
+                    String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time
+                            + "');";
+                    Statement statement = DBConnection.c.createStatement();
+                    ResultSet rs = statement.executeQuery(addbroadcast);
+
+                    App.controller.errorMessage(2, "Added Successfully!");
+                    filterEkpompi();
+                    addNameBro.clear();
+                    choiceRatingBro.setValue(null);
+                    choiceTypeBro.setValue(null);
+                    addTimeBro.clear();
+                    broErrLabel.setText("");
+                    paneEkpompi.toFront();
+                } else {
+                    broErrLabel.setText("Time must be greater than 30min and less than 300min");
+                }
+            }
+        } catch (SQLException ex) {
+            App.controller.errorMessage(1, "Error");
+        }
+
+    }
+
+    @FXML
+    private void addBroadcast(MouseEvent event) {
+        addBroadcast.toFront();
+        createRating();
+        createType_ek();
+
+    }
+
+    @FXML
+    public void reloadPage() {
+        // App.controller.errorMessage("Reload");
+
+        filterEkpompi();
+        createRating();
+        createType_ek();
+        filterID.clear();
+        filterName.clear();
+        sliderr.setHighValue(highinit);
+        sliderr.setLowValue(lowinit);
+        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+    }
+
+    private void filterEkpompi() {
+        String id = "'" + filterID.getText() + "'";
+        if (isNumeric.isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
+            id = "null";
+        }
+        String name = "'" + filterName.getText() + "'";
+
+        if (filterName.getText().isEmpty()) {
+            name = "null";
+        }
+
+        String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
+
+        if (String.valueOf(filterRating.getValue()).isEmpty() || filterRating.getValue() == null) {
+            rating = "null";
+        }
+
+        String type_ek = "'" + String.valueOf(filterType.getValue()) + "'";
+
+        if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
+            type_ek = "null";
+        }
+        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
+    }
+
+    private void createRating() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            ratingC.clear();
+            ratingC.add("");
+            while (rs2.next()) {
+                ratingC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
+            filterRating.setItems(rate);
+            choiceRatingBro.setItems(rate);
+            statement.close();
+            rs2.close();
+
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
+
+    private void createType_ek() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
+            ResultSet rs2 = statement.executeQuery(setType_ek);
+            type_ekC.clear();
+            type_ekC.add("");
+            while (rs2.next()) {
+                type_ekC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(type_ekC);
+            filterType.setItems(rate);
+            choiceTypeBro.setItems(rate);
+            statement.close();
+            rs2.close();
+
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+
+        }
+
+    }
+
     private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
         ekpompivbox.getChildren().clear();
         String getEkmompes = "select * from getResults(" + id + "," + name + "," + type_ek + "," + rating + ","
@@ -221,150 +342,10 @@ public class Ekpompi_Controller implements Initializable {
 
     }
 
-    private void createRating() {
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            ratingC.clear();
-            ratingC.add("");
-            while (rs2.next()) {
-                ratingC.add(rs2.getString("unnest"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
-            filterRating.setItems(rate);
-            choiceRatingBro.setItems(rate);
-            statement.close();
-            rs2.close();
-
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
+    public void setAp(AnchorPane ap) {
+        mainAp = ap;
     }
 
-    private void createType_ek() {
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
-            ResultSet rs2 = statement.executeQuery(setType_ek);
-            type_ekC.clear();
-            type_ekC.add("");
-            while (rs2.next()) {
-                type_ekC.add(rs2.getString("unnest"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(type_ekC);
-            filterType.setItems(rate);
-            choiceTypeBro.setItems(rate);
-            statement.close();
-            rs2.close();
-
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-
-        }
-
-    }
-
-    // Add Ekpompi
-    @FXML
-    private void addbroadcast() throws IOException {
-        int intValue;
-        try {
-            String name = addNameBro.getText();
-            String rating = (String) choiceRatingBro.getValue();
-            String type = (String) choiceTypeBro.getValue();
-            String time = addTimeBro.getText();
-            if (name == "" || isNumeric.isNotNumeric(name)) {
-                broErrLabel.setText("ADD NAME!");
-            } else if (rating == null || rating == "") {
-                broErrLabel.setText("ADD RATING!");
-            } else if (type == null || type == "") {
-                broErrLabel.setText("ADD TYPE! ");
-            } else if (time == null || isNumeric.isNumeric(time)) {
-                broErrLabel.setText("ADD TIME! ");
-            } else {
-                int x = Integer.parseInt(time);
-                if (x >= 30 && x <= 300) {
-                    String addbroadcast = "select addbroadcast('" + name + "','" + type + "','" + rating + "','" + time
-                            + "');";
-                    Statement statement = DBConnection.c.createStatement();
-                    ResultSet rs = statement.executeQuery(addbroadcast);
-
-                    App.controller.errorMessage(2, "Added Successfully!");
-                    filterEkpompi();
-                    addNameBro.clear();
-                    choiceRatingBro.setValue(null);
-                    choiceTypeBro.setValue(null);
-                    addTimeBro.clear();
-                    broErrLabel.setText("");
-                    paneEkpompi.toFront();
-                } else {
-                    broErrLabel.setText("Time must be greater than 30min and less than 300min");
-                }
-            }
-        } catch (SQLException ex) {
-            App.controller.errorMessage(1, "Error");
-        }
-
-    }
-
-    @FXML
-    private void addBroadcast(MouseEvent event) {
-        addBroadcast.toFront();
-        createRating();
-        createType_ek();
-
-    }
-
-    // Reload Table Ekpompi ??
-    @FXML
-    public void reloadPage() {
-        // App.controller.errorMessage("Reload");
-
-        filterEkpompi();
-        createRating();
-        createType_ek();
-        filterID.clear();
-        filterName.clear();
-        sliderr.setHighValue(highinit);
-        sliderr.setLowValue(lowinit);
-        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-    }
-
-    // Is Numeric Method
-
-    // Filter Ekpompi
-    private void filterEkpompi() {
-        String id = "'" + filterID.getText() + "'";
-        if (isNumeric.isNumeric(filterID.getText()) || filterID.getText().isEmpty()) {
-            id = "null";
-        }
-        String name = "'" + filterName.getText() + "'";
-
-        if (filterName.getText().isEmpty()) {
-            name = "null";
-        }
-
-        String rating = "'" + String.valueOf(filterRating.getValue()) + "'";
-
-        if (String.valueOf(filterRating.getValue()).isEmpty() || filterRating.getValue() == null) {
-            rating = "null";
-        }
-
-        String type_ek = "'" + String.valueOf(filterType.getValue()) + "'";
-
-        if (String.valueOf(filterType.getValue()).isEmpty() || filterType.getValue() == null) {
-            type_ek = "null";
-        }
-        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
-    }
-
-    // Override
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -408,16 +389,5 @@ public class Ekpompi_Controller implements Initializable {
         });
 
         loadResults("null", "null", "null", "null", String.valueOf(low), String.valueOf(high));
-    }
-
-    @FXML
-    private void popupsHandleClicks(MouseEvent event) throws IOException {
-        if (event.getSource() == x) {
-            paneEkpompi.toFront();
-        }
-    }
-
-    public void setAp(AnchorPane ap) {
-        mainAp = ap;
     }
 }

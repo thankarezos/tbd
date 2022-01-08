@@ -26,34 +26,15 @@ import java.util.regex.Pattern;
 public class Register_Controller implements Runnable{
 
     @FXML
-    private HBox Hbox;
-
+    private HBox Hbox,reconnect;
     @FXML
-    private PasswordField cPass;
-
+    private PasswordField fPass, cPass;
     @FXML
-    private TextField email;
-
-    @FXML
-    private TextField fName;
-
-    @FXML
-    private PasswordField fPass;
-
-    @FXML
-    private TextField lName;
-
+    private TextField email, fName, lName,uName ;
     @FXML
     private Label messageLabel;
-
     @FXML
     private AnchorPane register;
-
-    @FXML
-    private TextField uName;
-    
-    @FXML
-    private HBox reconnect;
 
     @FXML
     void back(MouseEvent event) throws IOException {
@@ -66,7 +47,6 @@ public class Register_Controller implements Runnable{
         Stage stage = new Stage();
         stage = (Stage) register.getScene().getWindow();
         stage.setIconified(true);
-        testUsingSimpleRegex();
     }
 
     @FXML
@@ -80,7 +60,14 @@ public class Register_Controller implements Runnable{
         TextField text = ((TextField) event.getSource());
         text.getStyleClass().add("error");
         setError("");
+    }
 
+    @FXML
+    private void reconnect(MouseEvent event){
+        if(!running){
+            Thread thread = new Thread(this);
+            thread.start();
+        }
     }
 
     public void RegisterButtonOnAction() throws Exception {
@@ -207,14 +194,6 @@ public class Register_Controller implements Runnable{
                 .matches();
     }
 
-    public void testUsingSimpleRegex() {
-        String emailAddress = "username@domain.com";
-        String regexPattern = "^(.+)@(\\S+)$";
-        if (patternMatches(emailAddress, regexPattern)) {
-            System.out.println("YES");
-        }
-    }
-
     public void setError(String error) {
         messageLabel.setStyle("-fx-text-fill: red;");
         messageLabel.setText(error);
@@ -230,9 +209,12 @@ public class Register_Controller implements Runnable{
         stage.setScene(scene);
 
     }
+
+    private boolean running = false;
+
     @Override
-     public void run(){
-         running = true;
+    public void run(){
+        running = true;
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
@@ -240,20 +222,5 @@ public class Register_Controller implements Runnable{
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         running = false;
-     } 
-     
-    
-    @FXML
-    private void reconnect(MouseEvent event){
-        if(!running){
-            Thread thread = new Thread(this);
-            thread.start();
-        }
-        
-            
-
     }
-
-    private boolean running = false;
-    
 }

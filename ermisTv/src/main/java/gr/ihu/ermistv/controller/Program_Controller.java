@@ -40,8 +40,6 @@ import javafx.scene.input.MouseEvent;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -65,27 +63,55 @@ public class Program_Controller implements Initializable {
     @FXML
     private HBox daysV;
     @FXML
-    private AnchorPane paneProgram;
-    @FXML
-    private AnchorPane addEkpompi;
-    @FXML
-    private AnchorPane popupEkpompi;
+    private AnchorPane paneProgram, popupEkpompi, addEkpompi,info;
 
-    @FXML
-    private AnchorPane info;
+
+    private int daysize = 130;
+    private int emptyS = 30;
+    private double spaces = 5;
+    private double spacesH = 10;
+    private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
+    private String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+    HBox test = new HBox();
 
     @FXML
     private void refresh() {
         loadPrograms();
     }
 
-    private String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-    private String[] colors = { "white", "grey", "Thursday", "Wednesday", "Friday", "Saturday", "Sunday" };
-    private int daysize = 130;
-    private int emptyS = 30;
-    private double spaces = 5;
-    private double spacesH = 10;
-    private HashMap<String, HBox> scrollDay = new HashMap<String, HBox>();
+    @FXML
+    private void add(MouseEvent event) {
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addProgram.fxml"));
+            addProgram_Controller controller = new addProgram_Controller(this);
+            loader.setController(controller);
+            controller.setPop(addEkpompi);
+            popupEkpompi.getChildren().add(loader.load());
+
+        } catch (IOException ex) {
+
+        }
+        addEkpompi.toFront();
+    }
+
+    @FXML
+    private void day(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        String id = button.getId();
+        Bounds bounds = extension.getViewportBounds();
+        extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
+                (1 / (emptypane.getHeight() - bounds.getHeight())) - 0.003);
+    }
+
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) {
+        if (event.getSource() == x) {
+            paneProgram.toFront();
+        } else if (event.getSource() == popupX) {
+            paneProgram.toFront();
+        }
+    }
 
     public static Bounds getVisibleBounds(Node aNode) {
         // If node not visible, return empty bounds
@@ -103,34 +129,179 @@ public class Program_Controller implements Initializable {
         return bounds;
     }
 
-    @FXML
-    private void add(MouseEvent event) {
-        System.out.println("add");
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("fxml/addProgram.fxml"));
-            addProgram_Controller controller = new addProgram_Controller(this);
-            loader.setController(controller);
-            controller.setPop(addEkpompi);
-            popupEkpompi.getChildren().add(loader.load());
+    public class Listener implements PropertyChangeListener {
+        @Override
+        public void propertyChange(PropertyChangeEvent event) {
+            if (event.getPropertyName().equals("MyTextProperty")) {
 
-        } catch (IOException ex) {
+                Button button = (Button) daysV.lookup("#" + event.getNewValue().toString());
+                for (int i = 1; i < daysV.getChildren().size(); i++) {
+                    daysV.getChildren().get(i).getStyleClass().add("unPressBtn");
+                }
 
+                button.getStyleClass().clear();
+                button.getStyleClass().add("pressBtn");
+            }
+        }
+    }
+
+    public class DayS {
+        protected PropertyChangeSupport propertyChangeSupport;
+        private String text;
+
+        public DayS() {
+            propertyChangeSupport = new PropertyChangeSupport(this);
         }
 
-        addEkpompi.toFront();
+        public void setText(String text) {
+            String oldText = this.text;
+            this.text = text;
+            propertyChangeSupport.firePropertyChange("MyTextProperty", oldText, text);
+        }
+
+        public void addPropertyChangeListener(PropertyChangeListener listener) {
+            propertyChangeSupport.addPropertyChangeListener(listener);
+        }
     }
 
-    @FXML
-    private void day(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        String id = button.getId();
-        Bounds bounds = extension.getViewportBounds();
-        extension.setVvalue(scrollDay.get(id).getParent().getParent().getLayoutY() *
-                (1 / (emptypane.getHeight() - bounds.getHeight())) - 0.003);
-    }
+    public void loadPrograms() {
 
-    HBox test = new HBox();
+        program.getChildren().clear();
+        double halfhours;
+
+        String getSyntelestes = "select * from getPrograms()";
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            ResultSet rs = statement.executeQuery(getSyntelestes);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+
+            Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
+            while (rs.next()) {
+                Timestamp start = rs.getTimestamp("strtime");
+
+                LocalDateTime from = start.toLocalDateTime();
+                LocalDateTime to = pTime.toLocalDateTime();
+                Duration d = Duration.between(to, from);
+
+                HBox hboxE = new HBox();
+                halfhours = ((double) d.toMinutes()) / 30;
+                hboxE.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                program.getChildren().add(hboxE);
+                ////
+                HboxEnch hbox = new HboxEnch();
+                hbox.getStyleClass().add("vboxProgram");
+                halfhours = rs.getDouble("time") / 30;
+                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+                hbox.setPrefWidth(550);
+                hbox.setAlignment(Pos.CENTER);
+
+                HBox hboxL = new HBox();
+                hbox.setHgrow(hboxL, Priority.ALWAYS);
+                hboxL.setAlignment(Pos.CENTER);
+
+                Label label = new Label();
+                label.setTextAlignment(TextAlignment.CENTER);
+                hbox.setMargin(label, new Insets(0, 20, 0, 10));
+
+                label.getStyleClass().add("textPro");
+                hbox.setMinHeight(Region.USE_PREF_SIZE);
+                hbox.setMinWidth(Region.USE_PREF_SIZE);
+
+                label.setText(rs.getString("name"));
+                hboxL.getChildren().add(label);
+
+                hbox.getChildren().add(hboxL);
+
+                HBox hboxT = new HBox();
+                hboxT.setPrefWidth(100);
+                hboxT.setAlignment(Pos.CENTER_RIGHT);
+                Text text = new Text();
+                text.getStyleClass().add("textPro");
+
+                hbox.setMargin(text, new Insets(0, 20, 0, 0));
+                text.setTextAlignment(TextAlignment.RIGHT);
+
+                Time str = rs.getTime("strtime");
+                LocalTime Stime = str.toLocalTime();
+
+                Time end = rs.getTime("endtime");
+                LocalTime Etime = end.toLocalTime();
+
+                text.setText(Stime + " - " + Etime);
+                hboxT.getChildren().add(text);
+
+                hbox.getChildren().add(hboxT);
+
+                hbox.setValueID(rs.getInt("identry"));
+                program.getChildren().add(hbox);
+
+                pTime = rs.getTimestamp("endtime");
+
+                ContextMenu menu = new ContextMenu();
+
+                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MouseButton button = event.getButton();
+                        if (button == MouseButton.SECONDARY) {
+                            menu.getItems().clear();
+                            MenuItem item = new MenuItem();
+                            item.setText("Delete");
+                            menu.getItems().add(item);
+                            menu.show(hbox, event.getScreenX(), event.getScreenY());
+                            item.setOnAction(event2 -> {
+                                String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
+                                try {
+                                    Statement statement = DBConnection.c.createStatement();
+                                    ResultSet rs = statement.executeQuery(deleteek);
+                                    loadPrograms();
+                                    statement.close();
+                                    App.controller.errorMessage(1, "Deleted!");
+                                } catch (SQLException ex) {
+                                    App.controller.errorMessage();
+
+                                }
+                            });
+                        }
+
+                        if (button == MouseButton.PRIMARY) {
+                            menu.getItems().clear();
+                            try {
+                                String show = "select * from getPrograms() WHERE identry = " + hbox.getValueID() + ";";
+                                Statement statement = DBConnection.c.createStatement();
+                                ResultSet rs = statement.executeQuery(show);
+                                if (rs.next()) {
+                                    info.toFront();
+                                    popupName.setText(rs.getString("name"));
+                                    popupType.setText(rs.getString("type"));
+                                    popupRating.setText(rs.getString("rating"));
+                                    popupTime.setText(rs.getString("time"));
+                                } else {
+                                    loadPrograms();
+                                    App.controller.errorMessage(1, "Does not Exist Anymore");
+                                }
+
+                                // loadPrograms();
+                                statement.close();
+                                rs.close();
+                            } catch (SQLException ex) {
+                                App.controller.errorMessage();
+                            }
+                        }
+                    }
+                });
+
+            }
+            statement.close();
+            rs.close();
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -282,7 +453,6 @@ public class Program_Controller implements Initializable {
         Listener listener = new Listener();
         days.addPropertyChangeListener(listener);
         extension.vvalueProperty().addListener((observable, oldValue, newValue) -> {
-            // System.out.println(newValue);
             if ((double) newValue <= 0.109) {
                 days.setText("Monday");
             } else if ((double) newValue > 0.109 && (double) newValue <= 0.259) {
@@ -303,191 +473,4 @@ public class Program_Controller implements Initializable {
         daysV.getChildren().get(1).getStyleClass().add("pressBtn");
 
     }
-
-    public class DayS {
-        protected PropertyChangeSupport propertyChangeSupport;
-        private String text;
-
-        public DayS() {
-            propertyChangeSupport = new PropertyChangeSupport(this);
-        }
-
-        public void setText(String text) {
-            String oldText = this.text;
-            this.text = text;
-            propertyChangeSupport.firePropertyChange("MyTextProperty", oldText, text);
-        }
-
-        public void addPropertyChangeListener(PropertyChangeListener listener) {
-            propertyChangeSupport.addPropertyChangeListener(listener);
-        }
-    }
-
-    public class Listener implements PropertyChangeListener {
-        @Override
-        public void propertyChange(PropertyChangeEvent event) {
-            if (event.getPropertyName().equals("MyTextProperty")) {
-
-                Button button = (Button) daysV.lookup("#" + event.getNewValue().toString());
-                for (int i = 1; i < daysV.getChildren().size(); i++) {
-                    daysV.getChildren().get(i).getStyleClass().add("unPressBtn");
-                }
-
-                button.getStyleClass().clear();
-                button.getStyleClass().add("pressBtn");
-            }
-        }
-    }
-
-    @FXML
-    private void popupsHandleClicks(MouseEvent event) {
-        if (event.getSource() == x) {
-            paneProgram.toFront();
-        } else if (event.getSource() == popupX) {
-            paneProgram.toFront();
-        }
-    }
-
-    public void loadPrograms() {
-
-        program.getChildren().clear();
-        double halfhours;
-
-        String getSyntelestes = "select * from getPrograms()";
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            ResultSet rs = statement.executeQuery(getSyntelestes);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnsNumber = rsmd.getColumnCount();
-
-            Timestamp pTime = Timestamp.valueOf("0001-01-01 00:00:00");
-            while (rs.next()) {
-                Timestamp start = rs.getTimestamp("strtime");
-
-                LocalDateTime from = start.toLocalDateTime();
-                LocalDateTime to = pTime.toLocalDateTime();
-                Duration d = Duration.between(to, from);
-
-                HBox hboxE = new HBox();
-                halfhours = ((double) d.toMinutes()) / 30;
-                hboxE.setPrefHeight(emptyS * halfhours + halfhours * spaces);
-                program.getChildren().add(hboxE);
-                ////
-                HboxEnch hbox = new HboxEnch();
-                hbox.getStyleClass().add("vboxProgram");
-                halfhours = rs.getDouble("time") / 30;
-                hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
-                hbox.setPrefWidth(550);
-                hbox.setAlignment(Pos.CENTER);
-
-                HBox hboxL = new HBox();
-                hbox.setHgrow(hboxL, Priority.ALWAYS);
-                hboxL.setAlignment(Pos.CENTER);
-
-                Label label = new Label();
-                label.setTextAlignment(TextAlignment.CENTER);
-                hbox.setMargin(label, new Insets(0, 20, 0, 10));
-
-                label.getStyleClass().add("textPro");
-                hbox.setMinHeight(Region.USE_PREF_SIZE);
-                hbox.setMinWidth(Region.USE_PREF_SIZE);
-
-                label.setText(rs.getString("name"));
-                hboxL.getChildren().add(label);
-
-                hbox.getChildren().add(hboxL);
-
-                HBox hboxT = new HBox();
-                hboxT.setPrefWidth(100);
-                hboxT.setAlignment(Pos.CENTER_RIGHT);
-                Text text = new Text();
-                text.getStyleClass().add("textPro");
-
-                hbox.setMargin(text, new Insets(0, 20, 0, 0));
-                text.setTextAlignment(TextAlignment.RIGHT);
-
-                Time str = rs.getTime("strtime");
-                LocalTime Stime = str.toLocalTime();
-
-                Time end = rs.getTime("endtime");
-                LocalTime Etime = end.toLocalTime();
-
-                text.setText(Stime + " - " + Etime);
-                hboxT.getChildren().add(text);
-
-                hbox.getChildren().add(hboxT);
-
-                hbox.setValueID(rs.getInt("identry"));
-                program.getChildren().add(hbox);
-
-                pTime = rs.getTimestamp("endtime");
-
-                ContextMenu menu = new ContextMenu();
-
-                hbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-                    @Override
-                    public void handle(MouseEvent event) {
-                        MouseButton button = event.getButton();
-                        if (button == MouseButton.SECONDARY) {
-                            menu.getItems().clear();
-                            MenuItem item = new MenuItem();
-                            item.setText("Delete");
-                            menu.getItems().add(item);
-                            menu.show(hbox, event.getScreenX(), event.getScreenY());
-                            item.setOnAction(event2 -> {
-                                String deleteek = "select * from deletePrograms(" + hbox.getValueID() + ");";
-                                try {
-                                    Statement statement = DBConnection.c.createStatement();
-                                    ResultSet rs = statement.executeQuery(deleteek);
-                                    loadPrograms();
-                                    statement.close();
-                                    App.controller.errorMessage(1, "Deleted!");
-                                } catch (SQLException ex) {
-                                    App.controller.errorMessage();
-
-                                }
-                            });
-                        }
-
-                        if (button == MouseButton.PRIMARY) {
-                            menu.getItems().clear();
-                            try {
-                                String show = "select * from getPrograms() WHERE identry = " + hbox.getValueID() + ";";
-                                Statement statement = DBConnection.c.createStatement();
-                                ResultSet rs = statement.executeQuery(show);
-                                if (rs.next()) {
-                                    System.out.println(rs.getString("name"));
-                                    info.toFront();
-                                    popupName.setText(rs.getString("name"));
-                                    popupType.setText(rs.getString("type"));
-                                    popupRating.setText(rs.getString("rating"));
-                                    popupTime.setText(rs.getString("time"));
-                                } else {
-                                    loadPrograms();
-                                    App.controller.errorMessage(1, "Does not Exist Anymore");
-                                }
-
-                                // loadPrograms();
-                                statement.close();
-                                rs.close();
-                            } catch (SQLException ex) {
-                                App.controller.errorMessage();
-                            }
-                        }
-
-                    }
-
-                });
-
-            }
-            statement.close();
-            rs.close();
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
-    }
-
 }

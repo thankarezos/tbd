@@ -34,26 +34,29 @@ import java.util.ResourceBundle;
 import static javafx.geometry.Pos.CENTER;
 
 public class AddFactor_Controller implements Initializable {
+
     @FXML
     private AnchorPane addFactor;
-
     @FXML
-    private TextField syntelestisID;
-
-    @FXML
-    private TextField syntelestisName;
-
-    @FXML
-    private TextField syntelestisPhoneN;
-
+    private TextField syntelestisName,syntelestisPhoneN,syntelestisID;
     @FXML
     private ChoiceBox<String> syntelestisRole;
-
     @FXML
     private TextField syntelestisSurname;
-
     @FXML
     private VBox vboxSyntelestes;
+
+    private AnchorPane Pop;
+    private Pane mainP;
+    private int id;
+    private SyntelestesEkpompon_Controller seC;
+    private ArrayList<String> Role = new ArrayList<String>();
+    private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
+
+    AddFactor_Controller(int id, SyntelestesEkpompon_Controller seC) {
+        this.id = id;
+        this.seC = seC;
+    }
 
     @FXML
     private void reloadFactor(MouseEvent event) {
@@ -64,18 +67,6 @@ public class AddFactor_Controller implements Initializable {
         syntelestisSurname.clear();
         syntelestisPhoneN.clear();
     }
-
-    AddFactor_Controller(int id, SyntelestesEkpompon_Controller seC) {
-        this.id = id;
-        this.seC = seC;
-    }
-
-    private AnchorPane Pop;
-    private Pane mainP;
-    private int id;
-    private SyntelestesEkpompon_Controller seC;
-    private ArrayList<String> Role = new ArrayList<String>();
-    private HashMap<Integer, Integer> add = new HashMap<Integer, Integer>();
 
     @FXML
     private void addfactor() throws IOException {
@@ -187,12 +178,6 @@ public class AddFactor_Controller implements Initializable {
                                 }
                                 hbox.setState(true);
                             }
-
-                            // HBox hbox = (HBox) event.getSource();
-                            // hbox.getChildren().get(0);
-                            // hbox.getChildren();
-                            //
-                            //
                         }
 
                     }
@@ -263,6 +248,18 @@ public class AddFactor_Controller implements Initializable {
 
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPop(AnchorPane pop) {
+        Pop = pop;
+    }
+
+    public void setP(Pane p) {
+        mainP = p;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createRole();
@@ -285,17 +282,4 @@ public class AddFactor_Controller implements Initializable {
 
         loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setPop(AnchorPane pop) {
-        Pop = pop;
-    }
-
-    public void setP(Pane p) {
-        mainP = p;
-    }
-
 }

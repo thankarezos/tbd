@@ -1,6 +1,7 @@
 package gr.ihu.ermistv.controller;
 
 public class isNumeric {
+
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return true;

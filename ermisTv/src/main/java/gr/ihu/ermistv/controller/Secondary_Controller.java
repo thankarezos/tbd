@@ -9,11 +9,8 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import gr.ihu.ermistv.App;
-import gr.ihu.ermistv.CrunchifyGetPropertyValues;
 import gr.ihu.ermistv.DBConnection;
-import static gr.ihu.ermistv.DBConnection.c;
 import gr.ihu.ermistv.ScenesSet;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,56 +30,32 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.HBox;
 
 public class Secondary_Controller implements Initializable,Runnable {
-    @Override
-     public void run()  
-    {    running = true;
-        String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
-        System.out.println("test");
-        
-
-        try {
-            DBConnection.connect();
-            Statement statement = DBConnection.c.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-            queryResult.next();
-            if (queryResult.getInt(1) != 0) {
-                loginBack();
-            }
-            else{
-                reconnect.setVisible(false);
-            }
-            statement.close();
-            queryResult.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            System.out.println("reconnect failed");
-        }
-        running = false;
-    } 
     @FXML
-    private AnchorPane secondary, paneEkpompi, paneProgram,paneLog;
+    private AnchorPane secondary, paneEkpompi, paneProgram,paneLog,paneSyntelestes;
     @FXML
-    private Button btnEkpompi, btnProgram, btnLogout,btnLog;
-    @FXML
-    private Button btnSyntelestes;
-    @FXML
-    private AnchorPane paneSyntelestes;
+    private Button btnEkpompi, btnProgram, btnLogout, btnLog, btnSyntelestes;
     @FXML
     private TextFlow infoArea;
-    
     @FXML
     private HBox reconnect;
-//    private TextArea infoArea;
 
-    String color = "-fx-background-color: #F5F6F8;";
-    String color1 = "-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
-    String color2 = "-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
-    String color3 = "-fx-background-color: linear-gradient(#028C98, #02909C); -fx-text-fill: white;";
+    private String color = "-fx-background-color: #F5F6F8;";
+    private String color1 = "-fx-background-color: linear-gradient(#027F87, #02838C); -fx-text-fill: white;";
+    private String color2 = "-fx-background-color: linear-gradient(#02858F, #028994); -fx-text-fill: white;";
+    private boolean running = false;
 
-    // Minimize Window
-    
+    @FXML
+    private void minimizedWindow(MouseEvent event) {
+        Stage stage = (Stage) secondary.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void closeWindow(MouseEvent event) {
+        System.exit(0);
+        Platform.exit();
+    }
+
     @FXML
     private void reconnect(MouseEvent event) throws IOException{
         System.out.println("Reconnecting");
@@ -90,58 +63,18 @@ public class Secondary_Controller implements Initializable,Runnable {
             Thread thread = new Thread(this);
             thread.start();
         }
-        
-            
-
     }
 
-    private boolean running = false;
-    
-    @FXML
-    private void minimizedWindow(MouseEvent event) {
-        Stage stage = (Stage) secondary.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    // Close Window
-    @FXML
-    private void closeWindow(MouseEvent event) {
-        System.exit(0);
-        Platform.exit();
-    }
-
-    // Logout
     @FXML
     private void Logout(ActionEvent event) throws IOException, SQLException {
-
         loginBack();
     }
 
-    // clear Color
     private void clearColor() {
         btnProgram.setStyle(color);
         btnEkpompi.setStyle(color);
         btnSyntelestes.setStyle(color);
         btnLog.setStyle(color);
-    }
-
-    // Handle Clicks Popup
-    @FXML
-    private void handleClicks(ActionEvent event) throws IOException {
-        if (event.getSource() == btnProgram) {
-            
-
-            
-        } else if (event.getSource() == btnEkpompi) {
-            
-            
-            
-        } else if (event.getSource() == btnSyntelestes) {
-            
-            
-        }else if (event.getSource() == btnLog){
-
-        }
     }
 
     public void errorMessage(Integer num,String error){
@@ -163,15 +96,12 @@ public class Secondary_Controller implements Initializable,Runnable {
         } catch (SQLException ex) {
 
         }
-
         
         t1.setStyle(color);
         t1.setText(error);
         Text t2 = new Text();
         t2.setText("\n");
         infoArea.getChildren().addAll(t1,t2);
-        
-        
 
     }
     
@@ -184,16 +114,6 @@ public class Secondary_Controller implements Initializable,Runnable {
             }
         } catch (SQLException ex) {
         }
-    }
-    
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-        btnProgram.setStyle(color1);
-        loadtabs();
-        
-
     }
 
     private void loginBack() throws IOException, SQLException {
@@ -208,7 +128,6 @@ public class Secondary_Controller implements Initializable,Runnable {
         
 
     }
-    
     
     private void loadProgram(){
         Parent root;
@@ -227,7 +146,6 @@ public class Secondary_Controller implements Initializable,Runnable {
                     btnProgram.setStyle(color1);
                     paneProgram.toFront();
                     controller.loadPrograms();
-
                 }
 
             });
@@ -239,6 +157,7 @@ public class Secondary_Controller implements Initializable,Runnable {
             ex.getCause();
         }
     }
+
     private void loadEkpompi(){
         Parent root;
         try {
@@ -294,6 +213,7 @@ public class Secondary_Controller implements Initializable,Runnable {
             ex.getCause();
         }
     }
+
     private void loadLog(){
         Parent root;
         try {
@@ -310,27 +230,56 @@ public class Secondary_Controller implements Initializable,Runnable {
                     btnLog.setStyle(color2);
                     paneLog.toFront();
                     controller.load();
-
                 }
-
             });
-            
-            
+
             paneLog.getChildren().add(root);
         } catch (IOException ex) {
             ex.printStackTrace();
             ex.getCause();
         }
     }
-    
 
     private void loadtabs(){
-        
         loadProgram();
         loadEkpompi();
         loadSyntelestes();
         loadLog();
-        
-        
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        btnProgram.setStyle(color1);
+        loadtabs();
+    }
+
+    @Override
+    public void run() {
+        running = true;
+        String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
+        System.out.println("test");
+
+
+        try {
+            DBConnection.connect();
+            Statement statement = DBConnection.c.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            queryResult.next();
+            if (queryResult.getInt(1) != 0) {
+                loginBack();
+            }
+            else{
+                reconnect.setVisible(false);
+            }
+            statement.close();
+            queryResult.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Secondary_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            System.out.println("reconnect failed");
+        }
+        running = false;
     }
 }

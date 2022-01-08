@@ -51,22 +51,22 @@
             <children>
                 <VBox alignment="CENTER_RIGHT" prefHeight="189.0" prefWidth="150.0" spacing="10.0">
                     <children>
-                        <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Program">
+                        <Button id="btnProgram" fx:id="btnProgram" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Program">
                             <font>
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
-                        <Button id="btnEkpompi" fx:id="btnEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Broadcast">
+                        <Button id="btnEkpompi" fx:id="btnEkpompi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Broadcast">
                             <font>
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
-                        <Button id="btnSyntelestes" fx:id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Factor">
+                        <Button id="btnSyntelestes" fx:id="btnSyntelestes" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Factor">
                             <font>
                                 <Font name="Arial Bold" size="15.0" />
                             </font>
                         </Button>
-                  <Button id="btnSyntelestes" fx:id="btnLog" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
+                  <Button id="btnSyntelestes" fx:id="btnLog" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" styleClass="switchBtn" text="Log">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

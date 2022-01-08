@@ -37,46 +37,35 @@ import static javafx.geometry.Pos.CENTER;
 public class addProgram_Controller implements Initializable {
 
     @FXML
-    private ChoiceBox<String> addDay, addTime1;
-    @FXML
-    private TextField addTime2;
+    private ChoiceBox<String> addDay, addTime1,ekpompiType, ekpompiRating;
     @FXML
     private AnchorPane addEkpompi;
     @FXML
     private HBox timePicker;
-
     @FXML
     private Label broErrLabel;
-
     @FXML
-    private TextField ekpompiID;
-
-    @FXML
-    private TextField ekpompiName;
-
-    @FXML
-    private ChoiceBox<String> ekpompiType, ekpompiRating;
-
+    private TextField ekpompiName,ekpompiID, addTime2;
     @FXML
     private Text sliderText;
-
     @FXML
     private RangeSlider sliderr;
-
     @FXML
     private VBox vboxEkpompi;
 
-    @FXML
-    private void addfactor(MouseEvent event) {
-
-    }
-
+    private AnchorPane Pop;
+    private Pane mainP;
+    private Program_Controller pC;
+    private ArrayList<String> ratingC = new ArrayList<String>();
+    private ArrayList<String> typeC = new ArrayList<String>();
+    private ArrayList<String> dayC = new ArrayList<String>();
     private TimePicker timeP = new TimePicker();
 
     private int lowinit = 30;
     private int highinit = 300;
     private int low = lowinit;
     private int high = highinit;
+    private int pressed = -1;
 
     @FXML
     private void reloadProgram(MouseEvent event) {
@@ -94,19 +83,6 @@ public class addProgram_Controller implements Initializable {
         sliderr.setHighValue(highinit);
     }
 
-    addProgram_Controller(Program_Controller pC) {
-        this.pC = pC;
-    }
-
-    private AnchorPane Pop;
-    private Pane mainP;
-    private Program_Controller pC;
-    private ArrayList<String> ratingC = new ArrayList<String>();
-    private ArrayList<String> typeC = new ArrayList<String>();
-    private ArrayList<String> dayC = new ArrayList<String>();
-
-    int pressed = -1;
-
     @FXML
     private void addProgram() throws IOException {
         Statement statement;
@@ -115,11 +91,11 @@ public class addProgram_Controller implements Initializable {
         int dayId = 0;
 
         if (pressed == -1) {
-            App.controller.errorMessage(1, "Epelekse gia prosthiki!");
+            App.controller.errorMessage(1, "Choose Broadcast!");
         } else if (1 != 1) {
-            App.controller.errorMessage(1, "Prosthese wra!");
+            App.controller.errorMessage(1, "Add Time!");
         } else if (addDay.getValue() == null) {
-            App.controller.errorMessage(1, "Bale hmera!");
+            App.controller.errorMessage(1, "Add Day!");
         } else {
             switch (addDay.getValue()) {
                 case "Monday":
@@ -167,6 +143,143 @@ public class addProgram_Controller implements Initializable {
                 App.controller.errorMessage(1, "Error");
             }
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        timePicker.getChildren().add(timeP);
+        timeP.setTime(LocalTime.parse("00:00"));
+        createType();
+        createDay();
+        createRating();
+        sliderr.setLowValue(low);
+        sliderr.setHighValue(high);
+        sliderr.setMin(lowinit);
+        sliderr.setMax(highinit);
+        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+
+        ekpompiID.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterAddEkpompi();
+        });
+        ekpompiName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterAddEkpompi();
+        });
+        ekpompiType.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filterAddEkpompi();
+        });
+        ekpompiRating.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filterAddEkpompi();
+        });
+        sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
+
+            high = (int) Math.round(newValue.doubleValue());
+            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+            filterAddEkpompi();
+
+        });
+        sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
+            low = (int) Math.round(newValue.doubleValue());
+            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
+            filterAddEkpompi();
+
+        });
+        loadResults("null", "null", "null", "null", String.valueOf(low), String.valueOf(high));
+    }
+
+    // Filter Ekpompi
+    private void filterAddEkpompi() {
+        String id = "'" + ekpompiID.getText() + "'";
+        if (isNumeric.isNumeric(ekpompiID.getText()) || ekpompiID.getText().isEmpty()) {
+            id = "null";
+        }
+        String name = "'" + ekpompiName.getText() + "'";
+        if (ekpompiName.getText().isEmpty()) {
+            name = "null";
+        }
+        String type_ek = "'" + ekpompiType.getValue() + "'";
+        if (String.valueOf(ekpompiType.getValue()).isEmpty() || ekpompiType.getValue() == null) {
+            type_ek = "null";
+        }
+        String rating = "'" + ekpompiRating.getValue() + "'";
+        if (String.valueOf(ekpompiRating.getValue()).isEmpty() || ekpompiRating.getValue() == null) {
+            rating = "null";
+        }
+
+        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
+    }
+
+    private void createRating() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
+            ResultSet rs2 = statement.executeQuery(setRating);
+            ratingC.clear();
+            ratingC.add("");
+            while (rs2.next()) {
+                ratingC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
+            ekpompiRating.setItems(rate);
+            statement.close();
+            rs2.close();
+
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
+
+    private void createType() {
+
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
+            ResultSet rs2 = statement.executeQuery(setType_ek);
+            typeC.clear();
+            typeC.add("");
+            while (rs2.next()) {
+                typeC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(typeC);
+            ekpompiType.setItems(rate);
+            statement.close();
+            rs2.close();
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
+
+    private void createDay() {
+        Statement statement;
+        try {
+            statement = DBConnection.c.createStatement();
+            String setPr_day = "SELECT unnest(enum_range(NULL::pr_day)) ";
+            ResultSet rs2 = statement.executeQuery(setPr_day);
+            dayC.clear();
+            dayC.add("");
+            while (rs2.next()) {
+                dayC.add(rs2.getString("unnest"));
+            }
+            ObservableList<String> rate = FXCollections.observableArrayList(dayC);
+            addDay.setItems(rate);
+            statement.close();
+            rs2.close();
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+
+    }
+
+    public void setPop(AnchorPane pop) {
+        Pop = pop;
+    }
+
+    public void setP(Pane p) {
+        mainP = p;
     }
 
     private void loadResults(String id, String name, String type_ek, String rating, String timeLow, String timeHigh) {
@@ -273,141 +386,7 @@ public class addProgram_Controller implements Initializable {
 
     }
 
-    // Filter Ekpompi
-    private void filterAddEkpompi() {
-        String id = "'" + ekpompiID.getText() + "'";
-        if (isNumeric.isNumeric(ekpompiID.getText()) || ekpompiID.getText().isEmpty()) {
-            id = "null";
-        }
-        String name = "'" + ekpompiName.getText() + "'";
-        if (ekpompiName.getText().isEmpty()) {
-            name = "null";
-        }
-        String type_ek = "'" + ekpompiType.getValue() + "'";
-        if (String.valueOf(ekpompiType.getValue()).isEmpty() || ekpompiType.getValue() == null) {
-            type_ek = "null";
-        }
-        String rating = "'" + ekpompiRating.getValue() + "'";
-        if (String.valueOf(ekpompiRating.getValue()).isEmpty() || ekpompiRating.getValue() == null) {
-            rating = "null";
-        }
-
-        loadResults(id, name, type_ek, rating, String.valueOf(low), String.valueOf(high));
+    addProgram_Controller(Program_Controller pC) {
+        this.pC = pC;
     }
-
-    private void createRating() {
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setRating = "SELECT unnest(enum_range(NULL::rating)) ";
-            ResultSet rs2 = statement.executeQuery(setRating);
-            ratingC.clear();
-            ratingC.add("");
-            while (rs2.next()) {
-                ratingC.add(rs2.getString("unnest"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(ratingC);
-            ekpompiRating.setItems(rate);
-            statement.close();
-            rs2.close();
-
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
-    }
-
-    private void createType() {
-
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setType_ek = "SELECT unnest(enum_range(NULL::type_ek)) ";
-            ResultSet rs2 = statement.executeQuery(setType_ek);
-            typeC.clear();
-            typeC.add("");
-            while (rs2.next()) {
-                typeC.add(rs2.getString("unnest"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(typeC);
-            ekpompiType.setItems(rate);
-            statement.close();
-            rs2.close();
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
-    }
-
-    private void createDay() {
-        Statement statement;
-        try {
-            statement = DBConnection.c.createStatement();
-            String setPr_day = "SELECT unnest(enum_range(NULL::pr_day)) ";
-            ResultSet rs2 = statement.executeQuery(setPr_day);
-            dayC.clear();
-            dayC.add("");
-            while (rs2.next()) {
-                dayC.add(rs2.getString("unnest"));
-            }
-            ObservableList<String> rate = FXCollections.observableArrayList(dayC);
-            addDay.setItems(rate);
-            statement.close();
-            rs2.close();
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        timePicker.getChildren().add(timeP);
-        timeP.setTime(LocalTime.parse("00:00"));
-        createType();
-        createDay();
-        createRating();
-        sliderr.setLowValue(low);
-        sliderr.setHighValue(high);
-        sliderr.setMin(lowinit);
-        sliderr.setMax(highinit);
-        sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-
-        ekpompiID.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterAddEkpompi();
-        });
-        ekpompiName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filterAddEkpompi();
-        });
-        ekpompiType.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filterAddEkpompi();
-        });
-        ekpompiRating.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filterAddEkpompi();
-        });
-        sliderr.highValueProperty().addListener((observable, oldValue, newValue) -> {
-
-            high = (int) Math.round(newValue.doubleValue());
-            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filterAddEkpompi();
-
-        });
-        sliderr.lowValueProperty().addListener((observable, oldValue, newValue) -> {
-            low = (int) Math.round(newValue.doubleValue());
-            sliderText.setText(String.valueOf(low) + " - " + String.valueOf(high));
-            filterAddEkpompi();
-
-        });
-        loadResults("null", "null", "null", "null", String.valueOf(low), String.valueOf(high));
-    }
-
-    public void setPop(AnchorPane pop) {
-        Pop = pop;
-    }
-
-    public void setP(Pane p) {
-        mainP = p;
-    }
-
 }

@@ -34,36 +34,20 @@ public class Syntelestes_Contoller implements Initializable {
     private FontAwesomeIconView x4;
     @FXML
     private Button btnAddFacPane;
-
     @FXML
-    private AnchorPane paneSyntelestes;
-
-    @FXML
-    private AnchorPane addFactor;
-
-    @FXML
-    private TextField syntelestisID;
-
-    @FXML
-    private TextField syntelestisName;
-
-    @FXML
-    private TextField syntelestisPhoneN;
-
+    private AnchorPane paneSyntelestes, addFactor;
     @FXML
     private ChoiceBox<String> syntelestisRole;
-
     @FXML
     private TextField syntelestisSurname;
-
     @FXML
     private VBox vboxSyntelestes;
-
     @FXML
     private Label facErrLabel;
-
     @FXML
-    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole;
+    private TextField addFacSurname, addFacName, addFacPhoneN, addFacRole, syntelestisID, syntelestisName, syntelestisPhoneN;
+
+    private ArrayList<String> Role = new ArrayList<String>();
 
     @FXML
     public void reloadFactor() {
@@ -76,9 +60,61 @@ public class Syntelestes_Contoller implements Initializable {
         syntelestisPhoneN.clear();
     }
 
-    private ArrayList<String> Role = new ArrayList<String>();
+    @FXML
+    private void popupsHandleClicks(MouseEvent event) throws IOException {
+        if (event.getSource() == x4) {
+            facErrLabel.setText("");
+            paneSyntelestes.toFront();
+        }
+    }
 
-    // Load Results Syntelestes
+    @FXML
+    private void addfactors() {
+        Statement statement;
+        try {
+            String name = addFacName.getText();
+            String surname = addFacSurname.getText();
+            String role = addFacRole.getText();
+            String phoneN = addFacPhoneN.getText();
+            statement = DBConnection.c.createStatement();
+
+            if (name == "" || isNumeric.isNotNumeric(name)) {
+                facErrLabel.setText("ADD NAME!");
+            } else if (surname == "" || isNumeric.isNotNumeric(surname)) {
+                facErrLabel.setText("ADD SURNAME!");
+            } else if (role == "" || isNumeric.isNotNumeric(role)) {
+                facErrLabel.setText("ADD ROLE ");
+            } else if (phoneN == "" || isNumeric.isNumeric(phoneN)) {
+                facErrLabel.setText("ADD PHONE NUMBER ");
+            } else {
+                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
+                        + phoneN + "');";
+
+                ResultSet rs = statement.executeQuery(addSyntelestes);
+
+                App.controller.errorMessage(2, "Success");
+                filterSyntelestes();
+                addFacName.clear();
+                addFacSurname.clear();
+                addFacRole.clear();
+                addFacPhoneN.clear();
+                facErrLabel.setText("");
+                paneSyntelestes.toFront();
+                rs.close();
+            }
+            statement.close();
+        } catch (SQLException ex) {
+            App.controller.errorMessage();
+        }
+    }
+
+    @FXML
+    private void AddFactor(MouseEvent event) {
+        addFactor.toFront();
+        facErrLabel.setText("");
+        createRole();
+    }
+
     private void loadResultsSyntelestes(String id, String name, String surname, String role, String phoneNumber) {
         vboxSyntelestes.getChildren().clear();
         String getSyntelestes = "select * from getResultSyntelestes(" + id + "," + name + "," + surname + "," + role
@@ -187,7 +223,6 @@ public class Syntelestes_Contoller implements Initializable {
 
     }
 
-    // Filter Syntelestes
     private void filterSyntelestes() {
         String id = "'" + syntelestisID.getText() + "'";
         if (isNumeric.isNumeric(syntelestisID.getText()) || syntelestisID.getText().isEmpty()) {
@@ -216,54 +251,6 @@ public class Syntelestes_Contoller implements Initializable {
         }
 
         loadResultsSyntelestes(id, name, surname, role, phoneN);
-    }
-
-    // add Factor Syntelestes
-    @FXML
-    private void addfactors() {
-        Statement statement;
-        try {
-            String name = addFacName.getText();
-            String surname = addFacSurname.getText();
-            String role = addFacRole.getText();
-            String phoneN = addFacPhoneN.getText();
-            statement = DBConnection.c.createStatement();
-
-            if (name == "" || isNumeric.isNotNumeric(name)) {
-                facErrLabel.setText("ADD NAME!");
-            } else if (surname == "" || isNumeric.isNotNumeric(surname)) {
-                facErrLabel.setText("ADD SURNAME!");
-            } else if (role == "" || isNumeric.isNotNumeric(role)) {
-                facErrLabel.setText("ADD ROLE ");
-            } else if (phoneN == "" || isNumeric.isNumeric(phoneN)) {
-                facErrLabel.setText("ADD PHONE NUMBER ");
-            } else {
-                String addSyntelestes = "select addSyntelestes('" + name + "','" + surname + "','" + role + "','"
-                        + phoneN + "');";
-
-                ResultSet rs = statement.executeQuery(addSyntelestes);
-
-                App.controller.errorMessage(2, "Success");
-                filterSyntelestes();
-                addFacName.clear();
-                addFacSurname.clear();
-                addFacRole.clear();
-                addFacPhoneN.clear();
-                facErrLabel.setText("");
-                paneSyntelestes.toFront();
-                rs.close();
-            }
-            statement.close();
-        } catch (SQLException ex) {
-            App.controller.errorMessage();
-        }
-    }
-
-    @FXML
-    private void AddFactor(MouseEvent event) {
-        addFactor.toFront();
-        facErrLabel.setText("");
-        createRole();
     }
 
     private void createRole() {
@@ -312,13 +299,4 @@ public class Syntelestes_Contoller implements Initializable {
 
         loadResultsSyntelestes("null", "null", "null", "null", "null");
     }
-
-    @FXML
-    private void popupsHandleClicks(MouseEvent event) throws IOException {
-        if (event.getSource() == x4) {
-            facErrLabel.setText("");
-            paneSyntelestes.toFront();
-        }
-    }
-
 }

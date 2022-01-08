@@ -15,9 +15,6 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
     public static Connection c;
-    
-     
-    
 
     public static void connect() throws SQLException {
         CrunchifyGetPropertyValues properties = new CrunchifyGetPropertyValues("app/config.properties");
