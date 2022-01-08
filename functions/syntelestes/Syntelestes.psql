@@ -13,23 +13,6 @@ AS $function$
         phoneNumber varchar(15),
         primary key(sid)
     );
-
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bob','The Builder','Builder','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bob','Ross','Painter','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bob','Marley','Prime MinISter','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bob','Boilen','Creator','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('Bobby Ray',' Simmons Jr.','ArtISt','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('perIS','Gousios','oxAMan','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber) 
-        VALUES ('Athanasios','Karezos','oxFile','09099109346');
-    INSERT INTO syntelestes (name,surname,role,phoneNumber)
-        VALUES ('kai a','Ta ','Lipa','09099109346');
     
     END;
 $function$;

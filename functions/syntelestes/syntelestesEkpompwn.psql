@@ -16,26 +16,6 @@ AS $function$
         primary key(sidek,sidsy)
     );
 
-    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
-    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
-    FROM ekpompes,syntelestes
-    WHERE ekpompes.sid=1 AND syntelestes.sid=1;
-
-    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
-    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
-    FROM ekpompes,syntelestes
-    WHERE ekpompes.sid=2 AND syntelestes.sid=2 ;
-
-    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
-    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
-    FROM ekpompes,syntelestes
-    WHERE ekpompes.sid=2 AND syntelestes.sid=1 ;
-
-
-    INSERT INTO syntelestesekp (sidek,nameek,sidsy,name,surname,role,phoneNumber)
-    SELECT ekpompes.sid, ekpompes.name, syntelestes.sid, syntelestes.name, surname, role, phoneNumber
-    FROM ekpompes,syntelestes
-    WHERE ekpompes.sid=1 AND syntelestes.sid=3 ;
     
     END;
 $function$;
