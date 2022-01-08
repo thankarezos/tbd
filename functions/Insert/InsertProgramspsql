@@ -1,0 +1,28 @@
+Select addbroadcast('TOM & JERRY','Cartoon','K','30');
+Select addbroadcast('THE LOONEY TUNES SHOW','Cartoon','K','30');
+Select addbroadcast('BABY LOONEY TUNES','Cartoon','K','30');
+Select addbroadcast('BOSS BABY','Cartoon','K','30');
+Select addbroadcast('PAT THE DOG','Cartoon','K','30');
+
+Select addbroadcast('The Witcher','Series','16','45');
+Select addbroadcast('TWO AND A HALF MEN','Series','8','45');
+Select addbroadcast('ARROW','Series','16','45');
+Select addbroadcast('Supernatural','Series','8','45');
+Select addbroadcast('Sex Education','Series','18','65');
+
+Select addbroadcast('Red Notice','Movie','12','100');
+Select addbroadcast('Charlie and the Chocolate Factory','Movie','8','115');
+Select addbroadcast('American Gangster','Movie','16','117');
+Select addbroadcast('The Irishman','Movie','16','210');
+Select addbroadcast('MIB Men In Black','Movie','8','100');
+
+Select addbroadcast('Good Morning Greece','NEWS','K', '45');
+Select addbroadcast('ErmisTvNews','NEWS','K', '45');
+Select addbroadcast('Weather News','NEWS','K', '45');
+Select addbroadcast('Athletics News','NEWS','K', '45');
+
+Select addbroadcast('Every Day Chef','Broadcast','K','55');
+Select addbroadcast('X Factor','Broadcast','K','45');
+Select addbroadcast('Tsoubelas Football','Broadcast','K','80');
+Select addbroadcast('Nightmare In The Kitchen','Broadcast','K','30');
+Select addbroadcast('Master Chef','Broadcast','K','110');

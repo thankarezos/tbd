@@ -14,7 +14,6 @@ AS $function$
     END;
 $function$;
 
-
 CREATE OR REPLACE FUNCTION "account"()
  RETURNS void
  LANGUAGE plpgsql
@@ -30,13 +29,13 @@ AS $function$
         pass varchar(100),
         primary key(username,email)
     );
-
+ 
     END;
 $function$;
 
 SELECT account();
-select userS();
 
+select userS();
 
 CREATE OR REPLACE FUNCTION checkaccount(users text,passs text)
  RETURNS integer
@@ -76,12 +75,6 @@ AS $function$
         ELSE
             return 4; --error
     END IF;
-
-    
     
     END;
 $function$;
-
-Select setAccount('Thanasis','Karezos','email','thankarezos','pass');
-
-select * from account;
