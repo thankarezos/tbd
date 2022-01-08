@@ -32,10 +32,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.EventHandler;
 import javafx.scene.layout.HBox;
 
-public class Secondary_Controller extends Thread implements Initializable {
+public class Secondary_Controller implements Initializable,Runnable {
     @Override
      public void run()  
-    {    
+    {    running = true;
         String verifyLogin = "select * from checkaccount('" + App.cacheduseer + "','" + App.cachedpass + "');";
         System.out.println("test");
         
@@ -59,6 +59,7 @@ public class Secondary_Controller extends Thread implements Initializable {
         } catch (SQLException ex) {
             System.out.println("reconnect failed");
         }
+        running = false;
     } 
     @FXML
     private AnchorPane secondary, paneEkpompi, paneProgram,paneLog;
@@ -85,10 +86,16 @@ public class Secondary_Controller extends Thread implements Initializable {
     @FXML
     private void reconnect(MouseEvent event) throws IOException{
         System.out.println("Reconnecting");
-        this.start();
+        if(!running){
+            Thread thread = new Thread(this);
+            thread.start();
+        }
         
+            
 
     }
+
+    private boolean running = false;
     
     @FXML
     private void minimizedWindow(MouseEvent event) {

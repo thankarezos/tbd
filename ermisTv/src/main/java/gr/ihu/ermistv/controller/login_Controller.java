@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-public class login_Controller extends Thread implements Initializable {
+public class login_Controller implements Initializable,Runnable {
     @FXML
     private AnchorPane primary;
 
@@ -104,7 +104,7 @@ public class login_Controller extends Thread implements Initializable {
             queryResult.close();
 
         }   catch (SQLException ex) {
-            Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
+            reconnect.setVisible(true);
         }
     }
 
@@ -123,20 +123,28 @@ public class login_Controller extends Thread implements Initializable {
     }
     @Override
      public void run(){
+        running = true;
         try {
             DBConnection.connect();
             reconnect.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(login_Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
+        running = false;
      } 
     
     @FXML
     private void reconnect(MouseEvent event){
-        this.start();
+        if(!running){
+            Thread thread = new Thread(this);
+            thread.start();
+        }
+        
+            
+
     }
 
-    
+    private boolean running = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
