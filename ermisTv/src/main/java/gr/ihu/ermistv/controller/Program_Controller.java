@@ -193,6 +193,8 @@ public class Program_Controller implements Initializable {
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
                 hbox.setPrefHeight(emptyS * halfhours + halfhours * spaces);
+//                System.out.println(emptyS * halfhours + halfhours * spaces);
+//                System.out.println("--------------------------------");
                 hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
 
