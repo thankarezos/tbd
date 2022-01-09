@@ -162,6 +162,8 @@ FontAwesomeIconView:hover {
 }
 
 .vboxTime {
+    /* -fx-border-color: transparent;
+    -fx-margin-top: 100px; */
     -fx-background-color: rgb(64, 97, 112, 0.7);
     -fx-background-radius: 4 4 4 4;
 }
@@ -174,8 +176,8 @@ FontAwesomeIconView:hover {
     -fx-text-fill: black;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 3, 0.0, 0, 1);
     -fx-effect: dropshadow(three-pass-box, rgba(26, 26, 26, 0.8), 12, 0.6, 0, 0);
-/*    -fx-background-color:white;
-    -fx-border-color:black;*/
+    /* -fx-background-color: white;
+    -fx-border-color: black; */
 }
 
 .shadow {
@@ -183,10 +185,6 @@ FontAwesomeIconView:hover {
     -fx-background-color: derive(rgb(146, 116, 133), -20%);
     -fx-background-insets: 20;
     -fx-background-radius: 16;
-}
-
-.kati {
-    -fx-border-color:black;
 }
 
 
@@ -344,6 +342,10 @@ Button:hover {
     -fx-text-fill: rgb(42, 103, 160);
     -fx-fill: rgb(212, 84, 84);
     -fx-font-size: 25px;
+}
+
+.katimagiko {
+    -fx-background-color: grey;
 }
 
 

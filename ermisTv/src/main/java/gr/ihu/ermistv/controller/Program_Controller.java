@@ -353,9 +353,10 @@ public class Program_Controller implements Initializable {
                 }
 
                 Pane pane = new Pane();
+                hbox.setMargin(pane , new Insets(5, 0, 5, 0));
                 pane.setPrefHeight(emptyS);
                 pane.setMinHeight(Region.USE_PREF_SIZE);
-                pane.setStyle(panecolor);
+                pane.getStyleClass().add("katimagiko");
                 HBox.setHgrow(pane, Priority.ALWAYS);
 
                 HBox Htime = new HBox();
@@ -390,7 +391,7 @@ public class Program_Controller implements Initializable {
             Pane pane = new Pane();
             pane.setPrefHeight(emptyS);
             pane.setMinHeight(Region.USE_PREF_SIZE);
-            pane.setStyle(panecolor);
+            pane.getStyleClass().add("katimagiko");
             HBox.setHgrow(pane, Priority.ALWAYS);
 
             HBox Htime = new HBox();
@@ -424,7 +425,7 @@ public class Program_Controller implements Initializable {
             Pane pane = new Pane();
             pane.setPrefHeight(emptyS);
             pane.setMinHeight(Region.USE_PREF_SIZE);
-            pane.setStyle(panecolor);
+            pane.getStyleClass().add("katimagiko");
             HBox.setHgrow(pane, Priority.ALWAYS);
 
             HBox Htime = new HBox();

@@ -5,8 +5,8 @@ AS $function$
     BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pr_day') THEN 
     CREATE type pr_day as enum('Monday' ,'Tuesday','Wednesday', 'Thursday','Friday','Saturday','Sunday')  ;END IF;
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
-    CREATE type type_ek AS ENUM ('Movie','Series','Broadcast','Documentary','NEWS');END IF;
+    -- IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'type_ek') THEN 
+    -- CREATE type type_ek AS ENUM ('Movie','Series','Broadcast','Documentary','NEWS');END IF;
     DROP TABLE IF EXISTS programs cascade;
     CREATE TABLE IF NOT EXISTS programs
     (
