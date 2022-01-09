@@ -192,7 +192,6 @@ public class Program_Controller implements Initializable {
                 HboxEnch hbox = new HboxEnch();
                 hbox.getStyleClass().add("vboxProgram");
                 halfhours = rs.getDouble("time") / 30;
-                System.out.println(rs.getString("name"));
                 hbox.setPrefHeight(emptyS * halfhours);
                 hbox.setPrefWidth(550);
                 hbox.setAlignment(Pos.CENTER);
@@ -315,9 +314,9 @@ public class Program_Controller implements Initializable {
         String panecolor = "";
         for (int i = 1; i <= 7; i++) {
             if (i % 2 == 0) {
-                panecolor = "-fx-background-color:grey; -fx-border-width: 5px 0px 5px 0px; -fx-border-color: black";
+                panecolor = "-fx-background-color:grey;";
             } else {
-                panecolor = "-fx-background-color:#f6f7f9; -fx-border-width: 5px 0px 5px 0px; -fx-border-color: black";
+                panecolor = "-fx-background-color:#f6f7f9;";
 
             }
             t = 30;
@@ -353,14 +352,18 @@ public class Program_Controller implements Initializable {
                 }
 
                 Pane pane = new Pane();
-                hbox.setMargin(pane , new Insets(5, 0, 5, 0));
-                pane.setPrefHeight(emptyS);
+                hbox.setMargin(pane,new Insets(5, 0, 5, 0));
                 pane.setMinHeight(Region.USE_PREF_SIZE);
                 pane.getStyleClass().add("katimagiko");
                 HBox.setHgrow(pane, Priority.ALWAYS);
 
+                HBox HtimeOut = new HBox();
+                HtimeOut.setPrefWidth(200);
+                HtimeOut.setPrefHeight(emptyS);
                 HBox Htime = new HBox();
-                Htime.setPrefHeight(emptyS);
+                Htime.setPrefWidth(200);
+                HtimeOut.getChildren().add(Htime);
+                HtimeOut.setMargin(Htime,new Insets(5, 0, 5, 0));
                 Htime.setMinHeight(Region.USE_PREF_SIZE);
                 Htime.getStyleClass().add("vboxTime");
                 Htime.setAlignment(Pos.CENTER);
@@ -374,7 +377,7 @@ public class Program_Controller implements Initializable {
                 text.getStyleClass().add("textname");
 
                 hbox.getChildren().addAll(day, pane);
-                time.getChildren().add(Htime);
+                time.getChildren().add(HtimeOut);
                 emptypane.getChildren().add(hbox);
             }
 
@@ -389,13 +392,18 @@ public class Program_Controller implements Initializable {
             day.setMinWidth(Region.USE_PREF_SIZE);
 
             Pane pane = new Pane();
-            pane.setPrefHeight(emptyS);
+            hbox.setMargin(pane,new Insets(5, 0, 5, 0));
             pane.setMinHeight(Region.USE_PREF_SIZE);
             pane.getStyleClass().add("katimagiko");
             HBox.setHgrow(pane, Priority.ALWAYS);
 
+            HBox HtimeOut = new HBox();
+            HtimeOut.setPrefWidth(200);
+            HtimeOut.setPrefHeight(emptyS);
             HBox Htime = new HBox();
-            Htime.setPrefHeight(emptyS);
+            Htime.setPrefWidth(200);
+            HtimeOut.getChildren().add(Htime);
+            HtimeOut.setMargin(Htime,new Insets(5, 0, 5, 0));
             Htime.setMinHeight(Region.USE_PREF_SIZE);
             Htime.getStyleClass().add("vboxTime");
             Htime.setAlignment(Pos.CENTER);
@@ -406,7 +414,7 @@ public class Program_Controller implements Initializable {
             text.getStyleClass().add("textname");
 
             hbox.getChildren().addAll(day, pane);
-            time.getChildren().add(Htime);
+            time.getChildren().add(HtimeOut);
             emptypane.getChildren().add(hbox);
         }
         t = 30;
@@ -423,13 +431,19 @@ public class Program_Controller implements Initializable {
             day.setMinWidth(Region.USE_PREF_SIZE);
 
             Pane pane = new Pane();
-            pane.setPrefHeight(emptyS);
+            hbox.setMargin(pane,new Insets(5, 0, 5, 0));
             pane.setMinHeight(Region.USE_PREF_SIZE);
             pane.getStyleClass().add("katimagiko");
             HBox.setHgrow(pane, Priority.ALWAYS);
 
+            HBox HtimeOut = new HBox();
+            HtimeOut.setPrefWidth(200);
+            HtimeOut.setPrefHeight(emptyS);
             HBox Htime = new HBox();
-            Htime.setPrefHeight(emptyS);
+            Htime.setPrefWidth(200);
+            HtimeOut.getChildren().add(Htime);
+            HtimeOut.setMargin(Htime,new Insets(5, 0, 5, 0));
+
             Htime.setMinHeight(Region.USE_PREF_SIZE);
             Htime.getStyleClass().add("vboxTime");
             Htime.setAlignment(Pos.CENTER);
@@ -443,7 +457,7 @@ public class Program_Controller implements Initializable {
             text.getStyleClass().add("textname");
 
             hbox.getChildren().addAll(day, pane);
-            time.getChildren().add(Htime);
+            time.getChildren().add(HtimeOut);
             emptypane.getChildren().add(hbox);
         }
 
