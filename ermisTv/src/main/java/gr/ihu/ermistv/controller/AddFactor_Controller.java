@@ -229,8 +229,7 @@ public class AddFactor_Controller implements Initializable {
         Statement statement;
         try {
             statement = DBConnection.c.createStatement();
-            String setRating = "select role from getSyntelestes() EXCEPT select Distinct role from getSyntelestesek("
-                    + this.id + ");";
+            String setRating = "select Distinct role from (select role,sid from getSyntelestes() EXCEPT select role,sidsy from getSyntelestesek(" + this.id +")) as a;";
             ResultSet rs2 = statement.executeQuery(setRating);
             Role.clear();
             Role.add("");
