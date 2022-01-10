@@ -83,6 +83,10 @@ public class Secondary_Controller implements Initializable, Runnable {
             color = "-fx-fill: black";
         } else if (num == 1) {
             color = "-fx-fill: red";
+
+
+
+
         } else if (num == 2) {
             color = "-fx-fill: green";
         }
