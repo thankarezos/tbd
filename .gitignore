@@ -14,3 +14,4 @@ demo/.idea/modules.xml
 demo/.idea/uiDesigner.xml
 demo/.idea/vcs.xml
 demo/src/main/java/module-info.java
+.idea
