@@ -101,6 +101,7 @@ public class Syntelestes_Contoller implements Initializable {
                 addFacPhoneN.clear();
                 facErrLabel.setText("");
                 paneSyntelestes.toFront();
+                createRole();
                 rs.close();
             }
             statement.close();
