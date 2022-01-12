@@ -115,7 +115,7 @@
                 <configuration>
                     <name>ermistv</name>
                     <windirchooser>true</windirchooser>
-                    <appVersion>1.0.1</appVersion>
+                    <appVersion>1.0.2</appVersion>
                     <vendor>gr.ihu</vendor>
                     <destination>target/dist</destination>
                     <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
