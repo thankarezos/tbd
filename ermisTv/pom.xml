@@ -119,7 +119,7 @@
                     <vendor>gr.ihu</vendor>
                     <destination>target/dist</destination>
                     <module>gr.ihu.ermistv/gr.ihu.ermistv.App</module>
-                    <input>app</input>
+                    <input>appDist</input>
                     <copyright>International Hellenic Univesity</copyright>
                     <description>International Hellenic Univesity</description>
 

@@ -1,0 +1,3 @@
+user=<user>
+pass=<password>
+url=jdbc:postgresql://<host>:5432/<database>
